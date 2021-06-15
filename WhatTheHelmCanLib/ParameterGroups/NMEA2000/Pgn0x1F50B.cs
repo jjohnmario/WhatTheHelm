@@ -83,13 +83,13 @@ namespace CanLib.ParameterGroups.NMEA2000
                 //Depth
                 byte[] depthByteArray = new byte[4];
                 Array.Copy(data, 1, depthByteArray, 0, 4);
-                Depth = BitConverter.ToInt32(depthByteArray, 0) * 0.001;
+                Depth = BitConverter.ToInt32(depthByteArray, 0) * 0.01;
                 depthByteArray = null;
 
                 //Offset
                 byte[] offsetByteArray = new byte[4];
                 Array.Copy(data, 5, offsetByteArray, 0, 2);
-                Offset = BitConverter.ToInt32(offsetByteArray, 0) * 0.01;
+                Offset = BitConverter.ToInt32(offsetByteArray, 0) * 0.001;
                 offsetByteArray = null;
             }
             return this;
