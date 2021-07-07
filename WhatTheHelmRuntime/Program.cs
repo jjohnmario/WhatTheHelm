@@ -1,14 +1,11 @@
 ﻿using CanLib.Devices;
 using CanLib.Devices.Nmea2000;
 using CanLib.Devices.Nmea2000.GridConnect;
-using Dashboard;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO.Ports;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Dashboard

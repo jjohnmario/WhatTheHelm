@@ -117,14 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="controlInnerBevel5.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlInnerBevel9.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
         bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
         aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAACAAAACAIAAAACAAAACw==
 </value>
   </data>
-  <data name="controlFont13.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont25.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
         bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
@@ -139,28 +139,28 @@
         bGljaXRIZWlnaHQDoAAL
 </value>
   </data>
-  <data name="controlFont14.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
-        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAAAAAAL
-</value>
-  </data>
-  <data name="controlFont15.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont26.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
         bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
         aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAEAAAAL
 </value>
   </data>
-  <data name="controlInnerBevel6.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont27.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
+        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
+        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAEAAAAL
+</value>
+  </data>
+  <data name="controlInnerBevel10.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
         bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
         aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAACAAAACAIAAAACAAAACw==
 </value>
   </data>
-  <data name="controlFont16.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont28.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
         bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
@@ -175,28 +175,28 @@
         bGljaXRIZWlnaHQDoAAL
 </value>
   </data>
-  <data name="controlFont17.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
-        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAAAAAAL
-</value>
-  </data>
-  <data name="controlFont18.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont29.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
         bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
         aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAEAAAAL
 </value>
   </data>
-  <data name="controlInnerBevel7.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont30.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
+        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
+        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAEAAAAL
+</value>
+  </data>
+  <data name="controlInnerBevel11.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
         bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
         aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAACAAAACAIAAAACAAAACw==
 </value>
   </data>
-  <data name="controlFont19.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont31.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
         bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
@@ -211,39 +211,39 @@
         bGljaXRIZWlnaHQDoAAL
 </value>
   </data>
-  <data name="controlFont20.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
-        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAAAAAAL
-</value>
-  </data>
-  <data name="controlFont21.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont32.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
         bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
         aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAEAAAAL
 </value>
   </data>
-  <data name="controlInnerBevel8.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont33.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
+        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
+        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAEAAAAL
+</value>
+  </data>
+  <data name="controlInnerBevel12.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
         bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
         aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAACAAAACAIAAAACAAAACw==
 </value>
   </data>
-  <data name="rectControlBorder2.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="rectControlBorder3.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
         bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
         aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAACAAAACAIAAAACAAAACw==
 </value>
   </data>
-  <data name="controlFont22.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont34.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
         bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAAAAAAL
+        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAEAAAAL
 </value>
   </data>
   <data name="gaugeRudderAngle.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
@@ -254,14 +254,14 @@
         aWNpdEhlaWdodAP6AAs=
 </value>
   </data>
-  <data name="controlFont23.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont35.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
         bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
         aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAEAAAAL
 </value>
   </data>
-  <data name="controlFont24.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont36.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
         bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC

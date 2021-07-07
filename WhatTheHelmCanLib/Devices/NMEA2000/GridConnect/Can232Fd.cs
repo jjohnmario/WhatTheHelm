@@ -102,7 +102,7 @@ namespace CanLib.Devices.Nmea2000.GridConnect
                             }
                             catch
                             {
-                                throw;
+                               
                             }
                         }
                     }

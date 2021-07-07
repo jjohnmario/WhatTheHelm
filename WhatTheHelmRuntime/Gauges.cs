@@ -186,8 +186,11 @@ namespace Dashboard
                 //Stbd Engine
                 else if(pgn.EngineInstance == 1)
                 {
+                    //Note that on my particular Seagauge G2, the stbd pulse input was inaccurate by a factor of value * 2.3, so I do the correction
+                    //here.  Note that if the NMEA engine gateway is ever to change, this value must be changed back to the port setting found
+                    //on line 184.
                     if(gaugeStbdRpm.IsHandleCreated)
-                        gaugePortRpm.Invoke(new MethodInvoker(()=> gaugeStbdRpm.Value = pgn.EngineSpeed / 400));
+                        gaugePortRpm.Invoke(new MethodInvoker(()=> gaugeStbdRpm.Value = (pgn.EngineSpeed / 400)/2.3));
                 }
                 //Generator
                 else if(pgn.EngineInstance == 2)
@@ -457,7 +460,8 @@ namespace Dashboard
             {
                 gaugePortRpm.Invoke(new MethodInvoker(() =>
                 {
-                    if (portRpm < 1)
+                    //Stalled
+                    if (portRpm < 2.5)
                     {
                         if (gaugePortRpmBorderLast != Color.Red)
                         {
@@ -471,7 +475,8 @@ namespace Dashboard
                         }
 
                     }
-                    else if ((portRpm < stbdRpm) && (Math.Abs(rpmDelta) > 1))
+                    //Slow
+                    else if ((portRpm < stbdRpm) && (Math.Abs(rpmDelta) > 0.75))
                     {
                         if(gaugePortRpmBorderLast != Color.Yellow)
                         {
@@ -484,8 +489,10 @@ namespace Dashboard
                             gaugePortRpmBorderLast = Color.Black;
                         }
                     }
-                    else if ((portRpm > stbdRpm) && (Math.Abs(rpmDelta) > 1))
+                    //Fast
+                    else if ((portRpm > stbdRpm) && (Math.Abs(rpmDelta) > 0.75))
                         gaugePortRpm.Border.Color = Color.Black;
+                    //Sync
                     else
                         gaugePortRpm.Border.Color = Color.Lime;
                 }));
@@ -497,7 +504,8 @@ namespace Dashboard
             {
                 gaugeStbdRpm.Invoke(new MethodInvoker(() =>
                 {
-                    if (stbdRpm < 1)
+                    //Stalled
+                    if (stbdRpm < 2.5)
                     {
                         if (gaugeStbdRpmBorderLast != Color.Red)
                         {
@@ -511,7 +519,8 @@ namespace Dashboard
 
                         }
                     }
-                    else if ((stbdRpm < portRpm) && (Math.Abs(rpmDelta) > 1))
+                    //Slow
+                    else if ((stbdRpm < portRpm) && (Math.Abs(rpmDelta) > 0.75))
                     {
                         if (gaugeStbdRpmBorderLast != Color.Yellow)
                         {
@@ -524,8 +533,10 @@ namespace Dashboard
                             gaugeStbdRpmBorderLast = Color.Black;
                         }
                     }
-                    else if ((stbdRpm > portRpm) && (Math.Abs(rpmDelta) > 1))
+                    //Fast
+                    else if ((stbdRpm > portRpm) && (Math.Abs(rpmDelta) > 0.75))
                         gaugeStbdRpm.Border.Color = Color.Black;
+                    //Sync
                     else
                         gaugeStbdRpm.Border.Color = Color.Lime;
                 }));
@@ -536,15 +547,8 @@ namespace Dashboard
             {
                 try
                 {
-                    if (Convert.ToDouble(lblPortVolts.Text) < 12.0)
-                    {
-                        if (lblPortVoltageLow.BackColor == Color.Maroon)
-                        {
-                            lblPortVoltageLow.BackColor = Color.Red;
-                        }
-                        else
-                            lblPortVoltageLow.BackColor = Color.Maroon;
-                    }
+                    if (Convert.ToDouble(lblPortVolts.Text) < 12.6)
+                        lblPortVoltageLow.BackColor = Color.Red;
                     else
                         lblPortVoltageLow.BackColor = Color.Maroon;
                 }
@@ -559,19 +563,14 @@ namespace Dashboard
             {
                 try
                 {
-                    if (Convert.ToDouble(lblStbdVolts.Text) < 12.0)
-                    {
-                        if (lblStbdVoltageLow.BackColor == Color.Maroon)
-                            lblStbdVoltageLow.BackColor = Color.Red;
-                        else
-                            lblStbdVoltageLow.BackColor = Color.Maroon;
-                    }
+                    if (Convert.ToDouble(lblStbdVolts.Text) < 12.6)
+                        lblStbdVoltageLow.BackColor = Color.Red;
                     else
                         lblStbdVoltageLow.BackColor = Color.Maroon;
                 }
                 catch
                 {
-                    lblStbdVoltageLow.BackColor = Color.Red;
+                    lblStbdVoltageLow.BackColor = Color.Maroon;
                 }
             }));
            
@@ -582,16 +581,10 @@ namespace Dashboard
                     if(SeaGaugeIndicatorStatus!=null)
                     {
                         if (SeaGaugeIndicatorStatus[5] == IndicatorBankStatus.Off)
-                        {
-                            if (lblPortWaterTempHigh.BackColor == Color.Maroon)
-                                lblPortWaterTempHigh.BackColor = Color.Red;
-                            else
-                                lblPortWaterTempHigh.BackColor = Color.Maroon;
-                        }
-                        else if (SeaGaugeIndicatorStatus[6] == IndicatorBankStatus.On)
+                            lblPortWaterTempHigh.BackColor = Color.Red;
+                        else
                             lblPortWaterTempHigh.BackColor = Color.Maroon;
                     }
-
                 }));
 
             //Stbd water temp high
@@ -601,13 +594,8 @@ namespace Dashboard
                     if (SeaGaugeIndicatorStatus != null)
                     {
                         if (SeaGaugeIndicatorStatus[7] == IndicatorBankStatus.Off)
-                        {
-                            if (lblStbdWaterTempHigh.BackColor == Color.Maroon)
-                                lblStbdWaterTempHigh.BackColor = Color.Red;
-                            else
-                                lblStbdWaterTempHigh.BackColor = Color.Maroon;
-                        }
-                        else if (SeaGaugeIndicatorStatus[4] == IndicatorBankStatus.On)
+                            lblStbdWaterTempHigh.BackColor = Color.Red;
+                        else
                             lblStbdWaterTempHigh.BackColor = Color.Maroon;
                     }
                 }));
@@ -619,13 +607,8 @@ namespace Dashboard
                     if (SeaGaugeIndicatorStatus != null)
                     {
                         if (SeaGaugeIndicatorStatus[4] == IndicatorBankStatus.Off)
-                        {
-                            if (lblPortOilPressLow.BackColor == Color.Maroon)
-                                lblPortOilPressLow.BackColor = Color.Red;
-                            else
-                                lblPortOilPressLow.BackColor = Color.Maroon;
-                        }
-                        else if (SeaGaugeIndicatorStatus[7] == IndicatorBankStatus.On)
+                            lblPortOilPressLow.BackColor = Color.Red;
+                        else
                             lblPortOilPressLow.BackColor = Color.Maroon;
                     }
                 }));
@@ -637,13 +620,8 @@ namespace Dashboard
                     if (SeaGaugeIndicatorStatus != null)
                     {
                         if (SeaGaugeIndicatorStatus[8] == IndicatorBankStatus.Off)
-                        {
-                            if (lblStbdOilPressLow.BackColor == Color.Maroon)
-                                lblStbdOilPressLow.BackColor = Color.Red;
-                            else
-                                lblStbdOilPressLow.BackColor = Color.Maroon;
-                        }
-                        else if (SeaGaugeIndicatorStatus[11] == IndicatorBankStatus.On)
+                            lblStbdOilPressLow.BackColor = Color.Red;
+                        else
                             lblStbdOilPressLow.BackColor = Color.Maroon;
                     }
                 }));
@@ -655,13 +633,8 @@ namespace Dashboard
                     if (SeaGaugeIndicatorStatus != null)
                     {
                         if (SeaGaugeIndicatorStatus[6] == IndicatorBankStatus.Off)
-                        {
-                            if (lblPortDriveTempHigh.BackColor == Color.Maroon)
-                                lblPortDriveTempHigh.BackColor = Color.Red;
-                            else
-                                lblPortDriveTempHigh.BackColor = Color.Maroon;
-                        }
-                        else if (SeaGaugeIndicatorStatus[5] == IndicatorBankStatus.On)
+                            lblPortDriveTempHigh.BackColor = Color.Red;
+                        else
                             lblPortDriveTempHigh.BackColor = Color.Maroon;
                     }
                 }));
@@ -673,13 +646,8 @@ namespace Dashboard
                     if (SeaGaugeIndicatorStatus != null)
                     {
                         if (SeaGaugeIndicatorStatus[9] == IndicatorBankStatus.Off)
-                        {
-                            if (lblStbdDriveTempHigh.BackColor == Color.Maroon)
-                                lblStbdDriveTempHigh.BackColor = Color.Red;
-                            else
-                                lblStbdDriveTempHigh.BackColor = Color.Maroon;
-                        }
-                        else if (SeaGaugeIndicatorStatus[10] == IndicatorBankStatus.On)
+                            lblStbdDriveTempHigh.BackColor = Color.Red;
+                        else
                             lblStbdDriveTempHigh.BackColor = Color.Maroon;
                     }
                 }));
@@ -691,13 +659,8 @@ namespace Dashboard
                     if (SeaGaugeIndicatorStatus != null)
                     {
                         if (SeaGaugeIndicatorStatus[10] == IndicatorBankStatus.Off)
-                        {
-                            if (lblPortFuelPressLow.BackColor == Color.Maroon)
-                                lblPortFuelPressLow.BackColor = Color.Red;
-                            else
-                                lblPortFuelPressLow.BackColor = Color.Maroon;
-                        }
-                        else if (SeaGaugeIndicatorStatus[9] == IndicatorBankStatus.On)
+                            lblPortFuelPressLow.BackColor = Color.Red;
+                        else
                             lblPortFuelPressLow.BackColor = Color.Maroon;
                     }
                 }));
@@ -709,13 +672,8 @@ namespace Dashboard
                     if (SeaGaugeIndicatorStatus != null)
                     {
                         if (SeaGaugeIndicatorStatus[11] == IndicatorBankStatus.Off)
-                        {
-                            if (lblStbdFuelPressLow.BackColor == Color.Maroon)
-                                lblStbdFuelPressLow.BackColor = Color.Red;
-                            else
-                                lblStbdFuelPressLow.BackColor = Color.Maroon;
-                        }
-                        else if (SeaGaugeIndicatorStatus[8] == IndicatorBankStatus.On)
+                            lblStbdFuelPressLow.BackColor = Color.Red;
+                        else
                             lblStbdFuelPressLow.BackColor = Color.Maroon;
                     }
                 }));
@@ -740,8 +698,8 @@ namespace Dashboard
                             lblSeaWaterDepth.ForeColor = Color.White;
                         }
                     }
-                    //Water depth low flash (4-8 ft)
-                    else if (depth > 4 && depth <= 8)
+                    //Water depth low flash (4-6 ft)
+                    else if (depth > 4 && depth <= 6)
                     {
                         if (lblSeaWaterDepth.BackColor == Color.Yellow && lblSeaWaterDepth.ForeColor == Color.Black)
                         {
@@ -758,7 +716,7 @@ namespace Dashboard
                     else
                     {
                         lblSeaWaterDepth.BackColor = Color.Transparent;
-                        lblSeaWaterDepth.ForeColor = Color.Black;
+                        lblSeaWaterDepth.ForeColor = Color.White;
                     }
                 }
                 catch
@@ -785,7 +743,7 @@ namespace Dashboard
                 {
                     var depth = Convert.ToDouble(lblSeaWaterDepth.Text);
                     //low
-                    if (depth > 4 && depth <= 8)
+                    if (depth > 4 && depth <= 6)
                         if(player.IsLoadCompleted)
                             player.PlaySync();
                 }
@@ -828,11 +786,6 @@ namespace Dashboard
                 Application.Exit();
             else if (result == DialogResult.Cancel)
                 return;
-        }
-
-        private void lblSeaWaterDepth_Click(object sender, EventArgs e)
-        {
-            gaugePortRpm.Border.Color = Color.Blue;
         }
     }
 }
