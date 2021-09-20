@@ -6,15 +6,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO.Ports;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using WhatTheHelmRuntime;
 
 namespace Dashboard
 {
     static class Program
     {
-        public static Can232Fd CanGateway;
-        public static CanGateWayListener CanGateWayListener;
-        public static CanRequestHandler CanRequestHandler;
+        public static Can232Fd CanGateway { get; set; }
+        public static CanGateWayListener CanGateWayListener { get; set; }
+        public static CanRequestHandler CanRequestHandler { get; set; }
+        public static YoctoPwmRx YoctoPwmRx { get; set; }
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -23,14 +26,22 @@ namespace Dashboard
         {
             try
             {
-                CanName name = new CanName(false, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-                ProductInformation productInformation = new ProductInformation(22, 33, "MarioWare Display", "v1.0.0", "1.0.0", "01229330JJF", 1, 2);
-                SerialPort serialPort = new SerialPort("COM1", 115200, Parity.None, 8, StopBits.One) { NewLine = ";" };
-                CanGateway = new Can232Fd(serialPort, 0, name, productInformation);
-                CanGateWayListener = new CanGateWayListener(CanGateway);
-                CanGateWayListener.Start();
-                CanRequestHandler = new CanRequestHandler(CanGateway);
-                CanRequestHandler.Start();
+                //Initialize CAN adapter
+                //CanName name = new CanName(false, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
+                //ProductInformation productInformation = new ProductInformation(22, 33, "MarioWare Display", "v1.0.0", "1.0.0", "01229330JJF", 1, 2);
+                //SerialPort serialPort = new SerialPort("COM1", 115200, Parity.None, 8, StopBits.One) { NewLine = ";" };
+                //CanGateway = new Can232Fd(serialPort, 0, name, productInformation);
+                //CanGateWayListener = new CanGateWayListener(CanGateway);
+                //CanGateWayListener.Start();
+                //CanRequestHandler = new CanRequestHandler(CanGateway);
+                //CanRequestHandler.Start();
+
+                //Initialize USB tachometer adapter (if not using NMEA tachometer inputs)
+                YoctoPwmRx = new YoctoPwmRx();
+                string msg;
+                if (YoctoPwmRx.Connect(out msg))
+                    Task.Run(() => YoctoPwmRx.StartScan(250));
+                
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);

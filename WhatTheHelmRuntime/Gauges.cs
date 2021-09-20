@@ -119,7 +119,8 @@ namespace Dashboard
             InitializeComponent();
             this.MinimumSize = new Size() { Height = 800, Width = 1280 };
             this.MaximumSize = new Size() { Height = 800, Width = 1280 };
-            Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
+            //Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
+            Program.YoctoPwmRx.NewData += YoctoPwmRx_NewData;
             Timer pgnTimeoutTimer = new Timer();
             pgnTimeoutTimer.Interval = 5000;
             pgnTimeoutTimer.Tick += PgnTimeoutTimer_Tick;
@@ -141,6 +142,18 @@ namespace Dashboard
             {
                 return;
             }
+        }
+
+        private void YoctoPwmRx_NewData(object sender, WhatTheHelmRuntime.YoctoPwmRxArgs e)
+        {//REMEMBER TO CHECK FOR AREAS THAT ARE COMMENTED OUT FOR TESTING OF THIS FEATURE!!!
+            if (gaugePortRpm.IsHandleCreated)
+                gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = e.Input1Hz / 400));
+            if (lblPortRpm.IsHandleCreated)
+                lblPortRpm.Invoke(new MethodInvoker(() => lblPortRpm.Text = (e.Input1Hz / 4).ToString("#")));
+            if (gaugeStbdRpm.IsHandleCreated)
+                gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = e.Input2Hz / 400));
+            if(lblStbdRpm.IsHandleCreated)
+                lblStbdRpm.Invoke(new MethodInvoker(() => lblStbdRpm.Text = (e.Input2Hz / 4).ToString("#")));
         }
 
         private void CanGateWayListener_NewMessage(object sender, CanLib.Messages.CanMessage e)
@@ -190,7 +203,7 @@ namespace Dashboard
                     //here.  Note that if the NMEA engine gateway is ever to change, this value must be changed back to the port setting found
                     //on line 184.
                     if(gaugeStbdRpm.IsHandleCreated)
-                        gaugePortRpm.Invoke(new MethodInvoker(()=> gaugeStbdRpm.Value = (pgn.EngineSpeed / 400)/2.3));
+                        gaugeStbdRpm.Invoke(new MethodInvoker(()=> gaugeStbdRpm.Value = (pgn.EngineSpeed / 400)/2.3));
                 }
                 //Generator
                 else if(pgn.EngineInstance == 2)
@@ -399,8 +412,8 @@ namespace Dashboard
             var pgn0x1F200LastMsgEt = dtNow - pgn0x1F200LastMsg;
             if(pgn0x1F200LastMsgEt.TotalSeconds > 5)
             {
-                gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Hide()));
-                gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Hide()));
+                //gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Hide()));
+                //gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Hide()));
                 lblGeneratorStatus.Invoke(new MethodInvoker(() =>
                 {
                         lblGeneratorStatus.Text = "--";

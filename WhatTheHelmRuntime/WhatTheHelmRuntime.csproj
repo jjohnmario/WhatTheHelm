@@ -82,6 +82,10 @@
     <Compile Include="TrimControl.Designer.cs">
       <DependentUpon>TrimControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="yocto_api\yocto_api.cs" />
+    <Compile Include="yocto_api\yocto_pwminput.cs" />
+    <Compile Include="yocto_api\yocto_quadraturedecoder.cs" />
+    <Compile Include="YoctoPwmRx.cs" />
     <EmbeddedResource Include="FusesStatus.resx">
       <DependentUpon>FusesStatus.cs</DependentUpon>
     </EmbeddedResource>
@@ -156,6 +160,10 @@
     <Content Include="iconfinder_Travel-Filled-21_3671972.ico" />
     <Content Include="Resources\TF014.WAV" />
     <Content Include="Resources\TF023.WAV" />
+    <Content Include="yapi.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
