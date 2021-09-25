@@ -51,10 +51,21 @@
     <ApplicationIcon>iconfinder_Travel-Filled-21_3671972.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mitov.BasicLab, Version=7.8.2.271, Culture=neutral, PublicKeyToken=54b8a1f38c94221a" />
-    <Reference Include="Mitov.InstrumentLab, Version=7.8.2.271, Culture=neutral, PublicKeyToken=d83fb7bf88b23f0b, processorArchitecture=MSIL" />
-    <Reference Include="Mitov.InstrumentLabDigital, Version=7.8.2.271, Culture=neutral, PublicKeyToken=75c3f971405dc4fb" />
-    <Reference Include="Mitov.UserLabBasic, Version=7.8.2.271, Culture=neutral, PublicKeyToken=9f010ec75ebe201f" />
+    <Reference Include="Mitov.BasicLab, Version=7.8.2.271, Culture=neutral, PublicKeyToken=54b8a1f38c94221a">
+      <HintPath>Mitov\Mitov.BasicLab.dll</HintPath>
+    </Reference>
+    <Reference Include="Mitov.InstrumentLab, Version=7.8.2.271, Culture=neutral, PublicKeyToken=d83fb7bf88b23f0b, processorArchitecture=MSIL">
+      <HintPath>Mitov\Mitov.InstrumentLab.dll</HintPath>
+    </Reference>
+    <Reference Include="Mitov.InstrumentLabDigital, Version=7.8.2.271, Culture=neutral, PublicKeyToken=75c3f971405dc4fb">
+      <HintPath>Mitov\Mitov.InstrumentLabDigital.dll</HintPath>
+    </Reference>
+    <Reference Include="Mitov.UserLabBasic, Version=7.8.2.271, Culture=neutral, PublicKeyToken=9f010ec75ebe201f">
+      <HintPath>Mitov\Mitov.UserLabBasic.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Ports, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -74,6 +85,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration.cs" />
+    <Compile Include="ConfigurationMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigurationMenu.Designer.cs">
+      <DependentUpon>ConfigurationMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="FusesStatus.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +122,9 @@
     <Compile Include="yocto_api\yocto_pwminput.cs" />
     <Compile Include="yocto_api\yocto_quadraturedecoder.cs" />
     <Compile Include="YoctoPwmRx.cs" />
+    <EmbeddedResource Include="ConfigurationMenu.resx">
+      <DependentUpon>ConfigurationMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FusesStatus.resx">
       <DependentUpon>FusesStatus.cs</DependentUpon>
     </EmbeddedResource>

@@ -690,6 +690,8 @@
             this.gaugeStbdRpm = new Mitov.InstrumentLab.AngularGauge(this.components);
             this.gaugeSog = new Mitov.InstrumentLab.AngularGauge(this.components);
             this.pnlPower = new System.Windows.Forms.Panel();
+            this.lblStbdRpm = new System.Windows.Forms.Label();
+            this.lblPortRpm = new System.Windows.Forms.Label();
             this.lblStbdHours = new System.Windows.Forms.Label();
             this.lblPortHours = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
@@ -731,8 +733,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.lblPortRpm = new System.Windows.Forms.Label();
-            this.lblStbdRpm = new System.Windows.Forms.Label();
+            this.btnConfig = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
+            this.lblCanMsgQueue = new System.Windows.Forms.Label();
+            this.lblFastPacketQueue = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.pnlStbdEngine.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gaugePortRpm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gaugeStbdRpm)).BeginInit();
@@ -1982,6 +1987,7 @@
             // pnlPower
             // 
             this.pnlPower.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.pnlPower.Controls.Add(this.btnConfig);
             this.pnlPower.Controls.Add(this.lblStbdRpm);
             this.pnlPower.Controls.Add(this.lblPortRpm);
             this.pnlPower.Controls.Add(this.lblStbdHours);
@@ -2006,6 +2012,30 @@
             this.pnlPower.Name = "pnlPower";
             this.pnlPower.Size = new System.Drawing.Size(964, 578);
             this.pnlPower.TabIndex = 2;
+            // 
+            // lblStbdRpm
+            // 
+            this.lblStbdRpm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblStbdRpm.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblStbdRpm.ForeColor = System.Drawing.Color.White;
+            this.lblStbdRpm.Location = new System.Drawing.Point(712, 375);
+            this.lblStbdRpm.Name = "lblStbdRpm";
+            this.lblStbdRpm.Size = new System.Drawing.Size(112, 34);
+            this.lblStbdRpm.TabIndex = 116;
+            this.lblStbdRpm.Text = "--";
+            this.lblStbdRpm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPortRpm
+            // 
+            this.lblPortRpm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPortRpm.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblPortRpm.ForeColor = System.Drawing.Color.White;
+            this.lblPortRpm.Location = new System.Drawing.Point(142, 375);
+            this.lblPortRpm.Name = "lblPortRpm";
+            this.lblPortRpm.Size = new System.Drawing.Size(112, 34);
+            this.lblPortRpm.TabIndex = 115;
+            this.lblPortRpm.Text = "--";
+            this.lblPortRpm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblStbdHours
             // 
@@ -2430,7 +2460,7 @@
             this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label33.Font = new System.Drawing.Font("Arial", 14F);
             this.label33.ForeColor = System.Drawing.Color.White;
-            this.label33.Location = new System.Drawing.Point(78, 78);
+            this.label33.Location = new System.Drawing.Point(78, 63);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(197, 22);
             this.label33.TabIndex = 101;
@@ -2440,6 +2470,10 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lblFastPacketQueue);
+            this.panel1.Controls.Add(this.label29);
+            this.panel1.Controls.Add(this.lblCanMsgQueue);
+            this.panel1.Controls.Add(this.label25);
             this.panel1.Controls.Add(this.lblLastBusScan);
             this.panel1.Controls.Add(this.label32);
             this.panel1.Controls.Add(this.label36);
@@ -2455,7 +2489,7 @@
             this.lblLastBusScan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLastBusScan.Font = new System.Drawing.Font("Arial", 14F);
             this.lblLastBusScan.ForeColor = System.Drawing.Color.White;
-            this.lblLastBusScan.Location = new System.Drawing.Point(278, 108);
+            this.lblLastBusScan.Location = new System.Drawing.Point(278, 93);
             this.lblLastBusScan.Name = "lblLastBusScan";
             this.lblLastBusScan.Size = new System.Drawing.Size(92, 22);
             this.lblLastBusScan.TabIndex = 108;
@@ -2467,7 +2501,7 @@
             this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label32.Font = new System.Drawing.Font("Arial", 14F);
             this.label32.ForeColor = System.Drawing.Color.White;
-            this.label32.Location = new System.Drawing.Point(78, 108);
+            this.label32.Location = new System.Drawing.Point(78, 93);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(197, 22);
             this.label32.TabIndex = 107;
@@ -2491,7 +2525,7 @@
             this.lblJ1939BustStatus.BackColor = System.Drawing.Color.Red;
             this.lblJ1939BustStatus.Font = new System.Drawing.Font("Arial", 14F);
             this.lblJ1939BustStatus.ForeColor = System.Drawing.Color.White;
-            this.lblJ1939BustStatus.Location = new System.Drawing.Point(278, 78);
+            this.lblJ1939BustStatus.Location = new System.Drawing.Point(278, 63);
             this.lblJ1939BustStatus.Name = "lblJ1939BustStatus";
             this.lblJ1939BustStatus.Size = new System.Drawing.Size(96, 22);
             this.lblJ1939BustStatus.TabIndex = 106;
@@ -2791,29 +2825,65 @@
             this.label9.Text = "--";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblPortRpm
+            // btnConfig
             // 
-            this.lblPortRpm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPortRpm.Font = new System.Drawing.Font("Arial", 14F);
-            this.lblPortRpm.ForeColor = System.Drawing.Color.White;
-            this.lblPortRpm.Location = new System.Drawing.Point(142, 375);
-            this.lblPortRpm.Name = "lblPortRpm";
-            this.lblPortRpm.Size = new System.Drawing.Size(112, 34);
-            this.lblPortRpm.TabIndex = 115;
-            this.lblPortRpm.Text = "--";
-            this.lblPortRpm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfig.ForeColor = System.Drawing.Color.White;
+            this.btnConfig.Location = new System.Drawing.Point(11, 530);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(75, 36);
+            this.btnConfig.TabIndex = 117;
+            this.btnConfig.Text = "CONFIG";
+            this.btnConfig.UseVisualStyleBackColor = true;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
-            // lblStbdRpm
+            // label25
             // 
-            this.lblStbdRpm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblStbdRpm.Font = new System.Drawing.Font("Arial", 14F);
-            this.lblStbdRpm.ForeColor = System.Drawing.Color.White;
-            this.lblStbdRpm.Location = new System.Drawing.Point(712, 375);
-            this.lblStbdRpm.Name = "lblStbdRpm";
-            this.lblStbdRpm.Size = new System.Drawing.Size(112, 34);
-            this.lblStbdRpm.TabIndex = 116;
-            this.lblStbdRpm.Text = "--";
-            this.lblStbdRpm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label25.Font = new System.Drawing.Font("Arial", 14F);
+            this.label25.ForeColor = System.Drawing.Color.White;
+            this.label25.Location = new System.Drawing.Point(3, 122);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(272, 22);
+            this.label25.TabIndex = 109;
+            this.label25.Text = "CAN MESSAGES IN QUEUE: ";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblCanMsgQueue
+            // 
+            this.lblCanMsgQueue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCanMsgQueue.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblCanMsgQueue.ForeColor = System.Drawing.Color.White;
+            this.lblCanMsgQueue.Location = new System.Drawing.Point(278, 122);
+            this.lblCanMsgQueue.Name = "lblCanMsgQueue";
+            this.lblCanMsgQueue.Size = new System.Drawing.Size(92, 22);
+            this.lblCanMsgQueue.TabIndex = 110;
+            this.lblCanMsgQueue.Text = "--";
+            this.lblCanMsgQueue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblFastPacketQueue
+            // 
+            this.lblFastPacketQueue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFastPacketQueue.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblFastPacketQueue.ForeColor = System.Drawing.Color.White;
+            this.lblFastPacketQueue.Location = new System.Drawing.Point(278, 151);
+            this.lblFastPacketQueue.Name = "lblFastPacketQueue";
+            this.lblFastPacketQueue.Size = new System.Drawing.Size(92, 22);
+            this.lblFastPacketQueue.TabIndex = 112;
+            this.lblFastPacketQueue.Text = "--";
+            this.lblFastPacketQueue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label29
+            // 
+            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label29.Font = new System.Drawing.Font("Arial", 14F);
+            this.label29.ForeColor = System.Drawing.Color.White;
+            this.label29.Location = new System.Drawing.Point(3, 151);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(272, 22);
+            this.label29.TabIndex = 111;
+            this.label29.Text = "FAST PACKETS IN QUEUE: ";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Gauges
             // 
@@ -2915,5 +2985,10 @@
         private System.Windows.Forms.Label lblStbdHours;
         private System.Windows.Forms.Label lblPortRpm;
         private System.Windows.Forms.Label lblStbdRpm;
+        private System.Windows.Forms.Button btnConfig;
+        private System.Windows.Forms.Label lblFastPacketQueue;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label lblCanMsgQueue;
+        private System.Windows.Forms.Label label25;
     }
 }

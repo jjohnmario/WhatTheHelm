@@ -15,6 +15,7 @@ using System.Media;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using WhatTheHelmRuntime;
 
 namespace Dashboard
 {
@@ -167,6 +168,18 @@ namespace Dashboard
                 lblLastBusScan.Invoke(new MethodInvoker(() => lblLastBusScan.Text = DateTime.Now.ToString("HH:mm:ss")));
             }
 
+            //Update CAN message queue count
+            if (lblCanMsgQueue.IsHandleCreated)
+            {
+                lblCanMsgQueue.Invoke(new MethodInvoker(() => lblCanMsgQueue.Text = Program.CanGateWayListener.MainMessageQueue.Count.ToString()));
+            }
+
+            //Update CAN fast packet queue count
+            if(lblFastPacketQueue.IsHandleCreated)
+            {
+                lblFastPacketQueue.Invoke(new MethodInvoker(() => lblFastPacketQueue.Text = Program.CanGateWayListener.FastPacketMessageQueue.Count.ToString()));
+            }
+
             //Binary switch status (from Seagauge)
             if (e.ParameterGroupNumber == 127501)
             {
@@ -277,7 +290,7 @@ namespace Dashboard
                 pgn0x1FD06LastMsg = DateTime.Now;
                 Pgn0x1FD06 pgn = (Pgn0x1FD06)ParameterGroup.GetPgnType(130310).DeserializeFields(e.Data).ToImperial();
                 if (lblSeaWaterTemp.IsHandleCreated)
-                    lblSeaWaterTemp.Invoke(new MethodInvoker(() => lblSeaWaterTemp.Text = pgn.Temperature.ToString("0.0")));
+                    lblSeaWaterTemp.Invoke(new MethodInvoker(() => lblSeaWaterTemp.Text = (pgn.Temperature + Program.Configuration.WaterTempOffset).ToString("0.0")));
             }
 
             //Water Depth (FT)
@@ -286,7 +299,7 @@ namespace Dashboard
                 pgn0x1F50BLastMsg = DateTime.Now;
                 Pgn0x1F50B pgn = (Pgn0x1F50B)ParameterGroup.GetPgnType(128267).DeserializeFields(e.Data).ToImperial();
                 if (lblSeaWaterDepth.IsHandleCreated)
-                    lblSeaWaterDepth.Invoke(new MethodInvoker(() => { lblSeaWaterDepth.Text = pgn.Depth.ToString("0.0"); }));                
+                    lblSeaWaterDepth.Invoke(new MethodInvoker(() => { lblSeaWaterDepth.Text = (pgn.Depth + Program.Configuration.WaterDepthOffset).ToString("0.0"); }));                
             }
 
             //Speed (MPH)
@@ -410,16 +423,24 @@ namespace Dashboard
 
             //Engine parameters rapid
             var pgn0x1F200LastMsgEt = dtNow - pgn0x1F200LastMsg;
-            if(pgn0x1F200LastMsgEt.TotalSeconds > 5)
+            if(Program.Configuration.RpmSource == RpmSource.NMEA2000)
             {
-                //gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Hide()));
-                //gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Hide()));
-                lblGeneratorStatus.Invoke(new MethodInvoker(() =>
+                if (pgn0x1F200LastMsgEt.TotalSeconds > 5)
                 {
+                    gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Hide()));
+                    gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Hide()));
+                    lblGeneratorStatus.Invoke(new MethodInvoker(() =>
+                    {
                         lblGeneratorStatus.Text = "--";
                         lblGeneratorStatus.ForeColor = Color.White;
                         lblGeneratorStatus.BackColor = Color.Transparent;
-                }));
+                    }));
+                }
+                else
+                {
+                    gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Show()));
+                    gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Show()));
+                }
             }
             else
             {
@@ -799,6 +820,20 @@ namespace Dashboard
                 Application.Exit();
             else if (result == DialogResult.Cancel)
                 return;
+        }
+
+        private void btnConfig_Click(object sender, EventArgs e)
+        {
+            ConfigurationMenu configMenu = new ConfigurationMenu(Program.Configuration);
+            var results = configMenu.ShowDialog();
+            if (results != DialogResult.Cancel)
+            {
+                Program.Configuration = configMenu.Configuration;
+                Program.Configuration.Save();
+            }
+                
+            configMenu.Dispose();
+            
         }
     }
 }

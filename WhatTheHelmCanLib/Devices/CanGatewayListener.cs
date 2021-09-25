@@ -19,8 +19,14 @@ namespace CanLib.Devices
         /// Represents the CAN gateway to which the lister is bound.
         /// </summary>
         public CanGateway CanGateway { get; set; }
-        private List<CanMessage> FastPacketMessageQueue;
-        private Queue<CanMessage> MainMessageQueue;
+        /// <summary>
+        /// List of partial fast packet messages.  Completed fast packet messages are transferred to the main message queue.
+        /// </summary>
+        public List<CanMessage> FastPacketMessageQueue { get; private set; }
+        /// <summary>
+        /// The main J1939/NMEA2000 message queue.
+        /// </summary>
+        public Queue<CanMessage> MainMessageQueue { get; private set; }
         /// <summary>
         /// An event that is invoked when the listener recieves a new message from the CAN gateway to which it is bound.
         /// </summary>

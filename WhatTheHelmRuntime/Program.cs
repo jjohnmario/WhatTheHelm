@@ -1,6 +1,7 @@
 ﻿using CanLib.Devices;
 using CanLib.Devices.Nmea2000;
 using CanLib.Devices.Nmea2000.GridConnect;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,6 +22,7 @@ namespace Dashboard
         public static CanGateWayListener CanGateWayListener { get; set; }
         public static CanRequestHandler CanRequestHandler { get; set; }
         public static YoctoPwmRx YoctoPwmRx { get; set; }
+        public static Configuration Configuration { get; set; }
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -30,53 +32,18 @@ namespace Dashboard
             try
             {
                 //Load configuration file
-
-                XmlDocument doc = new XmlDocument();
-                doc.Load(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm\\WhatTheHelm.xml");
-                if(doc!=null)
-                {
-
-                }
-                //Create configuration file
-                //XmlDocument doc = new XmlDocument();
-
-                //(1) the xml declaration is recommended, but not mandatory
-                XmlDeclaration xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
-                XmlElement root = doc.DocumentElement;
-                doc.InsertBefore(xmlDeclaration, root);
-
-                //(2) string.Empty makes cleaner code
-                XmlElement element1 = doc.CreateElement(string.Empty, "body", string.Empty);
-                doc.AppendChild(element1);
-
-                XmlElement element2 = doc.CreateElement(string.Empty, "Offsets", string.Empty);
-                element1.AppendChild(element2);
-
-                XmlElement element3 = doc.CreateElement(string.Empty, "level2", string.Empty);
-                XmlText text1 = doc.CreateTextNode("text");
-                element3.AppendChild(text1);
-                element2.AppendChild(element3);
-
-                XmlElement element4 = doc.CreateElement(string.Empty, "level2", string.Empty);
-                XmlText text2 = doc.CreateTextNode("other text");
-                element4.AppendChild(text2);
-                element2.AppendChild(element4);
-                
-
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm");
-                doc.Save(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm\\WhatTheHelm.xml");
-
-
+                Configuration = new Configuration();
+                Configuration = Configuration.Read(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm", "config.json");
 
                 //Initialize CAN adapter
-                //CanName name = new CanName(false, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-                //ProductInformation productInformation = new ProductInformation(22, 33, "MarioWare Display", "v1.0.0", "1.0.0", "01229330JJF", 1, 2);
-                //SerialPort serialPort = new SerialPort("COM1", 115200, Parity.None, 8, StopBits.One) { NewLine = ";" };
-                //CanGateway = new Can232Fd(serialPort, 0, name, productInformation);
-                //CanGateWayListener = new CanGateWayListener(CanGateway);
-                //CanGateWayListener.Start();
-                //CanRequestHandler = new CanRequestHandler(CanGateway);
-                //CanRequestHandler.Start();
+                CanName name = new CanName(false, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
+                ProductInformation productInformation = new ProductInformation(22, 33, "MarioWare Display", "v1.0.0", "1.0.0", "01229330JJF", 1, 2);
+                SerialPort serialPort = new SerialPort("COM1", 115200, Parity.None, 8, StopBits.One) { NewLine = ";" };
+                CanGateway = new Can232Fd(serialPort, 0, name, productInformation);
+                CanGateWayListener = new CanGateWayListener(CanGateway);
+                CanGateWayListener.Start();
+                CanRequestHandler = new CanRequestHandler(CanGateway);
+                CanRequestHandler.Start();
 
                 //Initialize USB tachometer adapter (if not using NMEA tachometer inputs)
                 YoctoPwmRx = new YoctoPwmRx();
