@@ -4,11 +4,14 @@ using CanLib.Devices.Nmea2000.GridConnect;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using WhatTheHelmRuntime;
+using XMLhelper;
 
 namespace Dashboard
 {
@@ -26,6 +29,45 @@ namespace Dashboard
         {
             try
             {
+                //Load configuration file
+
+                XmlDocument doc = new XmlDocument();
+                doc.Load(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm\\WhatTheHelm.xml");
+                if(doc!=null)
+                {
+
+                }
+                //Create configuration file
+                //XmlDocument doc = new XmlDocument();
+
+                //(1) the xml declaration is recommended, but not mandatory
+                XmlDeclaration xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+                XmlElement root = doc.DocumentElement;
+                doc.InsertBefore(xmlDeclaration, root);
+
+                //(2) string.Empty makes cleaner code
+                XmlElement element1 = doc.CreateElement(string.Empty, "body", string.Empty);
+                doc.AppendChild(element1);
+
+                XmlElement element2 = doc.CreateElement(string.Empty, "Offsets", string.Empty);
+                element1.AppendChild(element2);
+
+                XmlElement element3 = doc.CreateElement(string.Empty, "level2", string.Empty);
+                XmlText text1 = doc.CreateTextNode("text");
+                element3.AppendChild(text1);
+                element2.AppendChild(element3);
+
+                XmlElement element4 = doc.CreateElement(string.Empty, "level2", string.Empty);
+                XmlText text2 = doc.CreateTextNode("other text");
+                element4.AppendChild(text2);
+                element2.AppendChild(element4);
+                
+
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm");
+                doc.Save(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm\\WhatTheHelm.xml");
+
+
+
                 //Initialize CAN adapter
                 //CanName name = new CanName(false, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
                 //ProductInformation productInformation = new ProductInformation(22, 33, "MarioWare Display", "v1.0.0", "1.0.0", "01229330JJF", 1, 2);
@@ -41,7 +83,8 @@ namespace Dashboard
                 string msg;
                 if (YoctoPwmRx.Connect(out msg))
                     Task.Run(() => YoctoPwmRx.StartScan(250));
-                
+                else
+                    MessageBox.Show("Unable to connect to the USB tachometer adapter", "Error");
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
