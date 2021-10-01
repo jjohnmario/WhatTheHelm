@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using WhatTheHelmRuntime;
+using WhatTheHelmRuntime.NMEA0183;
 using XMLhelper;
 
 namespace Dashboard
@@ -21,6 +22,7 @@ namespace Dashboard
         public static Can232Fd CanGateway { get; set; }
         public static CanGateWayListener CanGateWayListener { get; set; }
         public static CanRequestHandler CanRequestHandler { get; set; }
+        public static Nmea0183Listener Nmea0183Listener { get; set; }
         public static YoctoPwmRx YoctoPwmRx { get; set; }
         public static Configuration Configuration { get; set; }
         /// <summary>
@@ -34,6 +36,9 @@ namespace Dashboard
                 //Load configuration file
                 Configuration = new Configuration();
                 Configuration = Configuration.Read(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm", "config.json");
+
+                Nmea0183Listener = new Nmea0183Listener("0.0.0.0", 2947);
+                Nmea0183Listener.ListenAsync();
 
                 //Initialize CAN adapter
                 CanName name = new CanName(false, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
@@ -78,12 +83,16 @@ namespace Dashboard
                     screens800x480.Remove(trimControlScreen);
                     //Get next number 640x480 screen and assign it as a "SwitchPanel" screen.
                     Screen switchPanelScreen = screens800x480.OrderBy(x => x.DeviceName).First();
+                    screens800x480.Remove(trimControlScreen);
+                    //Get next number 640x480 screen and assign it as a "GPS" scree.
+                    Screen gpsScreen = screens800x480.OrderBy(x => x.DeviceName).First();
 
                     //Bind all but Gauges types to physical screens
                     List<KeyValuePair<Screen, Type>> screenAssignmentList = new List<KeyValuePair<Screen, Type>>();
                     screenAssignmentList.Add(new KeyValuePair<Screen, Type>(openCpnScreen, typeof(Process)));
                     screenAssignmentList.Add(new KeyValuePair<Screen, Type>(switchPanelScreen, typeof(SwitchPanel)));
                     screenAssignmentList.Add(new KeyValuePair<Screen, Type>(trimControlScreen, typeof(TrimControl)));
+                    screenAssignmentList.Add(new KeyValuePair<Screen, Type>(gpsScreen, typeof(Gps)));
 
                     //Bind Gauges form to physical screen
                     //Pass screen/type list as constructor for guages screen.  This allows other screens to be spawned from the Gauges screen and on the UI thread.
@@ -94,8 +103,10 @@ namespace Dashboard
                 }
                 catch
                 {
-                    Gauges gauges = new Gauges();
-                    Application.Run(gauges);
+                    Gps gps = new Gps();
+                    Application.Run(gps);
+                    //Gauges gauges = new Gauges();
+                    //Application.Run(gauges);
                 }
             }
             catch(Exception e)

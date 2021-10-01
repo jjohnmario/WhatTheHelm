@@ -83,6 +83,13 @@ namespace Dashboard
                         sp.StartPosition = FormStartPosition.Manual;
                         sp.Show();
                     }
+                    else if(kvp.Value == typeof(Gps))
+                    {
+                        Gps gps = new Gps();
+                        gps.Bounds = kvp.Key.Bounds;
+                        gps.StartPosition = FormStartPosition.Manual;
+                        gps.Show();
+                    }
                 }
             }
 
@@ -146,15 +153,18 @@ namespace Dashboard
         }
 
         private void YoctoPwmRx_NewData(object sender, WhatTheHelmRuntime.YoctoPwmRxArgs e)
-        {//REMEMBER TO CHECK FOR AREAS THAT ARE COMMENTED OUT FOR TESTING OF THIS FEATURE!!!
-            if (gaugePortRpm.IsHandleCreated)
-                gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = e.Input1Hz / 400));
-            if (lblPortRpm.IsHandleCreated)
-                lblPortRpm.Invoke(new MethodInvoker(() => lblPortRpm.Text = (e.Input1Hz / 4).ToString("#")));
-            if (gaugeStbdRpm.IsHandleCreated)
-                gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = e.Input2Hz / 400));
-            if(lblStbdRpm.IsHandleCreated)
-                lblStbdRpm.Invoke(new MethodInvoker(() => lblStbdRpm.Text = (e.Input2Hz / 4).ToString("#")));
+        {
+            if(Program.Configuration.RpmSource == RpmSource.YoctopuceUsb)
+            {
+                if (gaugePortRpm.IsHandleCreated)
+                    gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = e.Input1Hz / 400));
+                if (lblPortRpm.IsHandleCreated)
+                    lblPortRpm.Invoke(new MethodInvoker(() => lblPortRpm.Text = (e.Input1Hz / 4).ToString("#")));
+                if (gaugeStbdRpm.IsHandleCreated)
+                    gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = e.Input2Hz / 400));
+                if (lblStbdRpm.IsHandleCreated)
+                    lblStbdRpm.Invoke(new MethodInvoker(() => lblStbdRpm.Text = (e.Input2Hz / 4).ToString("#")));
+            }
         }
 
         private void CanGateWayListener_NewMessage(object sender, CanLib.Messages.CanMessage e)
@@ -206,17 +216,24 @@ namespace Dashboard
                 //Port Engine
                 if(pgn.EngineInstance == 0)
                 {
-                    if (gaugePortRpm.IsHandleCreated)
-                        gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = pgn.EngineSpeed / 400));
+                    if (Program.Configuration.RpmSource == RpmSource.NMEA2000)
+                    {
+                        if (gaugePortRpm.IsHandleCreated)
+                            gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = pgn.EngineSpeed / 400));
+                        if (lblPortRpm.IsHandleCreated)
+                            lblPortRpm.Invoke(new MethodInvoker(() => lblPortRpm.Text = (pgn.EngineSpeed / 4).ToString("#")));
+                    }
                 }
                 //Stbd Engine
                 else if(pgn.EngineInstance == 1)
                 {
-                    //Note that on my particular Seagauge G2, the stbd pulse input was inaccurate by a factor of value * 2.3, so I do the correction
-                    //here.  Note that if the NMEA engine gateway is ever to change, this value must be changed back to the port setting found
-                    //on line 184.
-                    if(gaugeStbdRpm.IsHandleCreated)
-                        gaugeStbdRpm.Invoke(new MethodInvoker(()=> gaugeStbdRpm.Value = (pgn.EngineSpeed / 400)/2.3));
+                    if(Program.Configuration.RpmSource == RpmSource.NMEA2000)
+                    {
+                        if (gaugeStbdRpm.IsHandleCreated)
+                            gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = (pgn.EngineSpeed / 400)));
+                        if (lblStbdRpm.IsHandleCreated)
+                            lblStbdRpm.Invoke(new MethodInvoker(() => lblStbdRpm.Text = ((pgn.EngineSpeed / 4)/2.3).ToString("#")));
+                    }
                 }
                 //Generator
                 else if(pgn.EngineInstance == 2)
