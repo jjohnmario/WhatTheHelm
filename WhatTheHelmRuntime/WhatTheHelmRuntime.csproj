@@ -98,6 +98,17 @@
     <Compile Include="FusesStatus.Designer.cs">
       <DependentUpon>FusesStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gps.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gps.Designer.cs">
+      <DependentUpon>Gps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NMEA0183\Nmea0183Listener.cs" />
+    <Compile Include="NMEA0183\Nmea0183Msg.cs" />
+    <Compile Include="NMEA0183\SentenceField.cs" />
+    <Compile Include="NMEA0183\Sentences\GPRMC.cs" />
+    <Compile Include="NMEA0183\Sentences\Nmea0183Sentence.cs" />
     <Compile Include="SwitchPanel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FusesStatus.resx">
       <DependentUpon>FusesStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gps.resx">
+      <DependentUpon>Gps.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SwitchPanel.resx">
       <DependentUpon>SwitchPanel.cs</DependentUpon>
@@ -197,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="iconfinder_Travel-Filled-21_3671972.ico" />
+    <None Include="Resources\satellite-48.png" />
     <Content Include="Resources\TF014.WAV" />
     <Content Include="Resources\TF023.WAV" />
     <Content Include="yapi.dll">
