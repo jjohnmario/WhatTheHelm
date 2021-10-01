@@ -232,7 +232,7 @@ namespace Dashboard
                         if (gaugeStbdRpm.IsHandleCreated)
                             gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = (pgn.EngineSpeed / 400)));
                         if (lblStbdRpm.IsHandleCreated)
-                            lblStbdRpm.Invoke(new MethodInvoker(() => lblStbdRpm.Text = ((pgn.EngineSpeed / 4)/2.3).ToString("#")));
+                            lblStbdRpm.Invoke(new MethodInvoker(() => lblStbdRpm.Text = (pgn.EngineSpeed / 4).ToString("#")));
                     }
                 }
                 //Generator
