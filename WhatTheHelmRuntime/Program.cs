@@ -37,18 +37,19 @@ namespace Dashboard
                 Configuration = new Configuration();
                 Configuration = Configuration.Read(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm", "config.json");
 
+                //Start Nmea0183 Listener
                 Nmea0183Listener = new Nmea0183Listener("0.0.0.0", 2947);
                 Nmea0183Listener.ListenAsync();
 
                 //Initialize CAN adapter
-                //CanName name = new CanName(false, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-                //ProductInformation productInformation = new ProductInformation(22, 33, "MarioWare Display", "v1.0.0", "1.0.0", "01229330JJF", 1, 2);
-                //SerialPort serialPort = new SerialPort("COM1", 115200, Parity.None, 8, StopBits.One) { NewLine = ";" };
-                //CanGateway = new Can232Fd(serialPort, 0, name, productInformation);
-                //CanGateWayListener = new CanGateWayListener(CanGateway);
-                //CanGateWayListener.Start();
-                //CanRequestHandler = new CanRequestHandler(CanGateway);
-                //CanRequestHandler.Start();
+                CanName name = new CanName(false, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
+                ProductInformation productInformation = new ProductInformation(22, 33, "MarioWare Display", "v1.0.0", "1.0.0", "01229330JJF", 1, 2);
+                SerialPort serialPort = new SerialPort("COM1", 115200, Parity.None, 8, StopBits.One) { NewLine = ";" };
+                CanGateway = new Can232Fd(serialPort, 0, name, productInformation);
+                CanGateWayListener = new CanGateWayListener(CanGateway);
+                CanGateWayListener.Start();
+                CanRequestHandler = new CanRequestHandler(CanGateway);
+                CanRequestHandler.Start();
 
                 //Initialize USB tachometer adapter (if not using NMEA tachometer inputs)
                 YoctoPwmRx = new YoctoPwmRx();
@@ -103,10 +104,8 @@ namespace Dashboard
                 }
                 catch
                 {
-                    Gps gps = new Gps();
-                    Application.Run(gps);
-                    //Gauges gauges = new Gauges();
-                    //Application.Run(gauges);
+                    Gauges gauges = new Gauges();
+                    Application.Run(gauges);
                 }
             }
             catch(Exception e)
