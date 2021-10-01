@@ -227,13 +227,11 @@ namespace Dashboard
                 //Stbd Engine
                 else if(pgn.EngineInstance == 1)
                 {
-                    if(Program.Configuration.RpmSource == RpmSource.NMEA2000)
-                    {
-                        if (gaugeStbdRpm.IsHandleCreated)
-                            gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = (pgn.EngineSpeed / 400)));
-                        if (lblStbdRpm.IsHandleCreated)
-                            lblStbdRpm.Invoke(new MethodInvoker(() => lblStbdRpm.Text = (pgn.EngineSpeed / 4).ToString("#")));
-                    }
+                    //Note that on my particular Seagauge G2, the stbd pulse input was inaccurate by a factor of value * 2.3, so I do the correction
+                    //here.  Note that if the NMEA engine gateway is ever to change, this value must be changed back to the port setting found
+                    //on line 184.
+                    if(gaugeStbdRpm.IsHandleCreated)
+                        gaugeStbdRpm.Invoke(new MethodInvoker(()=> gaugeStbdRpm.Value = (pgn.EngineSpeed / 400)/2.3));
                 }
                 //Generator
                 else if(pgn.EngineInstance == 2)
