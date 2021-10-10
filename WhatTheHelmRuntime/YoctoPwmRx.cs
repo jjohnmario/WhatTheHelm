@@ -55,12 +55,13 @@ namespace WhatTheHelmRuntime
 
             // Setup the API to use local USB devices
             if (YAPI.RegisterHub("usb", ref errmsg) != YAPI.SUCCESS)
+            //if (YAPI.RegisterHub("127.0.0.1", ref errmsg) != YAPI.SUCCESS)
             {
                 message = "RegisterHub error: " + errmsg;
                 return false;
             }
 
-            // retreive any pwm input available
+            // retreive any pwm device available
             _Pwm = YPwmInput.FirstPwmInput();
             if (_Pwm == null)
             {
@@ -90,15 +91,18 @@ namespace WhatTheHelmRuntime
         public void StartScan(int interval)
         {
             _Scanning = true;
-            while(_Module.isOnline() & _Scanning)
+            Task.Run(() =>
             {
-                Input1Hz = _Pwm1.get_frequency();
-                Input2Hz = _Pwm2.get_frequency();
-                if (NewData != null)
-                    NewData.Invoke(this, new YoctoPwmRxArgs() { Input1Hz = this.Input1Hz, Input2Hz = this.Input2Hz });
-                Thread.Sleep(interval);
-            }
-            _Scanning = false;
+                while (_Scanning)
+                {
+                    Input1Hz = _Pwm1.get_frequency();
+                    Input2Hz = _Pwm2.get_frequency();
+                    if (NewData != null)
+                        NewData.Invoke(this, new YoctoPwmRxArgs() { Input1Hz = this.Input1Hz, Input2Hz = this.Input2Hz });
+                    Thread.Sleep(interval);
+                }
+            });
+
         }
 
         /// <summary>

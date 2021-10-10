@@ -21,7 +21,7 @@ namespace WhatTheHelmRuntime.NMEA0183
 
         public void ListenAsync()
         {
-            Task.Run(() =>
+           Task.Run(() =>
            {
                // Buffer for reading data
                Byte[] bytes = new Byte[256];
@@ -58,6 +58,14 @@ namespace WhatTheHelmRuntime.NMEA0183
                        if (NewMessage != null)
                            NewMessage.Invoke(this, sentence);               
                    }
+               }
+           }).ContinueWith((t) =>
+           {
+               //Restart the listener is an exception occurs.
+               if (t.IsFaulted)
+               {
+                   t.Dispose();
+                   ListenAsync();
                }
            });
         }

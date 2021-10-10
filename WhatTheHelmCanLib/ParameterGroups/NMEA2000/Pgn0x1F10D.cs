@@ -58,7 +58,7 @@ namespace CanLib.ParameterGroups.NMEA2000
         public double AngleOrder { get; private set; }
 
         /// <summary>
-        /// Represents the actual heading of the rudder instance in degrees.
+        /// Represents the reported position of the rudder instance in degrees.
         /// </summary>
         public double Position { get; private set; }
 
@@ -73,10 +73,14 @@ namespace CanLib.ParameterGroups.NMEA2000
             DirectionOrder = (RudderDirectionOrder)data[1];
 
             //Angle Order
-            AngleOrder = BitConverter.ToInt16(data, 2) * 0.0057295779513082332;
+            int rawData1 = BitConverter.ToInt16(data, 2);
+            double radians1 = rawData1 + 0.0001;
+            AngleOrder = radians1 / 0.0174533;
 
             //Position
-            Position = BitConverter.ToInt16(data, 4) * 0.0057295779513082332;
+            int rawData2 = BitConverter.ToInt16(data, 4);
+            double radians2 = rawData2 * 0.0001;
+            Position = radians2 / 0.0174533;
 
             return this;
         }

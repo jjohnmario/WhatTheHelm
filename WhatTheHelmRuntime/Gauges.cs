@@ -34,14 +34,14 @@ namespace Dashboard
         DateTime pgn0x1F805LastMsg = new DateTime();
         DateTime pgn0x1F10DLastMsg = new DateTime();
         DateTime pgn0x1F20DLastMsg = new DateTime();
+        DateTime yoctopucePwmRxLastMsg = new DateTime();
         IndicatorBankStatus[] SeaGaugeIndicatorStatus;
         Color gaugePortRpmBorderLast;
         Color gaugeStbdRpmBorderLast;
 
-
         public Gauges(List<KeyValuePair<Screen,Type>> screenMap)
         {
-           foreach(KeyValuePair<Screen,Type> kvp in screenMap)
+            foreach(KeyValuePair<Screen,Type> kvp in screenMap)
             {
                 if (kvp.Value == typeof(Process))
                 {
@@ -92,43 +92,23 @@ namespace Dashboard
                     }
                 }
             }
-
-            InitializeComponent();
-            this.MinimumSize = new Size() { Height = 800, Width = 1280 };
-            this.MaximumSize = new Size() { Height = 800, Width = 1280 };
-            Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
-            gaugePortRpmBorderLast = gaugePortRpm.Border.Color;
-            gaugeStbdRpmBorderLast = gaugeStbdRpm.Border.Color;
-            Timer t1 = new Timer();
-            t1.Interval = 5000;
-            t1.Tick += PgnTimeoutTimer_Tick;
-            t1.Start();
-            Timer t2 = new Timer();
-            t2.Interval = 500;
-            t2.Tick += AlarmTimer_Tick;
-            t2.Start();
-            try
-            {
-                SoundPlayer depthLowPlayer = new SoundPlayer(Resources.TF014);
-                depthLowPlayer.Load();
-                SoundPlayer depthLowLowPlayer = new SoundPlayer(Resources.TF023);
-                depthLowLowPlayer.Load();
-                System.Threading.Tasks.Task.Run(() => DepthAlarmLowLoop(depthLowPlayer));
-                System.Threading.Tasks.Task.Run(() => DepthAlarmLowLowLoop(depthLowLowPlayer));
-            }
-            catch
-            {
-                return;
-            }
+            Initialize();
         }
 
         public Gauges()
         {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
             InitializeComponent();
             this.MinimumSize = new Size() { Height = 800, Width = 1280 };
             this.MaximumSize = new Size() { Height = 800, Width = 1280 };
-            //Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
+            Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
             Program.YoctoPwmRx.NewData += YoctoPwmRx_NewData;
+            gaugePortRpmBorderLast = gaugePortRpm.Border.Color;
+            gaugeStbdRpmBorderLast = gaugeStbdRpm.Border.Color;
             Timer pgnTimeoutTimer = new Timer();
             pgnTimeoutTimer.Interval = 5000;
             pgnTimeoutTimer.Tick += PgnTimeoutTimer_Tick;
@@ -154,16 +134,17 @@ namespace Dashboard
 
         private void YoctoPwmRx_NewData(object sender, WhatTheHelmRuntime.YoctoPwmRxArgs e)
         {
+            yoctopucePwmRxLastMsg = DateTime.Now;
             if(Program.Configuration.RpmSource == RpmSource.YoctopuceUsb)
             {
                 if (gaugePortRpm.IsHandleCreated)
-                    gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = e.Input1Hz / 400));
+                    gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = e.Input1Hz*60 / 400));
                 if (lblPortRpm.IsHandleCreated)
-                    lblPortRpm.Invoke(new MethodInvoker(() => lblPortRpm.Text = (e.Input1Hz / 4).ToString("#")));
+                    lblPortRpm.Invoke(new MethodInvoker(() => lblPortRpm.Text = (e.Input1Hz*60 / 4).ToString("0")));
                 if (gaugeStbdRpm.IsHandleCreated)
-                    gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = e.Input2Hz / 400));
+                    gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = e.Input2Hz*60 / 400));
                 if (lblStbdRpm.IsHandleCreated)
-                    lblStbdRpm.Invoke(new MethodInvoker(() => lblStbdRpm.Text = (e.Input2Hz / 4).ToString("#")));
+                    lblStbdRpm.Invoke(new MethodInvoker(() => lblStbdRpm.Text = (e.Input2Hz*60 / 4).ToString("0")));
             }
         }
 
@@ -221,16 +202,19 @@ namespace Dashboard
                         if (gaugePortRpm.IsHandleCreated)
                             gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = pgn.EngineSpeed / 400));
                         if (lblPortRpm.IsHandleCreated)
-                            lblPortRpm.Invoke(new MethodInvoker(() => lblPortRpm.Text = (pgn.EngineSpeed / 4).ToString("#")));
+                            lblPortRpm.Invoke(new MethodInvoker(() => lblPortRpm.Text = (pgn.EngineSpeed / 4).ToString("0")));
                     }
                 }
                 //Stbd Engine
                 else if(pgn.EngineInstance == 1)
                 {
-                    if(gaugeStbdRpm.IsHandleCreated)
-                        gaugeStbdRpm.Invoke(new MethodInvoker(()=> gaugeStbdRpm.Value = pgn.EngineSpeed / 400));
-                    if (lblStbdRpm.IsHandleCreated)
-                        lblStbdRpm.Invoke(new MethodInvoker(() => lblStbdRpm.Text = (pgn.EngineSpeed / 4).ToString("#")));
+                    if(Program.Configuration.RpmSource == RpmSource.NMEA2000)
+                    {
+                        if (gaugeStbdRpm.IsHandleCreated)
+                            gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = pgn.EngineSpeed / 400));
+                        if (lblStbdRpm.IsHandleCreated)
+                            lblStbdRpm.Invoke(new MethodInvoker(() => lblStbdRpm.Text = (pgn.EngineSpeed / 4).ToString("0")));
+                    }
                 }
                 //Generator
                 else if(pgn.EngineInstance == 2)
@@ -437,6 +421,7 @@ namespace Dashboard
 
             //Engine parameters rapid
             var pgn0x1F200LastMsgEt = dtNow - pgn0x1F200LastMsg;
+            var yoctopucePwmRxLastMsgEt = dtNow - yoctopucePwmRxLastMsg;
             if(Program.Configuration.RpmSource == RpmSource.NMEA2000)
             {
                 if (pgn0x1F200LastMsgEt.TotalSeconds > 5)
@@ -456,10 +441,21 @@ namespace Dashboard
                     gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Show()));
                 }
             }
-            else
+            else if(Program.Configuration.RpmSource == RpmSource.YoctopuceUsb)
             {
-                gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Show()));
-                gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Show()));
+                if(yoctopucePwmRxLastMsgEt.TotalSeconds > 5)
+                {
+                    gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Hide()));
+                    gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Hide()));
+                    lblPortRpm.Invoke(new MethodInvoker(() => lblPortRpm.Text = "--"));
+                    lblStbdRpm.Invoke(new MethodInvoker(() => lblStbdRpm.Text = "--"));
+                    
+                }
+                else
+                {
+                    gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Show()));
+                    gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Show()));
+                }
             }
 
             //Engine parameters dynamic

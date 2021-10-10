@@ -690,6 +690,7 @@
             this.gaugeStbdRpm = new Mitov.InstrumentLab.AngularGauge(this.components);
             this.gaugeSog = new Mitov.InstrumentLab.AngularGauge(this.components);
             this.pnlPower = new System.Windows.Forms.Panel();
+            this.btnConfig = new System.Windows.Forms.Button();
             this.lblStbdRpm = new System.Windows.Forms.Label();
             this.lblPortRpm = new System.Windows.Forms.Label();
             this.lblStbdHours = new System.Windows.Forms.Label();
@@ -705,6 +706,10 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblFastPacketQueue = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.lblCanMsgQueue = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.lblLastBusScan = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
@@ -733,11 +738,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.btnConfig = new System.Windows.Forms.Button();
-            this.label25 = new System.Windows.Forms.Label();
-            this.lblCanMsgQueue = new System.Windows.Forms.Label();
-            this.lblFastPacketQueue = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
             this.pnlStbdEngine.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gaugePortRpm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gaugeStbdRpm)).BeginInit();
@@ -2013,6 +2013,18 @@
             this.pnlPower.Size = new System.Drawing.Size(964, 578);
             this.pnlPower.TabIndex = 2;
             // 
+            // btnConfig
+            // 
+            this.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfig.ForeColor = System.Drawing.Color.White;
+            this.btnConfig.Location = new System.Drawing.Point(11, 530);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(75, 36);
+            this.btnConfig.TabIndex = 117;
+            this.btnConfig.Text = "CONFIG";
+            this.btnConfig.UseVisualStyleBackColor = true;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
+            // 
             // lblStbdRpm
             // 
             this.lblStbdRpm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -2174,8 +2186,8 @@
             this.gaugeRudderAngle.InputPin = sinkPin4;
             this.gaugeRudderAngle.InternalData = ((Vcl.VclBinaryData)(resources.GetObject("gaugeRudderAngle.InternalData")));
             this.gaugeRudderAngle.Location = new System.Drawing.Point(342, 483);
-            this.gaugeRudderAngle.Max = 90D;
-            this.gaugeRudderAngle.Min = -90D;
+            this.gaugeRudderAngle.Max = 40D;
+            this.gaugeRudderAngle.Min = -40D;
             this.gaugeRudderAngle.Name = "gaugeRudderAngle";
             elementSize80.Value = 0.9F;
             linearGaugeRail1.Length = elementSize80;
@@ -2483,6 +2495,54 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(480, 191);
             this.panel1.TabIndex = 104;
+            // 
+            // lblFastPacketQueue
+            // 
+            this.lblFastPacketQueue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFastPacketQueue.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblFastPacketQueue.ForeColor = System.Drawing.Color.White;
+            this.lblFastPacketQueue.Location = new System.Drawing.Point(278, 151);
+            this.lblFastPacketQueue.Name = "lblFastPacketQueue";
+            this.lblFastPacketQueue.Size = new System.Drawing.Size(92, 22);
+            this.lblFastPacketQueue.TabIndex = 112;
+            this.lblFastPacketQueue.Text = "--";
+            this.lblFastPacketQueue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label29
+            // 
+            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label29.Font = new System.Drawing.Font("Arial", 14F);
+            this.label29.ForeColor = System.Drawing.Color.White;
+            this.label29.Location = new System.Drawing.Point(3, 151);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(272, 22);
+            this.label29.TabIndex = 111;
+            this.label29.Text = "FAST PACKETS IN QUEUE: ";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblCanMsgQueue
+            // 
+            this.lblCanMsgQueue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCanMsgQueue.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblCanMsgQueue.ForeColor = System.Drawing.Color.White;
+            this.lblCanMsgQueue.Location = new System.Drawing.Point(278, 122);
+            this.lblCanMsgQueue.Name = "lblCanMsgQueue";
+            this.lblCanMsgQueue.Size = new System.Drawing.Size(92, 22);
+            this.lblCanMsgQueue.TabIndex = 110;
+            this.lblCanMsgQueue.Text = "--";
+            this.lblCanMsgQueue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label25
+            // 
+            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label25.Font = new System.Drawing.Font("Arial", 14F);
+            this.label25.ForeColor = System.Drawing.Color.White;
+            this.label25.Location = new System.Drawing.Point(3, 122);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(272, 22);
+            this.label25.TabIndex = 109;
+            this.label25.Text = "CAN MESSAGES IN QUEUE: ";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblLastBusScan
             // 
@@ -2824,66 +2884,6 @@
             this.label9.TabIndex = 103;
             this.label9.Text = "--";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnConfig
-            // 
-            this.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfig.ForeColor = System.Drawing.Color.White;
-            this.btnConfig.Location = new System.Drawing.Point(11, 530);
-            this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(75, 36);
-            this.btnConfig.TabIndex = 117;
-            this.btnConfig.Text = "CONFIG";
-            this.btnConfig.UseVisualStyleBackColor = true;
-            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
-            // 
-            // label25
-            // 
-            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label25.Font = new System.Drawing.Font("Arial", 14F);
-            this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(3, 122);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(272, 22);
-            this.label25.TabIndex = 109;
-            this.label25.Text = "CAN MESSAGES IN QUEUE: ";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblCanMsgQueue
-            // 
-            this.lblCanMsgQueue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCanMsgQueue.Font = new System.Drawing.Font("Arial", 14F);
-            this.lblCanMsgQueue.ForeColor = System.Drawing.Color.White;
-            this.lblCanMsgQueue.Location = new System.Drawing.Point(278, 122);
-            this.lblCanMsgQueue.Name = "lblCanMsgQueue";
-            this.lblCanMsgQueue.Size = new System.Drawing.Size(92, 22);
-            this.lblCanMsgQueue.TabIndex = 110;
-            this.lblCanMsgQueue.Text = "--";
-            this.lblCanMsgQueue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblFastPacketQueue
-            // 
-            this.lblFastPacketQueue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblFastPacketQueue.Font = new System.Drawing.Font("Arial", 14F);
-            this.lblFastPacketQueue.ForeColor = System.Drawing.Color.White;
-            this.lblFastPacketQueue.Location = new System.Drawing.Point(278, 151);
-            this.lblFastPacketQueue.Name = "lblFastPacketQueue";
-            this.lblFastPacketQueue.Size = new System.Drawing.Size(92, 22);
-            this.lblFastPacketQueue.TabIndex = 112;
-            this.lblFastPacketQueue.Text = "--";
-            this.lblFastPacketQueue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label29
-            // 
-            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label29.Font = new System.Drawing.Font("Arial", 14F);
-            this.label29.ForeColor = System.Drawing.Color.White;
-            this.label29.Location = new System.Drawing.Point(3, 151);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(272, 22);
-            this.label29.TabIndex = 111;
-            this.label29.Text = "FAST PACKETS IN QUEUE: ";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Gauges
             // 

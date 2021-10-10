@@ -37,13 +37,13 @@ namespace Dashboard
                 Configuration = new Configuration();
                 Configuration = Configuration.Read(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm", "config.json");
 
-                //Start Nmea0183 Listener
+                //Start NMEA0183 TCP/IP Listener.  This listener is used to recieve NMEA0183 sentences from the OpenCPN chart plotter application
                 Nmea0183Listener = new Nmea0183Listener("0.0.0.0", 2947);
                 Nmea0183Listener.ListenAsync();
 
-                //Initialize CAN adapter
+                //Initialize CAN adapter and J1939/NMEA200 listener
                 CanName name = new CanName(false, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-                ProductInformation productInformation = new ProductInformation(22, 33, "MarioWare Display", "v1.0.0", "1.0.0", "01229330JJF", 1, 2);
+                ProductInformation productInformation = new ProductInformation(22, 33, "What The Helm?", "v1.0.0", "1.0.0", "01229330JJF", 1, 2);
                 SerialPort serialPort = new SerialPort("COM1", 115200, Parity.None, 8, StopBits.One) { NewLine = ";" };
                 CanGateway = new Can232Fd(serialPort, 0, name, productInformation);
                 CanGateWayListener = new CanGateWayListener(CanGateway);
@@ -51,18 +51,18 @@ namespace Dashboard
                 CanRequestHandler = new CanRequestHandler(CanGateway);
                 CanRequestHandler.Start();
 
-                //Initialize USB tachometer adapter (if not using NMEA tachometer inputs)
+                //Initialize USB tachometer adapter (if not using NMEA 2000 tachometer inputs)
                 YoctoPwmRx = new YoctoPwmRx();
                 string msg;
                 if (YoctoPwmRx.Connect(out msg))
-                    Task.Run(() => YoctoPwmRx.StartScan(250));
+                    YoctoPwmRx.StartScan(250);
                 else
                     MessageBox.Show("Unable to connect to the USB tachometer adapter", "Error");
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
-                //Try to run the application across four screens.  Else run off one screen.
+                //Try to run the application across five screens.  Else run off one screen.
                 try
                 {
                     //Get list of all screens.
@@ -84,8 +84,8 @@ namespace Dashboard
                     screens800x480.Remove(trimControlScreen);
                     //Get next number 640x480 screen and assign it as a "SwitchPanel" screen.
                     Screen switchPanelScreen = screens800x480.OrderBy(x => x.DeviceName).First();
-                    screens800x480.Remove(trimControlScreen);
-                    //Get next number 640x480 screen and assign it as a "GPS" scree.
+                    screens800x480.Remove(switchPanelScreen);
+                    //Get next number 640x480 screen and assign it as a "GPS" screen.
                     Screen gpsScreen = screens800x480.OrderBy(x => x.DeviceName).First();
 
                     //Bind all but Gauges types to physical screens
