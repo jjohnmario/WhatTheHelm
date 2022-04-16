@@ -132,7 +132,7 @@ namespace Dashboard
             }
         }
 
-        private void YoctoPwmRx_NewData(object sender, WhatTheHelmRuntime.YoctoPwmRxArgs e)
+        private void YoctoPwmRx_NewData(object sender, YoctoPwmRxArgs e)
         {
             yoctopucePwmRxLastMsg = DateTime.Now;
             if(Program.Configuration.RpmSource == RpmSource.YoctopuceUsb)
