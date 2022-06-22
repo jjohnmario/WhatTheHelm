@@ -1,5 +1,5 @@
 ﻿
-namespace Dashboard
+namespace WhatTheHelmRuntime
 {
     partial class FusesStatus
     {

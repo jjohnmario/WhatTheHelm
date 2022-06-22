@@ -1,4 +1,4 @@
-﻿namespace Dashboard
+﻿namespace WhatTheHelmRuntime
 {
     partial class TrimControl
     {

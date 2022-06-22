@@ -51,6 +51,9 @@
     <ApplicationIcon>iconfinder_Travel-Filled-21_3671972.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CodeArtEng.Gauge, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CodeArtEng.Gauge.2.0.0\lib\net40\CodeArtEng.Gauge.dll</HintPath>
+    </Reference>
     <Reference Include="Mitov.BasicLab, Version=7.8.2.271, Culture=neutral, PublicKeyToken=54b8a1f38c94221a">
       <HintPath>Mitov\Mitov.BasicLab.dll</HintPath>
     </Reference>
@@ -109,17 +112,23 @@
     <Compile Include="NMEA0183\SentenceField.cs" />
     <Compile Include="NMEA0183\Sentences\GPRMC.cs" />
     <Compile Include="NMEA0183\Sentences\Nmea0183Sentence.cs" />
+    <Compile Include="PortGauges.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PortGauges.Designer.cs">
+      <DependentUpon>PortGauges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StbdGauges.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StbdGauges.Designer.cs">
+      <DependentUpon>StbdGauges.cs</DependentUpon>
+    </Compile>
     <Compile Include="SwitchPanel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SwitchPanel.Designer.cs">
       <DependentUpon>SwitchPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Gauges.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Gauges.Designer.cs">
-      <DependentUpon>Gauges.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,11 +151,14 @@
     <EmbeddedResource Include="Gps.resx">
       <DependentUpon>Gps.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PortGauges.resx">
+      <DependentUpon>PortGauges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StbdGauges.resx">
+      <DependentUpon>StbdGauges.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SwitchPanel.resx">
       <DependentUpon>SwitchPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gauges.resx">
-      <DependentUpon>Gauges.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

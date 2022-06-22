@@ -15,7 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Dashboard
+namespace WhatTheHelmRuntime
 {
     public partial class FusesStatus : Form
     {

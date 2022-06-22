@@ -1,7 +1,7 @@
 ﻿
 namespace WhatTheHelmRuntime
 {
-    partial class PortGauges
+    partial class StbdGauges
     {
         /// <summary>
         /// Required designer variable.

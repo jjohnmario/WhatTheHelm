@@ -2,15 +2,15 @@
 using CanLib.ParameterGroups;
 using CanLib.ParameterGroups.J1939;
 using CanLib.ParameterGroups.NMEA2000;
+using WhatTheHelmRuntime;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace WhatTheHelmRuntime
 {
-    public partial class PortGauges : Form
+    public partial class StbdGauges : Form
     {
         [DllImport("user32.dll", SetLastError = true)]
         private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
@@ -40,43 +40,7 @@ namespace WhatTheHelmRuntime
         Color gaugePortRpmBorderLast;
         Color gaugeStbdRpmBorderLast;
 
-        public PortGauges(List<KeyValuePair<Screen, Type>> screenMap)
-        {
-            foreach (KeyValuePair<Screen, Type> kvp in screenMap)
-            {
-                if(kvp.Value == typeof(StbdGauges))
-                {
-                    StbdGauges sg = new StbdGauges();
-                    sg.Bounds = kvp.Key.Bounds;
-                    sg.StartPosition = FormStartPosition.Manual;
-                    sg.Show();
-                }
-                if (kvp.Value == typeof(TrimControl))
-                {
-                    TrimControl tc = new TrimControl();
-                    tc.Bounds = kvp.Key.Bounds;
-                    tc.StartPosition = FormStartPosition.Manual;
-                    tc.Show();
-                }
-                else if (kvp.Value == typeof(SwitchPanel))
-                {
-                    SwitchPanel sp = new SwitchPanel();
-                    sp.Bounds = kvp.Key.Bounds;
-                    sp.StartPosition = FormStartPosition.Manual;
-                    sp.Show();
-                }
-                else if (kvp.Value == typeof(Gps))
-                {
-                    Gps gps = new Gps();
-                    gps.Bounds = kvp.Key.Bounds;
-                    gps.StartPosition = FormStartPosition.Manual;
-                    gps.Show();
-                }           
-            }
-            Initialize();
-        }
-
-        public PortGauges()
+        public StbdGauges()
         {
             Initialize();
         }

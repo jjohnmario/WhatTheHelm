@@ -19,7 +19,7 @@ using CanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.MVec;
 using CanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec;
 using CanLib.ParameterGroups.NMEA2000;
 
-namespace Dashboard
+namespace WhatTheHelmRuntime
 {
     public partial class SwitchPanel : Form
     {
