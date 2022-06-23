@@ -295,12 +295,12 @@ namespace WhatTheHelmRuntime
                 if (lastBusMessageEt.TotalSeconds > 5)
                 {
                     lblJ1939BustStatus.BackColor = Color.Red;
-                    lblJ1939BustStatus.Text = "CAN BUS FAULTED";
+                    lblJ1939BustStatus.Text = "FAULTED";
                 }
                 else
                 {
                     lblJ1939BustStatus.BackColor = Color.Green;
-                    lblJ1939BustStatus.Text = "CAN BUS OK";
+                    lblJ1939BustStatus.Text = "OK";
                 }
             }));
 

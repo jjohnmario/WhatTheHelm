@@ -79,24 +79,6 @@ namespace WhatTheHelmRuntime
             //Update last bus read event timestamp
             lastBusMessage = DateTime.Now;
 
-            //Update last bus scan
-            if (lblLastBusScan.IsHandleCreated)
-            {
-                lblLastBusScan.Invoke(new MethodInvoker(() => lblLastBusScan.Text = DateTime.Now.ToString("HH:mm:ss")));
-            }
-
-            //Update CAN message queue count
-            if (lblCanMsgQueue.IsHandleCreated)
-            {
-                lblCanMsgQueue.Invoke(new MethodInvoker(() => lblCanMsgQueue.Text = Program.CanGateWayListener.MainMessageQueue.Count.ToString()));
-            }
-
-            //Update CAN fast packet queue count
-            if (lblFastPacketQueue.IsHandleCreated)
-            {
-                lblFastPacketQueue.Invoke(new MethodInvoker(() => lblFastPacketQueue.Text = Program.CanGateWayListener.FastPacketMessageQueue.Count.ToString()));
-            }
-
             //Binary switch status (from Seagauge)
             if (e.ParameterGroupNumber == 127501)
             {
@@ -254,19 +236,6 @@ namespace WhatTheHelmRuntime
 
             //Update Bus Status
             var lastBusMessageEt = dtNow - lastBusMessage;
-            lblJ1939BustStatus.Invoke(new MethodInvoker(() =>
-            {
-                if (lastBusMessageEt.TotalSeconds > 5)
-                {
-                    lblJ1939BustStatus.BackColor = Color.Red;
-                    lblJ1939BustStatus.Text = "CAN BUS FAULTED";
-                }
-                else
-                {
-                    lblJ1939BustStatus.BackColor = Color.Green;
-                    lblJ1939BustStatus.Text = "CAN BUS OK";
-                }
-            }));
 
             ////Rudder position
             //var pgn0x1F10DLastMsgEt = dtNow - pgn0x1F10DLastMsg;
