@@ -29,16 +29,9 @@ namespace WhatTheHelmRuntime
         DateTime pgn0x1F201LastMsg = new DateTime();
         DateTime pgn0x1F205LastMsg = new DateTime();
         DateTime pgn0x1F200LastMsg = new DateTime();
-        DateTime pgn0x1FD06LastMsg = new DateTime();
-        DateTime pgn0x1F50BLastMsg = new DateTime();
-        DateTime pgn0x1F503LastMsg = new DateTime();
-        DateTime pgn0x1F805LastMsg = new DateTime();
-        DateTime pgn0x1F10DLastMsg = new DateTime();
         DateTime pgn0x1F20DLastMsg = new DateTime();
         DateTime yoctopucePwmRxLastMsg = new DateTime();
         IndicatorBankStatus[] SeaGaugeIndicatorStatus;
-        Color gaugePortRpmBorderLast;
-        Color gaugeStbdRpmBorderLast;
 
         public StbdGauges()
         {
@@ -67,8 +60,6 @@ namespace WhatTheHelmRuntime
             yoctopucePwmRxLastMsg = DateTime.Now;
             if (Program.Configuration.RpmSource == RpmSource.YoctopuceUsb)
             {
-                //if (gaugePortRpm.IsHandleCreated)
-                //    gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = Convert.ToDouble((e.Input1Hz * 60 / 4).ToString("0"))));
                 if (gaugeStbdRpm.IsHandleCreated)
                     gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = Convert.ToDouble((e.Input2Hz * 60 / 4).ToString("0"))));
             }
@@ -93,17 +84,8 @@ namespace WhatTheHelmRuntime
                 pgn0x1F200LastMsg = DateTime.Now;
                 Pgn0x1F200 pgn = (Pgn0x1F200)ParameterGroup.GetPgnType(127488).DeserializeFields(e.Data).ToImperial();
 
-                //Port Engine
-                if (pgn.EngineInstance == 0)
-                {
-                    //if (Program.Configuration.RpmSource == RpmSource.NMEA2000)
-                    //{
-                    //    if (gaugePortRpm.IsHandleCreated)
-                    //        gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = pgn.EngineSpeed / 4));
-                    //}
-                }
                 //Stbd Engine
-                else if (pgn.EngineInstance == 1)
+                if (pgn.EngineInstance == 1)
                 {
                     if (Program.Configuration.RpmSource == RpmSource.NMEA2000)
                     {
@@ -111,27 +93,6 @@ namespace WhatTheHelmRuntime
                             gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = pgn.EngineSpeed / 4));
                     }
                 }
-                ////Generator
-                //else if (pgn.EngineInstance == 2)
-                //{
-                //    var genRpm = pgn.EngineSpeed;
-                //    if (lblGeneratorStatus.IsHandleCreated)
-                //        lblGeneratorStatus.Invoke(new MethodInvoker(() =>
-                //        {
-                //            if (genRpm > 250)
-                //            {
-                //                lblGeneratorStatus.Text = "RUNNING";
-                //                lblGeneratorStatus.ForeColor = Color.White;
-                //                lblGeneratorStatus.BackColor = Color.Green;
-                //            }
-                //            else
-                //            {
-                //                lblGeneratorStatus.Text = "STOPPED";
-                //                lblGeneratorStatus.ForeColor = Color.White;
-                //                lblGeneratorStatus.BackColor = Color.Transparent;
-                //            }
-                //        }));
-                //}
             }
 
             //Transmission Parameters
@@ -139,12 +100,6 @@ namespace WhatTheHelmRuntime
             {
                 pgn0x1F205LastMsg = DateTime.Now;
                 Pgn0x1F205 pgn = (Pgn0x1F205)ParameterGroup.GetPgnType(127493).DeserializeFields(e.Data).ToImperial();
-
-                //Port Engine
-                if (pgn.EngineInstance == 0)
-                {
-                    //gaugePortDrivePressure.Invoke(new MethodInvoker(() => { gaugePortDrivePressure.Value = Convert.ToDouble((pgn.OilPressure).ToString("0")); }));
-                }
 
                 //Stbd Engine
                 if (pgn.EngineInstance == 1)
@@ -159,16 +114,8 @@ namespace WhatTheHelmRuntime
                 pgn0x1F201LastMsg = DateTime.Now;
                 Pgn0x1F201 pgn = (Pgn0x1F201)ParameterGroup.GetPgnType(127489).DeserializeFields(e.Data).ToImperial();
 
-                //Port Engine
-                if (pgn.EngineInstance == 0)
-                {
-                    //gaugePortWaterTemp.Invoke(new MethodInvoker(() => { gaugePortWaterTemp.Value = Convert.ToDouble(pgn.EngineTemperature.ToString("0")); }));
-                    //gaugePortOilPressure.Invoke(new MethodInvoker(() => { gaugePortOilPressure.Value = Convert.ToDouble(pgn.OilPressure.ToString("0")); }));
-                    //gaugePortVolts.Invoke(new MethodInvoker(() => { gaugePortVolts.Value = Convert.ToDouble(pgn.AlternatorPotential.ToString("0.0")); }));
-                    //lblPortHours.Invoke(new MethodInvoker(() => { lblPortHours.Text = pgn.EngineHours.ToString("0.0") + " HRS"; }));
-                }
                 //Stbd Engine
-                else if (pgn.EngineInstance == 1)
+                if (pgn.EngineInstance == 1)
                 {
                     gaugeStbdWaterTemp.Invoke(new MethodInvoker(() => { gaugeStbdWaterTemp.Value = Convert.ToDouble(pgn.EngineTemperature.ToString("0")); }));
                     gaugeStbdOilPressure.Invoke(new MethodInvoker(() => { gaugeStbdOilPressure.Value = Convert.ToDouble(pgn.OilPressure.ToString("0")); }));
@@ -176,51 +123,6 @@ namespace WhatTheHelmRuntime
                     lblStbdHours.Invoke(new MethodInvoker(() => { lblStbdHours.Text = pgn.EngineHours.ToString("0.0") + " HRS"; }));
                 }
             }
-
-            ////Water Temperature (F)
-            //else if (e.ParameterGroupNumber == 130310)
-            //{
-            //    pgn0x1FD06LastMsg = DateTime.Now;
-            //    Pgn0x1FD06 pgn = (Pgn0x1FD06)ParameterGroup.GetPgnType(130310).DeserializeFields(e.Data).ToImperial();
-            //    if (lblSeaWaterTemp.IsHandleCreated)
-            //        lblSeaWaterTemp.Invoke(new MethodInvoker(() => lblSeaWaterTemp.Text = (pgn.Temperature + Program.Configuration.WaterTempOffset).ToString("0.0")));
-            //}
-
-            ////Water Depth (FT)
-            //else if (e.ParameterGroupNumber == 128267)
-            //{
-            //    pgn0x1F50BLastMsg = DateTime.Now;
-            //    Pgn0x1F50B pgn = (Pgn0x1F50B)ParameterGroup.GetPgnType(128267).DeserializeFields(e.Data).ToImperial();
-            //    if (lblSeaWaterDepth.IsHandleCreated)
-            //        lblSeaWaterDepth.Invoke(new MethodInvoker(() => { lblSeaWaterDepth.Text = (pgn.Depth + Program.Configuration.WaterDepthOffset).ToString("0.0"); }));
-            //}
-
-            ////Speed (MPH)
-            //else if (e.ParameterGroupNumber == 128259)
-            //{
-            //    pgn0x1F503LastMsg = DateTime.Now;
-            //    Pgn0x1F503 pgn = (Pgn0x1F503)ParameterGroup.GetPgnType(128259).DeserializeFields(e.Data).ToImperial();
-            //    if (gaugeSog.IsHandleCreated)
-            //    {
-            //        gaugeSog.Invoke(new MethodInvoker(() => gaugeSog.Value = pgn.Speed));
-            //    }
-            //}
-
-            //GPS Coordinates
-            //else if (e.ParameterGroupNumber == 129029)
-            //{
-            //    pgn0x1F805LastMsg = DateTime.Now;
-            //    Pgn0x1F805 pgn = (Pgn0x1F805)ParameterGroup.GetPgnType(129029).DeserializeFields(e.Data);
-            //    if (lblGpsCoordinates.IsHandleCreated)
-            //    {
-            //        lblGpsCoordinates.Invoke(new MethodInvoker(() =>
-            //        {
-            //            var array = pgn.ToString().Split(',');
-            //            string text = "LATITUDE: " + array[0] + Environment.NewLine + "LONGITUDE: " + array[1] + Environment.NewLine + "ALTITUDE: " + array[2];
-            //            lblGpsCoordinates.Text = text;
-            //        }));
-            //    }
-            //}
 
             //Poll for GPS Coordinates on next scan.
             Pgn0x1F805 gnssData = new Pgn0x1F805();
@@ -237,45 +139,22 @@ namespace WhatTheHelmRuntime
             //Update Bus Status
             var lastBusMessageEt = dtNow - lastBusMessage;
 
-            ////Rudder position
-            //var pgn0x1F10DLastMsgEt = dtNow - pgn0x1F10DLastMsg;
-            //if (pgn0x1F10DLastMsgEt.TotalSeconds > 5)
-            //    gaugeRudderAngle.Invoke(new MethodInvoker(() => gaugeRudderAngle.Hide()));
-            //else
-            //    gaugeRudderAngle.Invoke(new MethodInvoker(() => gaugeRudderAngle.Show()));
-
-            //Switch status
+            //Alarm Statuses
             var pgn0x1F20DLastMsgEt = dtNow - pgn0x1F20DLastMsg;
             if (pgn0x1F20DLastMsgEt.TotalSeconds > 5)
             {
-                //lblPortWaterTempHigh.Invoke(new MethodInvoker(() => lblPortWaterTempHigh.Hide()));
                 lblStbdWaterTempHigh.Invoke(new MethodInvoker(() => lblStbdWaterTempHigh.Hide()));
-                //lblPortOilPressLow.Invoke(new MethodInvoker(() => lblPortOilPressLow.Hide()));
                 lblStbdOilPressLow.Invoke(new MethodInvoker(() => lblStbdOilPressLow.Hide()));
-                //lblPortDriveTempHigh.Invoke(new MethodInvoker(() => lblPortDriveTempHigh.Hide()));
                 lblStbdDriveTempHigh.Invoke(new MethodInvoker(() => lblStbdDriveTempHigh.Hide()));
-                //lblPortFuelPressLow.Invoke(new MethodInvoker(() => lblPortFuelPressLow.Hide()));
                 lblStbdFuelPressLow.Invoke(new MethodInvoker(() => lblStbdFuelPressLow.Hide()));
             }
             else
             {
-                //lblPortWaterTempHigh.Invoke(new MethodInvoker(() => lblPortWaterTempHigh.Show()));
                 lblStbdWaterTempHigh.Invoke(new MethodInvoker(() => lblStbdWaterTempHigh.Show()));
-                //lblPortOilPressLow.Invoke(new MethodInvoker(() => lblPortOilPressLow.Show()));
                 lblStbdOilPressLow.Invoke(new MethodInvoker(() => lblStbdOilPressLow.Show()));
-                //lblPortDriveTempHigh.Invoke(new MethodInvoker(() => lblPortDriveTempHigh.Show()));
                 lblStbdDriveTempHigh.Invoke(new MethodInvoker(() => lblStbdDriveTempHigh.Show()));
-                //lblPortFuelPressLow.Invoke(new MethodInvoker(() => lblPortFuelPressLow.Show()));
                 lblStbdFuelPressLow.Invoke(new MethodInvoker(() => lblStbdFuelPressLow.Show()));
             }
-
-            //GPS Coordinates
-            //var pgn0x1F805LastMsgEt = dtNow - pgn0x1F805LastMsg;
-            //if (pgn0x1F805LastMsgEt.TotalSeconds > 5)
-            //    lblGpsCoordinates.Invoke(new MethodInvoker(() =>
-            //    {
-            //        lblGpsCoordinates.Text = "LATITUDE: --" + Environment.NewLine + "LONGITUDE: --" + Environment.NewLine + "ALTITUDE: --";
-            //    }));
 
             //Engine parameters rapid
             var pgn0x1F200LastMsgEt = dtNow - pgn0x1F200LastMsg;
@@ -284,12 +163,10 @@ namespace WhatTheHelmRuntime
             {
                 if (pgn0x1F200LastMsgEt.TotalSeconds > 5)
                 {
-                    //gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Hide()));
                     gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Hide()));
                 }
                 else
                 {
-                    //gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Show()));
                     gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Show()));
                 }
             }
@@ -297,13 +174,11 @@ namespace WhatTheHelmRuntime
             {
                 if (yoctopucePwmRxLastMsgEt.TotalSeconds > 5)
                 {
-                    //gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Hide()));
                     gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Hide()));
 
                 }
                 else
                 {
-                    //gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Show()));
                     gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Show()));
                 }
             }
@@ -312,11 +187,6 @@ namespace WhatTheHelmRuntime
             var pgn0x1F201LastMsgEt = dtNow - pgn0x1F201LastMsg;
             if (pgn0x1F201LastMsgEt.TotalSeconds > 5)
             {
-                //gaugePortWaterTemp.Invoke(new MethodInvoker(() => { gaugePortWaterTemp.Hide(); }));
-                //gaugePortOilPressure.Invoke(new MethodInvoker(() => { gaugePortOilPressure.Hide(); }));
-                //gaugePortVolts.Invoke(new MethodInvoker(() => { gaugePortVolts.Hide(); }));
-                //lblPortVoltageLow.Invoke(new MethodInvoker(() => { lblPortVoltageLow.Hide(); }));
-                //lblPortHours.Invoke(new MethodInvoker(() => { lblPortHours.Text = "--"; }));
                 gaugeStbdWaterTemp.Invoke(new MethodInvoker(() => { gaugeStbdWaterTemp.Hide(); }));
                 gaugeStbdOilPressure.Invoke(new MethodInvoker(() => { gaugeStbdOilPressure.Hide(); }));
                 gaugeStbdVolts.Invoke(new MethodInvoker(() => { gaugeStbdVolts.Hide(); }));
@@ -325,10 +195,6 @@ namespace WhatTheHelmRuntime
             }
             else
             {
-                //gaugePortWaterTemp.Invoke(new MethodInvoker(() => { gaugePortWaterTemp.Show(); }));
-                //gaugePortOilPressure.Invoke(new MethodInvoker(() => { gaugePortOilPressure.Show(); }));
-                //gaugePortVolts.Invoke(new MethodInvoker(() => { gaugePortVolts.Show(); }));
-                //lblPortVoltageLow.Invoke(new MethodInvoker(() => { lblPortVoltageLow.Show(); }));
                 gaugeStbdWaterTemp.Invoke(new MethodInvoker(() => { gaugeStbdWaterTemp.Show(); }));
                 gaugeStbdOilPressure.Invoke(new MethodInvoker(() => { gaugeStbdOilPressure.Show(); }));
                 gaugeStbdVolts.Invoke(new MethodInvoker(() => { gaugeStbdVolts.Show(); }));
@@ -339,34 +205,16 @@ namespace WhatTheHelmRuntime
             var pgn0x1F205LastMsgEt = dtNow - pgn0x1F205LastMsg;
             if (pgn0x1F205LastMsgEt.TotalSeconds > 5)
             {
-                //gaugePortDrivePressure.Invoke(new MethodInvoker(() => { gaugePortDrivePressure.Hide(); }));
                 gaugeStbdDrivePressure.Invoke(new MethodInvoker(() => { gaugeStbdDrivePressure.Hide(); }));
             }
             else
             {
-                //gaugePortDrivePressure.Invoke(new MethodInvoker(() => { gaugePortDrivePressure.Show(); }));
                 gaugeStbdDrivePressure.Invoke(new MethodInvoker(() => { gaugeStbdDrivePressure.Show(); }));
             }
         }
 
         private void AlarmTimer_Tick(object sender, EventArgs e)
         {
-            //Port alternator output voltage low
-            //lblPortVoltageLow.Invoke(new MethodInvoker(() =>
-            //{
-            //    try
-            //    {
-            //        if (gaugePortVolts.Value < 12.6)
-            //            lblPortVoltageLow.BackColor = Color.Red;
-            //        else
-            //            lblPortVoltageLow.BackColor = Color.FromArgb(56, 0, 0);
-            //    }
-            //    catch
-            //    {
-            //        lblPortVoltageLow.BackColor = Color.Red;
-            //    }
-            //}));
-
             //Stbd alternator output voltage low
             lblStbdVoltageLow.Invoke(new MethodInvoker(() =>
             {
@@ -383,19 +231,6 @@ namespace WhatTheHelmRuntime
                 }
             }));
 
-            //Port water temp high
-            if (lblStbdWaterTempHigh.IsHandleCreated)
-                lblStbdWaterTempHigh.Invoke(new MethodInvoker(() =>
-                {
-                    if (SeaGaugeIndicatorStatus != null)
-                    {
-                        if (SeaGaugeIndicatorStatus[5] == IndicatorBankStatus.Off)
-                            lblStbdWaterTempHigh.BackColor = Color.Red;
-                        else
-                            lblStbdWaterTempHigh.BackColor = Color.FromArgb(56, 0, 0);
-                    }
-                }));
-
             //Stbd water temp high
             if (lblStbdWaterTempHigh.IsHandleCreated)
                 lblStbdWaterTempHigh.Invoke(new MethodInvoker(() =>
@@ -408,19 +243,6 @@ namespace WhatTheHelmRuntime
                             lblStbdWaterTempHigh.BackColor = Color.FromArgb(56, 0, 0);
                     }
                 }));
-
-            //Port oil pressure low
-            //if (lblPortOilPressLow.IsHandleCreated)
-            //    lblPortOilPressLow.Invoke(new MethodInvoker(() =>
-            //    {
-            //        if (SeaGaugeIndicatorStatus != null)
-            //        {
-            //            if (SeaGaugeIndicatorStatus[4] == IndicatorBankStatus.Off)
-            //                lblPortOilPressLow.BackColor = Color.Red;
-            //            else
-            //                lblPortOilPressLow.BackColor = Color.FromArgb(56, 0, 0);
-            //        }
-            //    }));
 
             //Stbd oil pressure low
             if (lblStbdOilPressLow.IsHandleCreated)
@@ -435,19 +257,6 @@ namespace WhatTheHelmRuntime
                     }
                 }));
 
-            //Port drive temp high
-            //if (lblPortDriveTempHigh.IsHandleCreated)
-            //    lblPortDriveTempHigh.Invoke(new MethodInvoker(() =>
-            //    {
-            //        if (SeaGaugeIndicatorStatus != null)
-            //        {
-            //            if (SeaGaugeIndicatorStatus[6] == IndicatorBankStatus.Off)
-            //                lblPortDriveTempHigh.BackColor = Color.Red;
-            //            else
-            //                lblPortDriveTempHigh.BackColor = Color.FromArgb(56, 0, 0);
-            //        }
-            //    }));
-
             //Stbd drive temp high
             if (lblStbdDriveTempHigh.IsHandleCreated)
                 lblStbdDriveTempHigh.Invoke(new MethodInvoker(() =>
@@ -460,19 +269,6 @@ namespace WhatTheHelmRuntime
                             lblStbdDriveTempHigh.BackColor = Color.FromArgb(56, 0, 0);
                     }
                 }));
-
-            //Port fuel pressure low
-            //if (lblPortFuelPressLow.IsHandleCreated)
-            //    lblPortFuelPressLow.Invoke(new MethodInvoker(() =>
-            //    {
-            //        if (SeaGaugeIndicatorStatus != null)
-            //        {
-            //            if (SeaGaugeIndicatorStatus[10] == IndicatorBankStatus.Off)
-            //                lblPortFuelPressLow.BackColor = Color.Red;
-            //            else
-            //                lblPortFuelPressLow.BackColor = Color.FromArgb(56, 0, 0);
-            //        }
-            //    }));
 
             //Stbd fuel pressure low
             if (lblStbdFuelPressLow.IsHandleCreated)
@@ -510,8 +306,6 @@ namespace WhatTheHelmRuntime
             }
 
             configMenu.Dispose();
-
-
         }
     }
 }

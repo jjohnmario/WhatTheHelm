@@ -30,25 +30,25 @@ namespace WhatTheHelmRuntime
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PortGauges));
-            CodeArtEng.Gauge.Themes.ThemeColors themeColors1 = new CodeArtEng.Gauge.Themes.ThemeColors();
-            CodeArtEng.Gauge.Themes.ThemeColors themeColors2 = new CodeArtEng.Gauge.Themes.ThemeColors();
-            CodeArtEng.Gauge.Themes.ThemeColors themeColors3 = new CodeArtEng.Gauge.Themes.ThemeColors();
-            this.lblStbdHours = new System.Windows.Forms.Label();
-            this.lblStbdDriveTempHigh = new System.Windows.Forms.Label();
-            this.lblStbdVoltageLow = new System.Windows.Forms.Label();
-            this.lblStbdOilPressLow = new System.Windows.Forms.Label();
-            this.lblStbdFuelPressLow = new System.Windows.Forms.Label();
+            CodeArtEng.Gauge.Themes.ThemeColors themeColors4 = new CodeArtEng.Gauge.Themes.ThemeColors();
+            CodeArtEng.Gauge.Themes.ThemeColors themeColors5 = new CodeArtEng.Gauge.Themes.ThemeColors();
+            CodeArtEng.Gauge.Themes.ThemeColors themeColors6 = new CodeArtEng.Gauge.Themes.ThemeColors();
+            this.lblPortHours = new System.Windows.Forms.Label();
+            this.lblPortDriveTempHigh = new System.Windows.Forms.Label();
+            this.lblPortVoltageLow = new System.Windows.Forms.Label();
+            this.lblPortOilPressLow = new System.Windows.Forms.Label();
+            this.lblPortFuelPressLow = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lblStbdWaterTempHigh = new System.Windows.Forms.Label();
-            this.gaugeStbdRpm = new CodeArtEng.Gauge.CircularGauge();
-            this.gaugeStbdOilPressure = new CodeArtEng.Gauge.CircularGauge();
-            this.gaugeStbdVolts = new CodeArtEng.Gauge.CircularGauge();
-            this.gaugeStbdDrivePressure = new CodeArtEng.Gauge.CircularGauge();
-            this.gaugeStbdWaterTemp = new CodeArtEng.Gauge.CircularGauge();
+            this.lblPortWaterTempHigh = new System.Windows.Forms.Label();
+            this.gaugePortRpm = new CodeArtEng.Gauge.CircularGauge();
+            this.gaugePortOilPressure = new CodeArtEng.Gauge.CircularGauge();
+            this.gaugePortVolts = new CodeArtEng.Gauge.CircularGauge();
+            this.gaugePortDrivePressure = new CodeArtEng.Gauge.CircularGauge();
+            this.gaugePortWaterTemp = new CodeArtEng.Gauge.CircularGauge();
             this.lblFastPacketQueue = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.lblCanMsgQueue = new System.Windows.Forms.Label();
@@ -62,68 +62,70 @@ namespace WhatTheHelmRuntime
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnConfig = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // lblStbdHours
+            // lblPortHours
             // 
-            this.lblStbdHours.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblStbdHours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-            this.lblStbdHours.Font = new System.Drawing.Font("Arial", 14F);
-            this.lblStbdHours.ForeColor = System.Drawing.Color.White;
-            this.lblStbdHours.Location = new System.Drawing.Point(890, 533);
-            this.lblStbdHours.Name = "lblStbdHours";
-            this.lblStbdHours.Size = new System.Drawing.Size(151, 22);
-            this.lblStbdHours.TabIndex = 130;
-            this.lblStbdHours.Text = "--";
-            this.lblStbdHours.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPortHours.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPortHours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
+            this.lblPortHours.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblPortHours.ForeColor = System.Drawing.Color.White;
+            this.lblPortHours.Location = new System.Drawing.Point(890, 533);
+            this.lblPortHours.Name = "lblPortHours";
+            this.lblPortHours.Size = new System.Drawing.Size(151, 22);
+            this.lblPortHours.TabIndex = 130;
+            this.lblPortHours.Text = "--";
+            this.lblPortHours.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblStbdDriveTempHigh
+            // lblPortDriveTempHigh
             // 
-            this.lblStbdDriveTempHigh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblStbdDriveTempHigh.Font = new System.Drawing.Font("Arial", 14F);
-            this.lblStbdDriveTempHigh.ForeColor = System.Drawing.Color.Black;
-            this.lblStbdDriveTempHigh.Location = new System.Drawing.Point(152, 630);
-            this.lblStbdDriveTempHigh.Name = "lblStbdDriveTempHigh";
-            this.lblStbdDriveTempHigh.Size = new System.Drawing.Size(69, 25);
-            this.lblStbdDriveTempHigh.TabIndex = 129;
-            this.lblStbdDriveTempHigh.Text = "TEMP";
-            this.lblStbdDriveTempHigh.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPortDriveTempHigh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblPortDriveTempHigh.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblPortDriveTempHigh.ForeColor = System.Drawing.Color.Black;
+            this.lblPortDriveTempHigh.Location = new System.Drawing.Point(152, 630);
+            this.lblPortDriveTempHigh.Name = "lblPortDriveTempHigh";
+            this.lblPortDriveTempHigh.Size = new System.Drawing.Size(69, 25);
+            this.lblPortDriveTempHigh.TabIndex = 129;
+            this.lblPortDriveTempHigh.Text = "TEMP";
+            this.lblPortDriveTempHigh.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblStbdVoltageLow
+            // lblPortVoltageLow
             // 
-            this.lblStbdVoltageLow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblStbdVoltageLow.Font = new System.Drawing.Font("Arial", 14F);
-            this.lblStbdVoltageLow.ForeColor = System.Drawing.Color.Black;
-            this.lblStbdVoltageLow.Location = new System.Drawing.Point(496, 630);
-            this.lblStbdVoltageLow.Name = "lblStbdVoltageLow";
-            this.lblStbdVoltageLow.Size = new System.Drawing.Size(69, 25);
-            this.lblStbdVoltageLow.TabIndex = 128;
-            this.lblStbdVoltageLow.Text = "LOW";
-            this.lblStbdVoltageLow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPortVoltageLow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblPortVoltageLow.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblPortVoltageLow.ForeColor = System.Drawing.Color.Black;
+            this.lblPortVoltageLow.Location = new System.Drawing.Point(496, 630);
+            this.lblPortVoltageLow.Name = "lblPortVoltageLow";
+            this.lblPortVoltageLow.Size = new System.Drawing.Size(69, 25);
+            this.lblPortVoltageLow.TabIndex = 128;
+            this.lblPortVoltageLow.Text = "LOW";
+            this.lblPortVoltageLow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblStbdOilPressLow
+            // lblPortOilPressLow
             // 
-            this.lblStbdOilPressLow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblStbdOilPressLow.Font = new System.Drawing.Font("Arial", 14F);
-            this.lblStbdOilPressLow.ForeColor = System.Drawing.Color.Black;
-            this.lblStbdOilPressLow.Location = new System.Drawing.Point(152, 295);
-            this.lblStbdOilPressLow.Name = "lblStbdOilPressLow";
-            this.lblStbdOilPressLow.Size = new System.Drawing.Size(69, 25);
-            this.lblStbdOilPressLow.TabIndex = 127;
-            this.lblStbdOilPressLow.Text = "LOW";
-            this.lblStbdOilPressLow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPortOilPressLow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblPortOilPressLow.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblPortOilPressLow.ForeColor = System.Drawing.Color.Black;
+            this.lblPortOilPressLow.Location = new System.Drawing.Point(152, 295);
+            this.lblPortOilPressLow.Name = "lblPortOilPressLow";
+            this.lblPortOilPressLow.Size = new System.Drawing.Size(69, 25);
+            this.lblPortOilPressLow.TabIndex = 127;
+            this.lblPortOilPressLow.Text = "LOW";
+            this.lblPortOilPressLow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblStbdFuelPressLow
+            // lblPortFuelPressLow
             // 
-            this.lblStbdFuelPressLow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblStbdFuelPressLow.Font = new System.Drawing.Font("Arial", 14F);
-            this.lblStbdFuelPressLow.ForeColor = System.Drawing.Color.Black;
-            this.lblStbdFuelPressLow.Location = new System.Drawing.Point(878, 498);
-            this.lblStbdFuelPressLow.Name = "lblStbdFuelPressLow";
-            this.lblStbdFuelPressLow.Size = new System.Drawing.Size(173, 25);
-            this.lblStbdFuelPressLow.TabIndex = 126;
-            this.lblStbdFuelPressLow.Text = "FUEL PRESSURE";
-            this.lblStbdFuelPressLow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPortFuelPressLow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblPortFuelPressLow.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblPortFuelPressLow.ForeColor = System.Drawing.Color.Black;
+            this.lblPortFuelPressLow.Location = new System.Drawing.Point(878, 498);
+            this.lblPortFuelPressLow.Name = "lblPortFuelPressLow";
+            this.lblPortFuelPressLow.Size = new System.Drawing.Size(173, 25);
+            this.lblPortFuelPressLow.TabIndex = 126;
+            this.lblPortFuelPressLow.Text = "FUEL PRESSURE";
+            this.lblPortFuelPressLow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel5
             // 
@@ -175,134 +177,134 @@ namespace WhatTheHelmRuntime
             this.panel2.Size = new System.Drawing.Size(253, 39);
             this.panel2.TabIndex = 121;
             // 
-            // lblStbdWaterTempHigh
+            // lblPortWaterTempHigh
             // 
-            this.lblStbdWaterTempHigh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblStbdWaterTempHigh.Font = new System.Drawing.Font("Arial", 14F);
-            this.lblStbdWaterTempHigh.ForeColor = System.Drawing.Color.Black;
-            this.lblStbdWaterTempHigh.Location = new System.Drawing.Point(497, 295);
-            this.lblStbdWaterTempHigh.Name = "lblStbdWaterTempHigh";
-            this.lblStbdWaterTempHigh.Size = new System.Drawing.Size(69, 25);
-            this.lblStbdWaterTempHigh.TabIndex = 120;
-            this.lblStbdWaterTempHigh.Text = "HIGH";
-            this.lblStbdWaterTempHigh.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPortWaterTempHigh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblPortWaterTempHigh.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblPortWaterTempHigh.ForeColor = System.Drawing.Color.Black;
+            this.lblPortWaterTempHigh.Location = new System.Drawing.Point(497, 295);
+            this.lblPortWaterTempHigh.Name = "lblPortWaterTempHigh";
+            this.lblPortWaterTempHigh.Size = new System.Drawing.Size(69, 25);
+            this.lblPortWaterTempHigh.TabIndex = 120;
+            this.lblPortWaterTempHigh.Text = "HIGH";
+            this.lblPortWaterTempHigh.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // gaugeStbdRpm
+            // gaugePortRpm
             // 
-            this.gaugeStbdRpm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.gaugeStbdRpm.ErrorLimit = 4000D;
-            this.gaugeStbdRpm.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gaugeStbdRpm.FontUnitLabel = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.gaugeStbdRpm.InfoMode = CodeArtEng.Gauge.GaugeInfoMode.MouseClick;
-            this.gaugeStbdRpm.Location = new System.Drawing.Point(690, 133);
-            this.gaugeStbdRpm.Maximum = 4000D;
-            this.gaugeStbdRpm.Name = "gaugeStbdRpm";
-            this.gaugeStbdRpm.PointerPaintMode = CodeArtEng.Gauge.PointerPaintMode.SimpleGradient;
-            this.gaugeStbdRpm.PointerWidth = 80;
-            this.gaugeStbdRpm.ScaleFactor = 1D;
-            this.gaugeStbdRpm.SegmentGap = 10;
-            this.gaugeStbdRpm.Size = new System.Drawing.Size(555, 551);
-            this.gaugeStbdRpm.TabIndex = 119;
-            this.gaugeStbdRpm.Theme = CodeArtEng.Gauge.GaugeTheme.DarkGrey;
-            this.gaugeStbdRpm.Title = "";
-            this.gaugeStbdRpm.Unit = "RPM";
-            this.gaugeStbdRpm.UserDefinedColors.Base = themeColors1;
-            themeColors2.PointerColor = System.Drawing.Color.Red;
-            this.gaugeStbdRpm.UserDefinedColors.Error = themeColors2;
-            themeColors3.PointerColor = System.Drawing.Color.Orange;
-            this.gaugeStbdRpm.UserDefinedColors.Warning = themeColors3;
-            this.gaugeStbdRpm.Value = 0D;
-            this.gaugeStbdRpm.WarningLimit = 3800D;
+            this.gaugePortRpm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.gaugePortRpm.ErrorLimit = 4000D;
+            this.gaugePortRpm.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gaugePortRpm.FontUnitLabel = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.gaugePortRpm.InfoMode = CodeArtEng.Gauge.GaugeInfoMode.MouseClick;
+            this.gaugePortRpm.Location = new System.Drawing.Point(690, 133);
+            this.gaugePortRpm.Maximum = 4000D;
+            this.gaugePortRpm.Name = "gaugePortRpm";
+            this.gaugePortRpm.PointerPaintMode = CodeArtEng.Gauge.PointerPaintMode.SimpleGradient;
+            this.gaugePortRpm.PointerWidth = 80;
+            this.gaugePortRpm.ScaleFactor = 1D;
+            this.gaugePortRpm.SegmentGap = 10;
+            this.gaugePortRpm.Size = new System.Drawing.Size(555, 551);
+            this.gaugePortRpm.TabIndex = 119;
+            this.gaugePortRpm.Theme = CodeArtEng.Gauge.GaugeTheme.DarkGrey;
+            this.gaugePortRpm.Title = "";
+            this.gaugePortRpm.Unit = "RPM";
+            this.gaugePortRpm.UserDefinedColors.Base = themeColors4;
+            themeColors5.PointerColor = System.Drawing.Color.Red;
+            this.gaugePortRpm.UserDefinedColors.Error = themeColors5;
+            themeColors6.PointerColor = System.Drawing.Color.Orange;
+            this.gaugePortRpm.UserDefinedColors.Warning = themeColors6;
+            this.gaugePortRpm.Value = 0D;
+            this.gaugePortRpm.WarningLimit = 3800D;
             // 
-            // gaugeStbdOilPressure
+            // gaugePortOilPressure
             // 
-            this.gaugeStbdOilPressure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.gaugeStbdOilPressure.ErrorLimit = 8D;
-            this.gaugeStbdOilPressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gaugeStbdOilPressure.FontUnitLabel = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gaugeStbdOilPressure.InfoMode = CodeArtEng.Gauge.GaugeInfoMode.MouseClick;
-            this.gaugeStbdOilPressure.InvertLimit = true;
-            this.gaugeStbdOilPressure.Location = new System.Drawing.Point(35, 83);
-            this.gaugeStbdOilPressure.Maximum = 120D;
-            this.gaugeStbdOilPressure.Name = "gaugeStbdOilPressure";
-            this.gaugeStbdOilPressure.PointerPaintMode = CodeArtEng.Gauge.PointerPaintMode.SimpleGradient;
-            this.gaugeStbdOilPressure.PointerWidth = 40;
-            this.gaugeStbdOilPressure.ScaleFactor = 1D;
-            this.gaugeStbdOilPressure.SegmentGap = 10;
-            this.gaugeStbdOilPressure.Size = new System.Drawing.Size(300, 300);
-            this.gaugeStbdOilPressure.TabIndex = 118;
-            this.gaugeStbdOilPressure.Theme = CodeArtEng.Gauge.GaugeTheme.DarkGrey;
-            this.gaugeStbdOilPressure.Title = "";
-            this.gaugeStbdOilPressure.Unit = "OIL PSI";
-            this.gaugeStbdOilPressure.Value = 0D;
-            this.gaugeStbdOilPressure.WarningLimit = 15D;
+            this.gaugePortOilPressure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.gaugePortOilPressure.ErrorLimit = 8D;
+            this.gaugePortOilPressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gaugePortOilPressure.FontUnitLabel = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gaugePortOilPressure.InfoMode = CodeArtEng.Gauge.GaugeInfoMode.MouseClick;
+            this.gaugePortOilPressure.InvertLimit = true;
+            this.gaugePortOilPressure.Location = new System.Drawing.Point(35, 83);
+            this.gaugePortOilPressure.Maximum = 120D;
+            this.gaugePortOilPressure.Name = "gaugePortOilPressure";
+            this.gaugePortOilPressure.PointerPaintMode = CodeArtEng.Gauge.PointerPaintMode.SimpleGradient;
+            this.gaugePortOilPressure.PointerWidth = 40;
+            this.gaugePortOilPressure.ScaleFactor = 1D;
+            this.gaugePortOilPressure.SegmentGap = 10;
+            this.gaugePortOilPressure.Size = new System.Drawing.Size(300, 300);
+            this.gaugePortOilPressure.TabIndex = 118;
+            this.gaugePortOilPressure.Theme = CodeArtEng.Gauge.GaugeTheme.DarkGrey;
+            this.gaugePortOilPressure.Title = "";
+            this.gaugePortOilPressure.Unit = "OIL PSI";
+            this.gaugePortOilPressure.Value = 0D;
+            this.gaugePortOilPressure.WarningLimit = 15D;
             // 
-            // gaugeStbdVolts
+            // gaugePortVolts
             // 
-            this.gaugeStbdVolts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.gaugeStbdVolts.ErrorLimit = 11.5D;
-            this.gaugeStbdVolts.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gaugeStbdVolts.FontUnitLabel = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gaugeStbdVolts.InfoMode = CodeArtEng.Gauge.GaugeInfoMode.MouseClick;
-            this.gaugeStbdVolts.InvertLimit = true;
-            this.gaugeStbdVolts.Location = new System.Drawing.Point(382, 417);
-            this.gaugeStbdVolts.Maximum = 15D;
-            this.gaugeStbdVolts.Name = "gaugeStbdVolts";
-            this.gaugeStbdVolts.PointerPaintMode = CodeArtEng.Gauge.PointerPaintMode.SimpleGradient;
-            this.gaugeStbdVolts.PointerWidth = 40;
-            this.gaugeStbdVolts.ScaleFactor = 1D;
-            this.gaugeStbdVolts.SegmentGap = 10;
-            this.gaugeStbdVolts.Size = new System.Drawing.Size(300, 300);
-            this.gaugeStbdVolts.TabIndex = 117;
-            this.gaugeStbdVolts.Theme = CodeArtEng.Gauge.GaugeTheme.DarkGrey;
-            this.gaugeStbdVolts.Title = "";
-            this.gaugeStbdVolts.Unit = "DC VOLTS";
-            this.gaugeStbdVolts.Value = 0D;
-            this.gaugeStbdVolts.WarningLimit = 12.2D;
+            this.gaugePortVolts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.gaugePortVolts.ErrorLimit = 11.5D;
+            this.gaugePortVolts.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gaugePortVolts.FontUnitLabel = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gaugePortVolts.InfoMode = CodeArtEng.Gauge.GaugeInfoMode.MouseClick;
+            this.gaugePortVolts.InvertLimit = true;
+            this.gaugePortVolts.Location = new System.Drawing.Point(382, 417);
+            this.gaugePortVolts.Maximum = 15D;
+            this.gaugePortVolts.Name = "gaugePortVolts";
+            this.gaugePortVolts.PointerPaintMode = CodeArtEng.Gauge.PointerPaintMode.SimpleGradient;
+            this.gaugePortVolts.PointerWidth = 40;
+            this.gaugePortVolts.ScaleFactor = 1D;
+            this.gaugePortVolts.SegmentGap = 10;
+            this.gaugePortVolts.Size = new System.Drawing.Size(300, 300);
+            this.gaugePortVolts.TabIndex = 117;
+            this.gaugePortVolts.Theme = CodeArtEng.Gauge.GaugeTheme.DarkGrey;
+            this.gaugePortVolts.Title = "";
+            this.gaugePortVolts.Unit = "DC VOLTS";
+            this.gaugePortVolts.Value = 0D;
+            this.gaugePortVolts.WarningLimit = 12.2D;
             // 
-            // gaugeStbdDrivePressure
+            // gaugePortDrivePressure
             // 
-            this.gaugeStbdDrivePressure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.gaugeStbdDrivePressure.ErrorLimit = 30D;
-            this.gaugeStbdDrivePressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gaugeStbdDrivePressure.FontUnitLabel = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gaugeStbdDrivePressure.InfoMode = CodeArtEng.Gauge.GaugeInfoMode.MouseClick;
-            this.gaugeStbdDrivePressure.InvertLimit = true;
-            this.gaugeStbdDrivePressure.Location = new System.Drawing.Point(35, 417);
-            this.gaugeStbdDrivePressure.Name = "gaugeStbdDrivePressure";
-            this.gaugeStbdDrivePressure.PointerPaintMode = CodeArtEng.Gauge.PointerPaintMode.SimpleGradient;
-            this.gaugeStbdDrivePressure.PointerWidth = 40;
-            this.gaugeStbdDrivePressure.ScaleFactor = 1D;
-            this.gaugeStbdDrivePressure.SegmentGap = 10;
-            this.gaugeStbdDrivePressure.Size = new System.Drawing.Size(300, 300);
-            this.gaugeStbdDrivePressure.TabIndex = 116;
-            this.gaugeStbdDrivePressure.Theme = CodeArtEng.Gauge.GaugeTheme.DarkGrey;
-            this.gaugeStbdDrivePressure.Title = "";
-            this.gaugeStbdDrivePressure.Unit = "GEAR PSI";
-            this.gaugeStbdDrivePressure.Value = 0D;
-            this.gaugeStbdDrivePressure.WarningLimit = 50D;
+            this.gaugePortDrivePressure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.gaugePortDrivePressure.ErrorLimit = 30D;
+            this.gaugePortDrivePressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gaugePortDrivePressure.FontUnitLabel = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gaugePortDrivePressure.InfoMode = CodeArtEng.Gauge.GaugeInfoMode.MouseClick;
+            this.gaugePortDrivePressure.InvertLimit = true;
+            this.gaugePortDrivePressure.Location = new System.Drawing.Point(35, 417);
+            this.gaugePortDrivePressure.Name = "gaugePortDrivePressure";
+            this.gaugePortDrivePressure.PointerPaintMode = CodeArtEng.Gauge.PointerPaintMode.SimpleGradient;
+            this.gaugePortDrivePressure.PointerWidth = 40;
+            this.gaugePortDrivePressure.ScaleFactor = 1D;
+            this.gaugePortDrivePressure.SegmentGap = 10;
+            this.gaugePortDrivePressure.Size = new System.Drawing.Size(300, 300);
+            this.gaugePortDrivePressure.TabIndex = 116;
+            this.gaugePortDrivePressure.Theme = CodeArtEng.Gauge.GaugeTheme.DarkGrey;
+            this.gaugePortDrivePressure.Title = "";
+            this.gaugePortDrivePressure.Unit = "GEAR PSI";
+            this.gaugePortDrivePressure.Value = 0D;
+            this.gaugePortDrivePressure.WarningLimit = 50D;
             // 
-            // gaugeStbdWaterTemp
+            // gaugePortWaterTemp
             // 
-            this.gaugeStbdWaterTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.gaugeStbdWaterTemp.ErrorLimit = 190D;
-            this.gaugeStbdWaterTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gaugeStbdWaterTemp.FontUnitLabel = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gaugeStbdWaterTemp.InfoMode = CodeArtEng.Gauge.GaugeInfoMode.MouseClick;
-            this.gaugeStbdWaterTemp.Location = new System.Drawing.Point(383, 83);
-            this.gaugeStbdWaterTemp.Maximum = 220D;
-            this.gaugeStbdWaterTemp.Name = "gaugeStbdWaterTemp";
-            this.gaugeStbdWaterTemp.PointerPaintMode = CodeArtEng.Gauge.PointerPaintMode.SimpleGradient;
-            this.gaugeStbdWaterTemp.PointerWidth = 40;
-            this.gaugeStbdWaterTemp.ScaleFactor = 1D;
-            this.gaugeStbdWaterTemp.SegmentGap = 10;
-            this.gaugeStbdWaterTemp.Size = new System.Drawing.Size(300, 300);
-            this.gaugeStbdWaterTemp.TabIndex = 115;
-            this.gaugeStbdWaterTemp.Theme = CodeArtEng.Gauge.GaugeTheme.DarkGrey;
-            this.gaugeStbdWaterTemp.Title = "";
-            this.gaugeStbdWaterTemp.Unit = "WATER °F";
-            this.gaugeStbdWaterTemp.Value = 0D;
-            this.gaugeStbdWaterTemp.WarningLimit = 185D;
+            this.gaugePortWaterTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.gaugePortWaterTemp.ErrorLimit = 190D;
+            this.gaugePortWaterTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gaugePortWaterTemp.FontUnitLabel = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gaugePortWaterTemp.InfoMode = CodeArtEng.Gauge.GaugeInfoMode.MouseClick;
+            this.gaugePortWaterTemp.Location = new System.Drawing.Point(383, 83);
+            this.gaugePortWaterTemp.Maximum = 220D;
+            this.gaugePortWaterTemp.Name = "gaugePortWaterTemp";
+            this.gaugePortWaterTemp.PointerPaintMode = CodeArtEng.Gauge.PointerPaintMode.SimpleGradient;
+            this.gaugePortWaterTemp.PointerWidth = 40;
+            this.gaugePortWaterTemp.ScaleFactor = 1D;
+            this.gaugePortWaterTemp.SegmentGap = 10;
+            this.gaugePortWaterTemp.Size = new System.Drawing.Size(300, 300);
+            this.gaugePortWaterTemp.TabIndex = 115;
+            this.gaugePortWaterTemp.Theme = CodeArtEng.Gauge.GaugeTheme.DarkGrey;
+            this.gaugePortWaterTemp.Title = "";
+            this.gaugePortWaterTemp.Unit = "WATER °F";
+            this.gaugePortWaterTemp.Value = 0D;
+            this.gaugePortWaterTemp.WarningLimit = 185D;
             // 
             // lblFastPacketQueue
             // 
@@ -456,11 +458,39 @@ namespace WhatTheHelmRuntime
             this.label1.TabIndex = 144;
             this.label1.Text = "NO DATA";
             // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Location = new System.Drawing.Point(12, 736);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(116, 52);
+            this.btnExit.TabIndex = 149;
+            this.btnExit.Text = "EXIT...";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnConfig
+            // 
+            this.btnConfig.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfig.ForeColor = System.Drawing.Color.White;
+            this.btnConfig.Location = new System.Drawing.Point(134, 736);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(116, 52);
+            this.btnConfig.TabIndex = 150;
+            this.btnConfig.Text = "CONFIGURE...";
+            this.btnConfig.UseVisualStyleBackColor = false;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
+            // 
             // PortGauges
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1280, 800);
+            this.Controls.Add(this.btnConfig);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.lblFastPacketQueue);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.lblCanMsgQueue);
@@ -469,22 +499,22 @@ namespace WhatTheHelmRuntime
             this.Controls.Add(this.label32);
             this.Controls.Add(this.lblJ1939BustStatus);
             this.Controls.Add(this.label33);
-            this.Controls.Add(this.lblStbdHours);
-            this.Controls.Add(this.lblStbdDriveTempHigh);
-            this.Controls.Add(this.lblStbdVoltageLow);
-            this.Controls.Add(this.lblStbdOilPressLow);
-            this.Controls.Add(this.lblStbdFuelPressLow);
+            this.Controls.Add(this.lblPortHours);
+            this.Controls.Add(this.lblPortDriveTempHigh);
+            this.Controls.Add(this.lblPortVoltageLow);
+            this.Controls.Add(this.lblPortOilPressLow);
+            this.Controls.Add(this.lblPortFuelPressLow);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.lblStbdWaterTempHigh);
-            this.Controls.Add(this.gaugeStbdRpm);
-            this.Controls.Add(this.gaugeStbdOilPressure);
-            this.Controls.Add(this.gaugeStbdVolts);
-            this.Controls.Add(this.gaugeStbdDrivePressure);
-            this.Controls.Add(this.gaugeStbdWaterTemp);
+            this.Controls.Add(this.lblPortWaterTempHigh);
+            this.Controls.Add(this.gaugePortRpm);
+            this.Controls.Add(this.gaugePortOilPressure);
+            this.Controls.Add(this.gaugePortVolts);
+            this.Controls.Add(this.gaugePortDrivePressure);
+            this.Controls.Add(this.gaugePortWaterTemp);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
@@ -501,22 +531,22 @@ namespace WhatTheHelmRuntime
 
         #endregion
 
-        private System.Windows.Forms.Label lblStbdHours;
-        private System.Windows.Forms.Label lblStbdDriveTempHigh;
-        private System.Windows.Forms.Label lblStbdVoltageLow;
-        private System.Windows.Forms.Label lblStbdOilPressLow;
-        private System.Windows.Forms.Label lblStbdFuelPressLow;
+        private System.Windows.Forms.Label lblPortHours;
+        private System.Windows.Forms.Label lblPortDriveTempHigh;
+        private System.Windows.Forms.Label lblPortVoltageLow;
+        private System.Windows.Forms.Label lblPortOilPressLow;
+        private System.Windows.Forms.Label lblPortFuelPressLow;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label lblStbdWaterTempHigh;
-        private CodeArtEng.Gauge.CircularGauge gaugeStbdRpm;
-        private CodeArtEng.Gauge.CircularGauge gaugeStbdOilPressure;
-        private CodeArtEng.Gauge.CircularGauge gaugeStbdVolts;
-        private CodeArtEng.Gauge.CircularGauge gaugeStbdDrivePressure;
-        private CodeArtEng.Gauge.CircularGauge gaugeStbdWaterTemp;
+        private System.Windows.Forms.Label lblPortWaterTempHigh;
+        private CodeArtEng.Gauge.CircularGauge gaugePortRpm;
+        private CodeArtEng.Gauge.CircularGauge gaugePortOilPressure;
+        private CodeArtEng.Gauge.CircularGauge gaugePortVolts;
+        private CodeArtEng.Gauge.CircularGauge gaugePortDrivePressure;
+        private CodeArtEng.Gauge.CircularGauge gaugePortWaterTemp;
         private System.Windows.Forms.Label lblFastPacketQueue;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label lblCanMsgQueue;
@@ -530,5 +560,7 @@ namespace WhatTheHelmRuntime
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnConfig;
     }
 }
