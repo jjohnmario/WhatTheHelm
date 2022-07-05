@@ -9,77 +9,33 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WhatTheHelmRuntime.NMEA0183.Sentences;
+using CanLib.ParameterGroups;
+using WhatTheHelmCanLib.ParameterGroups.NMEA2000;
 
 namespace WhatTheHelmRuntime
 {
     public partial class Gps : Form
     {
-        DateTime gPRMCLastSentence;
         public Gps()
         {
             InitializeComponent();
-            gPRMCLastSentence = new DateTime();
-            Timer nmeaTimeoutTimer = new Timer();
-            nmeaTimeoutTimer.Interval = 500;
-            nmeaTimeoutTimer.Tick += NmeaTimeoutTimer_Tick;
-            nmeaTimeoutTimer.Start();
-            Program.Nmea0183Listener.NewMessage += Nmea0183Listener_NewMessage;
-
+            Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
         }
 
-        private void NmeaTimeoutTimer_Tick(object sender, EventArgs e)
+        private void CanGateWayListener_NewMessage(object sender, CanLib.Messages.CanMessage e)
         {
-            var gPRMCLastSentenceEt = DateTime.Now - gPRMCLastSentence;
-            if (gPRMCLastSentenceEt.TotalSeconds > 5)
+            if(e.ParameterGroupNumber == 127250)
             {
-                if (lblSog.IsHandleCreated)
-                    lblSog.Invoke(new MethodInvoker(() => lblSog.Text = "--"));
-                if (lblLatitude.IsHandleCreated)
-                    lblLatitude.Invoke(new MethodInvoker(() => lblLatitude.Text = "--"));
-                if (lblLongitude.IsHandleCreated)
-                    lblLongitude.Invoke(new MethodInvoker(() => lblLongitude.Text = "--"));
-            }
-        }
+                Pgn0x1F112 pgn = (Pgn0x1F112)ParameterGroup.GetPgnType(127501).DeserializeFields(e.Data);
 
-        private void Nmea0183Listener_NewMessage(object sender, NMEA0183.Sentences.Nmea0183Sentence e)
-        {
-            if(e!=null)
-            {
-                if (e.SentenceId == "GPRMC")
+                if (pbCompass.IsHandleCreated)
                 {
-                    gPRMCLastSentence = DateTime.Now;
-                    GPRMC sentence = (GPRMC)e;
-                    if (lblSog.IsHandleCreated)
-                        lblSog.Invoke(new MethodInvoker(() => lblSog.Text = sentence.Sog.ToString("0.00")));
-                    if (lblLatitude.IsHandleCreated)
+                    pbCompass.Invoke(new MethodInvoker(() =>
                     {
-                        StringBuilder str = new StringBuilder();
-                        str.Append(sentence.Latitude.Substring(0, 2));
-                        str.Append('°');
-                        str.Append(" ");
-                        str.Append(sentence.Latitude.Substring(2));
-                        str.Insert(str.Length - 1, "' ");
-                        lblLatitude.Invoke(new MethodInvoker(() => lblLatitude.Text = str.ToString()));
-                    }
-                    if (lblLongitude.IsHandleCreated)
-                    {
-                        StringBuilder str = new StringBuilder();
-                        str.Append(sentence.Longitude.Substring(0, 3).Trim('0'));
-                        str.Append('°');
-                        str.Append(" ");
-                        str.Append(sentence.Longitude.Substring(3));
-                        str.Insert(str.Length - 1, "' ");
-                        lblLongitude.Invoke(new MethodInvoker(() => lblLongitude.Text = str.ToString()));
-                    }
-                    if (pbCompass.IsHandleCreated)
-                    {
-                        pbCompass.Invoke(new MethodInvoker(() =>
-                        {
-                            double pitch = 0;
-                            double tilt = 0;
-                            pbCompass.Image = Compass.DrawCompass(Convert.ToDouble(sentence.TrackAngle), pitch, 80, tilt, 80, pbCompass.Size);
-                        }));
-                    }
+                        double pitch = 0;
+                        double tilt = 0;
+                        pbCompass.Image = Compass.DrawCompass(pgn.Heading / 0.0174533, pitch, 80, tilt, 80, pbCompass.Size);
+                    }));
                 }
             }
         }
