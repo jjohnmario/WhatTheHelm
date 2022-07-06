@@ -22,7 +22,6 @@ namespace WhatTheHelmRuntime
         public static Can232Fd CanGateway { get; set; }
         public static CanGateWayListener CanGateWayListener { get; set; }
         public static CanRequestHandler CanRequestHandler { get; set; }
-        public static Nmea0183Listener Nmea0183Listener { get; set; }
         public static YoctoPwmRx YoctoPwmRx { get; set; }
         public static Configuration Configuration { get; set; }
         /// <summary>
@@ -36,10 +35,6 @@ namespace WhatTheHelmRuntime
                 //Load configuration file
                 Configuration = new Configuration();
                 Configuration = Configuration.Read(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm", "config.json");
-
-                //Start NMEA0183 TCP/IP Listener.  This listener is used to recieve NMEA0183 sentences from the OpenCPN chart plotter application
-                Nmea0183Listener = new Nmea0183Listener("0.0.0.0", 2947);
-                Nmea0183Listener.ListenAsync();
 
                 //Initialize CAN adapter and J1939/NMEA200 listener
                 CanName name = new CanName(false, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
@@ -90,7 +85,7 @@ namespace WhatTheHelmRuntime
 
                     //Bind all but Gauges types to physical screens
                     List<KeyValuePair<Screen, Type>> screenAssignmentList = new List<KeyValuePair<Screen, Type>>();
-                    screenAssignmentList.Add(new KeyValuePair<Screen, Type>(stbdGaugesScreen, typeof(Process)));
+                    screenAssignmentList.Add(new KeyValuePair<Screen, Type>(stbdGaugesScreen, typeof(StbdGauges)));
                     screenAssignmentList.Add(new KeyValuePair<Screen, Type>(switchPanelScreen, typeof(SwitchPanel)));
                     screenAssignmentList.Add(new KeyValuePair<Screen, Type>(trimControlScreen, typeof(TrimControl)));
                     screenAssignmentList.Add(new KeyValuePair<Screen, Type>(gpsScreen, typeof(Gps)));
