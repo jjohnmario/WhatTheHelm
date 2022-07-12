@@ -28,16 +28,10 @@ namespace CanLib.Devices.Nmea2000.GridConnect
         /// <param name="address">The CAN network address to assign the CAN232FD gateway.</param>
         public Can232Fd (SerialPort serialPort,ushort address):base(address)
         {
-            try
-            {
-                _SerialPort = serialPort;
-                _SerialPort.DataReceived += SerialPort_DataReceived;
-            }
-            catch
-            {
-                
-            }
+            _SerialPort = serialPort;
+            _SerialPort.DataReceived += SerialPort_DataReceived;
         }
+
         /// <summary>
         /// Creates an object reference to a GridConnect CAN232FD gateway of a defined name and binds it to the defined CAN network address and serial port.
         /// </summary>
@@ -56,6 +50,7 @@ namespace CanLib.Devices.Nmea2000.GridConnect
                 
             }
         }
+
         /// <summary>
         /// Creates an object reference to a GridConnect CAN232FD gateway of a defined name and product information and binds it to the defined CAN network address and serial port.
         /// </summary>

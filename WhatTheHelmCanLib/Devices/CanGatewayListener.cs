@@ -51,14 +51,7 @@ namespace CanLib.Devices
             CanGateway = canGateway;
             FastPacketMessageQueue = new List<CanMessage>();
             MainMessageQueue = new Queue<CanMessage>();
-            try
-            {
-                CanGateway.MessageRecieved += CanGateway_MessageRecieved;
-            }
-            catch
-            {
-                throw;
-            }
+            CanGateway.MessageRecieved += CanGateway_MessageRecieved;
         }
 
         /// <summary>
@@ -73,14 +66,7 @@ namespace CanLib.Devices
             CanGateway = canGateway;
             FastPacketMessageQueue = new List<CanMessage>();
             MainMessageQueue = new Queue<CanMessage>();
-            try
-            {
-                CanGateway.MessageRecieved += CanGateway_MessageRecieved;
-            }
-            catch
-            {
-                throw;
-            }
+            CanGateway.MessageRecieved += CanGateway_MessageRecieved;
         }
 
         /// <summary>
@@ -103,14 +89,6 @@ namespace CanLib.Devices
 
         private void CanGateway_MessageRecieved(object sender, CanMessageArgs e)
         {
-            //Task.Run(() =>
-            //{
-            //    var parameterGroup = ParameterGroup.GetPgnType(e.Message.ParameterGroupNumber);
-            //    if (parameterGroup.MultiFrame)
-            //        FastPacketMessageQueue.Add(e.Message);
-            //    else
-            //        MainMessageQueue.Enqueue(e.Message);
-            //});
             Task.Run(() =>
             {
                 if (PgnFilterEnabled)
