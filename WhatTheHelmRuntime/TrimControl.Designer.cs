@@ -1082,7 +1082,6 @@
             this.dashboardButton3.Text = "BOW\r\nUP";
             this.dashboardButton3.UseVisualStyleBackColor = true;
             this.dashboardButton3.NewCommand += new System.EventHandler<BoatFormsLib.DashboardButtonArgs>(this.dashboardButton3_NewCommand);
-            this.dashboardButton3.Click += new System.EventHandler(this.dashboardButton3_Click);
             // 
             // dashboardButton1
             // 

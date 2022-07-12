@@ -32,6 +32,10 @@ namespace WhatTheHelmRuntime
         DateTime pgn0x1F20DLastMsg = new DateTime();
         DateTime yoctopucePwmRxLastMsg = new DateTime();
         IndicatorBankStatus[] SeaGaugeIndicatorStatus;
+        Pgn0x1F20D pgn0x1F20D = new Pgn0x1F20D();
+        Pgn0x1F200 pgn0x1F200 = new Pgn0x1F200();
+        Pgn0x1F205 pgn0x1F205 = new Pgn0x1F205();
+        Pgn0x1F201 pgn0x1F201 = new Pgn0x1F201();
 
         public PortGauges(List<KeyValuePair<Screen, Type>> screenMap)
         {
@@ -128,23 +132,23 @@ namespace WhatTheHelmRuntime
             if (e.ParameterGroupNumber == 127501)
             {
                 pgn0x1F20DLastMsg = DateTime.Now;
-                Pgn0x1F20D pgn = (Pgn0x1F20D)ParameterGroup.GetPgnType(127501).DeserializeFields(e.Data).ToImperial();
-                SeaGaugeIndicatorStatus = pgn.IndicatorBankStatus;
+                pgn0x1F20D = (Pgn0x1F20D)pgn0x1F20D.DeserializeFields(e.Data).ToImperial();
+                SeaGaugeIndicatorStatus = pgn0x1F20D.IndicatorBankStatus;
             }
 
             //Engine Parameters (Rapid)
             if (e.ParameterGroupNumber == 127488)
             {
                 pgn0x1F200LastMsg = DateTime.Now;
-                Pgn0x1F200 pgn = (Pgn0x1F200)ParameterGroup.GetPgnType(127488).DeserializeFields(e.Data).ToImperial();
-
-                //Port Engine
-                if (pgn.EngineInstance == 0)
+                if (Program.Configuration.RpmSource == RpmSource.NMEA2000)
                 {
-                    if (Program.Configuration.RpmSource == RpmSource.NMEA2000)
+                    pgn0x1F200 = (Pgn0x1F200)pgn0x1F200.DeserializeFields(e.Data).ToImperial();
+
+                    //Port Engine
+                    if (pgn0x1F200.EngineInstance == 0)
                     {
                         if (gaugePortRpm.IsHandleCreated)
-                            gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = pgn.EngineSpeed / 4));
+                            gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = pgn0x1F200.EngineSpeed / 4));
                     }
                 }
             }
@@ -153,12 +157,12 @@ namespace WhatTheHelmRuntime
             if (e.ParameterGroupNumber == 127493)
             {
                 pgn0x1F205LastMsg = DateTime.Now;
-                Pgn0x1F205 pgn = (Pgn0x1F205)ParameterGroup.GetPgnType(127493).DeserializeFields(e.Data).ToImperial();
-
+                pgn0x1F205 = (Pgn0x1F205)pgn0x1F205.DeserializeFields(e.Data).ToImperial();
+                
                 //Port Engine
-                if (pgn.EngineInstance == 0)
+                if (pgn0x1F205.EngineInstance == 0)
                 {
-                    gaugePortDrivePressure.Invoke(new MethodInvoker(() => { gaugePortDrivePressure.Value = Convert.ToDouble((pgn.OilPressure).ToString("0")); }));
+                    gaugePortDrivePressure.Invoke(new MethodInvoker(() => { gaugePortDrivePressure.Value = Convert.ToDouble((pgn0x1F205.OilPressure).ToString("0")); }));
                 }
             }
 
@@ -166,15 +170,15 @@ namespace WhatTheHelmRuntime
             if (e.ParameterGroupNumber == 127489)
             {
                 pgn0x1F201LastMsg = DateTime.Now;
-                Pgn0x1F201 pgn = (Pgn0x1F201)ParameterGroup.GetPgnType(127489).DeserializeFields(e.Data).ToImperial();
+                pgn0x1F201 = (Pgn0x1F201)pgn0x1F201.DeserializeFields(e.Data).ToImperial();
 
                 //Port Engine
-                if (pgn.EngineInstance == 0)
+                if (pgn0x1F201.EngineInstance == 0)
                 {
-                    gaugePortWaterTemp.Invoke(new MethodInvoker(() => { gaugePortWaterTemp.Value = Convert.ToDouble(pgn.EngineTemperature.ToString("0")); }));
-                    gaugePortOilPressure.Invoke(new MethodInvoker(() => { gaugePortOilPressure.Value = Convert.ToDouble(pgn.OilPressure.ToString("0")); }));
-                    gaugePortVolts.Invoke(new MethodInvoker(() => { gaugePortVolts.Value = Convert.ToDouble(pgn.AlternatorPotential.ToString("0.0")); }));
-                    lblPortHours.Invoke(new MethodInvoker(() => { lblPortHours.Text = pgn.EngineHours.ToString("0.0") + " HRS"; }));
+                    gaugePortWaterTemp.Invoke(new MethodInvoker(() => { gaugePortWaterTemp.Value = Convert.ToDouble(pgn0x1F201.EngineTemperature.ToString("0")); }));
+                    gaugePortOilPressure.Invoke(new MethodInvoker(() => { gaugePortOilPressure.Value = Convert.ToDouble(pgn0x1F201.OilPressure.ToString("0")); }));
+                    gaugePortVolts.Invoke(new MethodInvoker(() => { gaugePortVolts.Value = Convert.ToDouble(pgn0x1F201.AlternatorPotential.ToString("0.0")); }));
+                    lblPortHours.Invoke(new MethodInvoker(() => { lblPortHours.Text = pgn0x1F201.EngineHours.ToString("0.0") + " HRS"; }));
                 }
             }
         }
@@ -277,20 +281,14 @@ namespace WhatTheHelmRuntime
         private void AlarmTimer_Tick(object sender, EventArgs e)
         {
             //Port alternator output voltage low
-            lblPortVoltageLow.Invoke(new MethodInvoker(() =>
-            {
-                try
+            if(lblPortVoltageLow.IsHandleCreated)
+                lblPortVoltageLow.Invoke(new MethodInvoker(() =>
                 {
                     if (gaugePortVolts.Value < 12.6)
                         lblPortVoltageLow.BackColor = Color.Red;
                     else
                         lblPortVoltageLow.BackColor = Color.FromArgb(56, 0, 0);
-                }
-                catch
-                {
-                    lblPortVoltageLow.BackColor = Color.Red;
-                }
-            }));
+                }));
 
             //Port water temp high
             if (lblPortWaterTempHigh.IsHandleCreated)

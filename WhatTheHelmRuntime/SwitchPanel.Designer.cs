@@ -34,7 +34,6 @@
             this.dashboardButton8 = new BoatFormsLib.CustomUserControls.DashboardButton();
             this.dashboardButton11 = new BoatFormsLib.CustomUserControls.DashboardButton();
             this.dashboardButton12 = new BoatFormsLib.CustomUserControls.DashboardButton();
-            this.dashboardButton9 = new BoatFormsLib.CustomUserControls.DashboardButton();
             this.dashboardButton6 = new BoatFormsLib.CustomUserControls.DashboardButton();
             this.dashboardButton7 = new BoatFormsLib.CustomUserControls.DashboardButton();
             this.dashboardButton3 = new BoatFormsLib.CustomUserControls.DashboardButton();
@@ -66,7 +65,7 @@
             this.dashboardButton5.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dashboardButton5.ForeColor = System.Drawing.Color.White;
             this.dashboardButton5.Function = "SEARCH LIGHT";
-            this.dashboardButton5.Location = new System.Drawing.Point(12, 357);
+            this.dashboardButton5.Location = new System.Drawing.Point(275, 246);
             this.dashboardButton5.MvecAddress = ((byte)(176));
             this.dashboardButton5.MvecFuseNumber = ((byte)(3));
             this.dashboardButton5.MvecGrid = ((byte)(0));
@@ -177,37 +176,6 @@
             this.dashboardButton12.Text = "PORT\r\nWIPER\r\nOFF";
             this.dashboardButton12.UseVisualStyleBackColor = true;
             this.dashboardButton12.NewCommand += new System.EventHandler<BoatFormsLib.DashboardButtonArgs>(this.NewCommand);
-            // 
-            // dashboardButton9
-            // 
-            this.dashboardButton9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton9.BackgroundImage")));
-            this.dashboardButton9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dashboardButton9.ButtonBehavior = BoatFormsLib.CustomUserControls.ButtonBehavior.Momentary;
-            this.dashboardButton9.FlatAppearance.BorderSize = 0;
-            this.dashboardButton9.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.dashboardButton9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.dashboardButton9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dashboardButton9.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashboardButton9.ForeColor = System.Drawing.Color.White;
-            this.dashboardButton9.Function = "WINDSHIELD WASHERS";
-            this.dashboardButton9.Location = new System.Drawing.Point(275, 246);
-            this.dashboardButton9.MvecAddress = ((byte)(176));
-            this.dashboardButton9.MvecFuseNumber = ((byte)(7));
-            this.dashboardButton9.MvecGrid = ((byte)(0));
-            this.dashboardButton9.MvecRelayNumber = ((byte)(3));
-            this.dashboardButton9.Name = "dashboardButton9";
-            this.dashboardButton9.OffStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton9.OffStateBackImage")));
-            this.dashboardButton9.OffStateForeColor = System.Drawing.Color.White;
-            this.dashboardButton9.OffStateText = "WINDSHIELD\r\nWASHERS";
-            this.dashboardButton9.OnStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton9.OnStateBackImage")));
-            this.dashboardButton9.OnStateForeColor = System.Drawing.Color.White;
-            this.dashboardButton9.OnStateText = "WINDSHIELD\r\nWASHERS\r\n";
-            this.dashboardButton9.Size = new System.Drawing.Size(250, 105);
-            this.dashboardButton9.State = false;
-            this.dashboardButton9.TabIndex = 105;
-            this.dashboardButton9.Text = "WINDSHIELD\r\nWASHERS";
-            this.dashboardButton9.UseVisualStyleBackColor = true;
-            this.dashboardButton9.NewCommand += new System.EventHandler<BoatFormsLib.DashboardButtonArgs>(this.NewCommand);
             // 
             // dashboardButton6
             // 
@@ -343,7 +311,6 @@
             this.Controls.Add(this.dashboardButton8);
             this.Controls.Add(this.dashboardButton11);
             this.Controls.Add(this.dashboardButton12);
-            this.Controls.Add(this.dashboardButton9);
             this.Controls.Add(this.dashboardButton6);
             this.Controls.Add(this.dashboardButton7);
             this.Controls.Add(this.dashboardButton3);
@@ -363,7 +330,6 @@
         private BoatFormsLib.CustomUserControls.DashboardButton dashboardButton3;
         private BoatFormsLib.CustomUserControls.DashboardButton dashboardButton6;
         private BoatFormsLib.CustomUserControls.DashboardButton dashboardButton7;
-        private BoatFormsLib.CustomUserControls.DashboardButton dashboardButton9;
         private BoatFormsLib.CustomUserControls.DashboardButton dashboardButton11;
         private BoatFormsLib.CustomUserControls.DashboardButton dashboardButton12;
         private BoatFormsLib.CustomUserControls.DashboardButton dashboardButton8;
