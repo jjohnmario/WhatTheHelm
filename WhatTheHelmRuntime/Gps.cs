@@ -16,6 +16,7 @@ namespace WhatTheHelmRuntime
 {
     public partial class Gps : Form
     {
+        Pgn0x1F112 pgn0X1F112 = new Pgn0x1F112();
         public Gps()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace WhatTheHelmRuntime
         {
             if(e.ParameterGroupNumber == 127250)
             {
-                Pgn0x1F112 pgn = (Pgn0x1F112)ParameterGroup.GetPgnType(127501).DeserializeFields(e.Data);
+                pgn0X1F112 = (Pgn0x1F112)pgn0X1F112.DeserializeFields(e.Data);
 
                 if (pbCompass.IsHandleCreated)
                 {
@@ -34,7 +35,7 @@ namespace WhatTheHelmRuntime
                     {
                         double pitch = 0;
                         double tilt = 0;
-                        pbCompass.Image = Compass.DrawCompass(pgn.Heading / 0.0174533, pitch, 80, tilt, 80, pbCompass.Size);
+                        pbCompass.Image = Compass.DrawCompass(pgn0X1F112.Heading / 0.0174533, pitch, 80, tilt, 80, pbCompass.Size);
                     }));
                 }
             }

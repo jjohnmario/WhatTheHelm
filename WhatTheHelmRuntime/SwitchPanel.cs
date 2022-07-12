@@ -23,6 +23,9 @@ namespace WhatTheHelmRuntime
 {
     public partial class SwitchPanel : Form
     {
+        Pgn0x0EF00 pgn0x0EF00 = new Pgn0x0EF00();
+        Pgn0x0FFA0 pgn0x0FFA0 = new Pgn0x0FFA0();
+        Pgn0x0FFA1 pgn0x0FFA1 = new Pgn0x0FFA1();
         public SwitchPanel()
         {
             InitializeComponent();
@@ -68,10 +71,10 @@ namespace WhatTheHelmRuntime
             //Set DashboardButton states
             if (e.ParameterGroupNumber == 61184)
             {
-                Pgn0x0EF00 pgn = (Pgn0x0EF00)ParameterGroup.GetPgnType(61184).DeserializeFields(e.Data);
-                if(pgn.Reply.Reply == ReplyMessage.hex96)
+                pgn0x0EF00 = (Pgn0x0EF00)pgn0x0EF00.DeserializeFields(e.Data);
+                if(pgn0x0EF00.Reply.Reply == ReplyMessage.hex96)
                 {
-                    MvecReply0x96 reply = (MvecReply0x96)pgn.Reply;
+                    MvecReply0x96 reply = (MvecReply0x96)pgn0x0EF00.Reply;
                     foreach (Control c in this.Controls)
                     {
                         if (c.GetType() == typeof(DashboardButton) && c.IsHandleCreated)
@@ -85,9 +88,9 @@ namespace WhatTheHelmRuntime
             //Set DashboardButton fuse status
             else if (e.ParameterGroupNumber == 65440)
             {
-               
-                Pgn0x0FFA0 pgn = (Pgn0x0FFA0)ParameterGroup.GetPgnType(65440).DeserializeFields(e.Data);
-                if (pgn.FuseStatus.Contains(FuseStatus.Blown))
+
+                pgn0x0FFA0 = (Pgn0x0FFA0)pgn0x0FFA0.DeserializeFields(e.Data);
+                if (pgn0x0FFA0.FuseStatus.Contains(FuseStatus.Blown))
                     FusesStatus_FuseFaulted();
                 else
                     FusesStatus_FuseFaultCleared();
@@ -97,20 +100,20 @@ namespace WhatTheHelmRuntime
                     if (c.GetType() == typeof(DashboardButton) && c.IsHandleCreated)
                     {
                         var control = (DashboardButton)c;
-                        control.UpdateFuseStatus((byte)e.SourceAddress, pgn.GridAddress, pgn.FuseStatus);
+                        control.UpdateFuseStatus((byte)e.SourceAddress, pgn0x0FFA0.GridAddress, pgn0x0FFA0.FuseStatus);
                     }              
                 }
             }
             //Set DashboardButton relay status
             else if (e.ParameterGroupNumber == 65441)
             {
-                Pgn0x0FFA1 pgn = (Pgn0x0FFA1)ParameterGroup.GetPgnType(65441).DeserializeFields(e.Data);
+                pgn0x0FFA1 = (Pgn0x0FFA1)pgn0x0FFA1.DeserializeFields(e.Data);
                 foreach (Control c in this.Controls)
                 {
                     if (c.GetType() == typeof(DashboardButton) && c.IsHandleCreated)
                     {
                         var control = (DashboardButton)c;
-                        control.UpdateRelayStatus((byte)e.SourceAddress, pgn.GridAddress, pgn.RelayStatus);
+                        control.UpdateRelayStatus((byte)e.SourceAddress, pgn0x0FFA1.GridAddress, pgn0x0FFA1.RelayStatus);
                     }
                 }
             }

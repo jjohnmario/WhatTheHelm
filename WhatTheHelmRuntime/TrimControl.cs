@@ -21,6 +21,10 @@ namespace WhatTheHelmRuntime
     public partial class TrimControl : Form
     {
         DateTime pgn0x1F200LastMsg = new DateTime();
+        Pgn0x1F200 pgn0x1F200 = new Pgn0x1F200();
+        Pgn0x0EF00 pgn0x0EF00 = new Pgn0x0EF00();
+        Pgn0x0FFA0 pgn0x0FFA0 = new Pgn0x0FFA0();
+        Pgn0x0FFA1 pgn0x0FFA1 = new Pgn0x0FFA1();
         public TrimControl()
         {
             InitializeComponent();
@@ -70,29 +74,29 @@ namespace WhatTheHelmRuntime
             if (e.ParameterGroupNumber == 127488)
             {
                 pgn0x1F200LastMsg = DateTime.Now;
-                Pgn0x1F200 pgn = (Pgn0x1F200)ParameterGroup.GetPgnType(127488).DeserializeFields(e.Data).ToImperial();
+                pgn0x1F200 = (Pgn0x1F200)pgn0x1F200.DeserializeFields(e.Data).ToImperial();
 
                 //Port Engine
-                if (pgn.EngineInstance == 0)
+                if (pgn0x1F200.EngineInstance == 0)
                 {
                     if (gaugePortTrim.IsHandleCreated)
-                        gaugePortTrim.Invoke(new MethodInvoker(() => gaugePortTrim.Value = pgn.EngineTiltTrim));
+                        gaugePortTrim.Invoke(new MethodInvoker(() => gaugePortTrim.Value = pgn0x1F200.EngineTiltTrim));
                 }
                 //Stbd Engine
-                else if (pgn.EngineInstance == 1)
+                else if (pgn0x1F200.EngineInstance == 1)
                 {
                     if (gaugeStbdTrim.IsHandleCreated)
-                        gaugeStbdTrim.Invoke(new MethodInvoker(() => gaugeStbdTrim.Value = pgn.EngineTiltTrim));
+                        gaugeStbdTrim.Invoke(new MethodInvoker(() => gaugeStbdTrim.Value = pgn0x1F200.EngineTiltTrim));
                 }
             }
             //Set DashboardButton states
             else if (e.ParameterGroupNumber == 61184)
             {
-                Pgn0x0EF00 pgn = (Pgn0x0EF00)ParameterGroup.GetPgnType(61184).DeserializeFields(e.Data);
-                if (pgn.Reply.Reply == ReplyMessage.hex96)
+                pgn0x0EF00 = (Pgn0x0EF00)pgn0x0EF00.DeserializeFields(e.Data);
+                if (pgn0x0EF00.Reply.Reply == ReplyMessage.hex96)
                 {
 
-                    MvecReply0x96 reply = (MvecReply0x96)pgn.Reply;
+                    MvecReply0x96 reply = (MvecReply0x96)pgn0x0EF00.Reply;
                     foreach (Control c in this.Controls)
                     {
                         if (c.GetType() == typeof(DashboardButton))
@@ -106,34 +110,29 @@ namespace WhatTheHelmRuntime
             //Set DashboardButton fuse status
             else if (e.ParameterGroupNumber == 65440)
             {
-                Pgn0x0FFA0 pgn = (Pgn0x0FFA0)ParameterGroup.GetPgnType(65440).DeserializeFields(e.Data);
+                pgn0x0FFA0 = (Pgn0x0FFA0)pgn0x0FFA0.DeserializeFields(e.Data);
                 foreach (Control c in this.Controls)
                 {
                     if (c.GetType() == typeof(DashboardButton))
                     {
                         var control = (DashboardButton)c;
-                        control.UpdateFuseStatus((byte)e.SourceAddress, pgn.GridAddress, pgn.FuseStatus);
+                        control.UpdateFuseStatus((byte)e.SourceAddress, pgn0x0FFA0.GridAddress, pgn0x0FFA0.FuseStatus);
                     }
                 }
             }
             //Set DashboardButton relay status
             else if (e.ParameterGroupNumber == 65441)
             {
-                Pgn0x0FFA1 pgn = (Pgn0x0FFA1)ParameterGroup.GetPgnType(65441).DeserializeFields(e.Data);
+                pgn0x0FFA1 = (Pgn0x0FFA1)pgn0x0FFA1.DeserializeFields(e.Data);
                 foreach (Control c in this.Controls)
                 {
                     if (c.GetType() == typeof(DashboardButton))
                     {
                         var control = (DashboardButton)c;
-                        control.UpdateRelayStatus((byte)e.SourceAddress, pgn.GridAddress, pgn.RelayStatus);
+                        control.UpdateRelayStatus((byte)e.SourceAddress, pgn0x0FFA1.GridAddress, pgn0x0FFA1.RelayStatus);
                     }
                 }
             }
-        }
-
-        private void dashboardButton3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void NewCommand(DashboardButtonArgs e)
