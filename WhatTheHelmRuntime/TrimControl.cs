@@ -35,12 +35,12 @@ namespace WhatTheHelmRuntime
             //Perform intial scan of relay states of MVEC-1
             MvecCommand0x96 cmd1 = new MvecCommand0x96(0);
             Pgn0x0EF00 pgn1 = new Pgn0x0EF00(cmd1, 176);
-            CanMessage msg1 = new CanMessage(pgn1.Pgn, Format.EXTENDED, 6, Program.CanRequestHandler.CanGateway.Address, pgn1.SerializeFields(), false);
+            CanMessage msg1 = new CanMessage(pgn1.Pgn, Format.EXTENDED, 6, Program.CanRequestHandler.CanGateway.Address, pgn1.SerializeFields());
             Program.CanRequestHandler.QueueOutgoingMessage(msg1);
             //Perform intial scan of relay states of MVEC-2
             MvecCommand0x96 cmd2 = new MvecCommand0x96(0);
             Pgn0x0EF00 pgn2 = new Pgn0x0EF00(cmd2, 177);
-            CanMessage msg2 = new CanMessage(pgn1.Pgn, Format.EXTENDED, 6, Program.CanRequestHandler.CanGateway.Address, pgn1.SerializeFields(), false);
+            CanMessage msg2 = new CanMessage(pgn1.Pgn, Format.EXTENDED, 6, Program.CanRequestHandler.CanGateway.Address, pgn1.SerializeFields());
             Program.CanRequestHandler.QueueOutgoingMessage(msg2);
 
             Timer t = new Timer();
@@ -139,7 +139,7 @@ namespace WhatTheHelmRuntime
         {
             MvecCommand0x80 cmd = new MvecCommand0x80(0, e.MvecRelayNumber, e.RelayCommandState);
             Pgn0x0EF00 pgn = new Pgn0x0EF00(cmd, e.MvecAddress);
-            CanMessage msg = new CanMessage(pgn.Pgn, Format.EXTENDED, 6, Program.CanRequestHandler.CanGateway.Address, pgn.SerializeFields(), false);
+            CanMessage msg = new CanMessage(pgn.Pgn, Format.EXTENDED, 6, Program.CanRequestHandler.CanGateway.Address, pgn.SerializeFields());
             Program.CanRequestHandler.QueueOutgoingMessage(msg);
         }
 

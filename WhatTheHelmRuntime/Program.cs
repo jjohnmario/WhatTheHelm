@@ -33,6 +33,7 @@ namespace WhatTheHelmRuntime
             try
             {
                 //Load configuration file
+                var path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
                 Configuration = new Configuration();
                 Configuration = Configuration.Read(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm", "config.json");
 
@@ -41,7 +42,10 @@ namespace WhatTheHelmRuntime
                 ProductInformation productInformation = new ProductInformation(22, 33, "What The Helm?", "v1.0.0", "1.0.0", "01229330JJF", 1, 2);
                 SerialPort serialPort = new SerialPort("COM1", 115200, Parity.None, 8, StopBits.One) { NewLine = ";" };
                 CanGateway = new Can232Fd(serialPort, 0, name, productInformation);
-                CanGateWayListener = new CanGateWayListener(CanGateway);
+                if (Configuration.PgnFilter.Count != 0)
+                    CanGateWayListener = new CanGateWayListener(CanGateway, Configuration.PgnFilter);
+                else
+                    CanGateWayListener = new CanGateWayListener(CanGateway);
                 CanGateWayListener.Start();
                 CanRequestHandler = new CanRequestHandler(CanGateway);
                 CanRequestHandler.Start();

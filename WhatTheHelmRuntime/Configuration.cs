@@ -14,6 +14,7 @@ namespace WhatTheHelmRuntime
         public double WaterDepthOffset { get; set; }
         public double WaterTempOffset { get; set; }
         public RpmSource RpmSource { get; set; }
+        public List<int> PgnFilter { get; set; } = new List<int>();
         public string Path { get; set; }
         public string FileName { get; set; }
 

@@ -33,11 +33,43 @@ namespace CanLib.Devices
         public event EventHandler<CanMessage> NewMessage;
 
         /// <summary>
+        /// A list of PGNs to be evaluated.  PGNs not in this list will be ignored.
+        /// </summary>
+        public List<int> PgnFilter { get; } = new List<int>();
+
+        /// <summary>
+        /// When true, only PGNs in the filter will be evaluated.
+        /// </summary>
+        public bool PgnFilterEnabled { get; }
+
+        /// <summary>
         /// Creates a object representation of a CAN message listener that is bound to the defined CAN gateway.
         /// </summary>
         /// <param name="canGateway">The CAN gateway to which the listener is to be bound.</param>
         public CanGateWayListener(CanGateway canGateway)
         {
+            CanGateway = canGateway;
+            FastPacketMessageQueue = new List<CanMessage>();
+            MainMessageQueue = new Queue<CanMessage>();
+            try
+            {
+                CanGateway.MessageRecieved += CanGateway_MessageRecieved;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Creates a object representation of a CAN message listener that is bound to the defined CAN gateway and ignores PGNs not listed in the PGN filter.
+        /// </summary>
+        /// <param name="canGateway">The CAN gateway to which the listener is to be bound.</param>
+        /// <param name="pgnFilter">A list of PGNs to be evaluated. PGNs not in this list will be ignored.</param>
+        public CanGateWayListener(CanGateway canGateway, List<int> pgnFilter)
+        {
+            PgnFilterEnabled = true;
+            PgnFilter = pgnFilter;
             CanGateway = canGateway;
             FastPacketMessageQueue = new List<CanMessage>();
             MainMessageQueue = new Queue<CanMessage>();
@@ -71,13 +103,33 @@ namespace CanLib.Devices
 
         private void CanGateway_MessageRecieved(object sender, CanMessageArgs e)
         {
+            //Task.Run(() =>
+            //{
+            //    var parameterGroup = ParameterGroup.GetPgnType(e.Message.ParameterGroupNumber);
+            //    if (parameterGroup.MultiFrame)
+            //        FastPacketMessageQueue.Add(e.Message);
+            //    else
+            //        MainMessageQueue.Enqueue(e.Message);
+            //});
             Task.Run(() =>
             {
-                var parameterGroup = ParameterGroup.GetPgnType(e.Message.ParameterGroupNumber);
-                if (parameterGroup.MultiFrame)
-                    FastPacketMessageQueue.Add(e.Message);
+                if (PgnFilterEnabled)
+                {
+                    if(PgnFilter.Contains(e.Message.ParameterGroupNumber))
+                    {
+                        if(ParameterGroup.GetPgnType(e.Message.ParameterGroupNumber).MultiFrame == true)
+                            FastPacketMessageQueue.Add(e.Message);
+                        else
+                            MainMessageQueue.Enqueue(e.Message);
+                    }
+                } 
                 else
-                    MainMessageQueue.Enqueue(e.Message);
+                {
+                    if (ParameterGroup.GetPgnType(e.Message.ParameterGroupNumber).MultiFrame == true)
+                        FastPacketMessageQueue.Add(e.Message);
+                    else
+                        MainMessageQueue.Enqueue(e.Message);
+                }
             });
         }
 

@@ -66,7 +66,7 @@ namespace CanLib.Devices
             foreach(ParameterGroup pg in RequestedParameterGroups)
             {
                 Pgn0x0EA00 isoRequest = new Pgn0x0EA00(pg, 255);
-                CanMessage message = new CanMessage(isoRequest.MessagePgn, Format.EXTENDED, 3, CanGateway.Address, BitConverter.GetBytes(pg.Pgn), false);
+                CanMessage message = new CanMessage(isoRequest.MessagePgn, Format.EXTENDED, 3, CanGateway.Address, BitConverter.GetBytes(pg.Pgn));
                 CanGateway.Write(message);
             }
         }
@@ -125,7 +125,7 @@ namespace CanLib.Devices
                         case int n when (n <= 0x0EEFF && n >= 0x0EE00):
                             {
                                 Pgn0x0EE00 response = new Pgn0x0EE00(CanGateway.Name);
-                                CanMessage responseMsg = new CanMessage(response.Pgn, Format.EXTENDED, 3, CanGateway.Address, response.SerializeFields(), false);
+                                CanMessage responseMsg = new CanMessage(response.Pgn, Format.EXTENDED, 3, CanGateway.Address, response.SerializeFields());
                                 CanGateway.Write(responseMsg);
                             }
                             break;
@@ -134,7 +134,7 @@ namespace CanLib.Devices
                                 var gateway = (Nmea2000Gateway)CanGateway;
                                 Pgn0x1F014 response = new Pgn0x1F014(gateway.ProductInformation);
                                 var fields = response.SerializeFields().Reverse().ToArray();
-                                CanMessage responseMsg = new CanMessage(response.Pgn, Format.EXTENDED, 3, CanGateway.Address, fields, response.MultiFrame);
+                                CanMessage responseMsg = new CanMessage(response.Pgn, Format.EXTENDED, 3, CanGateway.Address, fields);
                                 CanGateway.Write(responseMsg);
                             }
                             break;

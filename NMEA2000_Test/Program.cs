@@ -49,7 +49,7 @@ namespace NMEA2000_Test
 
             Pgn0x0EF00 pgnn = new Pgn0x0EF00(new MvecCommand0x80(0, 2, RelayCommandState.TurnRelayOn), 176);
 
-            CanMessage messg = new CanMessage(pgnn.Pgn, Format.EXTENDED, 6, CanGateway.Address, pgnn.Command.SerializeFields(), false);
+            CanMessage messg = new CanMessage(pgnn.Pgn, Format.EXTENDED, 6, CanGateway.Address, pgnn.Command.SerializeFields());
             CanGateway.Write(messg);
 
             Pgn0x0EF00 foodle = new Pgn0x0EF00();

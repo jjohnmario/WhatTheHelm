@@ -49,10 +49,10 @@ namespace CanLib.Messages
         /// The address of the message producing network node.
         /// </summary>
         public ushort SourceAddress { get; private set; }
-        ///// <summary>
-        ///// Defines whether the message is part of a multi-packet message.
-        ///// </summary>
-        public bool MultiPacketMessage { get; private set; }
+        /////// <summary>
+        /////// Defines whether the message is part of a multi-packet message.
+        /////// </summary>
+        //public bool MultiPacketMessage { get; private set; }
         /// <summary>
         /// The PGN scope of the message.
         /// </summary>
@@ -71,15 +71,14 @@ namespace CanLib.Messages
         /// <param name="priority">Message priority (1-7)</param>
         /// <param name="sourceAddress">The CAN network address of the message producer.</param>
         /// <param name="data">The data frame of the CAN message</param>
-        /// <param name="multiPacketMessage">Defines whether the message is part of a multipacket message.</param>
-        public CanMessage(int parameterGroupNumber, Format format,int priority, ushort sourceAddress, byte[] data, bool multiPacketMessage)
+        public CanMessage(int parameterGroupNumber, Format format,int priority, ushort sourceAddress, byte[] data)
         {
             Format = format;
             Priority = priority;
             ParameterGroupNumber = parameterGroupNumber;
             SourceAddress = sourceAddress;
             Data = data;
-            MultiPacketMessage = multiPacketMessage;
+            //MultiPacketMessage = multiPacketMessage;
         }
     }
 }

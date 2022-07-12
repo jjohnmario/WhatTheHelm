@@ -181,17 +181,7 @@ namespace CanLib.Devices.Nmea2000.GridConnect
                     byte[] data = canMessage.Data;
                     canMessage.Id = null;
                     canMessage.Data = null;
-                    try
-                    {
-                        //Create an instance of the parameter group using the PGN
-                        var parameterGroup = ParameterGroup.GetPgnType(pgn);
-                        //Create CAN message.
-                        return new CanMessage(parameterGroup.Pgn, format, priority, sourceAddress, data, parameterGroup.MultiFrame);
-                    }
-                    catch(Exception e)
-                    {
-                        throw new NullReferenceException("PGN: "+ pgn +" is not supported.",e);
-                    }
+                    return new CanMessage(pgn, format, priority, sourceAddress, data);
                 }
                 catch
                 {
@@ -235,7 +225,7 @@ namespace CanLib.Devices.Nmea2000.GridConnect
 
         public override void Write(CanMessage message)
         {
-            if (message.MultiPacketMessage)
+            if (ParameterGroup.GetPgnType(message.ParameterGroupNumber).MultiFrame == true)
                 WriteMultiPacket(message);
             else
             {
@@ -317,7 +307,7 @@ namespace CanLib.Devices.Nmea2000.GridConnect
             firstPacketData[5] = message.Data[3];
             firstPacketData[6] = message.Data[4];
             firstPacketData[7] = message.Data[5];
-            messageQueue.Enqueue(new CanMessage(message.ParameterGroupNumber, message.Format, message.Priority, message.SourceAddress, firstPacketData.Reverse().ToArray(), false));
+            messageQueue.Enqueue(new CanMessage(message.ParameterGroupNumber, message.Format, message.Priority, message.SourceAddress, firstPacketData.Reverse().ToArray()));
 
             //Fill data frame for each remaining message and add to message list.
             for(int i = 1; i< messageCountReq; i++)
@@ -334,7 +324,7 @@ namespace CanLib.Devices.Nmea2000.GridConnect
                     packetData[5] = message.Data[((i * 8) - i) + 4];
                     packetData[6] = message.Data[((i * 8) - i) + 5];
                     packetData[7] = message.Data[((i * 8) - i) + 6];
-                    messageQueue.Enqueue(new CanMessage(message.ParameterGroupNumber, message.Format, message.Priority, message.SourceAddress, packetData.Reverse().ToArray(), false));
+                    messageQueue.Enqueue(new CanMessage(message.ParameterGroupNumber, message.Format, message.Priority, message.SourceAddress, packetData.Reverse().ToArray()));
                 }
                 //Last message
                 else
@@ -348,7 +338,7 @@ namespace CanLib.Devices.Nmea2000.GridConnect
                         finalPacketData[j] = message.Data[(message.Data.Length - bytesRemaining) + j];
                     }
                     //finalPacketData.Reverse();
-                    messageQueue.Enqueue(new CanMessage(message.ParameterGroupNumber, message.Format, message.Priority, message.SourceAddress, finalPacketData.Reverse().ToArray(), false));
+                    messageQueue.Enqueue(new CanMessage(message.ParameterGroupNumber, message.Format, message.Priority, message.SourceAddress, finalPacketData.Reverse().ToArray()));
                 }
             }
 
