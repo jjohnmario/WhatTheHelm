@@ -119,7 +119,7 @@ namespace WhatTheHelmRuntime
             //Update CAN message queue count
             if (lblCanMsgQueue.IsHandleCreated)
             {
-                lblCanMsgQueue.Invoke(new MethodInvoker(() => lblCanMsgQueue.Text = Program.CanGateWayListener.MainMessageQueue.Count.ToString()));
+                lblCanMsgQueue.Invoke(new MethodInvoker(() => lblCanMsgQueue.Text = Program.CanGateway.MessageQueueCount.ToString()));
             }
 
             //Update CAN fast packet queue count

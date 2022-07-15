@@ -42,11 +42,12 @@ namespace WhatTheHelmRuntime
                 ProductInformation productInformation = new ProductInformation(22, 33, "What The Helm?", "v1.0.0", "1.0.0", "01229330JJF", 1, 2);
                 SerialPort serialPort = new SerialPort("COM1", 115200, Parity.None, 8, StopBits.One) { NewLine = ";" };
                 CanGateway = new Can232Fd(serialPort, 0, name, productInformation);
-                if (Configuration.PgnFilter.Count != 0)
+                if (Configuration.PgnFilter.Count != 0)                
                     CanGateWayListener = new CanGateWayListener(CanGateway, Configuration.PgnFilter);
-                else
+                else               
                     CanGateWayListener = new CanGateWayListener(CanGateway);
                 CanGateWayListener.Start();
+
                 CanRequestHandler = new CanRequestHandler(CanGateway);
                 CanRequestHandler.Start();
 
@@ -69,8 +70,6 @@ namespace WhatTheHelmRuntime
 
                     //Get list of 1280x800 screens.
                     var screens1280x800 = Screen.AllScreens.Where(size => size.Bounds.Height == 800 & size.Bounds.Width == 1280).ToList();
-                    //Get list of 800x480 screens.
-                    var screens800x480 = Screen.AllScreens.Where(size => size.Bounds.Height == 480 & size.Bounds.Width == 800).ToList();
 
                     //Get the primary 1280x800 screen and assign it as a "PortGauges" screen.
                     Screen portGaugesScreen = screens1280x800.Where(y => y.Primary).OrderBy(x => x.DeviceName).First();
@@ -78,14 +77,19 @@ namespace WhatTheHelmRuntime
                     //Get next number 1280x800 screen and assign it as a "StbdGauges" screen.
                     Screen stbdGaugesScreen = screens1280x800.OrderBy(x => x.DeviceName).First();
 
-                    //Get lowest number 640x480 screen and assign it as a "TrimControl" screen.
-                    Screen trimControlScreen = screens800x480.OrderBy(x => x.DeviceName).First();
-                    screens800x480.Remove(trimControlScreen);
+                    //Get list of 800x480 screens.
+                    var screens800x480 = Screen.AllScreens.Where(size => size.Bounds.Height == 480 & size.Bounds.Width == 800).ToList();
+
                     //Get next number 640x480 screen and assign it as a "SwitchPanel" screen.
                     Screen switchPanelScreen = screens800x480.OrderBy(x => x.DeviceName).First();
                     screens800x480.Remove(switchPanelScreen);
+
                     //Get next number 640x480 screen and assign it as a "GPS" screen.
                     Screen gpsScreen = screens800x480.OrderBy(x => x.DeviceName).First();
+                    screens800x480.Remove(gpsScreen);
+
+                    //Get lowest number 640x480 screen and assign it as a "TrimControl" screen.
+                    Screen trimControlScreen = screens800x480.OrderBy(x => x.DeviceName).First();
 
                     //Bind all but Gauges types to physical screens
                     List<KeyValuePair<Screen, Type>> screenAssignmentList = new List<KeyValuePair<Screen, Type>>();

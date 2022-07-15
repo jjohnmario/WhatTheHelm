@@ -17,9 +17,11 @@ namespace CanLib.Devices.Nmea2000.GridConnect
     /// </summary>
     public class Can232Fd : Nmea2000Gateway
     {
-        private SerialPort _SerialPort;
-        private Queue<string> MainMessageQueue = new Queue<string>();
-        private bool _ScanMainMessageQueue = false;
+        public int MessageQueueCount { get => _mainMessageQueue.Count; }
+        private SerialPort _serialPort;
+        private Queue<string> _mainMessageQueue = new Queue<string>();
+        private bool _scanMainMessageQueue = false;
+        private bool _read = false;
 
         /// <summary>
         /// Creates an object reference to a GridConnect CAN232FD gateway and binds it to the defined CAN network address and serial port.
@@ -28,8 +30,8 @@ namespace CanLib.Devices.Nmea2000.GridConnect
         /// <param name="address">The CAN network address to assign the CAN232FD gateway.</param>
         public Can232Fd (SerialPort serialPort,ushort address):base(address)
         {
-            _SerialPort = serialPort;
-            _SerialPort.DataReceived += SerialPort_DataReceived;
+            _serialPort = serialPort;
+            //_SerialPort.DataReceived += SerialPort_DataReceived;
         }
 
         /// <summary>
@@ -40,15 +42,7 @@ namespace CanLib.Devices.Nmea2000.GridConnect
         /// <param name="name">The NAME of the CAN232FD gateway</param>
         public Can232Fd (SerialPort serialPort,ushort address, CanName name):base(address,name)
         {
-            try
-            {
-                _SerialPort = serialPort;
-                _SerialPort.DataReceived += SerialPort_DataReceived;
-            }
-            catch
-            {
-                
-            }
+            _serialPort = serialPort;
         }
 
         /// <summary>
@@ -60,34 +54,29 @@ namespace CanLib.Devices.Nmea2000.GridConnect
         /// <param name="productInformation">The product information of the CAN232FD gateway</param>
         public Can232Fd(SerialPort serialPort,ushort address, CanName name, ProductInformation productInformation):base(address,name,productInformation)
         {
-            try
-            {
-                _SerialPort = serialPort;
-                _SerialPort.DataReceived += SerialPort_DataReceived;
-            }
-            catch
-            {
-                
-            }
+            _serialPort = serialPort;
         }
 
         public override event EventHandler<CanMessageArgs> MessageRecieved;
 
-        private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void Read()
         {
-            var port = sender as SerialPort;
-            MainMessageQueue.Enqueue(port.ReadLine());     
+            while(_read)
+            {
+                string msg = _serialPort.ReadLine();
+                _mainMessageQueue.Enqueue(msg);
+            }
         }
 
         private void ScanMainMessageQueue()
         {
             try
             {
-                while (_ScanMainMessageQueue)
+                while (_scanMainMessageQueue)
                 {
-                    if (MainMessageQueue.Count > 0)
+                    if (_mainMessageQueue.Count > 0)
                     {
-                        string message = MainMessageQueue.Dequeue();
+                        string message = _mainMessageQueue.Dequeue();
                         if(MessageRecieved!=null)
                         {
                             try
@@ -106,7 +95,7 @@ namespace CanLib.Devices.Nmea2000.GridConnect
             }
             catch
             {
-                MainMessageQueue.Clear();
+                _mainMessageQueue.Clear();
                 ScanMainMessageQueue();
             }
         }
@@ -115,14 +104,16 @@ namespace CanLib.Devices.Nmea2000.GridConnect
         {
             try
             {
-                _SerialPort.Open();
-                _ScanMainMessageQueue = true;
-                var task = Task.Run(() => ScanMainMessageQueue());
-                task.ContinueWith(t =>
-                {
-                    throw t.Exception;
-                },
-                TaskContinuationOptions.OnlyOnFaulted);
+                _serialPort.Open();
+                _scanMainMessageQueue = true;
+                _read = true;
+                Task.Run(() => ScanMainMessageQueue()).ContinueWith(t => throw t.Exception,TaskContinuationOptions.OnlyOnFaulted);
+                Task.Run(() => Read());
+                //task.ContinueWith(t =>
+                //{
+                //    throw t.Exception;
+                //},
+                //TaskContinuationOptions.OnlyOnFaulted);
             }
             catch
             {
@@ -134,8 +125,8 @@ namespace CanLib.Devices.Nmea2000.GridConnect
         {
             try
             {
-                _SerialPort.Close();
-                _ScanMainMessageQueue = false;
+                _serialPort.Close();
+                _scanMainMessageQueue = false;
             }
             catch
             {
@@ -168,7 +159,7 @@ namespace CanLib.Devices.Nmea2000.GridConnect
                     string pgnByte1Bin = firstbyteToBin.Substring(7, 1).PadLeft(8, '0');
                     string pgnByte2Bin = Convert.ToString(canMessage.Id[1], 2).PadLeft(8, '0');
                     string pgnByte3Bin = Convert.ToString(canMessage.Id[2], 2).PadLeft(8, '0');
-                    string pgnAssembledBytesBin = String.Concat(pgnByte1Bin, pgnByte2Bin, pgnByte3Bin);
+                    string pgnAssembledBytesBin = string.Concat(pgnByte1Bin, pgnByte2Bin, pgnByte3Bin);
                     int pgn = Convert.ToInt32(pgnAssembledBytesBin, 2);
                     //Source Address
                     ushort sourceAddress = canMessage.Id[3];
@@ -214,8 +205,8 @@ namespace CanLib.Devices.Nmea2000.GridConnect
 
         public override void Dispose()
         {
-            _SerialPort.DataReceived -= SerialPort_DataReceived;
-            _SerialPort.Dispose();
+            //_SerialPort.DataReceived -= SerialPort_DataReceived;
+            _serialPort.Dispose();
         }
 
         public override void Write(CanMessage message)
@@ -261,7 +252,7 @@ namespace CanLib.Devices.Nmea2000.GridConnect
                     msg = string.Concat(msg, ";");
 
                     //Write message to gateway. (16 bytes total)
-                    _SerialPort.Write(msg);
+                    _serialPort.Write(msg);
                 }
                 catch 
                 {
@@ -273,7 +264,7 @@ namespace CanLib.Devices.Nmea2000.GridConnect
         private void Write(string message)
         {
             //Write message to gateway. (Maximum of 16 bytes total)
-            _SerialPort.Write(message);
+            _serialPort.Write(message);
         }
 
         protected override void WriteMultiPacket(CanMessage message)

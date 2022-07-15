@@ -51,7 +51,6 @@ namespace CanLib.Devices
             CanGateway = canGateway;
             FastPacketMessageQueue = new List<CanMessage>();
             MainMessageQueue = new Queue<CanMessage>();
-            CanGateway.MessageRecieved += CanGateway_MessageRecieved;
         }
 
         /// <summary>
@@ -66,7 +65,6 @@ namespace CanLib.Devices
             CanGateway = canGateway;
             FastPacketMessageQueue = new List<CanMessage>();
             MainMessageQueue = new Queue<CanMessage>();
-            CanGateway.MessageRecieved += CanGateway_MessageRecieved;
         }
 
         /// <summary>
@@ -74,6 +72,7 @@ namespace CanLib.Devices
         /// </summary>
         public void Start()
         {
+            CanGateway.MessageRecieved += CanGateway_MessageRecieved;
             CanGateway.Open();
             Task.Run(() => ScanFastPacketMessageQueue());
             Task.Run(() => ScanMainMessageQueue());
