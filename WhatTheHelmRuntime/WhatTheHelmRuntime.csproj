@@ -54,18 +54,10 @@
     <Reference Include="CodeArtEng.Gauge, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CodeArtEng.Gauge.2.0.0\lib\net40\CodeArtEng.Gauge.dll</HintPath>
     </Reference>
-    <Reference Include="Mitov.BasicLab, Version=7.8.2.271, Culture=neutral, PublicKeyToken=54b8a1f38c94221a">
-      <HintPath>Mitov\Mitov.BasicLab.dll</HintPath>
-    </Reference>
-    <Reference Include="Mitov.InstrumentLab, Version=7.8.2.271, Culture=neutral, PublicKeyToken=d83fb7bf88b23f0b, processorArchitecture=MSIL">
-      <HintPath>Mitov\Mitov.InstrumentLab.dll</HintPath>
-    </Reference>
-    <Reference Include="Mitov.InstrumentLabDigital, Version=7.8.2.271, Culture=neutral, PublicKeyToken=75c3f971405dc4fb">
-      <HintPath>Mitov\Mitov.InstrumentLabDigital.dll</HintPath>
-    </Reference>
-    <Reference Include="Mitov.UserLabBasic, Version=7.8.2.271, Culture=neutral, PublicKeyToken=9f010ec75ebe201f">
-      <HintPath>Mitov\Mitov.UserLabBasic.dll</HintPath>
-    </Reference>
+    <Reference Include="Mitov.BasicLab, Version=8.0.0.1, Culture=neutral, PublicKeyToken=54b8a1f38c94221a" />
+    <Reference Include="Mitov.InstrumentLab, Version=8.0.0.1, Culture=neutral, PublicKeyToken=d83fb7bf88b23f0b, processorArchitecture=MSIL" />
+    <Reference Include="Mitov.InstrumentLabDigital, Version=8.0.0.1, Culture=neutral, PublicKeyToken=75c3f971405dc4fb" />
+    <Reference Include="Mitov.UserLabBasic, Version=8.0.0.1, Culture=neutral, PublicKeyToken=9f010ec75ebe201f" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>

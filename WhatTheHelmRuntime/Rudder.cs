@@ -25,20 +25,20 @@ namespace WhatTheHelmRuntime
 
         private void CanGateWayListener_NewMessage(object sender, CanLib.Messages.CanMessage e)
         {
-            if(e.ParameterGroupNumber == 127250)
-            {
-                pgn0X1F112 = (Pgn0x1F112)pgn0X1F112.DeserializeFields(e.Data);
+            //if(e.ParameterGroupNumber == 127250)
+            //{
+            //    pgn0X1F112 = (Pgn0x1F112)pgn0X1F112.DeserializeFields(e.Data);
 
-                if (pbCompass.IsHandleCreated)
-                {
-                    pbCompass.Invoke(new MethodInvoker(() =>
-                    {
-                        double pitch = 0;
-                        double tilt = 0;
-                        pbCompass.Image = Compass.DrawCompass(pgn0X1F112.Heading / 0.0174533, pitch, 80, tilt, 80, pbCompass.Size);
-                    }));
-                }
-            }
+            //    if (pbCompass.IsHandleCreated)
+            //    {
+            //        pbCompass.Invoke(new MethodInvoker(() =>
+            //        {
+            //            double pitch = 0;
+            //            double tilt = 0;
+            //            pbCompass.Image = Compass.DrawCompass(pgn0X1F112.Heading / 0.0174533, pitch, 80, tilt, 80, pbCompass.Size);
+            //        }));
+            //    }
+            //}
         }
 
         public class Compass

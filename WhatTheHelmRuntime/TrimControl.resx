@@ -117,96 +117,90 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="gaugeStbdTrim.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="controlInnerBevel1.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
-        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAACAAAACAIAAAACAAAACw==
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
+        YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAgAAAAgCAAAAAgAAAAs=
 </value>
   </data>
   <data name="rectControlBorder1.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
-        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAACAAAACAIAAAACAAAACw==
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
+        YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAgAAAAgCAAAAAgAAAAs=
 </value>
   </data>
   <data name="controlFont1.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
-        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAEAAAAL
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
+        YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAQAAAAgBAAAACw==
 </value>
   </data>
   <data name="gaugeStbdTrim.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
-        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAREYXRhBwICAAAACQMAAAAPAwAAACIAAAACDUV4cGxpY2l0V2lkdGgCPA5FeHBs
-        aWNpdEhlaWdodAP6AAs=
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
+        YXJ5RGF0YQEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAiAAAAAg1FeHBsaWNpdFdpZHRoAjwORXhwbGlj
+        aXRIZWlnaHQD+gAL
 </value>
   </data>
   <data name="controlFont2.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
-        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAEAAAAL
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
+        YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAQAAAAgBAAAACw==
 </value>
   </data>
   <data name="controlFont3.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
-        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAEAAAAL
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
+        YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAQAAAAgBAAAACw==
 </value>
   </data>
-  <metadata name="gaugePortTrim.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>153, 17</value>
-  </metadata>
   <data name="controlInnerBevel2.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
-        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAACAAAACAIAAAACAAAACw==
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
+        YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAgAAAAgCAAAAAgAAAAs=
 </value>
   </data>
   <data name="rectControlBorder2.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
-        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAACAAAACAIAAAACAAAACw==
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
+        YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAgAAAAgCAAAAAgAAAAs=
 </value>
   </data>
   <data name="controlFont4.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
-        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAEAAAAL
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
+        YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAQAAAAgBAAAACw==
 </value>
   </data>
   <data name="gaugePortTrim.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
-        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAREYXRhBwICAAAACQMAAAAPAwAAACIAAAACDUV4cGxpY2l0V2lkdGgCPA5FeHBs
-        aWNpdEhlaWdodAP6AAs=
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
+        YXJ5RGF0YQEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAiAAAAAg1FeHBsaWNpdFdpZHRoAjwORXhwbGlj
+        aXRIZWlnaHQD+gAL
 </value>
   </data>
   <data name="controlFont5.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
-        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAEAAAAL
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
+        YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAQAAAAgBAAAACw==
 </value>
   </data>
   <data name="controlFont6.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFNNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj03LjguMi4yNzEsIEN1
-        bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NTRiOGExZjM4Yzk0MjIxYQUBAAAAEVZjbC5WY2xC
-        aW5hcnlEYXRhAQAAAAVFbnVtcwcIAgAAAAkDAAAADwMAAAABAAAACAEAAAAL
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
+        YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAQAAAAgBAAAACw==
 </value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />

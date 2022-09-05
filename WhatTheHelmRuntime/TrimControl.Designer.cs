@@ -347,10 +347,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dashboardButton2 = new BoatFormsLib.CustomUserControls.DashboardButton();
-            this.dashboardButton3 = new BoatFormsLib.CustomUserControls.DashboardButton();
-            this.dashboardButton1 = new BoatFormsLib.CustomUserControls.DashboardButton();
-            this.dashboardButton7 = new BoatFormsLib.CustomUserControls.DashboardButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -364,6 +360,10 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.dashboardButton2 = new BoatFormsLib.CustomUserControls.DashboardButton();
+            this.dashboardButton3 = new BoatFormsLib.CustomUserControls.DashboardButton();
+            this.dashboardButton1 = new BoatFormsLib.CustomUserControls.DashboardButton();
+            this.dashboardButton7 = new BoatFormsLib.CustomUserControls.DashboardButton();
             ((System.ComponentModel.ISupportInitialize)(this.gaugeStbdTrim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gaugePortTrim)).BeginInit();
             this.SuspendLayout();
@@ -1032,130 +1032,6 @@
             this.label3.Text = "--";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // dashboardButton2
-            // 
-            this.dashboardButton2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton2.BackgroundImage")));
-            this.dashboardButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dashboardButton2.ButtonBehavior = BoatFormsLib.CustomUserControls.ButtonBehavior.Momentary;
-            this.dashboardButton2.FlatAppearance.BorderSize = 0;
-            this.dashboardButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.dashboardButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.dashboardButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dashboardButton2.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashboardButton2.ForeColor = System.Drawing.Color.White;
-            this.dashboardButton2.Function = "PORT TRIM DOWN";
-            this.dashboardButton2.Location = new System.Drawing.Point(19, 248);
-            this.dashboardButton2.MvecAddress = ((byte)(177));
-            this.dashboardButton2.MvecFuseNumber = ((byte)(8));
-            this.dashboardButton2.MvecGrid = ((byte)(0));
-            this.dashboardButton2.MvecRelayNumber = ((byte)(5));
-            this.dashboardButton2.Name = "dashboardButton2";
-            this.dashboardButton2.OffStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton2.OffStateBackImage")));
-            this.dashboardButton2.OffStateForeColor = System.Drawing.Color.White;
-            this.dashboardButton2.OffStateText = "BOW\r\nDOWN";
-            this.dashboardButton2.OnStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton2.OnStateBackImage")));
-            this.dashboardButton2.OnStateForeColor = System.Drawing.Color.White;
-            this.dashboardButton2.OnStateText = "BOW\r\nDOWN";
-            this.dashboardButton2.Size = new System.Drawing.Size(199, 111);
-            this.dashboardButton2.State = false;
-            this.dashboardButton2.TabIndex = 107;
-            this.dashboardButton2.Text = "BOW\r\nDOWN";
-            this.dashboardButton2.UseVisualStyleBackColor = true;
-            this.dashboardButton2.NewCommand += new System.EventHandler<BoatFormsLib.DashboardButtonArgs>(this.dashboardButton2_NewCommand);
-            // 
-            // dashboardButton3
-            // 
-            this.dashboardButton3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton3.BackgroundImage")));
-            this.dashboardButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dashboardButton3.ButtonBehavior = BoatFormsLib.CustomUserControls.ButtonBehavior.Momentary;
-            this.dashboardButton3.FlatAppearance.BorderSize = 0;
-            this.dashboardButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.dashboardButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.dashboardButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dashboardButton3.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashboardButton3.ForeColor = System.Drawing.Color.White;
-            this.dashboardButton3.Function = "PORT TRIM UP";
-            this.dashboardButton3.Location = new System.Drawing.Point(19, 131);
-            this.dashboardButton3.MvecAddress = ((byte)(177));
-            this.dashboardButton3.MvecFuseNumber = ((byte)(4));
-            this.dashboardButton3.MvecGrid = ((byte)(0));
-            this.dashboardButton3.MvecRelayNumber = ((byte)(2));
-            this.dashboardButton3.Name = "dashboardButton3";
-            this.dashboardButton3.OffStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton3.OffStateBackImage")));
-            this.dashboardButton3.OffStateForeColor = System.Drawing.Color.White;
-            this.dashboardButton3.OffStateText = "BOW\r\nUP";
-            this.dashboardButton3.OnStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton3.OnStateBackImage")));
-            this.dashboardButton3.OnStateForeColor = System.Drawing.Color.White;
-            this.dashboardButton3.OnStateText = "BOW\r\nUP";
-            this.dashboardButton3.Size = new System.Drawing.Size(199, 111);
-            this.dashboardButton3.State = false;
-            this.dashboardButton3.TabIndex = 106;
-            this.dashboardButton3.Text = "BOW\r\nUP";
-            this.dashboardButton3.UseVisualStyleBackColor = true;
-            this.dashboardButton3.NewCommand += new System.EventHandler<BoatFormsLib.DashboardButtonArgs>(this.dashboardButton3_NewCommand);
-            // 
-            // dashboardButton1
-            // 
-            this.dashboardButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton1.BackgroundImage")));
-            this.dashboardButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dashboardButton1.ButtonBehavior = BoatFormsLib.CustomUserControls.ButtonBehavior.Momentary;
-            this.dashboardButton1.FlatAppearance.BorderSize = 0;
-            this.dashboardButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.dashboardButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.dashboardButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dashboardButton1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashboardButton1.ForeColor = System.Drawing.Color.White;
-            this.dashboardButton1.Function = "STBD TRIM DOWN";
-            this.dashboardButton1.Location = new System.Drawing.Point(582, 248);
-            this.dashboardButton1.MvecAddress = ((byte)(177));
-            this.dashboardButton1.MvecFuseNumber = ((byte)(2));
-            this.dashboardButton1.MvecGrid = ((byte)(0));
-            this.dashboardButton1.MvecRelayNumber = ((byte)(4));
-            this.dashboardButton1.Name = "dashboardButton1";
-            this.dashboardButton1.OffStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton1.OffStateBackImage")));
-            this.dashboardButton1.OffStateForeColor = System.Drawing.Color.White;
-            this.dashboardButton1.OffStateText = "BOW\r\nDOWN";
-            this.dashboardButton1.OnStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton1.OnStateBackImage")));
-            this.dashboardButton1.OnStateForeColor = System.Drawing.Color.White;
-            this.dashboardButton1.OnStateText = "BOW\r\nDOWN";
-            this.dashboardButton1.Size = new System.Drawing.Size(199, 111);
-            this.dashboardButton1.State = false;
-            this.dashboardButton1.TabIndex = 105;
-            this.dashboardButton1.Text = "BOW\r\nDOWN";
-            this.dashboardButton1.UseVisualStyleBackColor = true;
-            this.dashboardButton1.NewCommand += new System.EventHandler<BoatFormsLib.DashboardButtonArgs>(this.dashboardButton1_NewCommand);
-            // 
-            // dashboardButton7
-            // 
-            this.dashboardButton7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton7.BackgroundImage")));
-            this.dashboardButton7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dashboardButton7.ButtonBehavior = BoatFormsLib.CustomUserControls.ButtonBehavior.Momentary;
-            this.dashboardButton7.FlatAppearance.BorderSize = 0;
-            this.dashboardButton7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.dashboardButton7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.dashboardButton7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dashboardButton7.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashboardButton7.ForeColor = System.Drawing.Color.White;
-            this.dashboardButton7.Function = "STBD TRIM UP";
-            this.dashboardButton7.Location = new System.Drawing.Point(582, 131);
-            this.dashboardButton7.MvecAddress = ((byte)(177));
-            this.dashboardButton7.MvecFuseNumber = ((byte)(1));
-            this.dashboardButton7.MvecGrid = ((byte)(0));
-            this.dashboardButton7.MvecRelayNumber = ((byte)(1));
-            this.dashboardButton7.Name = "dashboardButton7";
-            this.dashboardButton7.OffStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton7.OffStateBackImage")));
-            this.dashboardButton7.OffStateForeColor = System.Drawing.Color.White;
-            this.dashboardButton7.OffStateText = "BOW\r\nUP";
-            this.dashboardButton7.OnStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton7.OnStateBackImage")));
-            this.dashboardButton7.OnStateForeColor = System.Drawing.Color.White;
-            this.dashboardButton7.OnStateText = "BOW\r\nUP";
-            this.dashboardButton7.Size = new System.Drawing.Size(199, 111);
-            this.dashboardButton7.State = false;
-            this.dashboardButton7.TabIndex = 104;
-            this.dashboardButton7.Text = "BOW\r\nUP";
-            this.dashboardButton7.UseVisualStyleBackColor = true;
-            this.dashboardButton7.NewCommand += new System.EventHandler<BoatFormsLib.DashboardButtonArgs>(this.dashboardButton7_NewCommand);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Black;
@@ -1305,6 +1181,131 @@
             this.checkBox1.TabIndex = 127;
             this.checkBox1.Text = "SYNCHRONIZE";
             this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // dashboardButton2
+            // 
+            this.dashboardButton2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton2.BackgroundImage")));
+            this.dashboardButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dashboardButton2.ButtonBehavior = BoatFormsLib.CustomUserControls.ButtonBehavior.Momentary;
+            this.dashboardButton2.FlatAppearance.BorderSize = 0;
+            this.dashboardButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.dashboardButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.dashboardButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dashboardButton2.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashboardButton2.ForeColor = System.Drawing.Color.White;
+            this.dashboardButton2.Function = "PORT TRIM DOWN";
+            this.dashboardButton2.Location = new System.Drawing.Point(19, 248);
+            this.dashboardButton2.MvecAddress = ((byte)(177));
+            this.dashboardButton2.MvecFuseNumber = ((byte)(8));
+            this.dashboardButton2.MvecGrid = ((byte)(0));
+            this.dashboardButton2.MvecRelayNumber = ((byte)(5));
+            this.dashboardButton2.Name = "dashboardButton2";
+            this.dashboardButton2.OffStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton2.OffStateBackImage")));
+            this.dashboardButton2.OffStateForeColor = System.Drawing.Color.White;
+            this.dashboardButton2.OffStateText = "BOW\r\nDOWN";
+            this.dashboardButton2.OnStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton2.OnStateBackImage")));
+            this.dashboardButton2.OnStateForeColor = System.Drawing.Color.White;
+            this.dashboardButton2.OnStateText = "BOW\r\nDOWN";
+            this.dashboardButton2.Size = new System.Drawing.Size(199, 111);
+            this.dashboardButton2.State = false;
+            this.dashboardButton2.TabIndex = 107;
+            this.dashboardButton2.Text = "BOW\r\nDOWN";
+            this.dashboardButton2.UseVisualStyleBackColor = true;
+            this.dashboardButton2.NewCommand += new System.EventHandler<BoatFormsLib.DashboardButtonArgs>(this.dashboardButton2_NewCommand);
+            // 
+            // dashboardButton3
+            // 
+            this.dashboardButton3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton3.BackgroundImage")));
+            this.dashboardButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dashboardButton3.ButtonBehavior = BoatFormsLib.CustomUserControls.ButtonBehavior.Momentary;
+            this.dashboardButton3.FlatAppearance.BorderSize = 0;
+            this.dashboardButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.dashboardButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.dashboardButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dashboardButton3.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashboardButton3.ForeColor = System.Drawing.Color.White;
+            this.dashboardButton3.Function = "PORT TRIM UP";
+            this.dashboardButton3.Location = new System.Drawing.Point(19, 131);
+            this.dashboardButton3.MvecAddress = ((byte)(177));
+            this.dashboardButton3.MvecFuseNumber = ((byte)(4));
+            this.dashboardButton3.MvecGrid = ((byte)(0));
+            this.dashboardButton3.MvecRelayNumber = ((byte)(2));
+            this.dashboardButton3.Name = "dashboardButton3";
+            this.dashboardButton3.OffStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton3.OffStateBackImage")));
+            this.dashboardButton3.OffStateForeColor = System.Drawing.Color.White;
+            this.dashboardButton3.OffStateText = "BOW\r\nUP";
+            this.dashboardButton3.OnStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton3.OnStateBackImage")));
+            this.dashboardButton3.OnStateForeColor = System.Drawing.Color.White;
+            this.dashboardButton3.OnStateText = "BOW\r\nUP";
+            this.dashboardButton3.Size = new System.Drawing.Size(199, 111);
+            this.dashboardButton3.State = false;
+            this.dashboardButton3.TabIndex = 106;
+            this.dashboardButton3.Text = "BOW\r\nUP";
+            this.dashboardButton3.UseVisualStyleBackColor = true;
+            this.dashboardButton3.NewCommand += new System.EventHandler<BoatFormsLib.DashboardButtonArgs>(this.dashboardButton3_NewCommand);
+            this.dashboardButton3.Click += new System.EventHandler(this.dashboardButton3_Click);
+            // 
+            // dashboardButton1
+            // 
+            this.dashboardButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton1.BackgroundImage")));
+            this.dashboardButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dashboardButton1.ButtonBehavior = BoatFormsLib.CustomUserControls.ButtonBehavior.Momentary;
+            this.dashboardButton1.FlatAppearance.BorderSize = 0;
+            this.dashboardButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.dashboardButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.dashboardButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dashboardButton1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashboardButton1.ForeColor = System.Drawing.Color.White;
+            this.dashboardButton1.Function = "STBD TRIM DOWN";
+            this.dashboardButton1.Location = new System.Drawing.Point(582, 248);
+            this.dashboardButton1.MvecAddress = ((byte)(177));
+            this.dashboardButton1.MvecFuseNumber = ((byte)(2));
+            this.dashboardButton1.MvecGrid = ((byte)(0));
+            this.dashboardButton1.MvecRelayNumber = ((byte)(4));
+            this.dashboardButton1.Name = "dashboardButton1";
+            this.dashboardButton1.OffStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton1.OffStateBackImage")));
+            this.dashboardButton1.OffStateForeColor = System.Drawing.Color.White;
+            this.dashboardButton1.OffStateText = "BOW\r\nDOWN";
+            this.dashboardButton1.OnStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton1.OnStateBackImage")));
+            this.dashboardButton1.OnStateForeColor = System.Drawing.Color.White;
+            this.dashboardButton1.OnStateText = "BOW\r\nDOWN";
+            this.dashboardButton1.Size = new System.Drawing.Size(199, 111);
+            this.dashboardButton1.State = false;
+            this.dashboardButton1.TabIndex = 105;
+            this.dashboardButton1.Text = "BOW\r\nDOWN";
+            this.dashboardButton1.UseVisualStyleBackColor = true;
+            this.dashboardButton1.NewCommand += new System.EventHandler<BoatFormsLib.DashboardButtonArgs>(this.dashboardButton1_NewCommand);
+            // 
+            // dashboardButton7
+            // 
+            this.dashboardButton7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton7.BackgroundImage")));
+            this.dashboardButton7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dashboardButton7.ButtonBehavior = BoatFormsLib.CustomUserControls.ButtonBehavior.Momentary;
+            this.dashboardButton7.FlatAppearance.BorderSize = 0;
+            this.dashboardButton7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.dashboardButton7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.dashboardButton7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dashboardButton7.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashboardButton7.ForeColor = System.Drawing.Color.White;
+            this.dashboardButton7.Function = "STBD TRIM UP";
+            this.dashboardButton7.Location = new System.Drawing.Point(582, 131);
+            this.dashboardButton7.MvecAddress = ((byte)(177));
+            this.dashboardButton7.MvecFuseNumber = ((byte)(1));
+            this.dashboardButton7.MvecGrid = ((byte)(0));
+            this.dashboardButton7.MvecRelayNumber = ((byte)(1));
+            this.dashboardButton7.Name = "dashboardButton7";
+            this.dashboardButton7.OffStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton7.OffStateBackImage")));
+            this.dashboardButton7.OffStateForeColor = System.Drawing.Color.White;
+            this.dashboardButton7.OffStateText = "BOW\r\nUP";
+            this.dashboardButton7.OnStateBackImage = ((System.Drawing.Image)(resources.GetObject("dashboardButton7.OnStateBackImage")));
+            this.dashboardButton7.OnStateForeColor = System.Drawing.Color.White;
+            this.dashboardButton7.OnStateText = "BOW\r\nUP";
+            this.dashboardButton7.Size = new System.Drawing.Size(199, 111);
+            this.dashboardButton7.State = false;
+            this.dashboardButton7.TabIndex = 104;
+            this.dashboardButton7.Text = "BOW\r\nUP";
+            this.dashboardButton7.UseVisualStyleBackColor = true;
+            this.dashboardButton7.NewCommand += new System.EventHandler<BoatFormsLib.DashboardButtonArgs>(this.dashboardButton7_NewCommand);
             // 
             // TrimControl
             // 

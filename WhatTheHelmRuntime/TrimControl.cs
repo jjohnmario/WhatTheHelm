@@ -162,5 +162,10 @@ namespace WhatTheHelmRuntime
         {
             NewCommand(e);
         }
+
+        private void dashboardButton3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

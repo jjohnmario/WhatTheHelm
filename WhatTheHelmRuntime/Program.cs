@@ -48,10 +48,10 @@ namespace WhatTheHelmRuntime
                     CanGateWayListener = new CanGateWayListener(CanGateway, Configuration.PgnFilter);
                 else               
                     CanGateWayListener = new CanGateWayListener(CanGateway);
-                CanGateWayListener.Start();
+                //CanGateWayListener.Start();
 
                 CanRequestHandler = new CanRequestHandler(CanGateway);
-                CanRequestHandler.Start();
+               // CanRequestHandler.Start();
 
                 //Initialize USB tachometer adapter (if not using NMEA 2000 tachometer inputs)
                 YoctoPwmRx = new YoctoPwmRx();
@@ -110,8 +110,11 @@ namespace WhatTheHelmRuntime
                 }
                 catch
                 {
-                    PortGauges portGauges = new PortGauges();
-                    Application.Run(portGauges);
+                    //PortGauges portGauges = new PortGauges();
+                    //Application.Run(portGauges);
+                    Rudder rudder = new Rudder();
+                    Application.Run(rudder);
+
                 }
             }
             catch(Exception e)
