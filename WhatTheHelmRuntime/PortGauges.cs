@@ -62,9 +62,9 @@ namespace WhatTheHelmRuntime
                     sp.StartPosition = FormStartPosition.Manual;
                     sp.Show();
                 }
-                else if (kvp.Value == typeof(Gps))
+                else if (kvp.Value == typeof(Rudder))
                 {
-                    Gps gps = new Gps();
+                    Rudder gps = new Rudder();
                     gps.Bounds = kvp.Key.Bounds;
                     gps.StartPosition = FormStartPosition.Manual;
                     gps.Show();

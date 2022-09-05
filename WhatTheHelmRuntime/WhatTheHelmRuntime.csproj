@@ -101,11 +101,11 @@
     <Compile Include="FusesStatus.Designer.cs">
       <DependentUpon>FusesStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="Gps.cs">
+    <Compile Include="Rudder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gps.Designer.cs">
-      <DependentUpon>Gps.cs</DependentUpon>
+    <Compile Include="Rudder.Designer.cs">
+      <DependentUpon>Rudder.cs</DependentUpon>
     </Compile>
     <Compile Include="NMEA0183\Nmea0183Listener.cs" />
     <Compile Include="NMEA0183\Nmea0183Msg.cs" />
@@ -148,8 +148,8 @@
     <EmbeddedResource Include="FusesStatus.resx">
       <DependentUpon>FusesStatus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gps.resx">
-      <DependentUpon>Gps.cs</DependentUpon>
+    <EmbeddedResource Include="Rudder.resx">
+      <DependentUpon>Rudder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PortGauges.resx">
       <DependentUpon>PortGauges.cs</DependentUpon>

@@ -65,7 +65,7 @@ namespace CanLib.ParameterGroups.NMEA2000
         public ushort EngineBoostPressure { get; private set; }
 
         /// <summary>
-        /// Engine tilt/trim in degrees.
+        /// Engine tilt/trim in percent (0-100)
         /// </summary>
         public sbyte EngineTiltTrim { get; private set; }
 

@@ -50,6 +50,7 @@
       <DependentUpon>DashboardButton.cs</DependentUpon>
     </Compile>
     <Compile Include="DashboardButtonArgs.cs" />
+    <Compile Include="ScreenInterrogatory.cs" />
     <Compile Include="Fuse.cs">
       <SubType>UserControl</SubType>
     </Compile>

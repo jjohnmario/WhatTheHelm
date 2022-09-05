@@ -14,10 +14,10 @@ using WhatTheHelmCanLib.ParameterGroups.NMEA2000;
 
 namespace WhatTheHelmRuntime
 {
-    public partial class Gps : Form
+    public partial class Rudder : Form
     {
         Pgn0x1F112 pgn0X1F112 = new Pgn0x1F112();
-        public Gps()
+        public Rudder()
         {
             InitializeComponent();
             Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
