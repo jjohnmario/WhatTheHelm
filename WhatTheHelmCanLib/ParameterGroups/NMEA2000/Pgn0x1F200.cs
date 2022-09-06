@@ -65,7 +65,7 @@ namespace CanLib.ParameterGroups.NMEA2000
         public ushort EngineBoostPressure { get; private set; }
 
         /// <summary>
-        /// Engine tilt/trim in percent (0-100)
+        /// Engine trim in percent (0-100)
         /// </summary>
         public sbyte EngineTiltTrim { get; private set; }
 
@@ -80,7 +80,7 @@ namespace CanLib.ParameterGroups.NMEA2000
             //Engine turbo boost pressure
             EngineBoostPressure = BitConverter.ToUInt16(data, 3);
 
-            //Engine tilt/trim
+            //Engine trim
             EngineTiltTrim = (sbyte)data[5];
 
             //Bytes 6-7 reserved.
