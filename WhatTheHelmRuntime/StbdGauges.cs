@@ -48,7 +48,7 @@ namespace WhatTheHelmRuntime
             this.MinimumSize = new Size() { Height = 800, Width = 1280 };
             this.MaximumSize = new Size() { Height = 800, Width = 1280 };
             Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
-            Program.YoctoPwmRx.NewData += YoctoPwmRx_NewData;
+            Program.YoctoPwmRx.NewInput2Data += YoctoPwmRx_NewData;
             Timer pgnTimeoutTimer = new Timer();
             pgnTimeoutTimer.Interval = 5000;
             pgnTimeoutTimer.Tick += PgnTimeoutTimer_Tick;
@@ -65,7 +65,7 @@ namespace WhatTheHelmRuntime
             if (Program.Configuration.RpmSource == RpmSource.YoctopuceUsb)
             {
                 if (gaugeStbdRpm.IsHandleCreated)
-                    gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = Convert.ToDouble((e.Input2Hz * 60 / 4).ToString("0"))));
+                    gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = Convert.ToDouble((e.InputHz * 60 / 4).ToString("0"))));
             }
         }
 

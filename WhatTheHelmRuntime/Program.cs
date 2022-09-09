@@ -48,10 +48,10 @@ namespace WhatTheHelmRuntime
                     CanGateWayListener = new CanGateWayListener(CanGateway, Configuration.PgnFilter);
                 else               
                     CanGateWayListener = new CanGateWayListener(CanGateway);
-                //CanGateWayListener.Start();
+                CanGateWayListener.Start();
 
                 CanRequestHandler = new CanRequestHandler(CanGateway);
-               // CanRequestHandler.Start();
+                CanRequestHandler.Start();
 
                 //Initialize USB tachometer adapter (if not using NMEA 2000 tachometer inputs)
                 YoctoPwmRx = new YoctoPwmRx();
@@ -59,7 +59,7 @@ namespace WhatTheHelmRuntime
                 if (YoctoPwmRx.Connect(out msg))
                     YoctoPwmRx.StartScan(250);
                 else
-                    MessageBox.Show("Unable to connect to the USB tachometer adapter", "Error");
+                    MessageBox.Show(msg, "Error");
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
@@ -88,8 +88,8 @@ namespace WhatTheHelmRuntime
                     screens800x480.Remove(switchPanelScreen);
 
                     //Get next number 640x480 screen and assign it as a "GPS" screen.
-                    Screen gpsScreen = screens800x480.OrderBy(x => x.Bounds.X).First();
-                    screens800x480.Remove(gpsScreen);
+                    Screen rudderScreen = screens800x480.OrderBy(x => x.Bounds.X).First();
+                    screens800x480.Remove(rudderScreen);
 
                     //Get lowest number 640x480 screen and assign it as a "TrimControl" screen.
                     Screen trimControlScreen = screens800x480.OrderBy(x => x.Bounds.X).First();
@@ -99,7 +99,7 @@ namespace WhatTheHelmRuntime
                     screenAssignmentList.Add(new KeyValuePair<Screen, Type>(stbdGaugesScreen, typeof(StbdGauges)));
                     screenAssignmentList.Add(new KeyValuePair<Screen, Type>(switchPanelScreen, typeof(SwitchPanel)));
                     screenAssignmentList.Add(new KeyValuePair<Screen, Type>(trimControlScreen, typeof(TrimControl)));
-                    screenAssignmentList.Add(new KeyValuePair<Screen, Type>(gpsScreen, typeof(Rudder)));
+                    screenAssignmentList.Add(new KeyValuePair<Screen, Type>(rudderScreen, typeof(Rudder)));
 
                     //Bind PortGauges form to physical screen
                     //Pass screen/type list as constructor for guages screen.  This allows other screens to be spawned from the Gauges screen and on the UI thread.

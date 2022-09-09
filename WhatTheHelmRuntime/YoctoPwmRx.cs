@@ -11,13 +11,9 @@ namespace WhatTheHelmRuntime
     public class YoctoPwmRxArgs : EventArgs
     {
         /// <summary>
-        /// Represents the frequency read in Hz from input 1
+        /// Represents the frequency read in Hz from an input.
         /// </summary>
-        public double Input1Hz { get; set; }
-        /// <summary>
-        /// Represents the frequency read in Hz from input 2
-        /// </summary>
-        public double Input2Hz { get; set; }
+        public double InputHz { get; set; }
     }
        
     
@@ -27,63 +23,57 @@ namespace WhatTheHelmRuntime
     public class YoctoPwmRx
     {
         /// <summary>
-        /// Raised after a successful scan of the module and its inputs.
+        /// Raised after a successful scan of input 1 of the module.
         /// </summary>
-        public event EventHandler<YoctoPwmRxArgs> NewData;
+        public event EventHandler<YoctoPwmRxArgs> NewInput1Data;
         /// <summary>
-        /// Represents the frequency read in Hz from input 1
+        /// Raised after a successful scan of input 2 of the module.
         /// </summary>
-        public double Input1Hz { get; private set; }
-        /// <summary>
-        /// Represents the frequency read in Hz from input 2
-        /// </summary>
-        public double Input2Hz { get; private set; }
-        private YModule _Module;
-        private YPwmInput _Pwm;
-        private YPwmInput _Pwm1;
-        private YPwmInput _Pwm2;
+        public event EventHandler<YoctoPwmRxArgs> NewInput2Data;
+        private YModule _ConnectedPwmInputModule;
+        private YPwmInput _FirstPwmInputFound;
+        private YPwmInput _PwmInputModule_Input1;
+        private YPwmInput _PwmInputModule_Input2;
         private bool _Scanning;
+        private string _ErrMsg;
 
         public bool Connect(out string message)
         {
-            string errmsg = "";
-
-            _Module = null;
-            _Pwm = null;
-            _Pwm1 = null;
-            _Pwm2 = null;
+            _ConnectedPwmInputModule = null;
+            _FirstPwmInputFound = null;
+            _PwmInputModule_Input1 = null;
+            _PwmInputModule_Input2 = null;
 
             // Setup the API to use local USB devices
-            if (YAPI.RegisterHub("usb", ref errmsg) != YAPI.SUCCESS)
-            //if (YAPI.RegisterHub("127.0.0.1", ref errmsg) != YAPI.SUCCESS)
+            if (YAPI.RegisterHub("usb", ref _ErrMsg) != YAPI.SUCCESS)
             {
-                message = "RegisterHub error: " + errmsg;
+                message = "RegisterHub error: " + _ErrMsg;
                 return false;
             }
 
-            // retreive any pwm device available
-            _Pwm = YPwmInput.FirstPwmInput();
-            if (_Pwm == null)
+            // Find any PWM input, which indicates a USB PWM device is connected.
+            _FirstPwmInputFound = YPwmInput.FirstPwmInput();
+            if (_FirstPwmInputFound == null)
             {
-                message = "No module found";
+                message = "No USB tachometer input devices found.";
                 return false;
             }
-           // we need to retreive both channels from the device.
-            if (_Pwm.isOnline())
-            {
-                _Module = _Pwm.get_module();
-                _Pwm1 = YPwmInput.FindPwmInput(_Module.get_serialNumber() + ".pwmInput1");
-                _Pwm2 = YPwmInput.FindPwmInput(_Module.get_serialNumber() + ".pwmInput2");
-                message = "Success";
-                return true;
-            }
+            // we need to retreive both channels from the device.
             else
             {
-                message = "Module not online";
-                return false;
+                _ConnectedPwmInputModule = _FirstPwmInputFound.get_module();
+                while(!_ConnectedPwmInputModule.isOnline())
+                    YAPI.Sleep(50, ref _ErrMsg);
+                _PwmInputModule_Input1 = YPwmInput.FindPwmInput(_ConnectedPwmInputModule.get_serialNumber() + ".pwmInput1");
+                _PwmInputModule_Input2 = YPwmInput.FindPwmInput(_ConnectedPwmInputModule.get_serialNumber() + ".pwmInput2");
+                while (!_PwmInputModule_Input1.isOnline())
+                    YAPI.Sleep(50, ref _ErrMsg);
+                while (!_PwmInputModule_Input2.isOnline())
+                    YAPI.Sleep(50, ref _ErrMsg);
+                message = "USB tachometer input device ready.";
+                return true;
             }
         }
-
         /// <summary>
         /// Scans each module input at the defined interval.
         /// </summary>
@@ -95,14 +85,20 @@ namespace WhatTheHelmRuntime
             {
                 while (_Scanning)
                 {
-                    Input1Hz = _Pwm1.get_frequency();
-                    Input2Hz = _Pwm2.get_frequency();
-                    if (NewData != null)
-                        NewData.Invoke(this, new YoctoPwmRxArgs() { Input1Hz = this.Input1Hz, Input2Hz = this.Input2Hz });
-                    Thread.Sleep(interval);
+                    if (_ConnectedPwmInputModule.isOnline())
+                    {
+                        //Input 1
+                        if(_PwmInputModule_Input1.isOnline())                            
+                            if(NewInput1Data != null)
+                                NewInput1Data.Invoke(this, new YoctoPwmRxArgs() { InputHz = _PwmInputModule_Input1.get_frequency()});
+                        //Input 2
+                        if (_PwmInputModule_Input2.isOnline())
+                            if (NewInput2Data != null)
+                                NewInput2Data.Invoke(this, new YoctoPwmRxArgs() { InputHz = _PwmInputModule_Input2.get_frequency()});
+                    }
+                    YAPI.Sleep(interval, ref _ErrMsg);
                 }
             });
-
         }
 
         /// <summary>

@@ -17,37 +17,36 @@ namespace WhatTheHelmRuntime
 {
     public partial class Rudder : Form
     {
-        Random portRpm = new Random(1100);
-        Random stbdRpm = new Random(1000);
         Pgn0x1F112 pgn0X1F112 = new Pgn0x1F112();
         Pgn0x1F200 pgn0x1F200 = new Pgn0x1F200();
-        int lastNMEA2000PortRpm;
-        int lastNMEA2000StbdRpm;
+        int _PortRpm;
+        int _StbdRpm;
         public Rudder()
         {
             InitializeComponent();
             Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
-            Program.YoctoPwmRx.NewData += YoctoPwmRx_NewData;
-            Timer t = new Timer();
-            t.Interval = 500;
-            t.Tick += T_Tick;
-            t.Start();
+            Program.YoctoPwmRx.NewInput1Data += YoctoPwmRx_NewInput1Data;
+            Program.YoctoPwmRx.NewInput2Data += YoctoPwmRx_NewInput2Data;
         }
 
-        private void YoctoPwmRx_NewData(object sender, YoctoPwmRxArgs e)
+        private void YoctoPwmRx_NewInput1Data(object sender, YoctoPwmRxArgs e)
         {
             if (Program.Configuration.RpmSource == RpmSource.YoctopuceUsb)
             {
-                int portRpm = Convert.ToInt32(Convert.ToDouble((e.Input1Hz * 60 / 4)));
-                int stbdRpm = Convert.ToInt32(Convert.ToDouble((e.Input2Hz * 60 / 4)));
+                _PortRpm = Convert.ToInt32(Convert.ToDouble((e.InputHz * 60 / 4)));
                 //Update sync display
-                SetSync(portRpm, stbdRpm);
+                SetSync(_PortRpm, _StbdRpm);
             }
         }
 
-        private void T_Tick(object sender, EventArgs e)
+        private void YoctoPwmRx_NewInput2Data(object sender, YoctoPwmRxArgs e)
         {
-            SetSync(portRpm.Next(1000, 1200),stbdRpm.Next(1000,1200));
+            if (Program.Configuration.RpmSource == RpmSource.YoctopuceUsb)
+            {
+                _StbdRpm = Convert.ToInt32(Convert.ToDouble((e.InputHz * 60 / 4)));
+                //Update sync display
+                SetSync(_PortRpm, _StbdRpm);
+            }
         }
 
         private void CanGateWayListener_NewMessage(object sender, CanLib.Messages.CanMessage e)
@@ -67,12 +66,12 @@ namespace WhatTheHelmRuntime
                 {
                     //Port Engine
                     if (pgn0x1F200.EngineInstance == 0)
-                        lastNMEA2000PortRpm = pgn0x1F200.EngineSpeed / 4;
+                        _PortRpm = pgn0x1F200.EngineSpeed / 4;
                     //Stbd Engine
                     else if (pgn0x1F200.EngineInstance == 1)
-                        lastNMEA2000StbdRpm = pgn0x1F200.EngineSpeed / 4;
+                        _StbdRpm = pgn0x1F200.EngineSpeed / 4;
                     //Update sync display
-                    SetSync(lastNMEA2000PortRpm, lastNMEA2000StbdRpm);
+                    SetSync(_PortRpm, _StbdRpm);
                 }
             }
         }
