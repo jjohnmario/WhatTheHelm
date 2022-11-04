@@ -12,12 +12,12 @@ using System.Timers;
 using System.Windows.Forms;
 using BoatFormsLib;
 using BoatFormsLib.CustomUserControls;
-using CanLib.Messages;
-using CanLib.ParameterGroups;
-using CanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.Mvec;
-using CanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.MVec;
-using CanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec;
-using CanLib.ParameterGroups.NMEA2000;
+using WhatTheHelmCanLib.Messages;
+using WhatTheHelmCanLib.ParameterGroups;
+using WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.Mvec;
+using WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.MVec;
+using WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec;
+using WhatTheHelmCanLib.ParameterGroups.NMEA2000;
 
 namespace WhatTheHelmRuntime
 {

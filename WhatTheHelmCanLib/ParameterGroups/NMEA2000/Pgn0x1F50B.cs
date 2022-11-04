@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace CanLib.ParameterGroups.NMEA2000
+namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
 {
     /// <summary>
     /// PGN:128267 Water Depth (With Transducer Offset)
     /// </summary>
     public class Pgn0x1F50B : ParameterGroup
     {
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {

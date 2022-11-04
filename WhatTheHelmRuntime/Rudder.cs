@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WhatTheHelmRuntime.NMEA0183.Sentences;
-using CanLib.ParameterGroups;
+using WhatTheHelmCanLib.ParameterGroups;
 using WhatTheHelmCanLib.ParameterGroups.NMEA2000;
-using CanLib.ParameterGroups.NMEA2000;
+using WhatTheHelmCanLib.ParameterGroups.NMEA2000;
 
 namespace WhatTheHelmRuntime
 {
@@ -49,7 +49,7 @@ namespace WhatTheHelmRuntime
             }
         }
 
-        private void CanGateWayListener_NewMessage(object sender, CanLib.Messages.CanMessage e)
+        private void CanGateWayListener_NewMessage(object sender, WhatTheHelmCanLib.Messages.CanMessage e)
         {
             //Engine Parameters (Rapid)
             if (e.ParameterGroupNumber == 127488)

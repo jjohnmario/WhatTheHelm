@@ -1,9 +1,9 @@
-﻿using CanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.Mvec;
+﻿using WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.Mvec;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.MVec
+namespace WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.MVec
 {
     /// <summary>
     /// PGN: 61184 Cooper-Bussman mVEC Command PGN
@@ -36,11 +36,11 @@ namespace CanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.MVec
             }
         }
 
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {
-                return 0x0EF00 + DestinationAddress;
+                return (uint)0x0EF00 + DestinationAddress;
 
             }
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups.NMEA2000
+namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
 {
     /// <summary>
     /// Represents a NMEA 2000 parameter group.

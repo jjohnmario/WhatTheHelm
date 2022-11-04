@@ -1,10 +1,10 @@
-﻿using CanLib.Messages;
-using CanLib.ParameterGroups;
+﻿using WhatTheHelmCanLib.Messages;
+using WhatTheHelmCanLib.ParameterGroups;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.Devices
+namespace WhatTheHelmCanLib.Devices
 {
     /// <summary>
     /// Represents a generic CAN gateway.
@@ -35,11 +35,11 @@ namespace CanLib.Devices
         /// <summary>
         /// Opens a connection to the CAN gateway device.
         /// </summary>
-        public abstract void Open();
+        public abstract bool Open();
         /// <summary>
         /// Closes all connections to the CAN gateway device.
         /// </summary>
-        public abstract void Close();
+        public abstract bool Close();
         /// <summary>
         /// Serializes the CAN message and writes the result to the CAN gateway.
         /// </summary>

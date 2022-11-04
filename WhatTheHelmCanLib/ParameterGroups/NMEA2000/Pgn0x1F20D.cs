@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups.NMEA2000
+namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
 {
     public enum IndicatorBankStatus { Off=0, On=1, Error=2, Undefined=3 }
     /// <summary>
@@ -34,7 +34,7 @@ namespace CanLib.ParameterGroups.NMEA2000
             }
         }
 
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.Devices.Nmea2000
+namespace WhatTheHelmCanLib.Devices.Nmea2000
 {
     public class Nmea2000Device : CanDevice
     {

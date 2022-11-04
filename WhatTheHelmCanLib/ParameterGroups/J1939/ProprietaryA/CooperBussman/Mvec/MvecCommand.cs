@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.Mvec
+namespace WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.Mvec
 {
     /// <summary>
     /// Represents an enumeration of commands compatible with MVEC modules.

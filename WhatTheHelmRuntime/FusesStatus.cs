@@ -1,9 +1,9 @@
 ﻿using BoatFormsLib;
-using CanLib.Messages;
-using CanLib.ParameterGroups;
-using CanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.Mvec;
-using CanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.MVec;
-using CanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec;
+using WhatTheHelmCanLib.Messages;
+using WhatTheHelmCanLib.ParameterGroups;
+using WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.Mvec;
+using WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.MVec;
+using WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

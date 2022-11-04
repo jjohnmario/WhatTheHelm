@@ -1,4 +1,4 @@
-﻿using CanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec;
+﻿using WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

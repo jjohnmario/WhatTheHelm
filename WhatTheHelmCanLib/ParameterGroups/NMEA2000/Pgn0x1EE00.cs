@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CanLib.ParameterGroups.NMEA2000
+namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
 {
     public enum PgnList { ReceivePgnList, TransmitPgnList }
     /// <summary>
@@ -27,7 +27,7 @@ namespace CanLib.ParameterGroups.NMEA2000
             }
         }
 
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {

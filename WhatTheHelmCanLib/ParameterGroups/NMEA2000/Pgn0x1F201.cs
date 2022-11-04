@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace CanLib.ParameterGroups.NMEA2000
+namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
 {
     /// <summary>
     /// PGN:127489 Engine Parameters Dynamic
@@ -34,7 +34,7 @@ namespace CanLib.ParameterGroups.NMEA2000
             }
         }
 
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {

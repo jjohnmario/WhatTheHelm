@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec
+namespace WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec
 {
     /// <summary>
     /// Fuse status of a single fuse in an MVEC module grid.
@@ -39,7 +39,7 @@ namespace CanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec
             }
         }
 
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {

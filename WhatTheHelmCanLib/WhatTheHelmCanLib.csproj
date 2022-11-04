@@ -5,11 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ActisenseLibs\Actisense API CS Wrapper.pdb" />
     <None Remove="Devices\yapi.dll" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.IO.Ports" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Actisense API CS Wrapper">
+      <HintPath>ActisenseLibs\Actisense API CS Wrapper.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.Devices
+namespace WhatTheHelmCanLib.Devices
 {
     /// <summary>
     /// Represents a CAN controller application (CA)

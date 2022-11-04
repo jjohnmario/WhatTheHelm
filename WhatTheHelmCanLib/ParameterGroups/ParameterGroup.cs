@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text;
 using System.Linq;
 
-namespace CanLib.ParameterGroups
+namespace WhatTheHelmCanLib.ParameterGroups
 {
     public enum PgnType { J3919, NMEA2000 }
     public enum UomSystem { Metric, Imperial }
@@ -32,7 +32,7 @@ namespace CanLib.ParameterGroups
         /// <summary>
         /// Parameter Group Number
         /// </summary>
-        public abstract int Pgn { get; }
+        public abstract uint Pgn { get; }
         /// <summary>
         /// Indicates whether the PGN targets a single CAN node or is broadcasted to all nodes on the CAN network.
         /// </summary>
@@ -66,7 +66,7 @@ namespace CanLib.ParameterGroups
         /// </summary>
         /// <param name="parameterGroupNumber">The parameter group number of the desired object</param>
         /// <returns></returns>
-        public static ParameterGroup GetPgnType(int parameterGroupNumber)
+        public static ParameterGroup GetPgnType(uint parameterGroupNumber)
         {
             lock (Lock)
             {

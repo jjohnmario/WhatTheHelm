@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.Mvec
+namespace WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.Mvec
 {
     /// <summary>
     /// Creates an object reference to a command to return the MVEC software version number.

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups
+namespace WhatTheHelmCanLib.ParameterGroups
 {
     /// <summary>
     /// Represents a key value pair consisting of a parameter group field name and its value.

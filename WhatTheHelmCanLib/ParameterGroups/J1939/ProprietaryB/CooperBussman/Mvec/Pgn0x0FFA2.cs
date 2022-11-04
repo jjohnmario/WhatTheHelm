@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec
+namespace WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec
 {
     /// <summary>
     /// PGN: 65442 J1939 Proprietary B PGN - System Error Status
@@ -33,7 +33,7 @@ namespace CanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec
             }
         }
 
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {

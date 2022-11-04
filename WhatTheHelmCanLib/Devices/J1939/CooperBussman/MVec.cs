@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.Devices.J1939.CooperBussman
+namespace WhatTheHelmCanLib.Devices.J1939.CooperBussman
 {
     public class MVec : CanDevice
     {

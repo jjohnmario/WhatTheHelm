@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.Messages
+namespace WhatTheHelmCanLib.Messages
 {
     public class CanMessageArgs : EventArgs
     {

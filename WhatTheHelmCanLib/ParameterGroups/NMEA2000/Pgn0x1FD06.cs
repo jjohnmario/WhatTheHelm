@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups.NMEA2000
+namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
 {
     /// <summary>
     /// PGN:130310 Environmental Parameters (Water Temperature)
     /// </summary>
     public class Pgn0x1FD06 : Nmea2000ParameterGroup
     {
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {

@@ -1,16 +1,16 @@
-﻿using CanLib.Devices.Nmea2000;
+﻿using WhatTheHelmCanLib.Devices.Nmea2000;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups.NMEA2000
+namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
 {
     /// <summary>
     /// PGN:126996 Product Information
     /// </summary>
     public class Pgn0x1F014 : Nmea2000ParameterGroup
     {
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {

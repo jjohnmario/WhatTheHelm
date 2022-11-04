@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec
+namespace WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec
 {
     /// <summary>
     /// Relay status of a single relay in an MVEC module grid.
@@ -87,7 +87,7 @@ namespace CanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec
             }
         }
 
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {

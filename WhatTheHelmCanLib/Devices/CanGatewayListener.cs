@@ -1,6 +1,6 @@
-﻿using CanLib.Messages;
-using CanLib.ParameterGroups;
-using CanLib.ParameterGroups.NMEA2000;
+﻿using WhatTheHelmCanLib.Messages;
+using WhatTheHelmCanLib.ParameterGroups;
+using WhatTheHelmCanLib.ParameterGroups.NMEA2000;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CanLib.Devices
+namespace WhatTheHelmCanLib.Devices
 {
     /// <summary>
     /// Listens for messages from a specific CAN gateway.
@@ -35,7 +35,7 @@ namespace CanLib.Devices
         /// <summary>
         /// A list of PGNs to be evaluated.  PGNs not in this list will be ignored.
         /// </summary>
-        public List<int> PgnFilter { get; } = new List<int>();
+        public List<uint> PgnFilter { get; } = new List<uint>();
 
         /// <summary>
         /// When true, only PGNs in the filter will be evaluated.
@@ -58,7 +58,7 @@ namespace CanLib.Devices
         /// </summary>
         /// <param name="canGateway">The CAN gateway to which the listener is to be bound.</param>
         /// <param name="pgnFilter">A list of PGNs to be evaluated. PGNs not in this list will be ignored.</param>
-        public CanGateWayListener(CanGateway canGateway, List<int> pgnFilter)
+        public CanGateWayListener(CanGateway canGateway, List<uint> pgnFilter)
         {
             PgnFilterEnabled = true;
             PgnFilter = pgnFilter;

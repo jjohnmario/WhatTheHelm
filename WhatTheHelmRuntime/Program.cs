@@ -1,6 +1,6 @@
-﻿using CanLib.Devices;
-using CanLib.Devices.Nmea2000;
-using CanLib.Devices.Nmea2000.GridConnect;
+﻿using WhatTheHelmCanLib.Devices;
+using WhatTheHelmCanLib.Devices.Nmea2000;
+using WhatTheHelmCanLib.Devices.Nmea2000.GridConnect;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

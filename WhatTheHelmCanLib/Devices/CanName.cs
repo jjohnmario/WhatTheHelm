@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.Devices
+namespace WhatTheHelmCanLib.Devices
 {
     /// <summary>
     /// Represents the NAME property, which is used to uniquely identify a single J1939 CAN node on a CAN network

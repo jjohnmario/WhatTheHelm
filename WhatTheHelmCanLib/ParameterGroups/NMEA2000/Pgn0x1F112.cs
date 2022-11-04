@@ -1,4 +1,4 @@
-﻿using CanLib.ParameterGroups;
+﻿using WhatTheHelmCanLib.ParameterGroups;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -34,7 +34,7 @@ namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
             }
         }
 
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {

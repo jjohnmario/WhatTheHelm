@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.Mvec
+namespace WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.Mvec
 {
     /// <summary>
     /// Represents and enumeration of possible relay state commands.

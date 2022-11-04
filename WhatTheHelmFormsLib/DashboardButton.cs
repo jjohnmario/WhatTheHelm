@@ -10,8 +10,8 @@ using System.Windows.Forms;
 using System.Linq.Expressions;
 using System.ComponentModel.Design;
 using System.Drawing.Design;
-using CanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.Mvec;
-using CanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec;
+using WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.Mvec;
+using WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryB.CooperBussman.Mvec;
 using System.Collections;
 
 namespace BoatFormsLib.CustomUserControls

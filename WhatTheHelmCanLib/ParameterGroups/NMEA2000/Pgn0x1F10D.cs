@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups.NMEA2000
+namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
 {
     public enum RudderDirectionOrder { No_Direction_Order, Move_To_Starboard, Move_To_Port }
     /// <summary>
@@ -34,7 +34,7 @@ namespace CanLib.ParameterGroups.NMEA2000
             }
         }
 
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {

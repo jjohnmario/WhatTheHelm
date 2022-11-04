@@ -1,7 +1,7 @@
-﻿using CanLib.Messages;
-using CanLib.ParameterGroups;
-using CanLib.ParameterGroups.J1939;
-using CanLib.ParameterGroups.NMEA2000;
+﻿using WhatTheHelmCanLib.Messages;
+using WhatTheHelmCanLib.ParameterGroups;
+using WhatTheHelmCanLib.ParameterGroups.J1939;
+using WhatTheHelmCanLib.ParameterGroups.NMEA2000;
 using WhatTheHelmRuntime;
 using System;
 using System.Drawing;
@@ -69,7 +69,7 @@ namespace WhatTheHelmRuntime
             }
         }
 
-        private void CanGateWayListener_NewMessage(object sender, CanLib.Messages.CanMessage e)
+        private void CanGateWayListener_NewMessage(object sender, WhatTheHelmCanLib.Messages.CanMessage e)
         {
             //Update last bus read event timestamp
             lastBusMessage = DateTime.Now;

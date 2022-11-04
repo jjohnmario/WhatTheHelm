@@ -1,6 +1,6 @@
-﻿using CanLib.Messages;
-using CanLib.ParameterGroups;
-using CanLib.ParameterGroups.NMEA2000;
+﻿using WhatTheHelmCanLib.Messages;
+using WhatTheHelmCanLib.ParameterGroups;
+using WhatTheHelmCanLib.ParameterGroups.NMEA2000;
 using System;
 using System.Collections.Generic;
 using System.IO.Ports;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CanLib.Devices.Nmea2000.GridConnect
+namespace WhatTheHelmCanLib.Devices.Nmea2000.GridConnect
 {
     /// <summary>
     /// Represents a connected GridConnect CAN232FD gateway.
@@ -100,7 +100,7 @@ namespace CanLib.Devices.Nmea2000.GridConnect
             }
         }
 
-        public override void Open()
+        public override bool Open()
         {
             try
             {
@@ -114,23 +114,25 @@ namespace CanLib.Devices.Nmea2000.GridConnect
                 //    throw t.Exception;
                 //},
                 //TaskContinuationOptions.OnlyOnFaulted);
+                return true;
             }
             catch
             {
-                throw;
+                return false;
             }
         }
 
-        public override void Close()
+        public override bool Close()
         {
             try
             {
                 _serialPort.Close();
                 _scanMainMessageQueue = false;
+                return true;
             }
             catch
             {
-                throw;
+                return false;
             }
         }
 
@@ -160,7 +162,7 @@ namespace CanLib.Devices.Nmea2000.GridConnect
                     string pgnByte2Bin = Convert.ToString(canMessage.Id[1], 2).PadLeft(8, '0');
                     string pgnByte3Bin = Convert.ToString(canMessage.Id[2], 2).PadLeft(8, '0');
                     string pgnAssembledBytesBin = string.Concat(pgnByte1Bin, pgnByte2Bin, pgnByte3Bin);
-                    int pgn = Convert.ToInt32(pgnAssembledBytesBin, 2);
+                    uint pgn = Convert.ToUInt32(pgnAssembledBytesBin, 2);
                     //Source Address
                     ushort sourceAddress = canMessage.Id[3];
                     //Data

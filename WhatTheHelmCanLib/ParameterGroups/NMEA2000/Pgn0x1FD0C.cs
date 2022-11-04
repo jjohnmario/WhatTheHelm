@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups.NMEA2000
+namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
 {
     public enum TemperatureSourceExtended { Sea_Temperature , Outside_Temperature ,Inside_Temperature, Engine_Room_Temperature, Main_Cabin_Temperature, Live_Well_Temperature, Bait_Well_Temperature , Refridgeration_Temperature , Heating_System_Temperature , Dew_Point_Temperature , Wind_Chill_Temperature_Apparent, Wind_Chill_Temperature_Theoretical, Heat_Index_Temperature, Freezer_Temperature, Exhaust_Gas_Temperature }
     /// <summary>
@@ -35,7 +35,7 @@ namespace CanLib.ParameterGroups.NMEA2000
         }
 
 
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {

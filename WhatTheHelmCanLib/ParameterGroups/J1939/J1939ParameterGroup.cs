@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups.J1939
+namespace WhatTheHelmCanLib.ParameterGroups.J1939
 {
     /// <summary>
     /// Represents a J1939 parameter group.

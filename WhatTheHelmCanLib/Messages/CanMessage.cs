@@ -1,11 +1,11 @@
-﻿using CanLib.ParameterGroups;
-using CanLib.ParameterGroups.J1939;
-using CanLib.ParameterGroups.NMEA2000;
+﻿using WhatTheHelmCanLib.ParameterGroups;
+using WhatTheHelmCanLib.ParameterGroups.J1939;
+using WhatTheHelmCanLib.ParameterGroups.NMEA2000;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.Messages
+namespace WhatTheHelmCanLib.Messages
 {
     /// <summary>
     /// Enumeration of CAN message identifer types.
@@ -56,7 +56,7 @@ namespace CanLib.Messages
         /// <summary>
         /// The PGN scope of the message.
         /// </summary>
-        public int ParameterGroupNumber { get; private set; }
+        public uint ParameterGroupNumber { get; private set; }
         /// <summary>
         /// The data frame of the message.
         /// </summary>
@@ -71,7 +71,7 @@ namespace CanLib.Messages
         /// <param name="priority">Message priority (1-7)</param>
         /// <param name="sourceAddress">The CAN network address of the message producer.</param>
         /// <param name="data">The data frame of the CAN message</param>
-        public CanMessage(int parameterGroupNumber, Format format,int priority, ushort sourceAddress, byte[] data)
+        public CanMessage(uint parameterGroupNumber, Format format,int priority, ushort sourceAddress, byte[] data)
         {
             Format = format;
             Priority = priority;

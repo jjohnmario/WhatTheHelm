@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace CanLib.ParameterGroups.J1939
+namespace WhatTheHelmCanLib.ParameterGroups.J1939
 {
     /// <summary>
     /// PGN: 059904 J1939 Request
@@ -38,7 +38,7 @@ namespace CanLib.ParameterGroups.J1939
             }
         }
 
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {
@@ -57,13 +57,13 @@ namespace CanLib.ParameterGroups.J1939
         /// <summary>
         /// Represents the base PGN with the LSB replaced with the destination address of the intended CAN node.
         /// </summary>
-        public int MessagePgn
+        public uint MessagePgn
         {
             get
             {
                 byte[] pgn = BitConverter.GetBytes(Pgn);
                 pgn[0] = DestinationAddress;
-                return BitConverter.ToInt32(pgn, 0);
+                return BitConverter.ToUInt32(pgn, 0);
             }
         }
 
@@ -108,7 +108,7 @@ namespace CanLib.ParameterGroups.J1939
             string byteToBin2 = Convert.ToString(data[1], 2).PadLeft(8, '0');
             string byteToBin3 = Convert.ToString(data[2], 2).PadLeft(8, '0');
             string concat = string.Concat(byteToBin3,byteToBin2,byteToBin1);
-            var reqPgn = Convert.ToInt32(concat, 2);
+            var reqPgn = Convert.ToUInt32(concat, 2);
             return GetPgnType(reqPgn);
         }
 

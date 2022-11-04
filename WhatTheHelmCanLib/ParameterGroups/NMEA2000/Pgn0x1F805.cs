@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups.NMEA2000
+namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
 {
     public enum GnssType { GPS,GLONASS,GPS_AND_GLONASS,GPS_AND_SBAS_OR_WASS, GPS_AND_SBAS_OR_WASS_AND_GLONASS,CHAYKA,INTEGRATED,SURVEYED,GALILEO }
     public enum GnssMethod { NO_GNSS,GNSS_FIX,DGNSS_FIX,PRECISE_GNSS,RTK_FIXED_INTEGER,RTK_FLOAT,ESTIMATED_DR_MODE,MANUAL_INPUT,SIMULATE_MODE }
@@ -37,7 +37,7 @@ namespace CanLib.ParameterGroups.NMEA2000
         }
 
 
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {

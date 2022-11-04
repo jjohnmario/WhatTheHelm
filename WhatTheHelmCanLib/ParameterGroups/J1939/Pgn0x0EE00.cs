@@ -1,9 +1,9 @@
-﻿using CanLib.Devices;
+﻿using WhatTheHelmCanLib.Devices;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups.J1939
+namespace WhatTheHelmCanLib.ParameterGroups.J1939
 {
     /// <summary>
     /// PGN: 060928 (0x0EE00) Address Claimed Message
@@ -17,7 +17,7 @@ namespace CanLib.ParameterGroups.J1939
                 return false;
             }
         }
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {

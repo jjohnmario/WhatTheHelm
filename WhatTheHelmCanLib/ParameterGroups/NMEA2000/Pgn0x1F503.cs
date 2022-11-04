@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CanLib.ParameterGroups.NMEA2000
+namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
 {
     /// <summary>
     /// PGN:128259 Speed (Speed Water Reference)
     /// </summary>
     public class Pgn0x1F503 : Nmea2000ParameterGroup
     {
-        public override int Pgn
+        public override uint Pgn
         {
             get
             {

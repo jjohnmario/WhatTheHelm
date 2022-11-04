@@ -1,8 +1,8 @@
-﻿using CanLib.Devices.Nmea2000;
-using CanLib.Messages;
-using CanLib.ParameterGroups;
-using CanLib.ParameterGroups.J1939;
-using CanLib.ParameterGroups.NMEA2000;
+﻿using WhatTheHelmCanLib.Devices.Nmea2000;
+using WhatTheHelmCanLib.Messages;
+using WhatTheHelmCanLib.ParameterGroups;
+using WhatTheHelmCanLib.ParameterGroups.J1939;
+using WhatTheHelmCanLib.ParameterGroups.NMEA2000;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CanLib.Devices
+namespace WhatTheHelmCanLib.Devices
 {
     /// <summary>
     /// Handles ISO requests from connected CAN devices and optionally facilitates requests to connected CAN devices from the host.
@@ -122,7 +122,7 @@ namespace CanLib.Devices
 
                     switch(requestedParameterGroup.Pgn)
                     {
-                        case int n when (n <= 0x0EEFF && n >= 0x0EE00):
+                        case uint n when (n <= 0x0EEFF && n >= 0x0EE00):
                             {
                                 Pgn0x0EE00 response = new Pgn0x0EE00(CanGateway.Name);
                                 CanMessage responseMsg = new CanMessage(response.Pgn, Format.EXTENDED, 3, CanGateway.Address, response.SerializeFields());
