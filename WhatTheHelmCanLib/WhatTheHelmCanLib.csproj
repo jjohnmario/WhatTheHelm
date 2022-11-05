@@ -5,8 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ActisenseLibs\Actisense API CS Wrapper.dll" />
     <None Remove="ActisenseLibs\Actisense API CS Wrapper.pdb" />
+    <None Remove="ActisenseLibs\ActisenseComms.dll" />
     <None Remove="Devices\yapi.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ActisenseLibs\Actisense API CS Wrapper.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ActisenseLibs\ActisenseComms.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

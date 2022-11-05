@@ -214,6 +214,9 @@
     <None Include="Resources\WhatTheHelmLogo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ActisenseComms.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="iconfinder_Travel-Filled-21_3671972.ico" />
     <None Include="Resources\satellite-48.png" />
     <Content Include="Resources\TF014.WAV" />

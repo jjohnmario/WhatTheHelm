@@ -88,7 +88,7 @@ namespace WhatTheHelmCanLib.ParameterGroups
                 }
                 catch(Exception e)
                 {
-                    throw;
+                    return null;
                 }
 
             }

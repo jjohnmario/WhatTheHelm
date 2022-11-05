@@ -48,11 +48,17 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
         public override bool Close()
         {
             AComms.Close(_actiHandle);
+            _scanMainMessageQueue = false;
             return true;
         }
 
         public override bool Open()
         {
+            _scanMainMessageQueue = true;
+            /* API Create call creates a new instance of the ActisenseComms library */
+            _error = AComms.Create(out _actiHandle);
+            if (_error != ARLErrorCodes_t.ES_NoError)
+                return false;
             //API Open opens the requested port at the requested baud rate
             uint _portNumber = Convert.ToUInt16(_serialPort.PortName.TrimStart('C', 'O', 'M'));
             _error = AComms.Open(_actiHandle, Convert.ToInt16(_portNumber), _serialPort.BaudRate);
@@ -73,51 +79,26 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
             return true;
         }
 
-        void N2kRxCallbackHandler(IntPtr UserData)
+        private void N2kRxCallbackHandler(IntPtr UserData)
         {
             /* NMEA2K.Read calls the ActisenseComms API to obtain the new N2K
               * message that has just been received */
             NMEA2K.N2KMsg_s msg;
             _error = NMEA2K.Read(_actiHandle, out msg);
-            _mainMessageQueue.Enqueue(msg);
-
-        }
-
-        private void ScanMainMessageQueue()
-        {
-            try
+            if (MessageRecieved != null)
             {
-                while (_scanMainMessageQueue)
-                {
-                    if (_mainMessageQueue.Count > 0)
-                    {
-                        var message = _mainMessageQueue.Dequeue();
-                        if (MessageRecieved != null)
-                        {
-                            try
-                            {
-                                var parsedMessage = Parse(message);
-                                MessageRecieved.Invoke(this, new CanMessageArgs() { Message = parsedMessage });
-                            }
-                            catch
-                            {
+                var parsedMessage = Parse(msg);
+                MessageRecieved.Invoke(this, new CanMessageArgs() { Message = parsedMessage });
+            }
 
-                            }
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                _mainMessageQueue.Clear();
-                ScanMainMessageQueue();
-            }
         }
 
         public override CanMessage Parse(object message)
         {
             var msg = (NMEA2K.N2KMsg_s)message;
-            return new CanMessage(msg.PGN,Format.EXTENDED,msg.Priority,msg.Src,msg.Data);
+            byte[] data = new byte[msg.Size];
+            Array.Copy(msg.Data, data, msg.Size);
+            return new CanMessage(msg.PGN,Format.EXTENDED,msg.Priority,msg.Src,data);
         }
 
         public override void Write(CanMessage message)

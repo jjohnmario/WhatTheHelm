@@ -16,12 +16,14 @@ using WhatTheHelmFormsLib;
 using WhatTheHelmRuntime;
 using WhatTheHelmRuntime.NMEA0183;
 using XMLhelper;
+using WhatTheHelmCanLib.Devices.NMEA2000.Actisense;
 
 namespace WhatTheHelmRuntime
 {
     static class Program
     {
-        public static Can232Fd CanGateway { get; set; }
+        //public static Can232Fd CanGateway { get; set; }
+        public static Ngt1 CanGateway { get; set; }
         public static CanGateWayListener CanGateWayListener { get; set; }
         public static CanRequestHandler CanRequestHandler { get; set; }
         public static YoctoPwmRx YoctoPwmRx { get; set; }
@@ -42,10 +44,14 @@ namespace WhatTheHelmRuntime
                 //Initialize CAN adapter and J1939/NMEA200 listener
                 CanName name = new CanName(false, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
                 ProductInformation productInformation = new ProductInformation(22, 33, "What The Helm?", "v1.0.0", "1.0.0", "01229330JJF", 1, 2);
-                SerialPort serialPort = new SerialPort("COM1", 115200, Parity.None, 8, StopBits.One) { NewLine = ";" };
-                CanGateway = new Can232Fd(serialPort, 0, name, productInformation);
+                //SerialPort serialPort = new SerialPort("COM1", 115200, Parity.None, 8, StopBits.One) { NewLine = ";" };
+                SerialPort serialPort = new SerialPort("COM4", 115200, Parity.None, 8, StopBits.One);
+
+                //CanGateway = new Can232Fd(serialPort, 0, name, productInformation);
+                CanGateway = new Ngt1(serialPort, 55);
+
                 if (Configuration.PgnFilter.Count != 0)                
-                    CanGateWayListener = new CanGateWayListener(CanGateway, Configuration.PgnFilter);
+                    CanGateWayListener = new CanGateWayListener(CanGateway);
                 else               
                     CanGateWayListener = new CanGateWayListener(CanGateway);
                 CanGateWayListener.Start();
@@ -110,10 +116,10 @@ namespace WhatTheHelmRuntime
                 }
                 catch
                 {
-                    //PortGauges portGauges = new PortGauges();
-                    //Application.Run(portGauges);
-                    Rudder rudder = new Rudder();
-                    Application.Run(rudder);
+                    PortGauges portGauges = new PortGauges();
+                    Application.Run(portGauges);
+                    //Rudder rudder = new Rudder();
+                    //Application.Run(rudder);
 
                 }
             }
