@@ -47,7 +47,7 @@ namespace WhatTheHelmRuntime
             InitializeComponent();
             this.MinimumSize = new Size() { Height = 800, Width = 1280 };
             this.MaximumSize = new Size() { Height = 800, Width = 1280 };
-            Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
+            //Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
             Program.YoctoPwmRx.NewInput2Data += YoctoPwmRx_NewData;
             Timer pgnTimeoutTimer = new Timer();
             pgnTimeoutTimer.Interval = 5000;

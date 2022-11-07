@@ -122,7 +122,6 @@ namespace WhatTheHelmCanLib.Devices
                         if (NewMessage != null)
                             NewMessage.Invoke(this, message);
                     }
-                    Thread.Sleep(5);
                 }
             }
             catch

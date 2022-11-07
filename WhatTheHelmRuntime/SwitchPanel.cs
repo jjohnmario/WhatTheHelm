@@ -33,7 +33,7 @@ namespace WhatTheHelmRuntime
             this.MaximumSize = new Size() { Height = 480, Width = 800 };
 
             //Subscribe to CAN messages
-            Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
+            //Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
 
             //Perform intial scan of relay states of MVEC-1
             MvecCommand0x96 cmd1 = new MvecCommand0x96(0);

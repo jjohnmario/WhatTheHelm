@@ -24,7 +24,7 @@ namespace WhatTheHelmRuntime
         public Rudder()
         {
             InitializeComponent();
-            Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
+            //Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
             Program.YoctoPwmRx.NewInput1Data += YoctoPwmRx_NewInput1Data;
             Program.YoctoPwmRx.NewInput2Data += YoctoPwmRx_NewInput2Data;
         }

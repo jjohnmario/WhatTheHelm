@@ -52,17 +52,17 @@ namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
         /// <summary>
         /// Represents the voltage measurement of the battery instance in volts * 0.01.
         /// </summary>
-        public ushort Voltage { get; private set; }
+        public double Voltage { get; private set; }
 
         /// <summary>
         /// Represents the current measurement of the battery instance in amperes * 0.01.
         /// </summary>
-        public ushort Current { get; private set; }
+        public double Current { get; private set; }
 
         /// <summary>
         /// Represents the temperature of the battery instance in Kelvin * 0.01
         /// </summary>
-        public ushort Temperature { get; private set; }
+        public double Temperature { get; private set; }
 
         /// <summary>
         /// Sequence Identifier (optional)
@@ -75,13 +75,13 @@ namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
             BatteryInstance = data[0];
 
             //Voltage
-            Voltage = BitConverter.ToUInt16(data, 1);
+            Voltage = BitConverter.ToUInt16(data, 1) * 0.01;
 
             //Current
-            Current = BitConverter.ToUInt16(data, 3);
+            Current = BitConverter.ToUInt16(data, 3) * 0.01;
 
             //Temperature
-            Temperature = BitConverter.ToUInt16(data, 5);
+            Temperature = BitConverter.ToUInt16(data, 5) * 0.01;
 
             //SID (Optional)
             if (data.Length > 7)

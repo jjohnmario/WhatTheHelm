@@ -14,6 +14,7 @@ using ActisenseComms.API;
 using static ActisenseComms.API.Decode;
 using static ActisenseComms.API.NMEA2K;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
 {
@@ -24,32 +25,31 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
     public class Ngt1 : Nmea2000Gateway
     {
         public int MessageQueueCount { get => _mainMessageQueue.Count; }
+        public List<uint> RxPgnList { get; }
+        public DateTime LastRead { get; private set; }
+        public override event EventHandler<CanMessageArgs> MessageRecieved;
         private SerialPort _serialPort;
         private Queue<NMEA2K.N2KMsg_s> _mainMessageQueue = new Queue<NMEA2K.N2KMsg_s>();
         private bool _scanMainMessageQueue = false;
-        private bool _read = false;
         private int _actiHandle;
         private ARLErrorCodes_t _error;       /* Error value returned by ActisenseComms API function calls */
-        private NMEA2K.N2KMsg_s _n2KMsg; /* Single N2K message buffer */
+        private ActisenseComms.API.Callback _n2kRxCallback;
+        private object _parseLock = new object();
 
         /// <summary>
         /// Creates an object reference to an Actisense NGT-1 gateway and binds it to the defined CAN network address and serial port.
         /// </summary>
         /// <param name="serialPort">The host serial port to which the NGT-1 gateway is connected.</param>
         /// <param name="address">The CAN network address to assign the NGT-1 gateway.</param>
-        public Ngt1(SerialPort serialPort, ushort address) : base(address)
+        public Ngt1(SerialPort serialPort, ushort address, List<uint> rxPgnList) : base(address)
         {
             _serialPort = serialPort;
-            //_SerialPort.DataReceived += SerialPort_DataReceived;
+            RxPgnList = rxPgnList;
         }
 
-        public override event EventHandler<CanMessageArgs> MessageRecieved;
-
-        public override bool Close()
+        public override void Dispose()
         {
-            AComms.Close(_actiHandle);
-            _scanMainMessageQueue = false;
-            return true;
+            AComms.DestroyAll();
         }
 
         public override bool Open()
@@ -65,7 +65,8 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
             if (_error != ARLErrorCodes_t.ES_NoError)
                 return false;
             //Assign callback method for when a new N2K message is recieved
-            _error = NMEA2K.SetRxCallback(_actiHandle, new ActisenseComms.API.Callback(N2kRxCallbackHandler), new IntPtr(0));
+            _n2kRxCallback = new ActisenseComms.API.Callback(n2kRxCallbackHandler);
+            _error = NMEA2K.SetRxCallback(_actiHandle, _n2kRxCallback, new IntPtr(0));
             if (_error != ARLErrorCodes_t.ES_NoError)
                 return false;
             IntPtr cPortName = AComms.EnumerateSerialPortsGetName(_portNumber);
@@ -76,29 +77,62 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
                 if (_error != ARLErrorCodes_t.ES_NoError)
                     return false;
             }
+            Task.Run(() => scanMainMessageQueue()).ContinueWith((t) => {
+                if (t.IsFaulted)
+                    Task.Run(() => scanMainMessageQueue());
+            });
             return true;
         }
 
-        private void N2kRxCallbackHandler(IntPtr UserData)
+        public override bool Close()
+        {
+            AComms.Close(_actiHandle);
+            _scanMainMessageQueue = false;
+            return true;
+        }
+
+        private void scanMainMessageQueue()
+        {
+            while (_scanMainMessageQueue)
+            {
+                Console.WriteLine(_mainMessageQueue.Count);
+                if (_mainMessageQueue.Count > 0)
+                {
+                    var message = _mainMessageQueue.Dequeue();
+                    if (MessageRecieved != null)
+                    {
+                        var parsedMessage = Parse(message);
+                        if(parsedMessage != null)
+                            MessageRecieved.Invoke(this, new CanMessageArgs() { Message = parsedMessage });
+                    }
+                }
+            }
+        }
+
+        private void n2kRxCallbackHandler(IntPtr UserData)
         {
             /* NMEA2K.Read calls the ActisenseComms API to obtain the new N2K
               * message that has just been received */
+            LastRead = DateTime.Now;
             NMEA2K.N2KMsg_s msg;
             _error = NMEA2K.Read(_actiHandle, out msg);
-            if (MessageRecieved != null)
-            {
-                var parsedMessage = Parse(msg);
-                MessageRecieved.Invoke(this, new CanMessageArgs() { Message = parsedMessage });
-            }
-
+            _mainMessageQueue.Enqueue(msg);
         }
 
         public override CanMessage Parse(object message)
         {
-            var msg = (NMEA2K.N2KMsg_s)message;
-            byte[] data = new byte[msg.Size];
-            Array.Copy(msg.Data, data, msg.Size);
-            return new CanMessage(msg.PGN,Format.EXTENDED,msg.Priority,msg.Src,data);
+            lock(_parseLock)
+            {
+                var msg = (NMEA2K.N2KMsg_s)message;
+                if (msg.Size != 0 && msg.Data != null)
+                {
+                    byte[] data = new byte[msg.Size];
+                    Array.Copy(msg.Data, 4, data, 0, msg.Size);
+                    return new CanMessage(msg.PGN, Format.EXTENDED, msg.Priority, msg.Src, data);
+                }
+                else
+                    return null;
+            }
         }
 
         public override void Write(CanMessage message)

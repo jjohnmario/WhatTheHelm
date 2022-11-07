@@ -80,6 +80,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Boot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Boot.Designer.cs">
+      <DependentUpon>Boot.cs</DependentUpon>
+    </Compile>
     <Compile Include="Configuration.cs" />
     <Compile Include="ConfigurationMenu.cs">
       <SubType>Form</SubType>
@@ -134,6 +140,9 @@
     <Compile Include="yocto_api\yocto_pwminput.cs" />
     <Compile Include="yocto_api\yocto_quadraturedecoder.cs" />
     <Compile Include="YoctoPwmRx.cs" />
+    <EmbeddedResource Include="Boot.resx">
+      <DependentUpon>Boot.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfigurationMenu.resx">
       <DependentUpon>ConfigurationMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -221,6 +230,7 @@
     <None Include="Resources\satellite-48.png" />
     <Content Include="Resources\TF014.WAV" />
     <Content Include="Resources\TF023.WAV" />
+    <None Include="Resources\trawler.jpg" />
     <Content Include="yapi.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -28,6 +28,9 @@
     <Reference Include="Actisense API CS Wrapper">
       <HintPath>ActisenseLibs\Actisense API CS Wrapper.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Windows.Forms.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

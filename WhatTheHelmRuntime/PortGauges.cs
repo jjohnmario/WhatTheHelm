@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Threading.Tasks;
+using System.Collections;
 
 namespace WhatTheHelmRuntime
 {
@@ -14,7 +16,6 @@ namespace WhatTheHelmRuntime
     {
         [DllImport("user32.dll", SetLastError = true)]
         private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
-
         protected override CreateParams CreateParams
         {
             get
@@ -24,18 +25,16 @@ namespace WhatTheHelmRuntime
                 return cp;
             }
         }
-
-        DateTime lastBusMessage = new DateTime();
-        DateTime pgn0x1F201LastMsg = new DateTime();
-        DateTime pgn0x1F205LastMsg = new DateTime();
-        DateTime pgn0x1F200LastMsg = new DateTime();
-        DateTime pgn0x1F20DLastMsg = new DateTime();
-        DateTime yoctopucePwmRxLastMsg = new DateTime();
-        IndicatorBankStatus[] SeaGaugeIndicatorStatus;
-        Pgn0x1F20D pgn0x1F20D = new Pgn0x1F20D();
-        Pgn0x1F200 pgn0x1F200 = new Pgn0x1F200();
-        Pgn0x1F205 pgn0x1F205 = new Pgn0x1F205();
-        Pgn0x1F201 pgn0x1F201 = new Pgn0x1F201();
+        private DateTime _pgn0x1F201LastMsg = new DateTime();
+        private DateTime _pgn0x1F205LastMsg = new DateTime();
+        private DateTime _pgn0x1F200LastMsg = new DateTime();
+        private DateTime _pgn0x1F20DLastMsg = new DateTime();
+        private IndicatorBankStatus[] _discreteStatus1 = new IndicatorBankStatus[16];
+        private Pgn0x1F20D _pgn0x1F20D = new Pgn0x1F20D();
+        private Pgn0x1F200 _pgn0x1F200 = new Pgn0x1F200();
+        private Pgn0x1F205 _pgn0x1F205 = new Pgn0x1F205();
+        private Pgn0x1F201 _pgn0x1F201 = new Pgn0x1F201();
+        private Pgn0x1F214 _pgn0x1F214 = new Pgn0x1F214();
 
         public PortGauges(List<KeyValuePair<Screen, Type>> screenMap)
         {
@@ -83,102 +82,94 @@ namespace WhatTheHelmRuntime
             InitializeComponent();
             this.MinimumSize = new Size() { Height = 800, Width = 1280 };
             this.MaximumSize = new Size() { Height = 800, Width = 1280 };
-            Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
-            Program.YoctoPwmRx.NewInput1Data += YoctoPwmRx_NewData;
+            Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
             Timer pgnTimeoutTimer = new Timer();
-            pgnTimeoutTimer.Interval = 5000;
+            pgnTimeoutTimer.Interval = 2000;
             pgnTimeoutTimer.Tick += PgnTimeoutTimer_Tick;
             pgnTimeoutTimer.Start();
             Timer alarmTimer = new Timer();
-            alarmTimer.Interval = 500;
+            alarmTimer.Interval = 100;
             alarmTimer.Tick += AlarmTimer_Tick;
             alarmTimer.Start();
+            Timer networkStatusTimer = new Timer();
+            networkStatusTimer.Interval = 100;
+            networkStatusTimer.Tick += NetworkStatusTimer_Tick;
+            networkStatusTimer.Start();
         }
 
-        private void YoctoPwmRx_NewData(object sender, YoctoPwmRxArgs e)
+        private void CanGateway_MessageRecieved(object sender, CanMessageArgs e)
         {
-            yoctopucePwmRxLastMsg = DateTime.Now;
-            if (Program.Configuration.RpmSource == RpmSource.YoctopuceUsb)
-            {
-                if (gaugePortRpm.IsHandleCreated)
-                    gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = Convert.ToDouble((e.InputHz * 60 / 4).ToString("0"))));
-            }
-        }
-
-        private void CanGateWayListener_NewMessage(object sender, WhatTheHelmCanLib.Messages.CanMessage e)
-        {
-            //Update last bus read event timestamp
-            lastBusMessage = DateTime.Now;
-
-            //Update last bus scan
-            if (lblLastBusScan.IsHandleCreated)
-            {
-                lblLastBusScan.Invoke(new MethodInvoker(() => lblLastBusScan.Text = DateTime.Now.ToString("HH:mm:ss")));
-            }
-
-            //Update CAN message queue count
-            if (lblCanMsgQueue.IsHandleCreated)
-            {
-                lblCanMsgQueue.Invoke(new MethodInvoker(() => lblCanMsgQueue.Text = Program.CanGateway.MessageQueueCount.ToString()));
-            }
-
-            //Update CAN fast packet queue count
-            if (lblFastPacketQueue.IsHandleCreated)
-            {
-                lblFastPacketQueue.Invoke(new MethodInvoker(() => lblFastPacketQueue.Text = Program.CanGateWayListener.FastPacketMessageQueue.Count.ToString()));
-            }
-
             //Binary switch status (from Seagauge)
-            if (e.ParameterGroupNumber == 127501)
+            if (e.Message.ParameterGroupNumber == 127501)
             {
-                pgn0x1F20DLastMsg = DateTime.Now;
-                pgn0x1F20D = (Pgn0x1F20D)pgn0x1F20D.DeserializeFields(e.Data).ToImperial();
-                SeaGaugeIndicatorStatus = pgn0x1F20D.IndicatorBankStatus;
+                _pgn0x1F20DLastMsg = DateTime.Now;
+                _pgn0x1F20D = (Pgn0x1F20D)_pgn0x1F20D.DeserializeFields(e.Message.Data).ToImperial();
+                _discreteStatus1 = _pgn0x1F20D.IndicatorBankStatus;
             }
 
             //Engine Parameters (Rapid)
-            if (e.ParameterGroupNumber == 127488)
+            if (e.Message.ParameterGroupNumber == 127488)
             {
-                pgn0x1F200LastMsg = DateTime.Now;
+                _pgn0x1F200LastMsg = DateTime.Now;
                 if (Program.Configuration.RpmSource == RpmSource.NMEA2000)
                 {
-                    pgn0x1F200 = (Pgn0x1F200)pgn0x1F200.DeserializeFields(e.Data).ToImperial();
+                    _pgn0x1F200 = (Pgn0x1F200)_pgn0x1F200.DeserializeFields(e.Message.Data).ToImperial();
 
                     //Port Engine
-                    if (pgn0x1F200.EngineInstance == 0)
+                    if (_pgn0x1F200.EngineInstance == 0)
                     {
                         if (gaugePortRpm.IsHandleCreated)
-                            gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = pgn0x1F200.EngineSpeed / 4));
+                            gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = _pgn0x1F200.EngineSpeed / 4));
                     }
                 }
             }
 
             //Transmission Parameters
-            if (e.ParameterGroupNumber == 127493)
+            if (e.Message.ParameterGroupNumber == 127493)
             {
-                pgn0x1F205LastMsg = DateTime.Now;
-                pgn0x1F205 = (Pgn0x1F205)pgn0x1F205.DeserializeFields(e.Data).ToImperial();
-                
+                _pgn0x1F205LastMsg = DateTime.Now;
+                _pgn0x1F205 = (Pgn0x1F205)_pgn0x1F205.DeserializeFields(e.Message.Data).ToImperial();
+
                 //Port Engine
-                if (pgn0x1F205.EngineInstance == 0)
+                if (_pgn0x1F205.EngineInstance == 0)
                 {
-                    gaugePortDrivePressure.Invoke(new MethodInvoker(() => { gaugePortDrivePressure.Value = Convert.ToDouble((pgn0x1F205.OilPressure).ToString("0")); }));
+                    gaugePortDrivePressure.Invoke(new MethodInvoker(() => { gaugePortDrivePressure.Value = Convert.ToDouble((_pgn0x1F205.OilPressure).ToString("0")); }));
                 }
             }
 
             //Engine Parameters (Dynamic)
-            if (e.ParameterGroupNumber == 127489)
+            if (e.Message.ParameterGroupNumber == 127489)
             {
-                pgn0x1F201LastMsg = DateTime.Now;
-                pgn0x1F201 = (Pgn0x1F201)pgn0x1F201.DeserializeFields(e.Data).ToImperial();
+                _pgn0x1F201LastMsg = DateTime.Now;
+                _pgn0x1F201 = (Pgn0x1F201)_pgn0x1F201.DeserializeFields(e.Message.Data).ToImperial();
 
                 //Port Engine
-                if (pgn0x1F201.EngineInstance == 0)
+                if (_pgn0x1F201.EngineInstance == 0)
                 {
-                    gaugePortWaterTemp.Invoke(new MethodInvoker(() => { gaugePortWaterTemp.Value = Convert.ToDouble(pgn0x1F201.EngineTemperature.ToString("0")); }));
-                    gaugePortOilPressure.Invoke(new MethodInvoker(() => { gaugePortOilPressure.Value = Convert.ToDouble(pgn0x1F201.OilPressure.ToString("0")); }));
-                    gaugePortVolts.Invoke(new MethodInvoker(() => { gaugePortVolts.Value = Convert.ToDouble(pgn0x1F201.AlternatorPotential.ToString("0.0")); }));
-                    lblPortHours.Invoke(new MethodInvoker(() => { lblPortHours.Text = pgn0x1F201.EngineHours.ToString("0.0") + " HRS"; }));
+                    //Alarm inputs
+                    var discreteInputs = new BitArray(new int[] { _pgn0x1F201.DiscreteStatus1 });
+                    _discreteStatus1[0] = (IndicatorBankStatus)Convert.ToUInt16(discreteInputs[0]);
+                    _discreteStatus1[1] = (IndicatorBankStatus)Convert.ToUInt16(discreteInputs[1]);
+                    _discreteStatus1[2] = (IndicatorBankStatus)Convert.ToUInt16(discreteInputs[2]);
+                    _discreteStatus1[3] = (IndicatorBankStatus)Convert.ToUInt16(discreteInputs[3]);
+                    //Water temp
+                    gaugePortWaterTemp.Invoke(new MethodInvoker(() => { gaugePortWaterTemp.Value = Convert.ToDouble(_pgn0x1F201.EngineTemperature.ToString("0")); }));
+                    //Oil pressure
+                    gaugePortOilPressure.Invoke(new MethodInvoker(() => { gaugePortOilPressure.Value = Convert.ToDouble(_pgn0x1F201.OilPressure.ToString("0")); }));
+                    //Engine hours
+                    lblPortHours.Invoke(new MethodInvoker(() => { lblPortHours.Text = _pgn0x1F201.EngineHours.ToString("0.0") + " HRS"; }));
+                }
+            }
+
+            //Battery Status
+            if (e.Message.ParameterGroupNumber == 127508)
+            {
+                _pgn0x1F214 = (Pgn0x1F214)_pgn0x1F214.DeserializeFields(e.Message.Data).ToImperial();
+
+                if(_pgn0x1F214.BatteryInstance == 200)
+                {
+                    //Volts
+                    gaugePortVolts.Invoke(new MethodInvoker(() => { gaugePortVolts.Value = _pgn0x1F214.Voltage; }));
                 }
             }
         }
@@ -189,7 +180,7 @@ namespace WhatTheHelmRuntime
             var dtNow = DateTime.Now;
 
             //Update Bus Status
-            var lastBusMessageEt = dtNow - lastBusMessage;
+            var lastBusMessageEt = dtNow - Program.CanGateway.LastRead;
             lblJ1939BustStatus.Invoke(new MethodInvoker(() =>
             {
                 if (lastBusMessageEt.TotalSeconds > 5)
@@ -204,52 +195,19 @@ namespace WhatTheHelmRuntime
                 }
             }));
 
-            //Alarm statuses
-            var pgn0x1F20DLastMsgEt = dtNow - pgn0x1F20DLastMsg;
-            if (pgn0x1F20DLastMsgEt.TotalSeconds > 5)
+            //Engine parameters rapid
+            var pgn0x1F200LastMsgEt = dtNow - _pgn0x1F200LastMsg;
+            if (pgn0x1F200LastMsgEt.TotalSeconds > 5)
             {
-                lblPortWaterTempHigh.Invoke(new MethodInvoker(() => lblPortWaterTempHigh.Hide()));
-                lblPortOilPressLow.Invoke(new MethodInvoker(() => lblPortOilPressLow.Hide()));
-                lblPortDriveTempHigh.Invoke(new MethodInvoker(() => lblPortDriveTempHigh.Hide()));
-                lblPortFuelPressLow.Invoke(new MethodInvoker(() => lblPortFuelPressLow.Hide()));
+                gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Hide()));
             }
             else
             {
-                lblPortWaterTempHigh.Invoke(new MethodInvoker(() => lblPortWaterTempHigh.Show()));
-                lblPortOilPressLow.Invoke(new MethodInvoker(() => lblPortOilPressLow.Show()));
-                lblPortDriveTempHigh.Invoke(new MethodInvoker(() => lblPortDriveTempHigh.Show()));
-                lblPortFuelPressLow.Invoke(new MethodInvoker(() => lblPortFuelPressLow.Show()));
+                gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Show()));
             }
-
-            //Engine parameters rapid
-            var pgn0x1F200LastMsgEt = dtNow - pgn0x1F200LastMsg;
-            var yoctopucePwmRxLastMsgEt = dtNow - yoctopucePwmRxLastMsg;
-            if (Program.Configuration.RpmSource == RpmSource.NMEA2000)
-            {
-                if (pgn0x1F200LastMsgEt.TotalSeconds > 5)
-                {
-                    gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Hide()));
-                }
-                else
-                {
-                    gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Show()));
-                }
-            }
-            else if (Program.Configuration.RpmSource == RpmSource.YoctopuceUsb)
-            {
-                if (yoctopucePwmRxLastMsgEt.TotalSeconds > 5)
-                {
-                    gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Hide()));
-
-                }
-                else
-                {
-                    gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Show()));
-                }
-            }
-
+            
             //Engine parameters dynamic
-            var pgn0x1F201LastMsgEt = dtNow - pgn0x1F201LastMsg;
+            var pgn0x1F201LastMsgEt = dtNow - _pgn0x1F201LastMsg;
             if (pgn0x1F201LastMsgEt.TotalSeconds > 5)
             {
                 gaugePortWaterTemp.Invoke(new MethodInvoker(() => { gaugePortWaterTemp.Hide(); }));
@@ -257,6 +215,10 @@ namespace WhatTheHelmRuntime
                 gaugePortVolts.Invoke(new MethodInvoker(() => { gaugePortVolts.Hide(); }));
                 lblPortVoltageLow.Invoke(new MethodInvoker(() => { lblPortVoltageLow.Hide(); }));
                 lblPortHours.Invoke(new MethodInvoker(() => { lblPortHours.Text = "--"; }));
+                lblPortWaterTempHigh.Invoke(new MethodInvoker(() => lblPortWaterTempHigh.Hide()));
+                lblPortOilPressLow.Invoke(new MethodInvoker(() => lblPortOilPressLow.Hide()));
+                lblPortDriveTempHigh.Invoke(new MethodInvoker(() => lblPortDriveTempHigh.Hide()));
+                lblPortFuelPressLow.Invoke(new MethodInvoker(() => lblPortFuelPressLow.Hide()));
             }
             else
             {
@@ -264,10 +226,14 @@ namespace WhatTheHelmRuntime
                 gaugePortOilPressure.Invoke(new MethodInvoker(() => { gaugePortOilPressure.Show(); }));
                 gaugePortVolts.Invoke(new MethodInvoker(() => { gaugePortVolts.Show(); }));
                 lblPortVoltageLow.Invoke(new MethodInvoker(() => { lblPortVoltageLow.Show(); }));
+                lblPortWaterTempHigh.Invoke(new MethodInvoker(() => lblPortWaterTempHigh.Show()));
+                lblPortOilPressLow.Invoke(new MethodInvoker(() => lblPortOilPressLow.Show()));
+                lblPortDriveTempHigh.Invoke(new MethodInvoker(() => lblPortDriveTempHigh.Show()));
+                lblPortFuelPressLow.Invoke(new MethodInvoker(() => lblPortFuelPressLow.Show()));
             }
 
             //Transmission parameters
-            var pgn0x1F205LastMsgEt = dtNow - pgn0x1F205LastMsg;
+            var pgn0x1F205LastMsgEt = dtNow - _pgn0x1F205LastMsg;
             if (pgn0x1F205LastMsgEt.TotalSeconds > 5)
             {
                 gaugePortDrivePressure.Invoke(new MethodInvoker(() => { gaugePortDrivePressure.Hide(); }));
@@ -281,7 +247,7 @@ namespace WhatTheHelmRuntime
         private void AlarmTimer_Tick(object sender, EventArgs e)
         {
             //Port alternator output voltage low
-            if(lblPortVoltageLow.IsHandleCreated)
+            if (lblPortVoltageLow.IsHandleCreated)
                 lblPortVoltageLow.Invoke(new MethodInvoker(() =>
                 {
                     if (gaugePortVolts.Value < 12.6)
@@ -294,9 +260,9 @@ namespace WhatTheHelmRuntime
             if (lblPortWaterTempHigh.IsHandleCreated)
                 lblPortWaterTempHigh.Invoke(new MethodInvoker(() =>
                 {
-                    if (SeaGaugeIndicatorStatus != null)
+                    if (_discreteStatus1 != null)
                     {
-                        if (SeaGaugeIndicatorStatus[5] == IndicatorBankStatus.Off)
+                        if (_discreteStatus1[0] == IndicatorBankStatus.Off)
                             lblPortWaterTempHigh.BackColor = Color.Red;
                         else
                             lblPortWaterTempHigh.BackColor = Color.FromArgb(56, 0, 0);
@@ -307,9 +273,9 @@ namespace WhatTheHelmRuntime
             if (lblPortOilPressLow.IsHandleCreated)
                 lblPortOilPressLow.Invoke(new MethodInvoker(() =>
                 {
-                    if (SeaGaugeIndicatorStatus != null)
+                    if (_discreteStatus1 != null)
                     {
-                        if (SeaGaugeIndicatorStatus[4] == IndicatorBankStatus.Off)
+                        if (_discreteStatus1[1] == IndicatorBankStatus.Off)
                             lblPortOilPressLow.BackColor = Color.Red;
                         else
                             lblPortOilPressLow.BackColor = Color.FromArgb(56, 0, 0);
@@ -320,9 +286,9 @@ namespace WhatTheHelmRuntime
             if (lblPortDriveTempHigh.IsHandleCreated)
                 lblPortDriveTempHigh.Invoke(new MethodInvoker(() =>
                 {
-                    if (SeaGaugeIndicatorStatus != null)
+                    if (_discreteStatus1 != null)
                     {
-                        if (SeaGaugeIndicatorStatus[6] == IndicatorBankStatus.Off)
+                        if (_discreteStatus1[2] == IndicatorBankStatus.Off)
                             lblPortDriveTempHigh.BackColor = Color.Red;
                         else
                             lblPortDriveTempHigh.BackColor = Color.FromArgb(56, 0, 0);
@@ -333,14 +299,29 @@ namespace WhatTheHelmRuntime
             if (lblPortFuelPressLow.IsHandleCreated)
                 lblPortFuelPressLow.Invoke(new MethodInvoker(() =>
                 {
-                    if (SeaGaugeIndicatorStatus != null)
+                    if (_discreteStatus1 != null)
                     {
-                        if (SeaGaugeIndicatorStatus[10] == IndicatorBankStatus.Off)
+                        if (_discreteStatus1[3] == IndicatorBankStatus.Off)
                             lblPortFuelPressLow.BackColor = Color.Red;
                         else
                             lblPortFuelPressLow.BackColor = Color.FromArgb(56, 0, 0);
                     }
                 }));
+        }
+
+        private void NetworkStatusTimer_Tick(object sender, EventArgs e)
+        {
+            //Update CAN message queue count
+            if (lblCanMsgQueue.IsHandleCreated)
+            {
+                lblCanMsgQueue.Invoke(new MethodInvoker(() => lblCanMsgQueue.Text = Program.CanGateway.MessageQueueCount.ToString()));
+            }
+
+            //Update last bus scan
+            if (lblLastBusScan.IsHandleCreated)
+            {
+                lblLastBusScan.Invoke(new MethodInvoker(() => lblLastBusScan.Text = Program.CanGateway.LastRead.ToString("HH:mm:ss:FFF")));
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)

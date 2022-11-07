@@ -148,10 +148,10 @@ namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
             DiscreteStatus2 = BitConverter.ToUInt16(data, 22);
 
             //Percent Engine Load
-            PercentEngineLoad = data[23];
+            PercentEngineLoad = data[24];
 
             //Percent Engine Tourque
-            PercentEngineTourque = data[24];
+            PercentEngineTourque = data[25];
 
             return this;
         }

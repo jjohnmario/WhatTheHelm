@@ -17,6 +17,7 @@ using WhatTheHelmRuntime;
 using WhatTheHelmRuntime.NMEA0183;
 using XMLhelper;
 using WhatTheHelmCanLib.Devices.NMEA2000.Actisense;
+using System.Security.AccessControl;
 
 namespace WhatTheHelmRuntime
 {
@@ -24,16 +25,19 @@ namespace WhatTheHelmRuntime
     {
         //public static Can232Fd CanGateway { get; set; }
         public static Ngt1 CanGateway { get; set; }
-        public static CanGateWayListener CanGateWayListener { get; set; }
+        //public static CanGateWayListener CanGateWayListener { get; set; }
         public static CanRequestHandler CanRequestHandler { get; set; }
         public static YoctoPwmRx YoctoPwmRx { get; set; }
         public static Configuration Configuration { get; set; }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             try
             {
                 //Load configuration file
@@ -48,27 +52,26 @@ namespace WhatTheHelmRuntime
                 SerialPort serialPort = new SerialPort("COM4", 115200, Parity.None, 8, StopBits.One);
 
                 //CanGateway = new Can232Fd(serialPort, 0, name, productInformation);
-                CanGateway = new Ngt1(serialPort, 55);
 
-                if (Configuration.PgnFilter.Count != 0)                
-                    CanGateWayListener = new CanGateWayListener(CanGateway);
-                else               
-                    CanGateWayListener = new CanGateWayListener(CanGateway);
-                CanGateWayListener.Start();
+                //Open NMEA 2000 gateway. If COM port is busy, wait and retry.
+                do
+                {
+                    if (CanGateway != null)
+                        CanGateway.Dispose();
+                    CanGateway = new Ngt1(serialPort, 55, null);
+                }
+                while (!CanGateway.Open());
 
-                CanRequestHandler = new CanRequestHandler(CanGateway);
-                CanRequestHandler.Start();
+                //if (Configuration.PgnFilter.Count != 0)                
+                //    CanGateWayListener = new CanGateWayListener(CanGateway);
+                //else               
+                //    CanGateWayListener = new CanGateWayListener(CanGateway);
+                //CanGateWayListener.Start();
 
-                //Initialize USB tachometer adapter (if not using NMEA 2000 tachometer inputs)
-                YoctoPwmRx = new YoctoPwmRx();
-                string msg;
-                if (YoctoPwmRx.Connect(out msg))
-                    YoctoPwmRx.StartScan(250);
-                else
-                    MessageBox.Show(msg, "Error");
+                //CanRequestHandler = new CanRequestHandler(CanGateway);
+                //CanRequestHandler.Start();
 
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
+
 
                 //Try to run the application across five screens.  Else run off one screen.
                 try

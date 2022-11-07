@@ -30,9 +30,9 @@ namespace WhatTheHelmRuntime
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PortGauges));
-            CodeArtEng.Gauge.Themes.ThemeColors themeColors4 = new CodeArtEng.Gauge.Themes.ThemeColors();
-            CodeArtEng.Gauge.Themes.ThemeColors themeColors5 = new CodeArtEng.Gauge.Themes.ThemeColors();
-            CodeArtEng.Gauge.Themes.ThemeColors themeColors6 = new CodeArtEng.Gauge.Themes.ThemeColors();
+            CodeArtEng.Gauge.Themes.ThemeColors themeColors1 = new CodeArtEng.Gauge.Themes.ThemeColors();
+            CodeArtEng.Gauge.Themes.ThemeColors themeColors2 = new CodeArtEng.Gauge.Themes.ThemeColors();
+            CodeArtEng.Gauge.Themes.ThemeColors themeColors3 = new CodeArtEng.Gauge.Themes.ThemeColors();
             this.lblPortHours = new System.Windows.Forms.Label();
             this.lblPortDriveTempHigh = new System.Windows.Forms.Label();
             this.lblPortVoltageLow = new System.Windows.Forms.Label();
@@ -49,8 +49,6 @@ namespace WhatTheHelmRuntime
             this.gaugePortVolts = new CodeArtEng.Gauge.CircularGauge();
             this.gaugePortDrivePressure = new CodeArtEng.Gauge.CircularGauge();
             this.gaugePortWaterTemp = new CodeArtEng.Gauge.CircularGauge();
-            this.lblFastPacketQueue = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
             this.lblCanMsgQueue = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.lblLastBusScan = new System.Windows.Forms.Label();
@@ -208,11 +206,11 @@ namespace WhatTheHelmRuntime
             this.gaugePortRpm.Theme = CodeArtEng.Gauge.GaugeTheme.DarkGrey;
             this.gaugePortRpm.Title = "";
             this.gaugePortRpm.Unit = "RPM";
-            this.gaugePortRpm.UserDefinedColors.Base = themeColors4;
-            themeColors5.PointerColor = System.Drawing.Color.Red;
-            this.gaugePortRpm.UserDefinedColors.Error = themeColors5;
-            themeColors6.PointerColor = System.Drawing.Color.Orange;
-            this.gaugePortRpm.UserDefinedColors.Warning = themeColors6;
+            this.gaugePortRpm.UserDefinedColors.Base = themeColors1;
+            themeColors2.PointerColor = System.Drawing.Color.Red;
+            this.gaugePortRpm.UserDefinedColors.Error = themeColors2;
+            themeColors3.PointerColor = System.Drawing.Color.Orange;
+            this.gaugePortRpm.UserDefinedColors.Warning = themeColors3;
             this.gaugePortRpm.Value = 0D;
             this.gaugePortRpm.WarningLimit = 3800D;
             // 
@@ -306,30 +304,6 @@ namespace WhatTheHelmRuntime
             this.gaugePortWaterTemp.Value = 0D;
             this.gaugePortWaterTemp.WarningLimit = 185D;
             // 
-            // lblFastPacketQueue
-            // 
-            this.lblFastPacketQueue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblFastPacketQueue.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFastPacketQueue.ForeColor = System.Drawing.Color.White;
-            this.lblFastPacketQueue.Location = new System.Drawing.Point(1154, 766);
-            this.lblFastPacketQueue.Name = "lblFastPacketQueue";
-            this.lblFastPacketQueue.Size = new System.Drawing.Size(93, 22);
-            this.lblFastPacketQueue.TabIndex = 138;
-            this.lblFastPacketQueue.Text = "--";
-            this.lblFastPacketQueue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label29
-            // 
-            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label29.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.Color.White;
-            this.label29.Location = new System.Drawing.Point(1008, 766);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(144, 22);
-            this.label29.TabIndex = 137;
-            this.label29.Text = "FAST PACKETS IN QUEUE: ";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // lblCanMsgQueue
             // 
             this.lblCanMsgQueue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -375,7 +349,7 @@ namespace WhatTheHelmRuntime
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(144, 22);
             this.label32.TabIndex = 133;
-            this.label32.Text = "LAST SCAN: ";
+            this.label32.Text = "LAST BUS READ: ";
             this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblJ1939BustStatus
@@ -400,7 +374,7 @@ namespace WhatTheHelmRuntime
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(147, 22);
             this.label33.TabIndex = 131;
-            this.label33.Text = "J1939 BUS STATUS: ";
+            this.label33.Text = "BUS STATUS: ";
             this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label5
@@ -491,8 +465,6 @@ namespace WhatTheHelmRuntime
             this.ClientSize = new System.Drawing.Size(1280, 800);
             this.Controls.Add(this.btnConfig);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.lblFastPacketQueue);
-            this.Controls.Add(this.label29);
             this.Controls.Add(this.lblCanMsgQueue);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.lblLastBusScan);
@@ -547,8 +519,6 @@ namespace WhatTheHelmRuntime
         private CodeArtEng.Gauge.CircularGauge gaugePortVolts;
         private CodeArtEng.Gauge.CircularGauge gaugePortDrivePressure;
         private CodeArtEng.Gauge.CircularGauge gaugePortWaterTemp;
-        private System.Windows.Forms.Label lblFastPacketQueue;
-        private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label lblCanMsgQueue;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label lblLastBusScan;
