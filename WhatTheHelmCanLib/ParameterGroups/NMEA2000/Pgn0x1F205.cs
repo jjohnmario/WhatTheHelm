@@ -82,10 +82,10 @@ namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
             OilPressure = BitConverter.ToUInt16(data, 2) * 100;
 
             //Oil Temperature
-            OilTemperature = BitConverter.ToUInt16(data, 3) * 0.01; 
+            OilTemperature = BitConverter.ToUInt16(data, 4) * 0.01; 
 
             //Discrete Status 1
-            DiscreteStatus1 = data[4];
+            DiscreteStatus1 = data[6];
 
             return this;
         }
