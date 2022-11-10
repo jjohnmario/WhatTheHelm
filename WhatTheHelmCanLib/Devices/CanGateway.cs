@@ -11,6 +11,8 @@ namespace WhatTheHelmCanLib.Devices
     /// </summary>
     public abstract class CanGateway : CanDevice ,IDisposable
     {
+        public const int CAN_ADDCLAIM_PGN = 60928;
+        public const int CAN_ISOREQ_PGN = 59904;
         /// <summary>
         /// Creates a generic CAN gateway with the defined source address.
         /// </summary>

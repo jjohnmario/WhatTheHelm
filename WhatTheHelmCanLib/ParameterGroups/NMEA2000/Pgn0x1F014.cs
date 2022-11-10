@@ -85,16 +85,16 @@ namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
 
                 //Model ID
                 var foo = Encoding.ASCII.GetChars(data);
-                ProductInformation.ModelId = Encoding.ASCII.GetString(data, 4, 32);
+                ProductInformation.ModelId = Encoding.ASCII.GetString(data, 4, 32).TrimEnd('?');
 
                 //Software Version Code
-                ProductInformation.SoftwareVersionCode = Encoding.ASCII.GetString(data, 36, 32);
+                ProductInformation.SoftwareVersionCode = Encoding.ASCII.GetString(data, 36, 32).TrimEnd('?');
 
                 //Model Version
-                ProductInformation.ModelVersion = Encoding.ASCII.GetString(data, 68, 32);
+                ProductInformation.ModelVersion = Encoding.ASCII.GetString(data, 68, 32).TrimEnd('?');
 
                 //Model Serial Code
-                ProductInformation.ModelSerialCode = Encoding.ASCII.GetString(data, 100, 32);
+                ProductInformation.ModelSerialCode = Encoding.ASCII.GetString(data, 100, 32).TrimEnd('?');
 
                 //Bus Load Equivalency
                 ProductInformation.LoadEquivalancy = data[133];

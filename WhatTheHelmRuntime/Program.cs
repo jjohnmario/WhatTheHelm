@@ -53,12 +53,17 @@ namespace WhatTheHelmRuntime
 
                 //CanGateway = new Can232Fd(serialPort, 0, name, productInformation);
 
+                //Future get list of Rx and Tx pgns
+                List<uint> rxPgns = new List<uint> { 59392, 59904, 60928, 61184, 126208, 126464, 126720, 126996, 127488, 127493, 127489, 127508 };
+                //List<uint> rxPgns = new List<uint> { 59392, 59904, 60928, 61184, 126208, 126464, 126720 };
+                List<uint> txPgns = new List<uint> { 59392, 59904, 60928, 126208, 126996 };
+
                 //Open NMEA 2000 gateway. If COM port is busy, wait and retry.
                 do
                 {
                     if (CanGateway != null)
                         CanGateway.Dispose();
-                    CanGateway = new Ngt1(serialPort, 55, null);
+                    CanGateway = new Ngt1(serialPort, 55, txPgns, rxPgns);
                 }
                 while (!CanGateway.Open());
 
