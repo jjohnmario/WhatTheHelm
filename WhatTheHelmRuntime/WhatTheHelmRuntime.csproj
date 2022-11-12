@@ -99,6 +99,12 @@
     <Compile Include="FusesStatus.Designer.cs">
       <DependentUpon>FusesStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Nmea2000Config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nmea2000Config.Designer.cs">
+      <DependentUpon>Nmea2000Config.cs</DependentUpon>
+    </Compile>
     <Compile Include="Rudder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FusesStatus.resx">
       <DependentUpon>FusesStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nmea2000Config.resx">
+      <DependentUpon>Nmea2000Config.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rudder.resx">
       <DependentUpon>Rudder.cs</DependentUpon>

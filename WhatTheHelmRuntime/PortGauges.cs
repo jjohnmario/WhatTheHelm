@@ -305,5 +305,11 @@ namespace WhatTheHelmRuntime
             }
             configMenu.Dispose();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Nmea2000Config config = new Nmea2000Config();
+            config.ShowDialog();
+        }
     }
 }
