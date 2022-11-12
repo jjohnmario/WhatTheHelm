@@ -105,23 +105,24 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
         {
             //Clear existing PGN lists
             error = ACommand.ClearPGNList(_actiHandle, PGNEnableList_t.ENABLE_LIST_RX);
-            error = ACommand.SetOperatingMode(_actiHandle, 2);
-            ////Create new PGN lists
-            ////Tx
-            //foreach (uint pgn in TxPgnLIst)
-            //{
-            //    error = ACommand.SetTxPGN(_actiHandle, pgn, PGNEnable_t.ENABLE_PGN);
-            //    if (error != ARLErrorCodes_t.ES_NoError)
-            //        return false;
+            //error = ACommand.SetOperatingMode(_actiHandle, 2);
 
-            //}
-            ////Rx
-            //foreach (uint pgn in RxPgnList)
-            //{
-            //    error = ACommand.SetRxPGN(_actiHandle, pgn, PGNEnable_t.ENABLE_PGN);
-            //    if (error != ARLErrorCodes_t.ES_NoError)
-            //        return false;
-            //}
+            //Create new PGN lists
+            //Tx
+            foreach (uint pgn in TxPgnLIst)
+            {
+                error = ACommand.SetTxPGN(_actiHandle, pgn, PGNEnable_t.ENABLE_PGN);
+                if (error != ARLErrorCodes_t.ES_NoError)
+                    return false;
+
+            }
+            //Rx
+            foreach (uint pgn in RxPgnList)
+            {
+                error = ACommand.SetRxPGN(_actiHandle, pgn, PGNEnable_t.ENABLE_PGN);
+                if (error != ARLErrorCodes_t.ES_NoError)
+                    return false;
+            }
             //Activate new PGN lists
             ACommand.ActivatePGNEnableLists(_actiHandle);
             error = ARLErrorCodes_t.ES_NoError;
@@ -135,66 +136,17 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
             return true;
         }
 
-        public bool AskN2KDevicesForProductInfo()
+        public bool IsoRequest(uint requestedPgn)
         {
             NMEA2K.N2KMsg_s N2Kmsg = new NMEA2K.N2KMsg_s();
-
-            /* send an iso request */
-            //N2Kmsg.PGN = CAN_ISOREQ_PGN;                /* PGN for iso request */
-            /* send an iso request */
-            N2Kmsg.PGN = CAN_ISOREQ_PGN;                /* PGN for iso request */
-            N2Kmsg.Timestamp = 0;           /* can be left, as timestamp is not sent to gateway */
-            N2Kmsg.Src = 255;           /* can be left, as source address will be overwritten by gateway */
-            N2Kmsg.Dest = 255;          /* send to global address */
-            N2Kmsg.Size = 8;
-            N2Kmsg.Priority = 7;            /* override priority */
-
-
+            N2Kmsg.PGN = 0x0EA00;
+            N2Kmsg.Timestamp = 0;
+            N2Kmsg.Src = 255;
+            N2Kmsg.Dest = 255;
+            N2Kmsg.Size = 3;
+            byte[] pgn = BitConverter.GetBytes(requestedPgn);
             N2Kmsg.Data = new byte[NMEA2K.N2K_MAXLEN_FP];
-            N2Kmsg.Data[0] = (CAN_ADDCLAIM_PGN & 0xFF);
-            N2Kmsg.Data[1] = (CAN_ADDCLAIM_PGN >> 8);
-            N2Kmsg.Data[2] = (CAN_ADDCLAIM_PGN >> 16);
-            N2Kmsg.Data[3] = 0;
-            N2Kmsg.Data[4] = 0;
-            N2Kmsg.Data[5] = 0;
-            N2Kmsg.Data[6] = 0;
-            N2Kmsg.Data[7] = 0;
-
-
-            ARLErrorCodes_t error = NMEA2K.Write(_actiHandle, ref N2Kmsg);
-            if (error != ARLErrorCodes_t.ES_NoError)
-                return false;
-            else
-                return true;
-        }
-
-        public bool AskN2KDevicesForCANName()
-        {
-            NMEA2K.N2KMsg_s N2Kmsg = new NMEA2K.N2KMsg_s();
-
-            /* send an iso request */
-            N2Kmsg.PGN = 0x1ED00;                /* PGN for iso request */
-            N2Kmsg.Timestamp = 0;           /* can be left, as timestamp is not sent to gateway */
-            N2Kmsg.Src = 255;           /* can be left, as source address will be overwritten by gateway */
-            N2Kmsg.Dest = 255;          /* send to global address */
-            N2Kmsg.Size = 12;
-            N2Kmsg.Priority = 3;            /* override priority */
-
-
-            N2Kmsg.Data = new byte[NMEA2K.N2K_MAXLEN_FP];
-            N2Kmsg.Data[0] = 0x00;
-            N2Kmsg.Data[1] = 0x01;
-            N2Kmsg.Data[2] = 0xF0;
-            N2Kmsg.Data[3] = 0x14;
-            N2Kmsg.Data[4] = 0xE8;
-            N2Kmsg.Data[5] = 0x03;
-            N2Kmsg.Data[6] = 0x00;
-            N2Kmsg.Data[7] = 0xFF;
-            N2Kmsg.Data[8] = 0xFF;
-            N2Kmsg.Data[9] = 0xFF;
-            N2Kmsg.Data[10] = 0x01;
-            N2Kmsg.Data[11] = 0xFF;
-
+            Array.Copy(pgn, 0, N2Kmsg.Data, 4, 3); // Note that the actual data frame starts at index 4, not index 0 for NGT-1
             ARLErrorCodes_t error = NMEA2K.Write(_actiHandle, ref N2Kmsg);
             if (error != ARLErrorCodes_t.ES_NoError)
                 return false;

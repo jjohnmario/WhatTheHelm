@@ -80,7 +80,9 @@ namespace WhatTheHelmRuntime
         private void button1_Click(object sender, EventArgs e)
         {
             //var boo = Program.CanGateway.AskN2KDevicesForCANName();
-            var boo = Program.CanGateway.AskN2KDevicesForProductInfo();
+            //var boo = Program.CanGateway.AddressClaim();
+            Program.CanGateway.IsoRequest(126996);
+            //Program.CanGateway.IsoRequest(60928);
         }
     }
 }
