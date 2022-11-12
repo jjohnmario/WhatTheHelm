@@ -235,12 +235,12 @@ namespace NMEA2000_Test
                     if(foo.Pgn == 0x01EE00)
                     {
                         var foo1 = (Pgn0x1EE00)foo;
-                        if (foo1.PgnList == PgnList.TransmitPgnList)
+                        if (foo1.PgnListType == PgnListType.Transmit)
                             {
                             foreach (int i in foo1.PgnTransmitList)
                                 Console.WriteLine("PGN: " + i);
                         }
-                        else if (foo1.PgnList == PgnList.ReceivePgnList)
+                        else if (foo1.PgnListType == PgnListType.Receive)
                         {
                             foreach(int i in foo1.PgnReceiveList)
                                 Console.WriteLine("PGN: " + i);

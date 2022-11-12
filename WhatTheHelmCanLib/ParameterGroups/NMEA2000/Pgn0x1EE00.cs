@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
 {
-    public enum PgnList { ReceivePgnList, TransmitPgnList }
+    public enum PgnListType { Transmit, Receive }
     /// <summary>
     /// PGN: 126464 PGN List (Transmit and Receive)
     /// </summary>
@@ -35,7 +35,7 @@ namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
             }
         }
 
-        public PgnList PgnList { get; private set; }
+        public PgnListType PgnListType { get; private set; }
 
         public override Target Target
         {
@@ -48,30 +48,30 @@ namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
         /// <summary>
         /// A list of receive PGNs
         /// </summary>
-        public List<int> PgnReceiveList { get; private set; }
+        public List<uint> PgnReceiveList { get; private set; }
 
         /// <summary>
         /// A list of transmit PGNs
         /// </summary>
-        public List<int> PgnTransmitList { get; private set; }
+        public List<uint> PgnTransmitList { get; private set; }
 
         public Pgn0x1EE00()
         {
 
         }
 
-        public Pgn0x1EE00(PgnList pgnList)
+        public Pgn0x1EE00(PgnListType pgnList)
         {
-            PgnList = pgnList;
+            PgnListType = pgnList;
         }
 
         public override ParameterGroup DeserializeFields(byte[] data)
         {
             List<byte> list = data.ToList();
-            PgnList listType = (PgnList)list.First();
+            PgnListType = (PgnListType)list.First();
             list.RemoveAt(0);
             List<byte[]> pgnList = new List<byte[]>();
-            PgnReceiveList = new List<int>();
+            PgnReceiveList = new List<uint>();
             pgnList = Split(list.ToArray(), 3);
             foreach (byte[] pgn in pgnList)
             {
@@ -79,18 +79,18 @@ namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
                 string msbToBin = Convert.ToString(pgn[1], 2).PadLeft(8, '0');
                 string lsbToBin = Convert.ToString(pgn[2], 2).PadLeft(8, '0');
                 string pgnAssembledBytesBin = String.Concat(lsbToBin, msbToBin, msgIdBin);
-                if (listType == PgnList.ReceivePgnList)
+                if (PgnListType == PgnListType.Receive)
                 {
                     if (PgnReceiveList == null)
-                        PgnReceiveList = new List<int>();
-                    PgnReceiveList.Add(Convert.ToInt32(pgnAssembledBytesBin, 2));
+                        PgnReceiveList = new List<uint>();
+                    PgnReceiveList.Add(Convert.ToUInt32(pgnAssembledBytesBin, 2));
                 }
 
-                else if (listType == PgnList.TransmitPgnList)
+                else if (PgnListType == PgnListType.Transmit)
                 {
                     if (PgnTransmitList == null)
-                        PgnTransmitList = new List<int>();
-                    PgnTransmitList.Add(Convert.ToInt32(pgnAssembledBytesBin, 2));
+                        PgnTransmitList = new List<uint>();
+                    PgnTransmitList.Add(Convert.ToUInt32(pgnAssembledBytesBin, 2));
                 }
             }
             return this;
@@ -116,7 +116,7 @@ namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
         public override byte[] SerializeFields()
         {
             byte[] bytes = new byte[1];
-            bytes[0] = (byte)PgnList;
+            bytes[0] = (byte)PgnListType;
             return bytes;
         }
 
