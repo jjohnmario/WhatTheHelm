@@ -28,53 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRefreshDeviceList = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbPortRpmSource = new System.Windows.Forms.ComboBox();
+            this.cbRpmSource = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.cbPortRpmInstance = new System.Windows.Forms.ComboBox();
-            this.cbPortWaterTempInstance = new System.Windows.Forms.ComboBox();
+            this.cbRpmInstance = new System.Windows.Forms.ComboBox();
+            this.cbWaterTempInstance = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.cbPortWaterTempSource = new System.Windows.Forms.ComboBox();
-            this.cbPortOilPressureInstance = new System.Windows.Forms.ComboBox();
+            this.cbWaterTempSource = new System.Windows.Forms.ComboBox();
+            this.cbOilPressureInstance = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.cbPortOilPressureSource = new System.Windows.Forms.ComboBox();
-            this.cbPortEngineAlarmsInstance = new System.Windows.Forms.ComboBox();
+            this.cbOilPressureSource = new System.Windows.Forms.ComboBox();
+            this.cbEngineAlarmsInstance = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.cbPortEngineAlarmsSource = new System.Windows.Forms.ComboBox();
+            this.cbEngineAlarmsSource = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbPortRpmPgn = new System.Windows.Forms.ComboBox();
-            this.cbPortWaterTempPgn = new System.Windows.Forms.ComboBox();
-            this.cbPortEngineAlarmsPgn = new System.Windows.Forms.ComboBox();
-            this.cbPortOilPressurePgn = new System.Windows.Forms.ComboBox();
+            this.cbRpmPgn = new System.Windows.Forms.ComboBox();
+            this.cbWaterTempPgn = new System.Windows.Forms.ComboBox();
+            this.cbEngineAlarmsPgn = new System.Windows.Forms.ComboBox();
+            this.cbOilPressurePgn = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.cbPortHourMeterPgn = new System.Windows.Forms.ComboBox();
-            this.cbPortHourMeterInstance = new System.Windows.Forms.ComboBox();
+            this.cbHourMeterPgn = new System.Windows.Forms.ComboBox();
+            this.cbHourMeterInstance = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.cbPortHourMeterSource = new System.Windows.Forms.ComboBox();
+            this.cbHourMeterSource = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.cbTransPressurePgn = new System.Windows.Forms.ComboBox();
+            this.cbTransAlarmsPgn = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
-            this.comboBox9 = new System.Windows.Forms.ComboBox();
-            this.comboBox10 = new System.Windows.Forms.ComboBox();
+            this.cbTransPressureSource = new System.Windows.Forms.ComboBox();
+            this.cbTransPressureInstance = new System.Windows.Forms.ComboBox();
+            this.cbTransAlarmsSource = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.comboBox11 = new System.Windows.Forms.ComboBox();
+            this.cbTransAlarmsInstance = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbBatteryVoltagePgn = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.cbBatteryVoltageSource = new System.Windows.Forms.ComboBox();
+            this.cbBatteryVoltageInstance = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.btnDeviceListScrollUp = new System.Windows.Forms.Button();
             this.btnDeviceListScrollDown = new System.Windows.Forms.Button();
@@ -83,23 +83,23 @@
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btnRefreshDeviceList
             // 
-            this.button1.BackgroundImage = global::WhatTheHelmRuntime.Properties.Resources.BlackButton;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(1022, 662);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(222, 126);
-            this.button1.TabIndex = 0;
-            this.button1.TabStop = false;
-            this.button1.Text = "Refresh\r\nDevice List";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnRefreshDeviceList.BackgroundImage = global::WhatTheHelmRuntime.Properties.Resources.BlackButton;
+            this.btnRefreshDeviceList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRefreshDeviceList.FlatAppearance.BorderSize = 0;
+            this.btnRefreshDeviceList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefreshDeviceList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefreshDeviceList.ForeColor = System.Drawing.Color.White;
+            this.btnRefreshDeviceList.Location = new System.Drawing.Point(1022, 662);
+            this.btnRefreshDeviceList.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRefreshDeviceList.Name = "btnRefreshDeviceList";
+            this.btnRefreshDeviceList.Size = new System.Drawing.Size(222, 126);
+            this.btnRefreshDeviceList.TabIndex = 0;
+            this.btnRefreshDeviceList.TabStop = false;
+            this.btnRefreshDeviceList.Text = "Refresh\r\nDevice List";
+            this.btnRefreshDeviceList.UseVisualStyleBackColor = true;
+            this.btnRefreshDeviceList.Click += new System.EventHandler(this.btnRefreshDeviceList_Click);
             // 
             // label1
             // 
@@ -115,16 +115,16 @@
             // 
             // cbPortRpmSource
             // 
-            this.cbPortRpmSource.BackColor = System.Drawing.Color.Black;
-            this.cbPortRpmSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPortRpmSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPortRpmSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPortRpmSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cbPortRpmSource.FormattingEnabled = true;
-            this.cbPortRpmSource.Location = new System.Drawing.Point(269, 66);
-            this.cbPortRpmSource.Name = "cbPortRpmSource";
-            this.cbPortRpmSource.Size = new System.Drawing.Size(579, 33);
-            this.cbPortRpmSource.TabIndex = 2;
+            this.cbRpmSource.BackColor = System.Drawing.Color.Black;
+            this.cbRpmSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRpmSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRpmSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRpmSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbRpmSource.FormattingEnabled = true;
+            this.cbRpmSource.Location = new System.Drawing.Point(269, 66);
+            this.cbRpmSource.Name = "cbPortRpmSource";
+            this.cbRpmSource.Size = new System.Drawing.Size(579, 33);
+            this.cbRpmSource.TabIndex = 2;
             // 
             // label2
             // 
@@ -154,29 +154,29 @@
             // 
             // cbPortRpmInstance
             // 
-            this.cbPortRpmInstance.BackColor = System.Drawing.Color.Black;
-            this.cbPortRpmInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPortRpmInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPortRpmInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPortRpmInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cbPortRpmInstance.FormattingEnabled = true;
-            this.cbPortRpmInstance.Location = new System.Drawing.Point(1020, 66);
-            this.cbPortRpmInstance.Name = "cbPortRpmInstance";
-            this.cbPortRpmInstance.Size = new System.Drawing.Size(106, 33);
-            this.cbPortRpmInstance.TabIndex = 7;
+            this.cbRpmInstance.BackColor = System.Drawing.Color.Black;
+            this.cbRpmInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRpmInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRpmInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRpmInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbRpmInstance.FormattingEnabled = true;
+            this.cbRpmInstance.Location = new System.Drawing.Point(1020, 66);
+            this.cbRpmInstance.Name = "cbPortRpmInstance";
+            this.cbRpmInstance.Size = new System.Drawing.Size(106, 33);
+            this.cbRpmInstance.TabIndex = 7;
             // 
             // cbPortWaterTempInstance
             // 
-            this.cbPortWaterTempInstance.BackColor = System.Drawing.Color.Black;
-            this.cbPortWaterTempInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPortWaterTempInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPortWaterTempInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPortWaterTempInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cbPortWaterTempInstance.FormattingEnabled = true;
-            this.cbPortWaterTempInstance.Location = new System.Drawing.Point(1020, 104);
-            this.cbPortWaterTempInstance.Name = "cbPortWaterTempInstance";
-            this.cbPortWaterTempInstance.Size = new System.Drawing.Size(106, 33);
-            this.cbPortWaterTempInstance.TabIndex = 11;
+            this.cbWaterTempInstance.BackColor = System.Drawing.Color.Black;
+            this.cbWaterTempInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWaterTempInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbWaterTempInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbWaterTempInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbWaterTempInstance.FormattingEnabled = true;
+            this.cbWaterTempInstance.Location = new System.Drawing.Point(1020, 104);
+            this.cbWaterTempInstance.Name = "cbPortWaterTempInstance";
+            this.cbWaterTempInstance.Size = new System.Drawing.Size(106, 33);
+            this.cbWaterTempInstance.TabIndex = 11;
             // 
             // label5
             // 
@@ -191,29 +191,29 @@
             // 
             // cbPortWaterTempSource
             // 
-            this.cbPortWaterTempSource.BackColor = System.Drawing.Color.Black;
-            this.cbPortWaterTempSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPortWaterTempSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPortWaterTempSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPortWaterTempSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cbPortWaterTempSource.FormattingEnabled = true;
-            this.cbPortWaterTempSource.Location = new System.Drawing.Point(269, 104);
-            this.cbPortWaterTempSource.Name = "cbPortWaterTempSource";
-            this.cbPortWaterTempSource.Size = new System.Drawing.Size(579, 33);
-            this.cbPortWaterTempSource.TabIndex = 9;
+            this.cbWaterTempSource.BackColor = System.Drawing.Color.Black;
+            this.cbWaterTempSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWaterTempSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbWaterTempSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbWaterTempSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbWaterTempSource.FormattingEnabled = true;
+            this.cbWaterTempSource.Location = new System.Drawing.Point(269, 104);
+            this.cbWaterTempSource.Name = "cbPortWaterTempSource";
+            this.cbWaterTempSource.Size = new System.Drawing.Size(579, 33);
+            this.cbWaterTempSource.TabIndex = 9;
             // 
             // cbPortOilPressureInstance
             // 
-            this.cbPortOilPressureInstance.BackColor = System.Drawing.Color.Black;
-            this.cbPortOilPressureInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPortOilPressureInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPortOilPressureInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPortOilPressureInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cbPortOilPressureInstance.FormattingEnabled = true;
-            this.cbPortOilPressureInstance.Location = new System.Drawing.Point(1020, 142);
-            this.cbPortOilPressureInstance.Name = "cbPortOilPressureInstance";
-            this.cbPortOilPressureInstance.Size = new System.Drawing.Size(106, 33);
-            this.cbPortOilPressureInstance.TabIndex = 15;
+            this.cbOilPressureInstance.BackColor = System.Drawing.Color.Black;
+            this.cbOilPressureInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbOilPressureInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbOilPressureInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbOilPressureInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbOilPressureInstance.FormattingEnabled = true;
+            this.cbOilPressureInstance.Location = new System.Drawing.Point(1020, 142);
+            this.cbOilPressureInstance.Name = "cbPortOilPressureInstance";
+            this.cbOilPressureInstance.Size = new System.Drawing.Size(106, 33);
+            this.cbOilPressureInstance.TabIndex = 15;
             // 
             // label7
             // 
@@ -228,29 +228,29 @@
             // 
             // cbPortOilPressureSource
             // 
-            this.cbPortOilPressureSource.BackColor = System.Drawing.Color.Black;
-            this.cbPortOilPressureSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPortOilPressureSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPortOilPressureSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPortOilPressureSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cbPortOilPressureSource.FormattingEnabled = true;
-            this.cbPortOilPressureSource.Location = new System.Drawing.Point(269, 142);
-            this.cbPortOilPressureSource.Name = "cbPortOilPressureSource";
-            this.cbPortOilPressureSource.Size = new System.Drawing.Size(579, 33);
-            this.cbPortOilPressureSource.TabIndex = 13;
+            this.cbOilPressureSource.BackColor = System.Drawing.Color.Black;
+            this.cbOilPressureSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbOilPressureSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbOilPressureSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbOilPressureSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbOilPressureSource.FormattingEnabled = true;
+            this.cbOilPressureSource.Location = new System.Drawing.Point(269, 142);
+            this.cbOilPressureSource.Name = "cbPortOilPressureSource";
+            this.cbOilPressureSource.Size = new System.Drawing.Size(579, 33);
+            this.cbOilPressureSource.TabIndex = 13;
             // 
             // cbPortEngineAlarmsInstance
             // 
-            this.cbPortEngineAlarmsInstance.BackColor = System.Drawing.Color.Black;
-            this.cbPortEngineAlarmsInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPortEngineAlarmsInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPortEngineAlarmsInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPortEngineAlarmsInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cbPortEngineAlarmsInstance.FormattingEnabled = true;
-            this.cbPortEngineAlarmsInstance.Location = new System.Drawing.Point(1020, 180);
-            this.cbPortEngineAlarmsInstance.Name = "cbPortEngineAlarmsInstance";
-            this.cbPortEngineAlarmsInstance.Size = new System.Drawing.Size(106, 33);
-            this.cbPortEngineAlarmsInstance.TabIndex = 23;
+            this.cbEngineAlarmsInstance.BackColor = System.Drawing.Color.Black;
+            this.cbEngineAlarmsInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEngineAlarmsInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbEngineAlarmsInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbEngineAlarmsInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbEngineAlarmsInstance.FormattingEnabled = true;
+            this.cbEngineAlarmsInstance.Location = new System.Drawing.Point(1020, 180);
+            this.cbEngineAlarmsInstance.Name = "cbPortEngineAlarmsInstance";
+            this.cbEngineAlarmsInstance.Size = new System.Drawing.Size(106, 33);
+            this.cbEngineAlarmsInstance.TabIndex = 23;
             // 
             // label11
             // 
@@ -265,42 +265,42 @@
             // 
             // cbPortEngineAlarmsSource
             // 
-            this.cbPortEngineAlarmsSource.BackColor = System.Drawing.Color.Black;
-            this.cbPortEngineAlarmsSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPortEngineAlarmsSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPortEngineAlarmsSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPortEngineAlarmsSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cbPortEngineAlarmsSource.FormattingEnabled = true;
-            this.cbPortEngineAlarmsSource.Location = new System.Drawing.Point(269, 180);
-            this.cbPortEngineAlarmsSource.Name = "cbPortEngineAlarmsSource";
-            this.cbPortEngineAlarmsSource.Size = new System.Drawing.Size(579, 33);
-            this.cbPortEngineAlarmsSource.TabIndex = 21;
+            this.cbEngineAlarmsSource.BackColor = System.Drawing.Color.Black;
+            this.cbEngineAlarmsSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEngineAlarmsSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbEngineAlarmsSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbEngineAlarmsSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbEngineAlarmsSource.FormattingEnabled = true;
+            this.cbEngineAlarmsSource.Location = new System.Drawing.Point(269, 180);
+            this.cbEngineAlarmsSource.Name = "cbPortEngineAlarmsSource";
+            this.cbEngineAlarmsSource.Size = new System.Drawing.Size(579, 33);
+            this.cbEngineAlarmsSource.TabIndex = 21;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cbPortHourMeterPgn);
-            this.groupBox1.Controls.Add(this.cbPortHourMeterInstance);
+            this.groupBox1.Controls.Add(this.cbHourMeterPgn);
+            this.groupBox1.Controls.Add(this.cbHourMeterInstance);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.cbPortHourMeterSource);
+            this.groupBox1.Controls.Add(this.cbHourMeterSource);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.cbPortRpmPgn);
-            this.groupBox1.Controls.Add(this.cbPortWaterTempPgn);
-            this.groupBox1.Controls.Add(this.cbPortEngineAlarmsPgn);
-            this.groupBox1.Controls.Add(this.cbPortOilPressurePgn);
+            this.groupBox1.Controls.Add(this.cbRpmPgn);
+            this.groupBox1.Controls.Add(this.cbWaterTempPgn);
+            this.groupBox1.Controls.Add(this.cbEngineAlarmsPgn);
+            this.groupBox1.Controls.Add(this.cbOilPressurePgn);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.cbPortRpmSource);
-            this.groupBox1.Controls.Add(this.cbPortRpmInstance);
-            this.groupBox1.Controls.Add(this.cbPortWaterTempSource);
+            this.groupBox1.Controls.Add(this.cbRpmSource);
+            this.groupBox1.Controls.Add(this.cbRpmInstance);
+            this.groupBox1.Controls.Add(this.cbWaterTempSource);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.cbPortWaterTempInstance);
-            this.groupBox1.Controls.Add(this.cbPortOilPressureSource);
+            this.groupBox1.Controls.Add(this.cbWaterTempInstance);
+            this.groupBox1.Controls.Add(this.cbOilPressureSource);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.cbPortEngineAlarmsInstance);
-            this.groupBox1.Controls.Add(this.cbPortOilPressureInstance);
+            this.groupBox1.Controls.Add(this.cbEngineAlarmsInstance);
+            this.groupBox1.Controls.Add(this.cbOilPressureInstance);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.cbPortEngineAlarmsSource);
+            this.groupBox1.Controls.Add(this.cbEngineAlarmsSource);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(33, 52);
@@ -334,57 +334,57 @@
             // 
             // cbPortRpmPgn
             // 
-            this.cbPortRpmPgn.BackColor = System.Drawing.Color.Black;
-            this.cbPortRpmPgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPortRpmPgn.Enabled = false;
-            this.cbPortRpmPgn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPortRpmPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPortRpmPgn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cbPortRpmPgn.FormattingEnabled = true;
-            this.cbPortRpmPgn.Location = new System.Drawing.Point(868, 66);
-            this.cbPortRpmPgn.Name = "cbPortRpmPgn";
-            this.cbPortRpmPgn.Size = new System.Drawing.Size(132, 33);
-            this.cbPortRpmPgn.TabIndex = 27;
+            this.cbRpmPgn.BackColor = System.Drawing.Color.Black;
+            this.cbRpmPgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRpmPgn.Enabled = false;
+            this.cbRpmPgn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRpmPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRpmPgn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbRpmPgn.FormattingEnabled = true;
+            this.cbRpmPgn.Location = new System.Drawing.Point(868, 66);
+            this.cbRpmPgn.Name = "cbPortRpmPgn";
+            this.cbRpmPgn.Size = new System.Drawing.Size(132, 33);
+            this.cbRpmPgn.TabIndex = 27;
             // 
             // cbPortWaterTempPgn
             // 
-            this.cbPortWaterTempPgn.BackColor = System.Drawing.Color.Black;
-            this.cbPortWaterTempPgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPortWaterTempPgn.Enabled = false;
-            this.cbPortWaterTempPgn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPortWaterTempPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPortWaterTempPgn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cbPortWaterTempPgn.FormattingEnabled = true;
-            this.cbPortWaterTempPgn.Location = new System.Drawing.Point(868, 104);
-            this.cbPortWaterTempPgn.Name = "cbPortWaterTempPgn";
-            this.cbPortWaterTempPgn.Size = new System.Drawing.Size(132, 33);
-            this.cbPortWaterTempPgn.TabIndex = 28;
+            this.cbWaterTempPgn.BackColor = System.Drawing.Color.Black;
+            this.cbWaterTempPgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWaterTempPgn.Enabled = false;
+            this.cbWaterTempPgn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbWaterTempPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbWaterTempPgn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbWaterTempPgn.FormattingEnabled = true;
+            this.cbWaterTempPgn.Location = new System.Drawing.Point(868, 104);
+            this.cbWaterTempPgn.Name = "cbPortWaterTempPgn";
+            this.cbWaterTempPgn.Size = new System.Drawing.Size(132, 33);
+            this.cbWaterTempPgn.TabIndex = 28;
             // 
             // cbPortEngineAlarmsPgn
             // 
-            this.cbPortEngineAlarmsPgn.BackColor = System.Drawing.Color.Black;
-            this.cbPortEngineAlarmsPgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPortEngineAlarmsPgn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPortEngineAlarmsPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPortEngineAlarmsPgn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cbPortEngineAlarmsPgn.FormattingEnabled = true;
-            this.cbPortEngineAlarmsPgn.Location = new System.Drawing.Point(868, 180);
-            this.cbPortEngineAlarmsPgn.Name = "cbPortEngineAlarmsPgn";
-            this.cbPortEngineAlarmsPgn.Size = new System.Drawing.Size(132, 33);
-            this.cbPortEngineAlarmsPgn.TabIndex = 30;
+            this.cbEngineAlarmsPgn.BackColor = System.Drawing.Color.Black;
+            this.cbEngineAlarmsPgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEngineAlarmsPgn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbEngineAlarmsPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbEngineAlarmsPgn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbEngineAlarmsPgn.FormattingEnabled = true;
+            this.cbEngineAlarmsPgn.Location = new System.Drawing.Point(868, 180);
+            this.cbEngineAlarmsPgn.Name = "cbPortEngineAlarmsPgn";
+            this.cbEngineAlarmsPgn.Size = new System.Drawing.Size(132, 33);
+            this.cbEngineAlarmsPgn.TabIndex = 30;
             // 
             // cbPortOilPressurePgn
             // 
-            this.cbPortOilPressurePgn.BackColor = System.Drawing.Color.Black;
-            this.cbPortOilPressurePgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPortOilPressurePgn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPortOilPressurePgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPortOilPressurePgn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cbPortOilPressurePgn.FormattingEnabled = true;
-            this.cbPortOilPressurePgn.Location = new System.Drawing.Point(868, 142);
-            this.cbPortOilPressurePgn.Name = "cbPortOilPressurePgn";
-            this.cbPortOilPressurePgn.Size = new System.Drawing.Size(132, 33);
-            this.cbPortOilPressurePgn.TabIndex = 29;
+            this.cbOilPressurePgn.BackColor = System.Drawing.Color.Black;
+            this.cbOilPressurePgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbOilPressurePgn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbOilPressurePgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbOilPressurePgn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbOilPressurePgn.FormattingEnabled = true;
+            this.cbOilPressurePgn.Location = new System.Drawing.Point(868, 142);
+            this.cbOilPressurePgn.Name = "cbPortOilPressurePgn";
+            this.cbOilPressurePgn.Size = new System.Drawing.Size(132, 33);
+            this.cbOilPressurePgn.TabIndex = 29;
             // 
             // label4
             // 
@@ -399,29 +399,29 @@
             // 
             // cbPortHourMeterPgn
             // 
-            this.cbPortHourMeterPgn.BackColor = System.Drawing.Color.Black;
-            this.cbPortHourMeterPgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPortHourMeterPgn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPortHourMeterPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPortHourMeterPgn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cbPortHourMeterPgn.FormattingEnabled = true;
-            this.cbPortHourMeterPgn.Location = new System.Drawing.Point(868, 217);
-            this.cbPortHourMeterPgn.Name = "cbPortHourMeterPgn";
-            this.cbPortHourMeterPgn.Size = new System.Drawing.Size(132, 33);
-            this.cbPortHourMeterPgn.TabIndex = 35;
+            this.cbHourMeterPgn.BackColor = System.Drawing.Color.Black;
+            this.cbHourMeterPgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHourMeterPgn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbHourMeterPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbHourMeterPgn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbHourMeterPgn.FormattingEnabled = true;
+            this.cbHourMeterPgn.Location = new System.Drawing.Point(868, 217);
+            this.cbHourMeterPgn.Name = "cbPortHourMeterPgn";
+            this.cbHourMeterPgn.Size = new System.Drawing.Size(132, 33);
+            this.cbHourMeterPgn.TabIndex = 35;
             // 
             // cbPortHourMeterInstance
             // 
-            this.cbPortHourMeterInstance.BackColor = System.Drawing.Color.Black;
-            this.cbPortHourMeterInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPortHourMeterInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPortHourMeterInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPortHourMeterInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cbPortHourMeterInstance.FormattingEnabled = true;
-            this.cbPortHourMeterInstance.Location = new System.Drawing.Point(1020, 217);
-            this.cbPortHourMeterInstance.Name = "cbPortHourMeterInstance";
-            this.cbPortHourMeterInstance.Size = new System.Drawing.Size(106, 33);
-            this.cbPortHourMeterInstance.TabIndex = 34;
+            this.cbHourMeterInstance.BackColor = System.Drawing.Color.Black;
+            this.cbHourMeterInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHourMeterInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbHourMeterInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbHourMeterInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbHourMeterInstance.FormattingEnabled = true;
+            this.cbHourMeterInstance.Location = new System.Drawing.Point(1020, 217);
+            this.cbHourMeterInstance.Name = "cbPortHourMeterInstance";
+            this.cbHourMeterInstance.Size = new System.Drawing.Size(106, 33);
+            this.cbHourMeterInstance.TabIndex = 34;
             // 
             // label6
             // 
@@ -436,30 +436,30 @@
             // 
             // cbPortHourMeterSource
             // 
-            this.cbPortHourMeterSource.BackColor = System.Drawing.Color.Black;
-            this.cbPortHourMeterSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPortHourMeterSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPortHourMeterSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPortHourMeterSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cbPortHourMeterSource.FormattingEnabled = true;
-            this.cbPortHourMeterSource.Location = new System.Drawing.Point(269, 217);
-            this.cbPortHourMeterSource.Name = "cbPortHourMeterSource";
-            this.cbPortHourMeterSource.Size = new System.Drawing.Size(579, 33);
-            this.cbPortHourMeterSource.TabIndex = 32;
+            this.cbHourMeterSource.BackColor = System.Drawing.Color.Black;
+            this.cbHourMeterSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHourMeterSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbHourMeterSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbHourMeterSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbHourMeterSource.FormattingEnabled = true;
+            this.cbHourMeterSource.Location = new System.Drawing.Point(269, 217);
+            this.cbHourMeterSource.Name = "cbPortHourMeterSource";
+            this.cbHourMeterSource.Size = new System.Drawing.Size(579, 33);
+            this.cbHourMeterSource.TabIndex = 32;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.comboBox4);
-            this.groupBox2.Controls.Add(this.comboBox5);
+            this.groupBox2.Controls.Add(this.cbTransPressurePgn);
+            this.groupBox2.Controls.Add(this.cbTransAlarmsPgn);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.comboBox8);
-            this.groupBox2.Controls.Add(this.comboBox9);
-            this.groupBox2.Controls.Add(this.comboBox10);
+            this.groupBox2.Controls.Add(this.cbTransPressureSource);
+            this.groupBox2.Controls.Add(this.cbTransPressureInstance);
+            this.groupBox2.Controls.Add(this.cbTransAlarmsSource);
             this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.comboBox11);
+            this.groupBox2.Controls.Add(this.cbTransAlarmsInstance);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(33, 347);
@@ -480,33 +480,33 @@
             this.label10.Text = "PGN";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // comboBox4
+            // cbTransPressurePgn
             // 
-            this.comboBox4.BackColor = System.Drawing.Color.Black;
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.Enabled = false;
-            this.comboBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(868, 66);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(132, 33);
-            this.comboBox4.TabIndex = 27;
+            this.cbTransPressurePgn.BackColor = System.Drawing.Color.Black;
+            this.cbTransPressurePgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTransPressurePgn.Enabled = false;
+            this.cbTransPressurePgn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbTransPressurePgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTransPressurePgn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbTransPressurePgn.FormattingEnabled = true;
+            this.cbTransPressurePgn.Location = new System.Drawing.Point(868, 66);
+            this.cbTransPressurePgn.Name = "cbTransPressurePgn";
+            this.cbTransPressurePgn.Size = new System.Drawing.Size(132, 33);
+            this.cbTransPressurePgn.TabIndex = 27;
             // 
-            // comboBox5
+            // cbTransAlarmsPgn
             // 
-            this.comboBox5.BackColor = System.Drawing.Color.Black;
-            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox5.Enabled = false;
-            this.comboBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(868, 104);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(132, 33);
-            this.comboBox5.TabIndex = 28;
+            this.cbTransAlarmsPgn.BackColor = System.Drawing.Color.Black;
+            this.cbTransAlarmsPgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTransAlarmsPgn.Enabled = false;
+            this.cbTransAlarmsPgn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbTransAlarmsPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTransAlarmsPgn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbTransAlarmsPgn.FormattingEnabled = true;
+            this.cbTransAlarmsPgn.Location = new System.Drawing.Point(868, 104);
+            this.cbTransAlarmsPgn.Name = "cbTransAlarmsPgn";
+            this.cbTransAlarmsPgn.Size = new System.Drawing.Size(132, 33);
+            this.cbTransAlarmsPgn.TabIndex = 28;
             // 
             // label12
             // 
@@ -541,44 +541,44 @@
             this.label14.Text = "Pressure:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // comboBox8
+            // cbTransPressureSource
             // 
-            this.comboBox8.BackColor = System.Drawing.Color.Black;
-            this.comboBox8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(269, 66);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(579, 33);
-            this.comboBox8.TabIndex = 2;
+            this.cbTransPressureSource.BackColor = System.Drawing.Color.Black;
+            this.cbTransPressureSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTransPressureSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbTransPressureSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTransPressureSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbTransPressureSource.FormattingEnabled = true;
+            this.cbTransPressureSource.Location = new System.Drawing.Point(269, 66);
+            this.cbTransPressureSource.Name = "cbTransPressureSource";
+            this.cbTransPressureSource.Size = new System.Drawing.Size(579, 33);
+            this.cbTransPressureSource.TabIndex = 2;
             // 
-            // comboBox9
+            // cbTransPressureInstance
             // 
-            this.comboBox9.BackColor = System.Drawing.Color.Black;
-            this.comboBox9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(1020, 66);
-            this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(106, 33);
-            this.comboBox9.TabIndex = 7;
+            this.cbTransPressureInstance.BackColor = System.Drawing.Color.Black;
+            this.cbTransPressureInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTransPressureInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbTransPressureInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTransPressureInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbTransPressureInstance.FormattingEnabled = true;
+            this.cbTransPressureInstance.Location = new System.Drawing.Point(1020, 66);
+            this.cbTransPressureInstance.Name = "cbTransPressureInstance";
+            this.cbTransPressureInstance.Size = new System.Drawing.Size(106, 33);
+            this.cbTransPressureInstance.TabIndex = 7;
             // 
-            // comboBox10
+            // cbTransAlarmsSource
             // 
-            this.comboBox10.BackColor = System.Drawing.Color.Black;
-            this.comboBox10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Location = new System.Drawing.Point(269, 104);
-            this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(579, 33);
-            this.comboBox10.TabIndex = 9;
+            this.cbTransAlarmsSource.BackColor = System.Drawing.Color.Black;
+            this.cbTransAlarmsSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTransAlarmsSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbTransAlarmsSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTransAlarmsSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbTransAlarmsSource.FormattingEnabled = true;
+            this.cbTransAlarmsSource.Location = new System.Drawing.Point(269, 104);
+            this.cbTransAlarmsSource.Name = "cbTransAlarmsSource";
+            this.cbTransAlarmsSource.Size = new System.Drawing.Size(579, 33);
+            this.cbTransAlarmsSource.TabIndex = 9;
             // 
             // label15
             // 
@@ -591,28 +591,28 @@
             this.label15.Text = "Alarms:";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // comboBox11
+            // cbTransAlarmsInstance
             // 
-            this.comboBox11.BackColor = System.Drawing.Color.Black;
-            this.comboBox11.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Location = new System.Drawing.Point(1020, 104);
-            this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(106, 33);
-            this.comboBox11.TabIndex = 11;
+            this.cbTransAlarmsInstance.BackColor = System.Drawing.Color.Black;
+            this.cbTransAlarmsInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTransAlarmsInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbTransAlarmsInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTransAlarmsInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbTransAlarmsInstance.FormattingEnabled = true;
+            this.cbTransAlarmsInstance.Location = new System.Drawing.Point(1020, 104);
+            this.cbTransAlarmsInstance.Name = "cbTransAlarmsInstance";
+            this.cbTransAlarmsInstance.Size = new System.Drawing.Size(106, 33);
+            this.cbTransAlarmsInstance.TabIndex = 11;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.comboBox1);
+            this.groupBox3.Controls.Add(this.cbBatteryVoltagePgn);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Controls.Add(this.label18);
-            this.groupBox3.Controls.Add(this.comboBox3);
-            this.groupBox3.Controls.Add(this.comboBox6);
+            this.groupBox3.Controls.Add(this.cbBatteryVoltageSource);
+            this.groupBox3.Controls.Add(this.cbBatteryVoltageInstance);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(33, 529);
@@ -633,19 +633,19 @@
             this.label9.Text = "PGN";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // comboBox1
+            // cbBatteryVoltagePgn
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.Black;
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(868, 66);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(132, 33);
-            this.comboBox1.TabIndex = 27;
+            this.cbBatteryVoltagePgn.BackColor = System.Drawing.Color.Black;
+            this.cbBatteryVoltagePgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBatteryVoltagePgn.Enabled = false;
+            this.cbBatteryVoltagePgn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbBatteryVoltagePgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbBatteryVoltagePgn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbBatteryVoltagePgn.FormattingEnabled = true;
+            this.cbBatteryVoltagePgn.Location = new System.Drawing.Point(868, 66);
+            this.cbBatteryVoltagePgn.Name = "cbBatteryVoltagePgn";
+            this.cbBatteryVoltagePgn.Size = new System.Drawing.Size(132, 33);
+            this.cbBatteryVoltagePgn.TabIndex = 27;
             // 
             // label16
             // 
@@ -680,31 +680,31 @@
             this.label18.Text = "Voltage:";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // comboBox3
+            // cbBatteryVoltageSource
             // 
-            this.comboBox3.BackColor = System.Drawing.Color.Black;
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(269, 66);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(579, 33);
-            this.comboBox3.TabIndex = 2;
+            this.cbBatteryVoltageSource.BackColor = System.Drawing.Color.Black;
+            this.cbBatteryVoltageSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBatteryVoltageSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbBatteryVoltageSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbBatteryVoltageSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbBatteryVoltageSource.FormattingEnabled = true;
+            this.cbBatteryVoltageSource.Location = new System.Drawing.Point(269, 66);
+            this.cbBatteryVoltageSource.Name = "cbBatteryVoltageSource";
+            this.cbBatteryVoltageSource.Size = new System.Drawing.Size(579, 33);
+            this.cbBatteryVoltageSource.TabIndex = 2;
             // 
-            // comboBox6
+            // cbBatteryVoltageInstance
             // 
-            this.comboBox6.BackColor = System.Drawing.Color.Black;
-            this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(1020, 66);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(106, 33);
-            this.comboBox6.TabIndex = 7;
+            this.cbBatteryVoltageInstance.BackColor = System.Drawing.Color.Black;
+            this.cbBatteryVoltageInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBatteryVoltageInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbBatteryVoltageInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbBatteryVoltageInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cbBatteryVoltageInstance.FormattingEnabled = true;
+            this.cbBatteryVoltageInstance.Location = new System.Drawing.Point(1020, 66);
+            this.cbBatteryVoltageInstance.Name = "cbBatteryVoltageInstance";
+            this.cbBatteryVoltageInstance.Size = new System.Drawing.Size(106, 33);
+            this.cbBatteryVoltageInstance.TabIndex = 7;
             // 
             // label19
             // 
@@ -768,7 +768,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnRefreshDeviceList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Nmea2000Config";
@@ -783,53 +783,53 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRefreshDeviceList;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbPortRpmSource;
+        private System.Windows.Forms.ComboBox cbRpmSource;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ComboBox cbPortRpmInstance;
-        private System.Windows.Forms.ComboBox cbPortWaterTempInstance;
+        private System.Windows.Forms.ComboBox cbRpmInstance;
+        private System.Windows.Forms.ComboBox cbWaterTempInstance;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cbPortWaterTempSource;
-        private System.Windows.Forms.ComboBox cbPortOilPressureInstance;
+        private System.Windows.Forms.ComboBox cbWaterTempSource;
+        private System.Windows.Forms.ComboBox cbOilPressureInstance;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cbPortOilPressureSource;
-        private System.Windows.Forms.ComboBox cbPortEngineAlarmsInstance;
+        private System.Windows.Forms.ComboBox cbOilPressureSource;
+        private System.Windows.Forms.ComboBox cbEngineAlarmsInstance;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox cbPortEngineAlarmsSource;
+        private System.Windows.Forms.ComboBox cbEngineAlarmsSource;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cbPortRpmPgn;
-        private System.Windows.Forms.ComboBox cbPortWaterTempPgn;
-        private System.Windows.Forms.ComboBox cbPortEngineAlarmsPgn;
-        private System.Windows.Forms.ComboBox cbPortOilPressurePgn;
+        private System.Windows.Forms.ComboBox cbRpmPgn;
+        private System.Windows.Forms.ComboBox cbWaterTempPgn;
+        private System.Windows.Forms.ComboBox cbEngineAlarmsPgn;
+        private System.Windows.Forms.ComboBox cbOilPressurePgn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox cbPortHourMeterPgn;
-        private System.Windows.Forms.ComboBox cbPortHourMeterInstance;
+        private System.Windows.Forms.ComboBox cbHourMeterPgn;
+        private System.Windows.Forms.ComboBox cbHourMeterInstance;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cbPortHourMeterSource;
+        private System.Windows.Forms.ComboBox cbHourMeterSource;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox cbTransPressurePgn;
+        private System.Windows.Forms.ComboBox cbTransAlarmsPgn;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox comboBox8;
-        private System.Windows.Forms.ComboBox comboBox9;
-        private System.Windows.Forms.ComboBox comboBox10;
+        private System.Windows.Forms.ComboBox cbTransPressureSource;
+        private System.Windows.Forms.ComboBox cbTransPressureInstance;
+        private System.Windows.Forms.ComboBox cbTransAlarmsSource;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox comboBox11;
+        private System.Windows.Forms.ComboBox cbTransAlarmsInstance;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbBatteryVoltagePgn;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox cbBatteryVoltageSource;
+        private System.Windows.Forms.ComboBox cbBatteryVoltageInstance;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button btnDeviceListScrollUp;
         private System.Windows.Forms.Button btnDeviceListScrollDown;

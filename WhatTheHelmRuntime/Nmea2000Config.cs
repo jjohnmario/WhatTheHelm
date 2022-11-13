@@ -26,12 +26,17 @@ namespace WhatTheHelmRuntime
     }
     public partial class Nmea2000Config : Form
     {
+        private List<object> _instanceList = new List<object>();
         private List<ProductInformation> _productInformation = new List<ProductInformation>();
         private List<Nmea2000Object> _nmea2000Objects = new List<Nmea2000Object>();
         public Nmea2000Config()
         {
             InitializeComponent();
             Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
+            for (int i = 0; i < 1000; i++)
+            {
+                _instanceList.Add(i);
+            }
             RefreshList();
         }
 
@@ -82,40 +87,56 @@ namespace WhatTheHelmRuntime
             gw.IsoRequest(126996);
             gw.IsoRequest(126464);
             listBox1.Items.Clear();
-            listBox1.Items.Add("FOO");
-            listBox1.Items.Add("FOO");
-            listBox1.Items.Add("FOO");
-
-
         }
 
         private void configureComboBoxes()
         {
+            object[] instance = _instanceList.ToArray();
+            //RPM
             _nmea2000Objects.Where(obj => obj.TxPgns!=null && obj.TxPgns.Contains(127488)).ToList().ForEach(obj => 
             {
-                object[] instance = new object[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-                //Port RPM
-                fillComboBox(cbPortRpmSource, new object[] { obj.ToString() }, true);
-                fillComboBox(cbPortRpmPgn, new object[] { 127488 }, false);
-                fillComboBox(cbPortRpmInstance, instance, true);
-
-                //Port oil, water, alarms
-                fillComboBox(cbPortWaterTempSource, new object[] { obj.ToString() }, true);
-                fillComboBox(cbPortWaterTempPgn, new object[] { 127493 }, false);
-                fillComboBox(cbPortWaterTempInstance, instance, true);
-                fillComboBox(cbPortOilPressureSource, new object[] { obj.ToString() }, true);
-                fillComboBox(cbPortOilPressurePgn, new object[] { 127493 }, false);
-                fillComboBox(cbPortOilPressureInstance, instance, true);
-                fillComboBox(cbPortEngineAlarmsSource, new object[] { obj.ToString() }, true);
-                fillComboBox(cbPortEngineAlarmsPgn, new object[] { 127493 }, false);
-                fillComboBox(cbPortEngineAlarmsInstance, instance, true);
-                fillComboBox(cbPortHourMeterSource, new object[] { obj.ToString() }, true);
-                fillComboBox(cbPortHourMeterPgn, new object[] { 127493 }, false);
-                fillComboBox(cbPortHourMeterInstance, instance, true);
-
-                instance = null;
+                fillComboBox(cbRpmSource, new object[] { obj.ToString() }, true);
+                fillComboBox(cbRpmPgn, new object[] { 127488 }, false);
+                fillComboBox(cbRpmInstance, instance, true);
             });
 
+            //Engine oil pressure, water temperature, alarms
+            _nmea2000Objects.Where(obj => obj.TxPgns != null && obj.TxPgns.Contains(127489)).ToList().ForEach(obj =>
+            {
+                fillComboBox(cbWaterTempSource, new object[] { obj.ToString() }, true);
+                fillComboBox(cbWaterTempPgn, new object[] { 127489 }, false);
+                fillComboBox(cbWaterTempInstance, instance, true);
+                fillComboBox(cbOilPressureSource, new object[] { obj.ToString() }, true);
+                fillComboBox(cbOilPressurePgn, new object[] { 127489 }, false);
+                fillComboBox(cbOilPressureInstance, instance, true);
+                fillComboBox(cbEngineAlarmsSource, new object[] { obj.ToString() }, true);
+                fillComboBox(cbEngineAlarmsPgn, new object[] { 127489 }, false);
+                fillComboBox(cbEngineAlarmsInstance, instance, true);
+                fillComboBox(cbHourMeterSource, new object[] { obj.ToString() }, true);
+                fillComboBox(cbHourMeterPgn, new object[] { 127489 }, false);
+                fillComboBox(cbHourMeterInstance, instance, true);
+            });
+            //Trans hydraulic pressure, alarms
+            _nmea2000Objects.Where(obj => obj.TxPgns != null && obj.TxPgns.Contains(127493)).ToList().ForEach(obj =>
+            {
+                fillComboBox(cbTransPressureSource, new object[] { obj.ToString() }, true);
+                fillComboBox(cbTransPressurePgn, new object[] { 127493 }, false);
+                fillComboBox(cbTransPressureInstance, instance, true);
+            });
+            //Battery
+            List<object> batteryPgns = new List<object>();
+            _nmea2000Objects.Where(obj => obj.TxPgns != null && obj.TxPgns.Contains(127508) | obj.TxPgns.Contains(127489)).ToList().ForEach(obj =>
+            {
+                fillComboBox(cbBatteryVoltageSource, new object[] { obj.ToString() }, true);
+                if (obj.TxPgns.Contains(127508) & !batteryPgns.Contains(127508))
+                    batteryPgns.Add(127508);
+                if(obj.TxPgns.Contains(127489) & !batteryPgns.Contains(127489))
+                    batteryPgns.Add(127489);
+
+            });
+            fillComboBox(cbBatteryVoltagePgn, batteryPgns.ToArray(), true);
+            fillComboBox(cbBatteryVoltageInstance, instance, true);
+            instance = null;
         }
 
         private void fillComboBox(ComboBox cb, object[] items, bool enabled)
@@ -132,19 +153,19 @@ namespace WhatTheHelmRuntime
 
         private void setComboBoxSelectedItems()
         {
-            if (cbPortRpmPgn.Items.Count > 0)
-                cbPortRpmPgn.Invoke(new MethodInvoker(() => { cbPortRpmPgn.SelectedIndex = 0; }));
-            if (cbPortWaterTempPgn.Items.Count > 0)
-                cbPortWaterTempPgn.Invoke(new MethodInvoker(() => { cbPortWaterTempPgn.SelectedIndex = 0; }));
-            if (cbPortOilPressurePgn.Items.Count > 0)
-                cbPortOilPressurePgn.Invoke(new MethodInvoker(() => { cbPortOilPressurePgn.SelectedIndex = 0; }));
-            if (cbPortEngineAlarmsPgn.Items.Count > 0)
-                cbPortEngineAlarmsPgn.Invoke(new MethodInvoker(() => { cbPortEngineAlarmsPgn.SelectedIndex = 0; }));
-            if (cbPortHourMeterPgn.Items.Count > 0)
-                cbPortHourMeterPgn.Invoke(new MethodInvoker(() => { cbPortHourMeterPgn.SelectedIndex = 0; }));
+            if (cbRpmPgn.Items.Count > 0)
+                cbRpmPgn.Invoke(new MethodInvoker(() => { cbRpmPgn.SelectedIndex = 0; }));
+            if (cbWaterTempPgn.Items.Count > 0)
+                cbWaterTempPgn.Invoke(new MethodInvoker(() => { cbWaterTempPgn.SelectedIndex = 0; }));
+            if (cbOilPressurePgn.Items.Count > 0)
+                cbOilPressurePgn.Invoke(new MethodInvoker(() => { cbOilPressurePgn.SelectedIndex = 0; }));
+            if (cbEngineAlarmsPgn.Items.Count > 0)
+                cbEngineAlarmsPgn.Invoke(new MethodInvoker(() => { cbEngineAlarmsPgn.SelectedIndex = 0; }));
+            if (cbHourMeterPgn.Items.Count > 0)
+                cbHourMeterPgn.Invoke(new MethodInvoker(() => { cbHourMeterPgn.SelectedIndex = 0; }));
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnRefreshDeviceList_Click(object sender, EventArgs e)
         {
             RefreshList();
         }
@@ -157,7 +178,7 @@ namespace WhatTheHelmRuntime
         private void btnDeviceListScrollUp_Click(object sender, EventArgs e)
         {
             int visibleItemsInRow = listBox1.ClientSize.Height / listBox1.ItemHeight;
-            listBox1.TopIndex = 0; //listBox1.TopIndex - visibleItemsInRow;
+            listBox1.TopIndex = 0;
         }
 
         private void btnDeviceListScrollDown_Click(object sender, EventArgs e)
