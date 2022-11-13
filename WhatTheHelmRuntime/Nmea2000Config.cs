@@ -69,6 +69,10 @@ namespace WhatTheHelmRuntime
                 //Replace old N2K object with new
                 _nmea2000Objects.Remove(foundObj);
                 _nmea2000Objects.Add(updatedObj);
+
+                
+                configureComboBoxes();
+                setComboBoxSelectedItems();
             }
         }
 
@@ -78,21 +82,66 @@ namespace WhatTheHelmRuntime
             gw.IsoRequest(126996);
             gw.IsoRequest(126464);
             listBox1.Items.Clear();
+            listBox1.Items.Add("FOO");
+            listBox1.Items.Add("FOO");
+            listBox1.Items.Add("FOO");
+
+
         }
 
-        private void addComboBoxItems()
+        private void configureComboBoxes()
         {
-            _nmea2000Objects.Where(obj => obj.TxPgns.Contains(127488)).ToList().ForEach(obj => {
-                cbPortRpmSource.Items.Add(obj.ToString());
-                cbPortRpmPgn.Items.Add(127488);
-                cbPortRpmPgn.SelectedItem = 127488;
-                cbPortRpmInstance.Items.AddRange(new object[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
-                cbPortWaterTempSource.Items.Add(obj.ToString());
-                cbPortWaterTempPgn.Items.Add(127488);
-                cbPortWaterTempPgn.SelectedItem = 127488;
-                cbPortWaterTempInstance.Items.AddRange(new object[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+            _nmea2000Objects.Where(obj => obj.TxPgns!=null && obj.TxPgns.Contains(127488)).ToList().ForEach(obj => 
+            {
+                object[] instance = new object[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                //Port RPM
+                fillComboBox(cbPortRpmSource, new object[] { obj.ToString() }, true);
+                fillComboBox(cbPortRpmPgn, new object[] { 127488 }, false);
+                fillComboBox(cbPortRpmInstance, instance, true);
+
+                //Port oil, water, alarms
+                fillComboBox(cbPortWaterTempSource, new object[] { obj.ToString() }, true);
+                fillComboBox(cbPortWaterTempPgn, new object[] { 127493 }, false);
+                fillComboBox(cbPortWaterTempInstance, instance, true);
+                fillComboBox(cbPortOilPressureSource, new object[] { obj.ToString() }, true);
+                fillComboBox(cbPortOilPressurePgn, new object[] { 127493 }, false);
+                fillComboBox(cbPortOilPressureInstance, instance, true);
+                fillComboBox(cbPortEngineAlarmsSource, new object[] { obj.ToString() }, true);
+                fillComboBox(cbPortEngineAlarmsPgn, new object[] { 127493 }, false);
+                fillComboBox(cbPortEngineAlarmsInstance, instance, true);
+                fillComboBox(cbPortHourMeterSource, new object[] { obj.ToString() }, true);
+                fillComboBox(cbPortHourMeterPgn, new object[] { 127493 }, false);
+                fillComboBox(cbPortHourMeterInstance, instance, true);
+
+                instance = null;
             });
 
+        }
+
+        private void fillComboBox(ComboBox cb, object[] items, bool enabled)
+        {
+            cb.Invoke(new MethodInvoker(() =>
+            {
+                cb.Items.Clear();
+                cb.Items.AddRange(items);
+                cb.Enabled = enabled;
+            }));
+
+           
+        }
+
+        private void setComboBoxSelectedItems()
+        {
+            if (cbPortRpmPgn.Items.Count > 0)
+                cbPortRpmPgn.Invoke(new MethodInvoker(() => { cbPortRpmPgn.SelectedIndex = 0; }));
+            if (cbPortWaterTempPgn.Items.Count > 0)
+                cbPortWaterTempPgn.Invoke(new MethodInvoker(() => { cbPortWaterTempPgn.SelectedIndex = 0; }));
+            if (cbPortOilPressurePgn.Items.Count > 0)
+                cbPortOilPressurePgn.Invoke(new MethodInvoker(() => { cbPortOilPressurePgn.SelectedIndex = 0; }));
+            if (cbPortEngineAlarmsPgn.Items.Count > 0)
+                cbPortEngineAlarmsPgn.Invoke(new MethodInvoker(() => { cbPortEngineAlarmsPgn.SelectedIndex = 0; }));
+            if (cbPortHourMeterPgn.Items.Count > 0)
+                cbPortHourMeterPgn.Invoke(new MethodInvoker(() => { cbPortHourMeterPgn.SelectedIndex = 0; }));
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -100,9 +149,21 @@ namespace WhatTheHelmRuntime
             RefreshList();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            addComboBoxItems();
+
+        }
+
+        private void btnDeviceListScrollUp_Click(object sender, EventArgs e)
+        {
+            int visibleItemsInRow = listBox1.ClientSize.Height / listBox1.ItemHeight;
+            listBox1.TopIndex = 0; //listBox1.TopIndex - visibleItemsInRow;
+        }
+
+        private void btnDeviceListScrollDown_Click(object sender, EventArgs e)
+        {
+            int visibleItemsInRow = listBox1.ClientSize.Height / listBox1.ItemHeight;
+            listBox1.TopIndex = listBox1.TopIndex + visibleItemsInRow;
         }
     }
 }
