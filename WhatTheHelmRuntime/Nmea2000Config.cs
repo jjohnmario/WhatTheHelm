@@ -43,7 +43,7 @@ namespace WhatTheHelmRuntime
         private void CanGateway_MessageRecieved(object sender, WhatTheHelmCanLib.Messages.CanMessageArgs e)
         {
             //Product information
-            if(e.Message.ParameterGroupNumber == 126996)
+            if(e.Message.Pgn == 126996)
             {
                 var prodInfo = new Pgn0x1F014();
                 prodInfo = (Pgn0x1F014)prodInfo.DeserializeFields(e.Message.Data);
@@ -58,7 +58,7 @@ namespace WhatTheHelmRuntime
                 
             }
             //Pgn List
-            if(e.Message.ParameterGroupNumber == 126464)
+            if(e.Message.Pgn == 126464)
             {
                 var pgnList = new Pgn0x1EE00();
                 pgnList = (Pgn0x1EE00)pgnList.DeserializeFields(e.Message.Data);

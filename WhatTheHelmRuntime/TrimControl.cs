@@ -30,18 +30,24 @@ namespace WhatTheHelmRuntime
             InitializeComponent();
             this.MinimumSize = new Size() { Height = 480, Width = 800 };
             this.MaximumSize = new Size() { Height = 480, Width = 800 };
-            //Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
+
+            //Subscribe to CAN messages
+            Program.CanGateway.MessageRecieved += CanGateWay_MessageRecieved;
 
             //Perform intial scan of relay states of MVEC-1
-            MvecCommand0x96 cmd1 = new MvecCommand0x96(0);
-            Pgn0x0EF00 pgn1 = new Pgn0x0EF00(cmd1, 176);
-            CanMessage msg1 = new CanMessage(pgn1.Pgn, Format.EXTENDED, 6, Program.CanRequestHandler.CanGateway.Address, pgn1.SerializeFields());
-            Program.CanRequestHandler.QueueOutgoingMessage(msg1);
+            Pgn0x0EF00 pgn1 = new Pgn0x0EF00(new MvecCommand0x96(0), 176);
+            CanMessage msg1 = new CanMessage(pgn1.Pgn, Format.EXTENDED, 6, Program.CanGateway.Address, pgn1.DestinationAddress, pgn1.SerializeFields());
+            Program.CanGateway.Write(msg1);
+
             //Perform intial scan of relay states of MVEC-2
-            MvecCommand0x96 cmd2 = new MvecCommand0x96(0);
-            Pgn0x0EF00 pgn2 = new Pgn0x0EF00(cmd2, 177);
-            CanMessage msg2 = new CanMessage(pgn1.Pgn, Format.EXTENDED, 6, Program.CanRequestHandler.CanGateway.Address, pgn1.SerializeFields());
-            Program.CanRequestHandler.QueueOutgoingMessage(msg2);
+            Pgn0x0EF00 pgn2 = new Pgn0x0EF00(new MvecCommand0x96(0), 177);
+            CanMessage msg2 = new CanMessage(pgn2.Pgn, Format.EXTENDED, 6, Program.CanGateway.Address, pgn2.DestinationAddress, pgn2.SerializeFields());
+            Program.CanGateway.Write(msg2);
+
+            //Perform intial scan of relay states of MVEC-3
+            Pgn0x0EF00 pgn3 = new Pgn0x0EF00(new MvecCommand0x96(0), 178);
+            CanMessage msg3 = new CanMessage(pgn3.Pgn, Format.EXTENDED, 6, Program.CanGateway.Address, pgn3.DestinationAddress, pgn3.SerializeFields());
+            Program.CanGateway.Write(msg3);
 
             Timer t = new Timer();
             t.Interval = 5000;
@@ -68,13 +74,13 @@ namespace WhatTheHelmRuntime
             }
         }
 
-        private void CanGateWayListener_NewMessage(object sender, CanMessage e)
+        private void CanGateWay_MessageRecieved(object sender, CanMessageArgs e)
         {
             //Engine Parameters (Rapid)
-            if (e.ParameterGroupNumber == 127488)
+            if (e.Message.Pgn == 127488)
             {
                 pgn0x1F200LastMsg = DateTime.Now;
-                pgn0x1F200 = (Pgn0x1F200)pgn0x1F200.DeserializeFields(e.Data).ToImperial();
+                pgn0x1F200 = (Pgn0x1F200)pgn0x1F200.DeserializeFields(e.Message.Data).ToImperial();
 
                 //Port Engine
                 if (pgn0x1F200.EngineInstance == 0)
@@ -90,9 +96,9 @@ namespace WhatTheHelmRuntime
                 }
             }
             //Set DashboardButton states
-            else if (e.ParameterGroupNumber == 61184)
+            else if (e.Message.Pgn == 61184)
             {
-                pgn0x0EF00 = (Pgn0x0EF00)pgn0x0EF00.DeserializeFields(e.Data);
+                pgn0x0EF00 = (Pgn0x0EF00)pgn0x0EF00.DeserializeFields(e.Message.Data);
                 if (pgn0x0EF00.Reply.Reply == ReplyMessage.hex96)
                 {
 
@@ -102,34 +108,34 @@ namespace WhatTheHelmRuntime
                         if (c.GetType() == typeof(DashboardButton))
                         {
                             var control = (DashboardButton)c;
-                            control.UpdateState((byte)e.SourceAddress, reply.GridAddress, reply.RelayState);
+                            control.UpdateState((byte)e.Message.SourceAddress, reply.GridAddress, reply.RelayState);
                         }
                     }
                 }
             }
             //Set DashboardButton fuse status
-            else if (e.ParameterGroupNumber == 65440)
+            else if (e.Message.Pgn == 65440)
             {
-                pgn0x0FFA0 = (Pgn0x0FFA0)pgn0x0FFA0.DeserializeFields(e.Data);
+                pgn0x0FFA0 = (Pgn0x0FFA0)pgn0x0FFA0.DeserializeFields(e.Message.Data);
                 foreach (Control c in this.Controls)
                 {
                     if (c.GetType() == typeof(DashboardButton))
                     {
                         var control = (DashboardButton)c;
-                        control.UpdateFuseStatus((byte)e.SourceAddress, pgn0x0FFA0.GridAddress, pgn0x0FFA0.FuseStatus);
+                        control.UpdateFuseStatus((byte)e.Message.SourceAddress, pgn0x0FFA0.GridAddress, pgn0x0FFA0.FuseStatus);
                     }
                 }
             }
             //Set DashboardButton relay status
-            else if (e.ParameterGroupNumber == 65441)
+            else if (e.Message.Pgn == 65441)
             {
-                pgn0x0FFA1 = (Pgn0x0FFA1)pgn0x0FFA1.DeserializeFields(e.Data);
+                pgn0x0FFA1 = (Pgn0x0FFA1)pgn0x0FFA1.DeserializeFields(e.Message.Data);
                 foreach (Control c in this.Controls)
                 {
                     if (c.GetType() == typeof(DashboardButton))
                     {
                         var control = (DashboardButton)c;
-                        control.UpdateRelayStatus((byte)e.SourceAddress, pgn0x0FFA1.GridAddress, pgn0x0FFA1.RelayStatus);
+                        control.UpdateRelayStatus((byte)e.Message.SourceAddress, pgn0x0FFA1.GridAddress, pgn0x0FFA1.RelayStatus);
                     }
                 }
             }
@@ -139,7 +145,7 @@ namespace WhatTheHelmRuntime
         {
             MvecCommand0x80 cmd = new MvecCommand0x80(0, e.MvecRelayNumber, e.RelayCommandState);
             Pgn0x0EF00 pgn = new Pgn0x0EF00(cmd, e.MvecAddress);
-            CanMessage msg = new CanMessage(pgn.Pgn, Format.EXTENDED, 6, Program.CanRequestHandler.CanGateway.Address, pgn.SerializeFields());
+            CanMessage msg = new CanMessage(pgn.Pgn, Format.EXTENDED, 6, Program.CanGateway.Address, pgn.DestinationAddress, pgn.SerializeFields());
             Program.CanRequestHandler.QueueOutgoingMessage(msg);
         }
 

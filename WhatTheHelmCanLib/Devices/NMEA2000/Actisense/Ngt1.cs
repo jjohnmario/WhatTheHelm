@@ -182,11 +182,6 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
             _mainMessageQueue.Enqueue(msg);
         }
 
-        private void n2kTxCallbackHandler(IntPtr UserData)
-        {
-
-        }
-
         public override CanMessage Parse(object message)
         {
             lock(_parseLock)
@@ -196,16 +191,31 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
                 {
                     byte[] data = new byte[msg.Size];
                     Array.Copy(msg.Data, 4, data, 0, msg.Size);
-                    return new CanMessage(msg.PGN, Format.EXTENDED, msg.Priority, msg.Src, data);
+                    return new CanMessage(msg.PGN, Format.EXTENDED, msg.Priority, msg.Src, msg.Dest, data);
                 }
                 else
                     return null;
             }
         }
 
-        public override void Write(CanMessage message)
+        public override bool Write(CanMessage message)
         {
-            throw new NotImplementedException();
+            NMEA2K.N2KMsg_s N2Kmsg = new NMEA2K.N2KMsg_s();
+            N2Kmsg.Timestamp = 0;
+            N2Kmsg.Src = (byte)message.SourceAddress;
+            N2Kmsg.PGN = message.Pgn;
+            if (message.IsAddressible)           
+                N2Kmsg.Dest = (byte)message.DestinationAddress;
+            else            
+                N2Kmsg.Dest = 255;
+            N2Kmsg.Size = (uint)message.Data.Length;
+            N2Kmsg.Data = new byte[NMEA2K.N2K_MAXLEN_FP];
+            Array.Copy(message.Data, 0, N2Kmsg.Data, 4, N2Kmsg.Size); // Note that the actual data frame starts at index 4, not index 0 for NGT-1
+            ARLErrorCodes_t error = NMEA2K.Write(_actiHandle, ref N2Kmsg);
+            if (error != ARLErrorCodes_t.ES_NoError)
+                return false;
+            else
+                return true;
         }
 
         protected override CanIdDataPair ParseExtended(object message)

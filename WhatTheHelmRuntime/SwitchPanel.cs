@@ -33,18 +33,22 @@ namespace WhatTheHelmRuntime
             this.MaximumSize = new Size() { Height = 480, Width = 800 };
 
             //Subscribe to CAN messages
-            //Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
+            Program.CanGateway.MessageRecieved += CanGateWay_MessageRecieved;
 
             //Perform intial scan of relay states of MVEC-1
-            MvecCommand0x96 cmd1 = new MvecCommand0x96(0);
-            Pgn0x0EF00 pgn1 = new Pgn0x0EF00(cmd1, 176);
-            CanMessage msg1 = new CanMessage(pgn1.Pgn, Format.EXTENDED, 6, Program.CanRequestHandler.CanGateway.Address, pgn1.SerializeFields());
-            Program.CanRequestHandler.QueueOutgoingMessage(msg1);
+            Pgn0x0EF00 pgn1 = new Pgn0x0EF00(new MvecCommand0x96(0), 176);
+            CanMessage msg1 = new CanMessage(pgn1.Pgn, Format.EXTENDED, 6, Program.CanGateway.Address, pgn1.DestinationAddress, pgn1.SerializeFields());
+            Program.CanGateway.Write(msg1);
+
             //Perform intial scan of relay states of MVEC-2
-            MvecCommand0x96 cmd2 = new MvecCommand0x96(0);
-            Pgn0x0EF00 pgn2 = new Pgn0x0EF00(cmd2, 177);
-            CanMessage msg2 = new CanMessage(pgn1.Pgn, Format.EXTENDED, 6, Program.CanRequestHandler.CanGateway.Address, pgn1.SerializeFields());
-            Program.CanRequestHandler.QueueOutgoingMessage(msg2);
+            Pgn0x0EF00 pgn2 = new Pgn0x0EF00(new MvecCommand0x96(0), 177);
+            CanMessage msg2 = new CanMessage(pgn2.Pgn, Format.EXTENDED, 6, Program.CanGateway.Address, pgn2.DestinationAddress, pgn2.SerializeFields());
+            Program.CanGateway.Write(msg2);
+
+            //Perform intial scan of relay states of MVEC-3
+            Pgn0x0EF00 pgn3 = new Pgn0x0EF00(new MvecCommand0x96(0), 178);
+            CanMessage msg3 = new CanMessage(pgn3.Pgn, Format.EXTENDED, 6, Program.CanGateway.Address, pgn3.DestinationAddress, pgn3.SerializeFields());
+            Program.CanGateway.Write(msg3);
         }
 
         private void FusesStatus_FuseFaultCleared()
@@ -66,12 +70,12 @@ namespace WhatTheHelmRuntime
                 button1.Invoke(inv);
         }
 
-        private void CanGateWayListener_NewMessage(object sender, CanMessage e)
+        private void CanGateWay_MessageRecieved(object sender, CanMessageArgs e)
         {
             //Set DashboardButton states
-            if (e.ParameterGroupNumber == 61184)
+            if (e.Message.Pgn == 61184)
             {
-                pgn0x0EF00 = (Pgn0x0EF00)pgn0x0EF00.DeserializeFields(e.Data);
+                pgn0x0EF00 = (Pgn0x0EF00)pgn0x0EF00.DeserializeFields(e.Message.Data);
                 if(pgn0x0EF00.Reply.Reply == ReplyMessage.hex96)
                 {
                     MvecReply0x96 reply = (MvecReply0x96)pgn0x0EF00.Reply;
@@ -80,16 +84,16 @@ namespace WhatTheHelmRuntime
                         if (c.GetType() == typeof(DashboardButton) && c.IsHandleCreated)
                         {
                             var control = (DashboardButton)c;
-                            control.UpdateState((byte)e.SourceAddress, reply.GridAddress, reply.RelayState);
+                            control.UpdateState((byte)e.Message.SourceAddress, reply.GridAddress, reply.RelayState);
                         }
                     }
                 }
             }
             //Set DashboardButton fuse status
-            else if (e.ParameterGroupNumber == 65440)
+            else if (e.Message.Pgn == 65440)
             {
 
-                pgn0x0FFA0 = (Pgn0x0FFA0)pgn0x0FFA0.DeserializeFields(e.Data);
+                pgn0x0FFA0 = (Pgn0x0FFA0)pgn0x0FFA0.DeserializeFields(e.Message.Data);
                 if (pgn0x0FFA0.FuseStatus.Contains(FuseStatus.Blown))
                     FusesStatus_FuseFaulted();
                 else
@@ -100,20 +104,20 @@ namespace WhatTheHelmRuntime
                     if (c.GetType() == typeof(DashboardButton) && c.IsHandleCreated)
                     {
                         var control = (DashboardButton)c;
-                        control.UpdateFuseStatus((byte)e.SourceAddress, pgn0x0FFA0.GridAddress, pgn0x0FFA0.FuseStatus);
+                        control.UpdateFuseStatus((byte)e.Message.SourceAddress, pgn0x0FFA0.GridAddress, pgn0x0FFA0.FuseStatus);
                     }              
                 }
             }
             //Set DashboardButton relay status
-            else if (e.ParameterGroupNumber == 65441)
+            else if (e.Message.Pgn == 65441)
             {
-                pgn0x0FFA1 = (Pgn0x0FFA1)pgn0x0FFA1.DeserializeFields(e.Data);
+                pgn0x0FFA1 = (Pgn0x0FFA1)pgn0x0FFA1.DeserializeFields(e.Message.Data);
                 foreach (Control c in this.Controls)
                 {
                     if (c.GetType() == typeof(DashboardButton) && c.IsHandleCreated)
                     {
                         var control = (DashboardButton)c;
-                        control.UpdateRelayStatus((byte)e.SourceAddress, pgn0x0FFA1.GridAddress, pgn0x0FFA1.RelayStatus);
+                        control.UpdateRelayStatus((byte)e.Message.SourceAddress, pgn0x0FFA1.GridAddress, pgn0x0FFA1.RelayStatus);
                     }
                 }
             }
@@ -121,10 +125,9 @@ namespace WhatTheHelmRuntime
 
         public void NewCommand(object sender,DashboardButtonArgs e)
         {
-            MvecCommand0x80 cmd = new MvecCommand0x80(0, e.MvecRelayNumber, e.RelayCommandState);
-            Pgn0x0EF00 pgn = new Pgn0x0EF00(cmd, e.MvecAddress);
-            CanMessage msg = new CanMessage(pgn.Pgn, Format.EXTENDED, 6, Program.CanRequestHandler.CanGateway.Address, pgn.SerializeFields());
-            Program.CanRequestHandler.QueueOutgoingMessage(msg);
+            Pgn0x0EF00 pgn = new Pgn0x0EF00(new MvecCommand0x80(0, e.MvecRelayNumber, e.RelayCommandState), e.MvecAddress);
+            CanMessage msg = new CanMessage(pgn.Pgn, Format.EXTENDED, 6, Program.CanGateway.Address, pgn.DestinationAddress, pgn.SerializeFields());
+            Program.CanGateway.Write(msg);
         }
 
         private void button1_Click(object sender, EventArgs e)

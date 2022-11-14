@@ -34,26 +34,15 @@ namespace WhatTheHelmRuntime
             this.MaximumSize = new Size() { Height = 480, Width = 800 };
 
             //Subscribe to CAN messages
-            //Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
-
-            //Perform intial scan of relay states of MVEC-1
-            MvecCommand0x96 cmd1 = new MvecCommand0x96(0);
-            Pgn0x0EF00 pgn1 = new Pgn0x0EF00(cmd1, 176);
-            CanMessage msg1 = new CanMessage(pgn1.Pgn, Format.EXTENDED, 6, Program.CanRequestHandler.CanGateway.Address, pgn1.SerializeFields());
-            Program.CanRequestHandler.QueueOutgoingMessage(msg1);
-            //Perform intial scan of relay states of MVEC-2
-            MvecCommand0x96 cmd2 = new MvecCommand0x96(0);
-            Pgn0x0EF00 pgn2 = new Pgn0x0EF00(cmd2, 177);
-            CanMessage msg2 = new CanMessage(pgn1.Pgn, Format.EXTENDED, 6, Program.CanRequestHandler.CanGateway.Address, pgn1.SerializeFields());
-            Program.CanRequestHandler.QueueOutgoingMessage(msg2);
+            Program.CanGateway.MessageRecieved += CanGateWay_MessageRecieved;
         }
 
-        private void CanGateWayListener_NewMessage(object sender, CanMessage e)
+        private void CanGateWay_MessageRecieved(object sender, CanMessageArgs e)
         {
             //Set DashboardButton fuse status
-            if (e.ParameterGroupNumber == 65440)
+            if (e.Message.Pgn == 65440)
             {
-                Pgn0x0FFA0 pgn = (Pgn0x0FFA0)ParameterGroup.GetPgnType(65440).DeserializeFields(e.Data);
+                Pgn0x0FFA0 pgn = (Pgn0x0FFA0)ParameterGroup.GetPgnType(65440).DeserializeFields(e.Message.Data);
                       
                 foreach (Control c in this.Controls)
                 {
@@ -64,11 +53,9 @@ namespace WhatTheHelmRuntime
                             if (child.GetType() == typeof(Fuse) && c.IsHandleCreated)
                             {
                                 var control = (Fuse)child;
-                                control.UpdateFuseStatus((byte)e.SourceAddress, pgn.GridAddress, pgn.FuseStatus);
-                            }
-                            
-                        }
-                        
+                                control.UpdateFuseStatus((byte)e.Message.SourceAddress, pgn.GridAddress, pgn.FuseStatus);
+                            }                        
+                        }                     
                     }
                 }
             }

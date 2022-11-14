@@ -56,7 +56,7 @@ namespace WhatTheHelmRuntime
                 //Future get list of Rx and Tx pgns
                 List<uint> rxPgns = new List<uint> { 59392, 59904, 60928, 61184, 126208, 126464, 126720, 126996, 127488, 127493, 127489, 127508 };
                 //List<uint> rxPgns = new List<uint> { 59392, 59904, 60928, 61184, 126208, 126464, 126720 };
-                List<uint> txPgns = new List<uint> { 59392, 59904, 60928, 126208, 126996 };
+                List<uint> txPgns = new List<uint> { 59392, 59904, 61184, 60928, 126208, 126996 };
 
                 //Open NMEA 2000 gateway. If COM port is busy, wait and retry.
                 do
@@ -124,8 +124,11 @@ namespace WhatTheHelmRuntime
                 }
                 catch
                 {
-                    PortGauges portGauges = new PortGauges();
-                    Application.Run(portGauges);
+                    //PortGauges portGauges = new PortGauges();
+                    //Application.Run(portGauges);
+                    SwitchPanel switchPanel = new SwitchPanel();
+                    Application.Run(switchPanel);
+
                     //Rudder rudder = new Rudder();
                     //Application.Run(rudder);
 

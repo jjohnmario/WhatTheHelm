@@ -66,7 +66,7 @@ namespace WhatTheHelmCanLib.Devices
             foreach(ParameterGroup pg in RequestedParameterGroups)
             {
                 Pgn0x0EA00 isoRequest = new Pgn0x0EA00(pg, 255);
-                CanMessage message = new CanMessage(isoRequest.MessagePgn, Format.EXTENDED, 3, CanGateway.Address, BitConverter.GetBytes(pg.Pgn));
+                CanMessage message = new CanMessage(isoRequest.MessagePgn, Format.EXTENDED, 3, CanGateway.Address, 255, BitConverter.GetBytes(pg.Pgn));
                 CanGateway.Write(message);
             }
         }
@@ -89,7 +89,7 @@ namespace WhatTheHelmCanLib.Devices
             if (e.Message != null)
             {
                 //Filter by 0x0EA00 only.
-                if(59904 <= e.Message.ParameterGroupNumber && e.Message.ParameterGroupNumber <= 60159)
+                if(59904 <= e.Message.Pgn && e.Message.Pgn <= 60159)
                 {
                     MainMessageQueue.Enqueue(e.Message);
                 }                   
@@ -125,7 +125,7 @@ namespace WhatTheHelmCanLib.Devices
                         case uint n when (n <= 0x0EEFF && n >= 0x0EE00):
                             {
                                 Pgn0x0EE00 response = new Pgn0x0EE00(CanGateway.Name);
-                                CanMessage responseMsg = new CanMessage(response.Pgn, Format.EXTENDED, 3, CanGateway.Address, response.SerializeFields());
+                                CanMessage responseMsg = new CanMessage(response.Pgn, Format.EXTENDED, 3, CanGateway.Address, 255, response.SerializeFields());
                                 CanGateway.Write(responseMsg);
                             }
                             break;
@@ -134,7 +134,7 @@ namespace WhatTheHelmCanLib.Devices
                                 var gateway = (Nmea2000Gateway)CanGateway;
                                 Pgn0x1F014 response = new Pgn0x1F014(gateway.ProductInformation);
                                 var fields = response.SerializeFields().Reverse().ToArray();
-                                CanMessage responseMsg = new CanMessage(response.Pgn, Format.EXTENDED, 3, CanGateway.Address, fields);
+                                CanMessage responseMsg = new CanMessage(response.Pgn, Format.EXTENDED, 3, CanGateway.Address,255, fields);
                                 CanGateway.Write(responseMsg);
                             }
                             break;

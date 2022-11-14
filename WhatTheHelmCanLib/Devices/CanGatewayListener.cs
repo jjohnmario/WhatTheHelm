@@ -92,9 +92,9 @@ namespace WhatTheHelmCanLib.Devices
             {
                 if (PgnFilterEnabled)
                 {
-                    if(PgnFilter.Contains(e.Message.ParameterGroupNumber))
+                    if(PgnFilter.Contains(e.Message.Pgn))
                     {
-                        if(ParameterGroup.GetPgnType(e.Message.ParameterGroupNumber).MultiFrame == true)
+                        if(ParameterGroup.GetPgnType(e.Message.Pgn).MultiFrame == true)
                             FastPacketMessageQueue.Add(e.Message);
                         else
                             MainMessageQueue.Enqueue(e.Message);
@@ -102,7 +102,7 @@ namespace WhatTheHelmCanLib.Devices
                 } 
                 else
                 {
-                    if (ParameterGroup.GetPgnType(e.Message.ParameterGroupNumber).MultiFrame == true)
+                    if (ParameterGroup.GetPgnType(e.Message.Pgn).MultiFrame == true)
                         FastPacketMessageQueue.Add(e.Message);
                     else
                         MainMessageQueue.Enqueue(e.Message);
@@ -151,7 +151,7 @@ namespace WhatTheHelmCanLib.Devices
                             int packetCountReq = (int)Math.Ceiling((float)(((dataBytesLen - 6.00) / 7.00) + 1));
 
                             //Get the packets that belong the pgn of the source address.
-                            var totalPackets = FastPacketMessageQueue.ToList().Where(x => x.Data[0] >> 4 == firstFastPacketMessage.Data[0] >> 4 && x.ParameterGroupNumber == firstFastPacketMessage.ParameterGroupNumber && x.SourceAddress == firstFastPacketMessage.SourceAddress).ToList();
+                            var totalPackets = FastPacketMessageQueue.ToList().Where(x => x.Data[0] >> 4 == firstFastPacketMessage.Data[0] >> 4 && x.Pgn == firstFastPacketMessage.Pgn && x.SourceAddress == firstFastPacketMessage.SourceAddress).ToList();
 
                             //If all packets are present then process fast packet message.
                             if (totalPackets.Count() == packetCountReq)

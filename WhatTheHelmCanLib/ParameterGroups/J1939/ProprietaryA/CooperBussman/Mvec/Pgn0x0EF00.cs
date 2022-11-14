@@ -40,7 +40,7 @@ namespace WhatTheHelmCanLib.ParameterGroups.J1939.ProprietaryA.CooperBussman.MVe
         {
             get
             {
-                return (uint)0x0EF00 + DestinationAddress;
+                return 61184;
 
             }
         }

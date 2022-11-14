@@ -35,31 +35,31 @@ namespace WhatTheHelmRuntime
 
         private void CanGateway_MessageRecieved(object sender, CanMessageArgs e)
         {
-            if(e.Message.ParameterGroupNumber < 100000)
-                Console.WriteLine(e.Message.ParameterGroupNumber);
-            if (e.Message.ParameterGroupNumber == 59904)
+            if(e.Message.Pgn < 100000)
+                Console.WriteLine(e.Message.Pgn);
+            if (e.Message.Pgn == 59904)
             {
-                Console.WriteLine(e.Message.ParameterGroupNumber);
+                Console.WriteLine(e.Message.Pgn);
             }
-            if (e.Message.ParameterGroupNumber == 59392)
+            if (e.Message.Pgn == 59392)
             {
-                Console.WriteLine(e.Message.ParameterGroupNumber);
+                Console.WriteLine(e.Message.Pgn);
             }
-            if (e.Message.ParameterGroupNumber == 126208)
+            if (e.Message.Pgn == 126208)
             {
-                Console.WriteLine(e.Message.ParameterGroupNumber);
+                Console.WriteLine(e.Message.Pgn);
             }
-            if (e.Message.ParameterGroupNumber == 60928)
+            if (e.Message.Pgn == 60928)
             {
-                Console.WriteLine(e.Message.ParameterGroupNumber);
+                Console.WriteLine(e.Message.Pgn);
             }
-            if (e.Message.ParameterGroupNumber == 126996)
+            if (e.Message.Pgn == 126996)
             {
                 Pgn0x1F014 pgn0X1F014 = new Pgn0x1F014();
                 pgn0X1F014.DeserializeFields(e.Message.Data);
-                Console.WriteLine(e.Message.ParameterGroupNumber);
+                Console.WriteLine(e.Message.Pgn);
             }
-            if (e.Message.ParameterGroupNumber == 126720)
+            if (e.Message.Pgn == 126720)
             {
                // Console.WriteLine(e.Message.ParameterGroupNumber);
             }

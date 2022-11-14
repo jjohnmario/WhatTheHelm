@@ -91,7 +91,7 @@ namespace WhatTheHelmRuntime
         private void CanGateway_MessageRecieved(object sender, CanMessageArgs e)
         {
             //Engine Parameters (Rapid)
-            if (e.Message.ParameterGroupNumber == 127488)
+            if (e.Message.Pgn == 127488)
             {
                 _pgn0x1F200LastMsg = DateTime.Now;
                 if (Program.Configuration.RpmSource == RpmSource.NMEA2000)
@@ -108,7 +108,7 @@ namespace WhatTheHelmRuntime
             }
 
             //Transmission Parameters
-            if (e.Message.ParameterGroupNumber == 127493)
+            if (e.Message.Pgn == 127493)
             {
                 _pgn0x1F205LastMsg = DateTime.Now;
                 _pgn0x1F205 = (Pgn0x1F205)_pgn0x1F205.DeserializeFields(e.Message.Data).ToImperial();
@@ -131,7 +131,7 @@ namespace WhatTheHelmRuntime
             }
 
             //Engine Parameters (Dynamic)
-            if (e.Message.ParameterGroupNumber == 127489)
+            if (e.Message.Pgn == 127489)
             {
                 _pgn0x1F201LastMsg = DateTime.Now;
                 _pgn0x1F201 = (Pgn0x1F201)_pgn0x1F201.DeserializeFields(e.Message.Data).ToImperial();
@@ -172,7 +172,7 @@ namespace WhatTheHelmRuntime
             }
 
             //Battery Status
-            if (e.Message.ParameterGroupNumber == 127508)
+            if (e.Message.Pgn == 127508)
             {
                 _pgn0x1F214LastMsg = DateTime.Now;
                 _pgn0x1F214 = (Pgn0x1F214)_pgn0x1F214.DeserializeFields(e.Message.Data).ToImperial();

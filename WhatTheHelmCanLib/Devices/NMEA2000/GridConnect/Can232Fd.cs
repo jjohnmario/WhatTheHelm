@@ -169,7 +169,7 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000.GridConnect
                     byte[] data = canMessage.Data;
                     canMessage.Id = null;
                     canMessage.Data = null;
-                    return new CanMessage(pgn, format, priority, sourceAddress, data);
+                    return new CanMessage(pgn, format, priority, sourceAddress, 255, data);
                 }
                 catch
                 {
@@ -211,10 +211,13 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000.GridConnect
             _serialPort.Dispose();
         }
 
-        public override void Write(CanMessage message)
+        public override bool Write(CanMessage message)
         {
-            if (ParameterGroup.GetPgnType(message.ParameterGroupNumber).MultiFrame == true)
+            if (ParameterGroup.GetPgnType(message.Pgn).MultiFrame == true)
+            {
                 WriteMultiPacket(message);
+                return true;
+            }
             else
             {
                 try
@@ -231,7 +234,7 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000.GridConnect
                     //Concatenate last 3 bits of arbitration frame, message priority (3 bits), and PGN type(2 bits,0=J1939,1=NMEA2000) for a total of 8 bits.
                     string arbFrame = "000";
                     string priority = Convert.ToString(message.Priority, 2).PadLeft(3, '0');
-                    string pgnBin = Convert.ToString(message.ParameterGroupNumber, 2).PadLeft(18, '0');
+                    string pgnBin = Convert.ToString(message.Pgn, 2).PadLeft(18, '0');
                     string msgType = Convert.ToString(pgnBin.Substring(0, 2)).PadLeft(2, '0');
                     msg = string.Concat(msg, Convert.ToInt32(string.Concat(arbFrame, priority, msgType), 2).ToString("X").PadLeft(2, '0'));
 
@@ -255,10 +258,12 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000.GridConnect
 
                     //Write message to gateway. (16 bytes total)
                     _serialPort.Write(msg);
+
+                    return true;
                 }
                 catch 
                 {
-                    throw;
+                    return false;
                 }
             }
         }
@@ -295,7 +300,7 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000.GridConnect
             firstPacketData[5] = message.Data[3];
             firstPacketData[6] = message.Data[4];
             firstPacketData[7] = message.Data[5];
-            messageQueue.Enqueue(new CanMessage(message.ParameterGroupNumber, message.Format, message.Priority, message.SourceAddress, firstPacketData.Reverse().ToArray()));
+            messageQueue.Enqueue(new CanMessage(message.Pgn, message.Format, message.Priority, message.SourceAddress, 255,firstPacketData.Reverse().ToArray()));
 
             //Fill data frame for each remaining message and add to message list.
             for(int i = 1; i< messageCountReq; i++)
@@ -312,7 +317,7 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000.GridConnect
                     packetData[5] = message.Data[((i * 8) - i) + 4];
                     packetData[6] = message.Data[((i * 8) - i) + 5];
                     packetData[7] = message.Data[((i * 8) - i) + 6];
-                    messageQueue.Enqueue(new CanMessage(message.ParameterGroupNumber, message.Format, message.Priority, message.SourceAddress, packetData.Reverse().ToArray()));
+                    messageQueue.Enqueue(new CanMessage(message.Pgn, message.Format, message.Priority, message.SourceAddress, 255, packetData.Reverse().ToArray()));
                 }
                 //Last message
                 else
@@ -326,7 +331,7 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000.GridConnect
                         finalPacketData[j] = message.Data[(message.Data.Length - bytesRemaining) + j];
                     }
                     //finalPacketData.Reverse();
-                    messageQueue.Enqueue(new CanMessage(message.ParameterGroupNumber, message.Format, message.Priority, message.SourceAddress, finalPacketData.Reverse().ToArray()));
+                    messageQueue.Enqueue(new CanMessage(message.Pgn, message.Format, message.Priority, message.SourceAddress, 255, finalPacketData.Reverse().ToArray()));
                 }
             }
 

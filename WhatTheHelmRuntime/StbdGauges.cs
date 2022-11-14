@@ -75,7 +75,7 @@ namespace WhatTheHelmRuntime
             lastBusMessage = DateTime.Now;
 
             //Binary switch status (from Seagauge)
-            if (e.ParameterGroupNumber == 127501)
+            if (e.Pgn == 127501)
             {
                 pgn0x1F20DLastMsg = DateTime.Now;
                 pgn0x1F20D = (Pgn0x1F20D)pgn0x1F20D.DeserializeFields(e.Data).ToImperial();
@@ -83,7 +83,7 @@ namespace WhatTheHelmRuntime
             }
 
             //Engine Parameters (Rapid)
-            if (e.ParameterGroupNumber == 127488)
+            if (e.Pgn == 127488)
             {
                 pgn0x1F200LastMsg = DateTime.Now;
                 if (Program.Configuration.RpmSource == RpmSource.NMEA2000)
@@ -100,7 +100,7 @@ namespace WhatTheHelmRuntime
             }
 
             //Transmission Parameters
-            if (e.ParameterGroupNumber == 127493)
+            if (e.Pgn == 127493)
             {
                 pgn0x1F205LastMsg = DateTime.Now;
                 pgn0x1F205 = (Pgn0x1F205)pgn0x1F205.DeserializeFields(e.Data).ToImperial();
@@ -113,7 +113,7 @@ namespace WhatTheHelmRuntime
             }
 
             //Engine Parameters (Dynamic)
-            if (e.ParameterGroupNumber == 127489)
+            if (e.Pgn == 127489)
             {
                 pgn0x1F201LastMsg = DateTime.Now;
                 pgn0x1F201 = (Pgn0x1F201)pgn0x1F201.DeserializeFields(e.Data).ToImperial();

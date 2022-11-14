@@ -44,23 +44,23 @@ namespace NMEA2000_Test
             //Pgn0x0EA00 req = new Pgn0x0EA00(new Pgn0x1F014(), 255);
 
 
-            CanGateway = new Can232Fd(new SerialPort("COM8", 115200, Parity.None, 8, StopBits.One) { NewLine = ";" }, 0, name, productInformation);
-            CanGateway.Open();
+            //CanGateway = new Can232Fd(new SerialPort("COM8", 115200, Parity.None, 8, StopBits.One) { NewLine = ";" }, 0, name, productInformation);
+            //CanGateway.Open();
 
-            Pgn0x0EF00 pgnn = new Pgn0x0EF00(new MvecCommand0x80(0, 2, RelayCommandState.TurnRelayOn), 176);
+            //Pgn0x0EF00 pgnn = new Pgn0x0EF00(new MvecCommand0x80(0, 2, RelayCommandState.TurnRelayOn), 176);
 
-            CanMessage messg = new CanMessage(pgnn.Pgn, Format.EXTENDED, 6, CanGateway.Address, pgnn.Command.SerializeFields());
-            CanGateway.Write(messg);
+            //CanMessage messg = new CanMessage(pgnn.Pgn, Format.EXTENDED, 6, CanGateway.Address, pgnn.Command.SerializeFields());
+            //CanGateway.Write(messg);
 
-            Pgn0x0EF00 foodle = new Pgn0x0EF00();
-            byte[] b = new byte[] { 0x96, 0x00, 0x02, 0x00, 0x00, 0x00, 0xE8, 0x03 };
-            var ff = foodle.DeserializeFields(b);
+            //Pgn0x0EF00 foodle = new Pgn0x0EF00();
+            //byte[] b = new byte[] { 0x96, 0x00, 0x02, 0x00, 0x00, 0x00, 0xE8, 0x03 };
+            //var ff = foodle.DeserializeFields(b);
 
-            CanGateWayListener = new CanGateWayListener(CanGateway);
-            CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
-            CanGateWayListener.Start();
-            CanRequestHandler = new CanRequestHandler(CanGateway);
-            CanRequestHandler.Start();
+            //CanGateWayListener = new CanGateWayListener(CanGateway);
+            //CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
+            //CanGateWayListener.Start();
+            //CanRequestHandler = new CanRequestHandler(CanGateway);
+            //CanRequestHandler.Start();
             //CanGateway.MessageRecieved += Gateway_MessageRecieved;
             //string msg = ":X18EA0300N14F001;";
 
@@ -112,7 +112,7 @@ namespace NMEA2000_Test
 
         private static void CanGateWayListener_NewMessage(object sender, CanMessage e)
         {
-            var parameterGroup = ParameterGroup.GetPgnType(e.ParameterGroupNumber).DeserializeFields(e.Data);
+            var parameterGroup = ParameterGroup.GetPgnType(e.Pgn).DeserializeFields(e.Data);
             if(parameterGroup.Pgn == 127489)
             {
                 Pgn0x1F201 p = (Pgn0x1F201)parameterGroup;
@@ -156,7 +156,7 @@ namespace NMEA2000_Test
                 Console.WriteLine("Parameter group not suppored.");
             if (e.Message != null)
             {
-                var parameterGroup = ParameterGroup.GetPgnType(e.Message.ParameterGroupNumber);
+                var parameterGroup = ParameterGroup.GetPgnType(e.Message.Pgn);
                 if (parameterGroup.MultiFrame)
                     FastPacketMessageQueue.Add(e.Message);
                 else
@@ -184,7 +184,7 @@ namespace NMEA2000_Test
                         int packetCountReq = ((dataBytesLen - 6) / 7) + 2;
 
                         //Get the packets that belong the pgn of the source address.
-                        var totalPackets = FastPacketMessageQueue.ToList().Where(x => x.Data[0] >> 4 == firstFastPacketMessage.Data[0] >> 4 && x.ParameterGroupNumber == firstFastPacketMessage.ParameterGroupNumber && x.SourceAddress == firstFastPacketMessage.SourceAddress).ToList();
+                        var totalPackets = FastPacketMessageQueue.ToList().Where(x => x.Data[0] >> 4 == firstFastPacketMessage.Data[0] >> 4 && x.Pgn == firstFastPacketMessage.Pgn && x.SourceAddress == firstFastPacketMessage.SourceAddress).ToList();
 
                         //If all packets are present then process fast packet message.
                         if (totalPackets.Count() == packetCountReq)
@@ -230,7 +230,7 @@ namespace NMEA2000_Test
                     CanMessage message = MainMessageQueue.Dequeue();
                     //Use reflection to create an instance of the correct PGN.
 
-                    var foo = ParameterGroup.GetPgnType(message.ParameterGroupNumber).DeserializeFields(message.Data);
+                    var foo = ParameterGroup.GetPgnType(message.Pgn).DeserializeFields(message.Data);
                     Console.WriteLine("Data Recieved: " + foo.Pgn.ToString() + ", " + foo.Description + ", byte count: " + message.Data.Length.ToString());
                     if(foo.Pgn == 0x01EE00)
                     {

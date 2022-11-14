@@ -52,7 +52,7 @@ namespace WhatTheHelmRuntime
         private void CanGateWayListener_NewMessage(object sender, WhatTheHelmCanLib.Messages.CanMessage e)
         {
             //Engine Parameters (Rapid)
-            if (e.ParameterGroupNumber == 127488)
+            if (e.Pgn == 127488)
             {
                 pgn0x1F200 = (Pgn0x1F200)pgn0x1F200.DeserializeFields(e.Data).ToImperial();
 

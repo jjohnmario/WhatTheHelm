@@ -46,7 +46,8 @@ namespace WhatTheHelmCanLib.Devices
         /// Serializes the CAN message and writes the result to the CAN gateway.
         /// </summary>
         /// <param name="message">CAN message to write.</param>
-        public abstract void Write(CanMessage message);
+        /// <returns>True if write operation was successful.</returns>
+        public abstract bool Write(CanMessage message);
         /// <summary>
         /// Separates the identity and data frame of a single message and parses CAN message properties into key value pairs.
         /// </summary>
