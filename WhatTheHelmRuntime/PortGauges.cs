@@ -94,17 +94,15 @@ namespace WhatTheHelmRuntime
             if (e.Message.Pgn == 127488)
             {
                 _pgn0x1F200LastMsg = DateTime.Now;
-                if (Program.Configuration.RpmSource == RpmSource.NMEA2000)
-                {
-                    _pgn0x1F200 = (Pgn0x1F200)_pgn0x1F200.DeserializeFields(e.Message.Data).ToImperial();
+                _pgn0x1F200 = (Pgn0x1F200)_pgn0x1F200.DeserializeFields(e.Message.Data).ToImperial();
 
-                    //Port Engine
-                    if (_pgn0x1F200.EngineInstance == 0)
-                    {
-                        if (gaugePortRpm.IsHandleCreated)
-                            gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = _pgn0x1F200.EngineSpeed / 4));
-                    }
+                //Port Engine
+                if (_pgn0x1F200.EngineInstance == 0)
+                {
+                    if (gaugePortRpm.IsHandleCreated)
+                        gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = _pgn0x1F200.EngineSpeed / 4));
                 }
+                
             }
 
             //Transmission Parameters
@@ -296,14 +294,14 @@ namespace WhatTheHelmRuntime
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            ConfigurationMenu configMenu = new ConfigurationMenu(Program.Configuration);
-            var results = configMenu.ShowDialog();
-            if (results != DialogResult.Cancel)
-            {
-                Program.Configuration = configMenu.Configuration;
-                Program.Configuration.Save();
-            }
-            configMenu.Dispose();
+            //ConfigurationMenu configMenu = new ConfigurationMenu(Program.Configuration);
+            //var results = configMenu.ShowDialog();
+            //if (results != DialogResult.Cancel)
+            //{
+            //    Program.Configuration = configMenu.Configuration;
+            //    Program.Configuration.Save();
+            //}
+            //configMenu.Dispose();
         }
 
         private void button1_Click(object sender, EventArgs e)

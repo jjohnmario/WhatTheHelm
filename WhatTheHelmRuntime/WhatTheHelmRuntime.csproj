@@ -87,12 +87,6 @@
       <DependentUpon>Boot.cs</DependentUpon>
     </Compile>
     <Compile Include="Configuration.cs" />
-    <Compile Include="ConfigurationMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ConfigurationMenu.Designer.cs">
-      <DependentUpon>ConfigurationMenu.cs</DependentUpon>
-    </Compile>
     <Compile Include="FusesStatus.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,9 +142,6 @@
     <Compile Include="YoctoPwmRx.cs" />
     <EmbeddedResource Include="Boot.resx">
       <DependentUpon>Boot.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ConfigurationMenu.resx">
-      <DependentUpon>ConfigurationMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FusesStatus.resx">
       <DependentUpon>FusesStatus.cs</DependentUpon>

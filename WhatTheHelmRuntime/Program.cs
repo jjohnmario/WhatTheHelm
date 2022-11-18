@@ -44,39 +44,17 @@ namespace WhatTheHelmRuntime
                 var path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
                 Configuration = new Configuration();
                 Configuration = Configuration.Read(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm", "config.json");
-
-                //Initialize CAN adapter and J1939/NMEA200 listener
-                CanName name = new CanName(false, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-                ProductInformation productInformation = new ProductInformation(22, 33, "What The Helm?", "v1.0.0", "1.0.0", "01229330JJF", 1, 2);
-                //SerialPort serialPort = new SerialPort("COM1", 115200, Parity.None, 8, StopBits.One) { NewLine = ";" };
-                SerialPort serialPort = new SerialPort("COM4", 115200, Parity.None, 8, StopBits.One);
-
-                //CanGateway = new Can232Fd(serialPort, 0, name, productInformation);
-
-                //Future get list of Rx and Tx pgns
-                List<uint> rxPgns = new List<uint> { 59392, 59904, 60928, 61184, 126208, 126464, 126720, 126996, 127488, 127493, 127489, 127508 };
-                //List<uint> rxPgns = new List<uint> { 59392, 59904, 60928, 61184, 126208, 126464, 126720 };
-                List<uint> txPgns = new List<uint> { 59392, 59904, 61184, 60928, 126208, 126996 };
+                Configuration.Save(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm", "config.json");
 
                 //Open NMEA 2000 gateway. If COM port is busy, wait and retry.
+                SerialPort serialPort = new SerialPort("COM4", 115200, Parity.None, 8, StopBits.One);
                 do
                 {
                     if (CanGateway != null)
                         CanGateway.Dispose();
-                    CanGateway = new Ngt1(serialPort, 55, txPgns, rxPgns);
+                    CanGateway = new Ngt1(serialPort, 55, Configuration.TxPgnFilter, Configuration.RxPgnFilter);
                 }
                 while (!CanGateway.Open());
-
-                //if (Configuration.PgnFilter.Count != 0)                
-                //    CanGateWayListener = new CanGateWayListener(CanGateway);
-                //else               
-                //    CanGateWayListener = new CanGateWayListener(CanGateway);
-                //CanGateWayListener.Start();
-
-                //CanRequestHandler = new CanRequestHandler(CanGateway);
-                //CanRequestHandler.Start();
-
-
 
                 //Try to run the application across five screens.  Else run off one screen.
                 try
@@ -126,8 +104,10 @@ namespace WhatTheHelmRuntime
                 {
                     //PortGauges portGauges = new PortGauges();
                     //Application.Run(portGauges);
-                    SwitchPanel switchPanel = new SwitchPanel();
-                    Application.Run(switchPanel);
+                    Nmea2000Config nmea2000Config = new Nmea2000Config();
+                    Application.Run(nmea2000Config);
+                    //SwitchPanel switchPanel = new SwitchPanel();
+                    //Application.Run(switchPanel);
 
                     //Rudder rudder = new Rudder();
                     //Application.Run(rudder);

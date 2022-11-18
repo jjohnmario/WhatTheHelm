@@ -24,29 +24,6 @@ namespace WhatTheHelmRuntime
         public Rudder()
         {
             InitializeComponent();
-            //Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
-            Program.YoctoPwmRx.NewInput1Data += YoctoPwmRx_NewInput1Data;
-            Program.YoctoPwmRx.NewInput2Data += YoctoPwmRx_NewInput2Data;
-        }
-
-        private void YoctoPwmRx_NewInput1Data(object sender, YoctoPwmRxArgs e)
-        {
-            if (Program.Configuration.RpmSource == RpmSource.YoctopuceUsb)
-            {
-                _PortRpm = Convert.ToInt32(Convert.ToDouble((e.InputHz * 60 / 4)));
-                //Update sync display
-                SetSync(_PortRpm, _StbdRpm);
-            }
-        }
-
-        private void YoctoPwmRx_NewInput2Data(object sender, YoctoPwmRxArgs e)
-        {
-            if (Program.Configuration.RpmSource == RpmSource.YoctopuceUsb)
-            {
-                _StbdRpm = Convert.ToInt32(Convert.ToDouble((e.InputHz * 60 / 4)));
-                //Update sync display
-                SetSync(_PortRpm, _StbdRpm);
-            }
         }
 
         private void CanGateWayListener_NewMessage(object sender, WhatTheHelmCanLib.Messages.CanMessage e)
@@ -62,17 +39,14 @@ namespace WhatTheHelmRuntime
                 {
                     linearGauge1.Value = pgn0x1F200.EngineTiltTrim;
                 }
-                else if (Program.Configuration.RpmSource == RpmSource.NMEA2000)
-                {
-                    //Port Engine
-                    if (pgn0x1F200.EngineInstance == 0)
-                        _PortRpm = pgn0x1F200.EngineSpeed / 4;
-                    //Stbd Engine
-                    else if (pgn0x1F200.EngineInstance == 1)
-                        _StbdRpm = pgn0x1F200.EngineSpeed / 4;
-                    //Update sync display
-                    SetSync(_PortRpm, _StbdRpm);
-                }
+                //Port Engine
+                if (pgn0x1F200.EngineInstance == 0)
+                    _PortRpm = pgn0x1F200.EngineSpeed / 4;
+                //Stbd Engine
+                else if (pgn0x1F200.EngineInstance == 1)
+                    _StbdRpm = pgn0x1F200.EngineSpeed / 4;
+                //Update sync display
+                SetSync(_PortRpm, _StbdRpm);             
             }
         }
 

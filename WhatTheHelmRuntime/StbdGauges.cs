@@ -47,8 +47,6 @@ namespace WhatTheHelmRuntime
             InitializeComponent();
             this.MinimumSize = new Size() { Height = 800, Width = 1280 };
             this.MaximumSize = new Size() { Height = 800, Width = 1280 };
-            //Program.CanGateWayListener.NewMessage += CanGateWayListener_NewMessage;
-            Program.YoctoPwmRx.NewInput2Data += YoctoPwmRx_NewData;
             Timer pgnTimeoutTimer = new Timer();
             pgnTimeoutTimer.Interval = 5000;
             pgnTimeoutTimer.Tick += PgnTimeoutTimer_Tick;
@@ -57,16 +55,6 @@ namespace WhatTheHelmRuntime
             alarmTimer.Interval = 500;
             alarmTimer.Tick += AlarmTimer_Tick;
             alarmTimer.Start();
-        }
-
-        private void YoctoPwmRx_NewData(object sender, YoctoPwmRxArgs e)
-        {
-            yoctopucePwmRxLastMsg = DateTime.Now;
-            if (Program.Configuration.RpmSource == RpmSource.YoctopuceUsb)
-            {
-                if (gaugeStbdRpm.IsHandleCreated)
-                    gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = Convert.ToDouble((e.InputHz * 60 / 4).ToString("0"))));
-            }
         }
 
         private void CanGateWayListener_NewMessage(object sender, WhatTheHelmCanLib.Messages.CanMessage e)
@@ -86,17 +74,15 @@ namespace WhatTheHelmRuntime
             if (e.Pgn == 127488)
             {
                 pgn0x1F200LastMsg = DateTime.Now;
-                if (Program.Configuration.RpmSource == RpmSource.NMEA2000)
-                {
-                    pgn0x1F200 = (Pgn0x1F200)pgn0x1F200.DeserializeFields(e.Data).ToImperial();
+                pgn0x1F200 = (Pgn0x1F200)pgn0x1F200.DeserializeFields(e.Data).ToImperial();
 
-                    //Stbd Engine
-                    if (pgn0x1F200.EngineInstance == 1)
-                    {
-                        if (gaugeStbdRpm.IsHandleCreated)
-                            gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = pgn0x1F200.EngineSpeed / 4));
-                    }
+                //Stbd Engine
+                if (pgn0x1F200.EngineInstance == 1)
+                {
+                    if (gaugeStbdRpm.IsHandleCreated)
+                        gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Value = pgn0x1F200.EngineSpeed / 4));
                 }
+                
             }
 
             //Transmission Parameters
@@ -157,29 +143,15 @@ namespace WhatTheHelmRuntime
             //Engine parameters rapid
             var pgn0x1F200LastMsgEt = dtNow - pgn0x1F200LastMsg;
             var yoctopucePwmRxLastMsgEt = dtNow - yoctopucePwmRxLastMsg;
-            if (Program.Configuration.RpmSource == RpmSource.NMEA2000)
+            if (pgn0x1F200LastMsgEt.TotalSeconds > 5)
             {
-                if (pgn0x1F200LastMsgEt.TotalSeconds > 5)
-                {
-                    gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Hide()));
-                }
-                else
-                {
-                    gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Show()));
-                }
+                gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Hide()));
             }
-            else if (Program.Configuration.RpmSource == RpmSource.YoctopuceUsb)
+            else
             {
-                if (yoctopucePwmRxLastMsgEt.TotalSeconds > 5)
-                {
-                    gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Hide()));
+                gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Show()));
+            }
 
-                }
-                else
-                {
-                    gaugeStbdRpm.Invoke(new MethodInvoker(() => gaugeStbdRpm.Show()));
-                }
-            }
 
             //Engine parameters dynamic
             var pgn0x1F201LastMsgEt = dtNow - pgn0x1F201LastMsg;

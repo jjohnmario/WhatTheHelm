@@ -5,16 +5,43 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using WhatTheHelmCanLib.Devices.Nmea2000;
+using WhatTheHelmCanLib.ParameterGroups;
 
 namespace WhatTheHelmRuntime
 {
-    public enum RpmSource { YoctopuceUsb, NMEA2000 }
+    public struct ProductDataBinding
+    {
+        public ProductInformation ProductInformation { get; set; }
+        public uint PGN { get; set; }
+        public byte Instance { get; set; }
+        public byte SourceAddress { get; set; }
+    }
     public class Configuration
     {
+        public ProductDataBinding PortRpm { get; set; } = new ProductDataBinding();
+        public ProductDataBinding PortWaterTemperature { get; set; } = new ProductDataBinding();
+        public ProductDataBinding PortOilPressure { get; set; } = new ProductDataBinding();
+        public ProductDataBinding PortEngineAlarms { get; set; } = new ProductDataBinding();
+        public ProductDataBinding PortEngineHours { get; set; } = new ProductDataBinding();
+        public ProductDataBinding PortTransPressure { get; set; } = new ProductDataBinding();
+        public ProductDataBinding PortTransAlarms { get; set; } = new ProductDataBinding();
+        public ProductDataBinding PortVoltage { get; set; } = new ProductDataBinding();
+
+        public ProductDataBinding StbdRpm { get; set; } = new ProductDataBinding();
+        public ProductDataBinding StbdWaterTemperature { get; set; } = new ProductDataBinding();
+        public ProductDataBinding StbdOilPressure { get; set; } = new ProductDataBinding();
+        public ProductDataBinding StbdEngineAlarms { get; set; } = new ProductDataBinding();
+        public ProductDataBinding StbdEngineHours { get; set; } = new ProductDataBinding();
+        public ProductDataBinding StbdTransPressure { get; set; } = new ProductDataBinding();
+        public ProductDataBinding StbdTransAlarms { get; set; } = new ProductDataBinding();
+        public ProductDataBinding StbdVoltage { get; set; } = new ProductDataBinding();
+
         public double WaterDepthOffset { get; set; }
         public double WaterTempOffset { get; set; }
-        public RpmSource RpmSource { get; set; }
-        public List<int> PgnFilter { get; set; } = new List<int>();
+        public List<uint> TxPgnFilter { get; set; } = new List<uint>();
+        public List<uint> RxPgnFilter { get; set; } = new List<uint>();
         public string Path { get; set; }
         public string FileName { get; set; }
 
