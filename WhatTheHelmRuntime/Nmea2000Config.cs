@@ -46,7 +46,7 @@ namespace WhatTheHelmRuntime
             }
             _existingConfig = Program.Configuration;
             refreshList();
-            configureComboBoxes();
+            initializeComboBoxes();
 
         }
 
@@ -68,15 +68,11 @@ namespace WhatTheHelmRuntime
                 {
                     var prodInfo = new Pgn0x1F014();
                     prodInfo = (Pgn0x1F014)prodInfo.DeserializeFields(e.Message.Data);
-                    Nmea2000Object nmea2000Object = new Nmea2000Object();
-                    nmea2000Object.ProductInformation = prodInfo.ProductInformation;
-                    nmea2000Object.Source = e.Message.SourceAddress;
-                    _nmea2000Objects.Add(nmea2000Object);
-                
-               
-                    string nmea2000ObjectStr = String.Format("{0}, Serial Number: {1}", nmea2000Object.ProductInformation.ModelId, nmea2000Object.ProductInformation.ModelSerialCode);
-                    listBox1.Invoke( new MethodInvoker(()=>listBox1.Items.Add(nmea2000ObjectStr)));
-                
+                    Nmea2000Object obj = new Nmea2000Object();
+                    obj.ProductInformation = prodInfo.ProductInformation;
+                    obj.Source = e.Message.SourceAddress;
+                    _nmea2000Objects.Add(obj);
+                    listBox1.Invoke( new MethodInvoker(()=>listBox1.Items.Add(obj.ToString())));             
                 }
                 //Pgn List
                 if(e.Message.Pgn == 126464)
@@ -97,10 +93,7 @@ namespace WhatTheHelmRuntime
                     _nmea2000Objects.Add(updatedObj);
 
                 
-                    configureComboBoxes();
-                    //setComboBoxSelectedItems();
-                    cbRpmSource.Invoke(new MethodInvoker(()=> cbRpmSource.SelectedValue = "YES"));
-                    
+                   
                 }
             }
 
@@ -108,13 +101,27 @@ namespace WhatTheHelmRuntime
 
         private void refreshList()
         {
+            Timer t = new Timer();
+            t.Interval = 500;
+            t.Tick += T_Tick;
+            t.Start();
             var gw = (Ngt1)Program.CanGateway;
             gw.IsoRequest(126996);
             gw.IsoRequest(126464);
             listBox1.Items.Clear();
         }
 
-        private void configureComboBoxes()
+        private void T_Tick(object sender, EventArgs e)
+        {
+            var timer = (Timer)sender;
+            timer.Stop();
+            timer.Tick -= T_Tick;
+            timer.Dispose();
+            initializeComboBoxes();
+            setComboBoxSelectedItems(); 
+        }
+
+        private void initializeComboBoxes()
         {
             object[] instance = _instanceList.ToArray();
             //RPM
@@ -183,7 +190,7 @@ namespace WhatTheHelmRuntime
 
         private void setComboBoxSelectedItems()
         {
-
+            //Set constant PGNs
             if (cbRpmPgn.Items.Count > 0)
                 cbRpmPgn.Invoke(new MethodInvoker(() => { cbRpmPgn.SelectedIndex = 0; }));
             if (cbWaterTempPgn.Items.Count > 0)
@@ -194,6 +201,19 @@ namespace WhatTheHelmRuntime
                 cbEngineAlarmsPgn.Invoke(new MethodInvoker(() => { cbEngineAlarmsPgn.SelectedIndex = 0; }));
             if (cbHourMeterPgn.Items.Count > 0)
                 cbHourMeterPgn.Invoke(new MethodInvoker(() => { cbHourMeterPgn.SelectedIndex = 0; }));
+            _existingConfig.PortVoltage.PGN = 555;
+            //Set variable PGNs
+            if (!cbBatteryVoltageSource.Items.Contains(_existingConfig.PortVoltage.PGN))
+            {
+
+                if (_existingConfig.PortVoltage.PGN > 0)
+                {
+                    cbBatteryVoltageSource.Items.Add(_existingConfig.PortVoltage.PGN);
+                    cbBatteryVoltageSource.Invoke(new MethodInvoker(() => { cbBatteryVoltageSource.SelectedIndex = cbBatteryVoltageSource.Items.IndexOf(_existingConfig.PortVoltage.PGN); }));
+                }
+            }
+
+
         }
 
         private void btnRefreshDeviceList_Click(object sender, EventArgs e)
