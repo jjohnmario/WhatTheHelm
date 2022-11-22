@@ -7,7 +7,7 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000
     /// <summary>
     /// Represents product information for a NMEA2000 device.
     /// </summary>
-    public class ProductInformation
+    public class N2KProductInformation
     {
         /// <summary>
         /// Represents the NMEA 2000 version to which the device is designed.
@@ -45,7 +45,7 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000
         /// <summary>
         /// Creates a product information instance for a NMEA2000 device.
         /// </summary>
-        public ProductInformation()
+        public N2KProductInformation()
         {
 
         }
@@ -61,7 +61,7 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000
         /// <param name="modelSerialCode">Represents the serial number of the device.</param>
         /// <param name="certificationLevel">Unknown</param>
         /// <param name="loadEquivalancy">Represents the current (x*50 milliamps) drawn from the CAN bus by the device.</param>
-        public ProductInformation(ushort nmea2000Version, ushort productCode, string modelId, string softwareVersionCode, string modelVersion, string modelSerialCode, byte certificationLevel, byte loadEquivalancy)
+        public N2KProductInformation(ushort nmea2000Version, ushort productCode, string modelId, string softwareVersionCode, string modelVersion, string modelSerialCode, byte certificationLevel, byte loadEquivalancy)
         {
             Nmea2000Version = nmea2000Version;
             ProductCode = productCode;

@@ -52,21 +52,21 @@ namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
         /// <summary>
         /// The project information payload associated with the PGN instance.
         /// </summary>
-        public ProductInformation ProductInformation { get; private set; }
+        public N2KProductInformation ProductInformation { get; private set; }
 
         /// <summary>
         /// Creates an object reference to PGN:126996 Product Information
         /// </summary>
         public Pgn0x1F014()
         {
-            ProductInformation = new ProductInformation();
+            ProductInformation = new N2KProductInformation();
         }
 
         /// <summary>
         /// Craetes an object reference to PGN:126996 Product Information with the defined product information.
         /// </summary>
         /// <param name="productInformation"></param>
-        public Pgn0x1F014(ProductInformation productInformation)
+        public Pgn0x1F014(N2KProductInformation productInformation)
         {
             ProductInformation = productInformation;
         }

@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WhatTheHelmCanLib.Devices.Nmea2000.GridConnect
+namespace WhatTheHelmCanLib.Devices.J1939.GridConnect
 {
     /// <summary>
     /// Represents a connected GridConnect CAN232FD gateway.
@@ -52,7 +52,7 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000.GridConnect
         /// <param name="address">The CAN network address to assign the CAN232FD gateway.</param>
         /// <param name="name">The NAME of the CAN232FD gateway</param>
         /// <param name="productInformation">The product information of the CAN232FD gateway</param>
-        public Can232Fd(SerialPort serialPort,ushort address, CanName name, ProductInformation productInformation):base(address,name,productInformation)
+        public Can232Fd(SerialPort serialPort,ushort address, CanName name, N2KProductInformation productInformation):base(address,name,productInformation)
         {
             _serialPort = serialPort;
         }

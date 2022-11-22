@@ -33,7 +33,7 @@ namespace NMEA2000_Test
             Pgn0x1F200 foo = new Pgn0x1F200();
             var results = foo.ToList();
             CanName name = new CanName(false, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-            ProductInformation productInformation = new ProductInformation(22276, 15406, "MarioWare Display", "v1.0.0", "1.0.0", "01229330JJF", 1, 2);
+            N2KProductInformation productInformation = new N2KProductInformation(22276, 15406, "MarioWare Display", "v1.0.0", "1.0.0", "01229330JJF", 1, 2);
 
             //Pgn0x1F014 food = new Pgn0x1F014(new CanLib.Devices.Nmea2000.ProductInformation(22, 33, "MarioWare Display", "v1.0.0", "1.0.0", "01229330JJF", 1, 2));
             //var serial = food.SerializeFields();

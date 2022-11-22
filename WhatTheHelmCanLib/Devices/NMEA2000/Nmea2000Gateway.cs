@@ -12,7 +12,7 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000
         /// <summary>
         /// Product information per PGN:126996
         /// </summary>
-        public ProductInformation ProductInformation { get; set; }
+        public N2KProductInformation ProductInformation { get; set; }
         /// <summary>
         /// Creates a generic NMEA2000 gateway with the defined source address.
         /// </summary>
@@ -30,7 +30,7 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000
         /// <param name="sourceAddress">Address to assign to the NMEA2000 gateway</param>
         /// <param name="name">NAME to assign the NMEA2000 gateway</param>
         /// <param name="productInformation">Product information for the NMEA2000 gateway</param>
-        public Nmea2000Gateway(ushort sourceAddress, CanName name, ProductInformation productInformation):base(sourceAddress,name)
+        public Nmea2000Gateway(ushort sourceAddress, CanName name, N2KProductInformation productInformation):base(sourceAddress,name)
         {
             ProductInformation = productInformation;
         }

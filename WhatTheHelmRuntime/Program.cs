@@ -104,7 +104,7 @@ namespace WhatTheHelmRuntime
                 {
                     //PortGauges portGauges = new PortGauges();
                     //Application.Run(portGauges);
-                    Nmea2000Config nmea2000Config = new Nmea2000Config();
+                    PropulsionNmea2000Config nmea2000Config = new Nmea2000Config();
                     Application.Run(nmea2000Config);
                     //SwitchPanel switchPanel = new SwitchPanel();
                     //Application.Run(switchPanel);

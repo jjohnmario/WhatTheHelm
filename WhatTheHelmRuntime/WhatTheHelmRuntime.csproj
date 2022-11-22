@@ -93,23 +93,19 @@
     <Compile Include="FusesStatus.Designer.cs">
       <DependentUpon>FusesStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nmea2000Config.cs">
+    <Compile Include="PropulsionNmea2000Config.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Nmea2000Config.Designer.cs">
-      <DependentUpon>Nmea2000Config.cs</DependentUpon>
+    <Compile Include="PropulsionNmea2000Config.Designer.cs">
+      <DependentUpon>PropulsionNmea2000Config.cs</DependentUpon>
     </Compile>
+    <Compile Include="PropulsionNmea2000Configuration.cs" />
     <Compile Include="Rudder.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Rudder.Designer.cs">
       <DependentUpon>Rudder.cs</DependentUpon>
     </Compile>
-    <Compile Include="NMEA0183\Nmea0183Listener.cs" />
-    <Compile Include="NMEA0183\Nmea0183Msg.cs" />
-    <Compile Include="NMEA0183\SentenceField.cs" />
-    <Compile Include="NMEA0183\Sentences\GPRMC.cs" />
-    <Compile Include="NMEA0183\Sentences\Nmea0183Sentence.cs" />
     <Compile Include="PortGauges.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,18 +132,14 @@
     <Compile Include="TrimControl.Designer.cs">
       <DependentUpon>TrimControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="yocto_api\yocto_api.cs" />
-    <Compile Include="yocto_api\yocto_pwminput.cs" />
-    <Compile Include="yocto_api\yocto_quadraturedecoder.cs" />
-    <Compile Include="YoctoPwmRx.cs" />
     <EmbeddedResource Include="Boot.resx">
       <DependentUpon>Boot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FusesStatus.resx">
       <DependentUpon>FusesStatus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nmea2000Config.resx">
-      <DependentUpon>Nmea2000Config.cs</DependentUpon>
+    <EmbeddedResource Include="PropulsionNmea2000Config.resx">
+      <DependentUpon>PropulsionNmea2000Config.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rudder.resx">
       <DependentUpon>Rudder.cs</DependentUpon>
@@ -231,9 +223,6 @@
     <Content Include="Resources\TF014.WAV" />
     <Content Include="Resources\TF023.WAV" />
     <None Include="Resources\trawler.jpg" />
-    <Content Include="yapi.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
