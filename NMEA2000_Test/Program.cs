@@ -1,6 +1,6 @@
 ﻿using WhatTheHelmCanLib.Devices;
 using WhatTheHelmCanLib.Devices.Nmea2000;
-using WhatTheHelmCanLib.Devices.Nmea2000.GridConnect;
+
 using WhatTheHelmCanLib.Messages;
 using WhatTheHelmCanLib.ParameterGroups;
 using WhatTheHelmCanLib.ParameterGroups.J1939;
@@ -17,7 +17,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using WhatTheHelmCanLib.Devices.J1939.GridConnect;
 
 namespace NMEA2000_Test
 {

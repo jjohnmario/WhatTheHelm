@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using WhatTheHelmCanLib.Devices.Nmea2000;
 
 namespace WhatTheHelmCanLib.Devices.J1939.GridConnect
 {
