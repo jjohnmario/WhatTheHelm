@@ -16,7 +16,7 @@ namespace WhatTheHelmCanLib.Devices.J1939.GridConnect
     /// <summary>
     /// Represents a connected GridConnect CAN232FD gateway.
     /// </summary>
-    public class Can232Fd : Nmea2000Gateway
+    public class Can232Fd : ICanGateway
     {
         public int MessageQueueCount { get => _mainMessageQueue.Count; }
         private SerialPort _serialPort;
@@ -29,7 +29,7 @@ namespace WhatTheHelmCanLib.Devices.J1939.GridConnect
         /// </summary>
         /// <param name="serialPort">The host serial port to whih the CAN232FD gateway is connected.</param>
         /// <param name="address">The CAN network address to assign the CAN232FD gateway.</param>
-        public Can232Fd (SerialPort serialPort,ushort address):base(address)
+        public Can232Fd (SerialPort serialPort,ushort address)
         {
             _serialPort = serialPort;
             //_SerialPort.DataReceived += SerialPort_DataReceived;
@@ -41,7 +41,7 @@ namespace WhatTheHelmCanLib.Devices.J1939.GridConnect
         /// <param name="serialPort">The host serial port to whih the CAN232FD gateway is connected.</param>
         /// <param name="address">The CAN network address to assign the CAN232FD gateway.</param>
         /// <param name="name">The NAME of the CAN232FD gateway</param>
-        public Can232Fd (SerialPort serialPort,ushort address, CanName name):base(address,name)
+        public Can232Fd (SerialPort serialPort,ushort address, CanName name)
         {
             _serialPort = serialPort;
         }
@@ -53,12 +53,12 @@ namespace WhatTheHelmCanLib.Devices.J1939.GridConnect
         /// <param name="address">The CAN network address to assign the CAN232FD gateway.</param>
         /// <param name="name">The NAME of the CAN232FD gateway</param>
         /// <param name="productInformation">The product information of the CAN232FD gateway</param>
-        public Can232Fd(SerialPort serialPort,ushort address, CanName name, N2KProductInformation productInformation):base(address,name,productInformation)
+        public Can232Fd(SerialPort serialPort,ushort address, CanName name, N2KProductInformation productInformation)
         {
             _serialPort = serialPort;
         }
 
-        public override event EventHandler<CanMessageArgs> MessageRecieved;
+        public event EventHandler<CanMessageArgs> MessageRecieved;
 
         private void Read()
         {
@@ -101,7 +101,7 @@ namespace WhatTheHelmCanLib.Devices.J1939.GridConnect
             }
         }
 
-        public override bool Open()
+        public bool Open()
         {
             try
             {
@@ -123,7 +123,7 @@ namespace WhatTheHelmCanLib.Devices.J1939.GridConnect
             }
         }
 
-        public override bool Close()
+        public bool Close()
         {
             try
             {
@@ -137,7 +137,7 @@ namespace WhatTheHelmCanLib.Devices.J1939.GridConnect
             }
         }
 
-        public override CanMessage Parse(object message)
+        public CanMessage Parse(object message)
         {
             string msg = (string)message;
             CanIdDataPair canMessage = new CanIdDataPair();
@@ -182,7 +182,7 @@ namespace WhatTheHelmCanLib.Devices.J1939.GridConnect
             return null;
         }
 
-        protected override CanIdDataPair ParseExtended(object message)
+        protected CanIdDataPair ParseExtended(object message)
         {
             try
             {
@@ -206,13 +206,13 @@ namespace WhatTheHelmCanLib.Devices.J1939.GridConnect
             }
         }
 
-        public override void Dispose()
+        public void Dispose()
         {
             //_SerialPort.DataReceived -= SerialPort_DataReceived;
             _serialPort.Dispose();
         }
 
-        public override bool Write(CanMessage message)
+        public bool Write(CanMessage message)
         {
             if (ParameterGroup.GetPgnType(message.Pgn).MultiFrame == true)
             {
@@ -275,7 +275,7 @@ namespace WhatTheHelmCanLib.Devices.J1939.GridConnect
             _serialPort.Write(message);
         }
 
-        protected override void WriteMultiPacket(CanMessage message)
+        protected void WriteMultiPacket(CanMessage message)
         {
             //Create message queue.
             Queue<CanMessage> messageQueue = new Queue<CanMessage>();

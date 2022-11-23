@@ -1,16 +1,6 @@
-﻿using WhatTheHelmRuntime;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using WhatTheHelmRuntime.NMEA0183.Sentences;
-using WhatTheHelmCanLib.ParameterGroups;
-using WhatTheHelmCanLib.ParameterGroups.NMEA2000;
 using WhatTheHelmCanLib.ParameterGroups.NMEA2000;
 
 namespace WhatTheHelmRuntime

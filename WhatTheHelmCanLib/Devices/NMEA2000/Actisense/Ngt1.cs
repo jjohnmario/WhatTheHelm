@@ -18,17 +18,14 @@ using System.Windows.Forms;
 
 namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
 {
-
     /// <summary>
-    /// Represents a connected Actisense NGT-1 gateway.
+    /// Represents an Actisense NGT-1 gateway.
     /// </summary>
-    public class Ngt1 : Nmea2000Gateway
+    public class Ngt1 : N2KDevice, ICanGateway
     {
         public int MessageQueueCount { get => _mainMessageQueue.Count; }
-        public List<uint> RxPgnList { get; }
-        public List<uint> TxPgnLIst { get; }
         public DateTime LastRead { get; private set; }
-        public override event EventHandler<CanMessageArgs> MessageRecieved;
+        public event EventHandler<CanMessageArgs> MessageRecieved;
         private SerialPort _serialPort;
         private Queue<NMEA2K.N2KMsg_s> _mainMessageQueue = new Queue<NMEA2K.N2KMsg_s>();
         private bool _scanMainMessageQueue = false;
@@ -46,16 +43,16 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
         public Ngt1(SerialPort serialPort, ushort address, List<uint> txPgnList, List<uint> rxPgnList) : base(address)
         {
             _serialPort = serialPort;
-            TxPgnLIst = rxPgnList;
-            RxPgnList = rxPgnList;
+            TxPgns = txPgnList;
+            RxPgns = rxPgnList;
         }
 
-        public override void Dispose()
+        public void Dispose()
         {
             AComms.DestroyAll();
         }
 
-        public override bool Open()
+        public bool Open()
         {
             _scanMainMessageQueue = true;
             /* API Create call creates a new instance of the ActisenseComms library */
@@ -109,7 +106,7 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
 
             //Create new PGN lists
             //Tx
-            foreach (uint pgn in TxPgnLIst)
+            foreach (uint pgn in TxPgns)
             {
                 error = ACommand.SetTxPGN(_actiHandle, pgn, PGNEnable_t.ENABLE_PGN);
                 if (error != ARLErrorCodes_t.ES_NoError)
@@ -117,7 +114,7 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
 
             }
             //Rx
-            foreach (uint pgn in RxPgnList)
+            foreach (uint pgn in RxPgns)
             {
                 error = ACommand.SetRxPGN(_actiHandle, pgn, PGNEnable_t.ENABLE_PGN);
                 if (error != ARLErrorCodes_t.ES_NoError)
@@ -129,7 +126,7 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
             return true;
         }
 
-        public override bool Close()
+        public bool Close()
         {
             AComms.Close(_actiHandle);
             _scanMainMessageQueue = false;
@@ -182,7 +179,7 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
             _mainMessageQueue.Enqueue(msg);
         }
 
-        public override CanMessage Parse(object message)
+        public CanMessage Parse(object message)
         {
             lock(_parseLock)
             {
@@ -198,7 +195,7 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
             }
         }
 
-        public override bool Write(CanMessage message)
+        public bool Write(CanMessage message)
         {
             NMEA2K.N2KMsg_s N2Kmsg = new NMEA2K.N2KMsg_s();
             N2Kmsg.Timestamp = 0;
@@ -216,16 +213,6 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
                 return false;
             else
                 return true;
-        }
-
-        protected override CanIdDataPair ParseExtended(object message)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteMultiPacket(CanMessage message)
-        {
-            throw new NotImplementedException();
         }
 
         private void gatewayConfigurationResponseReceived(IntPtr UserData, DecodeData_t DecodedData, DecodeReason_t DecodeReason)

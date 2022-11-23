@@ -306,7 +306,7 @@ namespace WhatTheHelmRuntime
 
         private void button1_Click(object sender, EventArgs e)
         {
-            PropulsionNmea2000Config config = new Nmea2000Config();
+            PropulsionNmea2000Config config = new PropulsionNmea2000Config(null);
             config.ShowDialog();
         }
     }

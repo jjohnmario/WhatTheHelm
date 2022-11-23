@@ -8,12 +8,12 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000
     /// <summary>
     /// Defines the relationship between a NMEA2000 device and a NMEA2000 PGN.
     /// </summary>
-    public class Nmea2000DataBinding
+    public class N2KDataBinding
     {
         /// <summary>
         /// The NMEA2000 device containing the data source
         /// </summary>
-        public Nmea2000Device Nmea2000Device { get; set; }
+        public N2KDevice Nmea2000Device { get; set; }
         /// <summary>
         /// The PGN of the produced or consumed data point.
         /// </summary>
@@ -23,7 +23,7 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000
         /// </summary>
         public byte Instance { get; set; }
 
-        public Nmea2000DataBinding(Nmea2000Device n2KDevice)
+        public N2KDataBinding(N2KDevice n2KDevice)
         {
             if(n2KDevice == null)
                 throw new ArgumentNullException(nameof(n2KDevice));

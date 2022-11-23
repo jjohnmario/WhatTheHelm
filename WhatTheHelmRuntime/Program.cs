@@ -1,23 +1,10 @@
 ﻿using WhatTheHelmCanLib.Devices;
-using WhatTheHelmCanLib.Devices.Nmea2000;
-using WhatTheHelmCanLib.Devices.Nmea2000.GridConnect;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.IO.Ports;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
-using WhatTheHelmFormsLib;
-using WhatTheHelmRuntime;
-using WhatTheHelmRuntime.NMEA0183;
-using XMLhelper;
 using WhatTheHelmCanLib.Devices.NMEA2000.Actisense;
-using System.Security.AccessControl;
 
 namespace WhatTheHelmRuntime
 {
@@ -26,8 +13,7 @@ namespace WhatTheHelmRuntime
         //public static Can232Fd CanGateway { get; set; }
         public static Ngt1 CanGateway { get; set; }
         //public static CanGateWayListener CanGateWayListener { get; set; }
-        public static CanRequestHandler CanRequestHandler { get; set; }
-        public static YoctoPwmRx YoctoPwmRx { get; set; }
+       // public static CanRequestHandler CanRequestHandler { get; set; }
         public static Configuration Configuration { get; set; }
 
         /// <summary>
@@ -104,7 +90,7 @@ namespace WhatTheHelmRuntime
                 {
                     //PortGauges portGauges = new PortGauges();
                     //Application.Run(portGauges);
-                    PropulsionNmea2000Config nmea2000Config = new Nmea2000Config();
+                    PropulsionNmea2000Config nmea2000Config = new PropulsionNmea2000Config(null);
                     Application.Run(nmea2000Config);
                     //SwitchPanel switchPanel = new SwitchPanel();
                     //Application.Run(switchPanel);

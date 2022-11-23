@@ -13,22 +13,11 @@ using WhatTheHelmCanLib.ParameterGroups.NMEA2000;
 
 namespace WhatTheHelmRuntime
 {
-    struct Nmea2000Object
-    {
-        public uint Source;
-        public N2KProductInformation ProductInformation;
-        public List<uint> RxPgns;
-        public List<uint> TxPgns;
-        public override string ToString()
-        {
-            return String.Format("{0}, {1}", ProductInformation.ModelId, ProductInformation.ModelSerialCode);
-        }
-    }
     public partial class PropulsionNmea2000Config : Form
     {
         private List<object> _instanceList = new List<object>();
         private List<N2KProductInformation> _productInformation = new List<N2KProductInformation>();
-        private List<Nmea2000Device> _n2kDevices;
+        private List<N2KDevice> _n2kDevices = new List<N2KDevice>();
         private PropulsionNmea2000Configuration _existingPropulsionConfig;
         public PropulsionNmea2000Config(PropulsionNmea2000Configuration propulsionConfig)
         {
@@ -48,9 +37,7 @@ namespace WhatTheHelmRuntime
             {
                 _instanceList.Add(i);
             }
-            refreshList();
-            initializeComboBoxes();
-
+            refreshDeviceList();
         }
 
         private void setExistingConfig()
@@ -73,7 +60,7 @@ namespace WhatTheHelmRuntime
                 {
                     var prodInfo = new Pgn0x1F014();
                     prodInfo = (Pgn0x1F014)prodInfo.DeserializeFields(e.Message.Data);
-                    Nmea2000Device n2kDevice = new Nmea2000Device(e.Message.SourceAddress);
+                    N2KDevice n2kDevice = new N2KDevice(e.Message.SourceAddress);
                     n2kDevice.ProductInformation = prodInfo.ProductInformation;
                     _n2kDevices.Add(n2kDevice);
                     listBox1.Invoke( new MethodInvoker(()=>listBox1.Items.Add(n2kDevice.ToString())));             
@@ -88,10 +75,10 @@ namespace WhatTheHelmRuntime
                     var updatedObj = foundObj;
                     //Returned list is Tx
                     if (pgnList.PgnListType == PgnListType.Transmit)
-                        updatedObj.N2KTxPgns = pgnList.PgnTransmitList;  
+                        updatedObj.TxPgns = pgnList.PgnTransmitList;  
                     //Returned list is Rx
                     else if(pgnList.PgnListType == PgnListType.Receive)
-                        updatedObj.N2KRxPgns = pgnList.PgnReceiveList;
+                        updatedObj.RxPgns = pgnList.PgnReceiveList;
                     //Replace old N2K object with new
                     _n2kDevices.Remove(foundObj);
                     _n2kDevices.Add(updatedObj);
@@ -99,7 +86,7 @@ namespace WhatTheHelmRuntime
             }
         }
 
-        private void refreshList()
+        private void refreshDeviceList()
         {
             Timer t = new Timer();
             t.Interval = 500;
@@ -117,15 +104,15 @@ namespace WhatTheHelmRuntime
             timer.Stop();
             timer.Tick -= T_Tick;
             timer.Dispose();
-            initializeComboBoxes();
+            addItemsToComboBoxes();
             setComboBoxSelectedItems(); 
         }
 
-        private void initializeComboBoxes()
+        private void addItemsToComboBoxes()
         {
             object[] instance = _instanceList.ToArray();
             //RPM
-            _n2kDevices.Where(obj => obj.N2KTxPgns!=null && obj.N2KTxPgns.Contains(127488)).ToList().ForEach(obj => 
+            _n2kDevices.Where(obj => obj.TxPgns!=null && obj.TxPgns.Contains(127488)).ToList().ForEach(obj => 
             {
                 addItemsToComboBox(cbRpmSource, new object[] { obj.ProductInformation.ModelId });
                 addItemsToComboBox(cbRpmSourceSerial, new object[] {obj.ProductInformation.ModelSerialCode});
@@ -133,7 +120,7 @@ namespace WhatTheHelmRuntime
             });
 
             //Engine oil pressure, water temperature, alarms
-            _n2kDevices.Where(obj => obj.N2KTxPgns != null && obj.N2KTxPgns.Contains(127489)).ToList().ForEach(obj =>
+            _n2kDevices.Where(obj => obj.TxPgns != null && obj.TxPgns.Contains(127489)).ToList().ForEach(obj =>
             {
                 addItemsToComboBox(cbWaterTempSource, new object[] { obj.ProductInformation.ModelId });
                 addItemsToComboBox(cbWaterTempSerial, new object[] { obj.ProductInformation.ModelSerialCode });
@@ -149,19 +136,19 @@ namespace WhatTheHelmRuntime
                 addItemsToComboBox(cbHourMeterInstance, instance);
             });
             //Trans hydraulic pressure, alarms
-            _n2kDevices.Where(obj => obj.N2KTxPgns != null && obj.N2KTxPgns.Contains(127493)).ToList().ForEach(obj =>
+            _n2kDevices.Where(obj => obj.TxPgns != null && obj.TxPgns.Contains(127493)).ToList().ForEach(obj =>
             {
                 addItemsToComboBox(cbTransPressSource, new object[] { obj.ToString() });
                 addItemsToComboBox(cbTransPressInstance, instance);
             });
             //Battery
             List<object> batteryPgns = new List<object>();
-            _n2kDevices.Where(obj => obj.N2KTxPgns != null && obj.N2KTxPgns.Contains(127508) | obj.N2KTxPgns.Contains(127489)).ToList().ForEach(obj =>
+            _n2kDevices.Where(obj => obj.TxPgns != null && obj.TxPgns.Contains(127508) | obj.TxPgns.Contains(127489)).ToList().ForEach(obj =>
             {
                 addItemsToComboBox(cbBatteryVoltageSource, new object[] { obj.ToString() });
-                if (obj.N2KTxPgns.Contains(127508) & !batteryPgns.Contains(127508))
+                if (obj.TxPgns.Contains(127508) & !batteryPgns.Contains(127508))
                     batteryPgns.Add(127508);
-                if(obj.N2KTxPgns.Contains(127489) & !batteryPgns.Contains(127489))
+                if(obj.TxPgns.Contains(127489) & !batteryPgns.Contains(127489))
                     batteryPgns.Add(127489);
 
             });
@@ -185,22 +172,28 @@ namespace WhatTheHelmRuntime
         private void setComboBoxSelectedItems()
         {
             //Set variable PGNs
-            if (!cbBatteryVoltageSource.Items.Contains(_existingPropulsionConfig.PortVoltage.PGN))
+            _existingPropulsionConfig.Voltage = new WhatTheHelmCanLib.Devices.NMEA2000.N2KDataBinding(new N2KDevice(1));
+            _existingPropulsionConfig.Voltage.PGN = 126234;
+            if(_existingPropulsionConfig.Voltage!=null)
             {
-
-                if (_existingPropulsionConfig.PortVoltage.PGN > 0)
+                if (!cbBatteryVoltagePgn.Items.Contains(_existingPropulsionConfig.Voltage.PGN))
                 {
-                    cbBatteryVoltageSource.Items.Add(_existingPropulsionConfig.PortVoltage.PGN);
-                    cbBatteryVoltageSource.Invoke(new MethodInvoker(() => { cbBatteryVoltageSource.SelectedIndex = cbBatteryVoltageSource.Items.IndexOf(_existingPropulsionConfig.PortVoltage.PGN); }));
+
+                    if (_existingPropulsionConfig.Voltage.PGN > 0)
+                    {
+                        cbBatteryVoltagePgn.Items.Add(_existingPropulsionConfig.Voltage.PGN);
+                        cbBatteryVoltagePgn.Invoke(new MethodInvoker(() => { cbBatteryVoltagePgn.SelectedIndex = cbBatteryVoltagePgn.Items.IndexOf(_existingPropulsionConfig.Voltage.PGN); }));
+                    }
                 }
             }
+
 
 
         }
 
         private void btnRefreshDeviceList_Click(object sender, EventArgs e)
         {
-            refreshList();
+            refreshDeviceList();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)

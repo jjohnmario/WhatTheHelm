@@ -5,7 +5,7 @@ using System.Text;
 namespace WhatTheHelmCanLib.Devices
 {
     /// <summary>
-    /// Represents a CAN controller application (CA)
+    /// Represents a CAN controller application (CA) device
     /// </summary>
     public abstract class CanDevice
     {

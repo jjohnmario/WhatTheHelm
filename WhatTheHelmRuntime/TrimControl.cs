@@ -146,7 +146,7 @@ namespace WhatTheHelmRuntime
             MvecCommand0x80 cmd = new MvecCommand0x80(0, e.MvecRelayNumber, e.RelayCommandState);
             Pgn0x0EF00 pgn = new Pgn0x0EF00(cmd, e.MvecAddress);
             CanMessage msg = new CanMessage(pgn.Pgn, Format.EXTENDED, 6, Program.CanGateway.Address, pgn.DestinationAddress, pgn.SerializeFields());
-            Program.CanRequestHandler.QueueOutgoingMessage(msg);
+            //Program.CanRequestHandler.QueueOutgoingMessage(msg);
         }
 
         private void dashboardButton3_NewCommand(object sender, BoatFormsLib.DashboardButtonArgs e)

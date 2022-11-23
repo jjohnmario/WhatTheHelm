@@ -12,20 +12,20 @@ namespace WhatTheHelmRuntime
     /// </summary>
     public class PropulsionNmea2000Configuration
     {
-        public Nmea2000DataBinding Rpm { get; set; }
-        public Nmea2000DataBinding EngineTemperature { get; set; }
-        public Nmea2000DataBinding OilPressure { get; set; }
-        public Nmea2000DataBinding OilTemperature { get; set; }
-        public Nmea2000DataBinding AlternatorPotential { get; set; }
-        public Nmea2000DataBinding CoolantPressure { get; set; } 
-        public Nmea2000DataBinding FuelPressure { get; set; } 
-        public Nmea2000DataBinding FuelRate { get; set; }
-        public Nmea2000DataBinding PercentEngineLoad { get; set; }
-        public Nmea2000DataBinding PercentEngineTorque { get; set; }
-        public Nmea2000DataBinding EngineAlarms { get; set; }
-        public Nmea2000DataBinding EngineHours { get; set; }
-        public Nmea2000DataBinding PortTransPressure { get; set; }
-        public Nmea2000DataBinding PortTransAlarms { get; set; }
-        public Nmea2000DataBinding PortVoltage { get; set; }
+        public N2KDataBinding Rpm { get; set; }
+        public N2KDataBinding EngineTemperature { get; set; }
+        public N2KDataBinding OilPressure { get; set; }
+        public N2KDataBinding OilTemperature { get; set; }
+        public N2KDataBinding AlternatorPotential { get; set; }
+        public N2KDataBinding CoolantPressure { get; set; } 
+        public N2KDataBinding FuelPressure { get; set; } 
+        public N2KDataBinding FuelRate { get; set; }
+        public N2KDataBinding PercentEngineLoad { get; set; }
+        public N2KDataBinding PercentEngineTorque { get; set; }
+        public N2KDataBinding EngineAlarms { get; set; }
+        public N2KDataBinding EngineHours { get; set; }
+        public N2KDataBinding TransPressure { get; set; }
+        public N2KDataBinding TransAlarms { get; set; }
+        public N2KDataBinding Voltage { get; set; }
     }
 }
