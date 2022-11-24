@@ -17,7 +17,6 @@ namespace WhatTheHelmRuntime
     public partial class PropulsionNmea2000Config : Form
     {
         private List<object> _instanceList = new List<object>();
-        private List<N2KProductInformation> _productInformation = new List<N2KProductInformation>();
         private List<N2KDevice> _n2kDevices = new List<N2KDevice>();
         private PropulsionNmea2000Configuration _existingPropulsionConfig;
         public PropulsionNmea2000Config(PropulsionNmea2000Configuration propulsionConfig)
@@ -97,39 +96,156 @@ namespace WhatTheHelmRuntime
             Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
 
             //Scan for connected NMEA 2000 devices
-            refreshN2KDeviceList();
+            refreshConnectedDeviceList();
         }
 
+        private void CanGateway_MessageRecieved(object sender, WhatTheHelmCanLib.Messages.CanMessageArgs e)
+        {
+            if (this.IsHandleCreated)
+            {
+                //Product information
+                if (e.Message.Pgn == 126996)
+                {
+                    var prodInfo = new Pgn0x1F014();
+                    prodInfo = (Pgn0x1F014)prodInfo.DeserializeFields(e.Message.Data);
+                    N2KDevice n2kDevice = new N2KDevice(e.Message.SourceAddress);
+                    n2kDevice.ProductInformation = prodInfo.ProductInformation;
+                    _n2kDevices.Add(n2kDevice);
+                    listBox1.Invoke(new MethodInvoker(() => listBox1.Items.Add(n2kDevice.ToString())));
+                }
+                //Pgn List
+                if (e.Message.Pgn == 126464)
+                {
+                    var pgnList = new Pgn0x1EE00();
+                    pgnList = (Pgn0x1EE00)pgnList.DeserializeFields(e.Message.Data);
+                    //Copy existing N2K object
+                    var foundObj = _n2kDevices.Where(obj => obj.Address == e.Message.SourceAddress).First();
+                    var updatedObj = foundObj;
+                    //Returned list is Tx
+                    if (pgnList.PgnListType == PgnListType.Transmit)
+                        updatedObj.TxPgns = pgnList.PgnTransmitList;
+                    //Returned list is Rx
+                    else if (pgnList.PgnListType == PgnListType.Receive)
+                        updatedObj.RxPgns = pgnList.PgnReceiveList;
+                    //Replace old N2K object with new
+                    //_n2kDevices.Remove(foundObj);
+                    _n2kDevices.Add(updatedObj);
+                }
+            }
+        }
+
+        private void T_Tick(object sender, EventArgs e)
+        {
+            var timer = (Timer)sender;
+            timer.Stop();
+            timer.Tick -= T_Tick;
+            timer.Dispose();
+            addConnectedDeviceSources();
+        }
+
+        #region User Interaction
         private void CbSource_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch(sender.GetType().Name)
+            var callingCombobox = (ComboBox)sender;
+            switch(callingCombobox.Name)
             {
-                case ("foo"):
+                case ("cbRpmSource"):
+                    cbRpmSerial.Enabled = true;
+                    cbRpmInstance.Enabled = true;
+                    updateSerialComboboxItems(callingCombobox, cbRpmSerial);
+                    updateInstanceComboboxItems(cbRpmInstance);
+                    break;
+                case ("cbEngineTempSource"):
+                    cbEngineTempSerial.Enabled = true;
+                    cbEngineTempInstance.Enabled = true;
+                    updateSerialComboboxItems(callingCombobox, cbEngineTempSerial);
+                    updateInstanceComboboxItems(cbEngineTempInstance);
+                    break;
+                case ("cbOilPressSource"):
+                    cbOilPressSerial.Enabled = true;
+                    cbOilPressInstance.Enabled = true;
+                    updateSerialComboboxItems(callingCombobox, cbOilPressSerial);
+                    updateInstanceComboboxItems(cbOilPressInstance);
+                    break;
+                case ("cbEngineAlarmsSource"):
+                    cbEngineAlarmsSerial.Enabled = true;
+                    cbEngineAlarmsInstance.Enabled = true;
+                    updateSerialComboboxItems(callingCombobox, cbEngineAlarmsSerial);
+                    updateInstanceComboboxItems(cbEngineAlarmsInstance);
+                    break;
+                case ("cbEngineHoursSource"):
+                    cbEngineHoursSerial.Enabled = true;
+                    cbEngineHoursInstance.Enabled = true;
+                    updateSerialComboboxItems(callingCombobox, cbEngineHoursSerial);
+                    updateInstanceComboboxItems(cbEngineHoursInstance);
+                    break;
+                case ("cbTransPressSource"):
+                    cbTransPressSerial.Enabled = true;
+                    cbTransPressInstance.Enabled = true;
+                    updateSerialComboboxItems(callingCombobox, cbTransPressSerial);
+                    updateInstanceComboboxItems(cbTransPressInstance);
+                    break;
+                case ("cbTransAlarmsSource"):
+                    cbTransAlarmsSerial.Enabled = true;
+                    cbTransAlarmsInstance.Enabled = true;
+                    updateSerialComboboxItems(callingCombobox, cbTransAlarmsSerial);
+                    updateInstanceComboboxItems(cbTransAlarmsInstance);
+                    break;
+                case ("cbAlternatorPotentialSource"):
+                    cbAlternatorPotentialSource.Enabled = true;
+                    cbAlternatorPotentialPgn.Enabled = true;
+                    cbAlternatorPotentialInstance.Enabled = true;
+                    updateSerialComboboxItems(callingCombobox, cbAlternatorPotentialSerial);
+                    updatePgnComboboxItems(callingCombobox, cbAlternatorPotentialSerial, cbAlternatorPotentialPgn, new List<uint>() { 127508, 127489 });
+                    updateInstanceComboboxItems(cbAlternatorPotentialInstance);
                     break;
             }
-            throw new NotImplementedException();
         }
-
-        private void fillInstanceComboboxes()
+        private void updateSerialComboboxItems(ComboBox sourceComboBox, ComboBox serialComboBox)
         {
-            object[] instance = _instanceList.ToArray();
-            addItemsToComboBox(cbRpmInstance, instance);
-            addItemsToComboBox(cbEngineTempInstance, instance);
-            addItemsToComboBox(cbOilPressInstance, instance);
-            addItemsToComboBox(cbEngineAlarmsInstance, instance);
-            addItemsToComboBox(cbEngineHoursInstance, instance);
-            addItemsToComboBox(cbTransPressInstance, instance);
-            addItemsToComboBox(cbAlternatorPotentialInstance, instance);
-            instance = null;
+            //Delete existing items
+            serialComboBox.Items.Clear();
+            //Find serial number of each type of source model ID - for example if there are two engine gateways, list both serial numbers.
+            _n2kDevices.Where(device => device.ProductInformation.ModelId == sourceComboBox.SelectedItem.ToString()).Distinct().ToList().ForEach(dev => { serialComboBox.Items.Add(dev.ProductInformation.ModelSerialCode); });
+            //Set the first serial number as selected item as default.
+            if(serialComboBox.Items.Count > 0)
+                serialComboBox.SelectedIndex = 0;
+            //If only one serial number option, disable combo box
+            if (serialComboBox.Items.Count == 1)
+                serialComboBox.Enabled = false;
         }
+        private void updateInstanceComboboxItems(ComboBox instanceComboBox)
+        {
+            instanceComboBox.Items.Clear();
+            instanceComboBox.Items.AddRange(_instanceList.ToArray());
+            if(instanceComboBox.Items.Count > 0)
+                instanceComboBox.SelectedIndex = 0;
+        }
+        private void updatePgnComboboxItems(ComboBox sourceComboBox, ComboBox serialComboBox, ComboBox pgnComboBox, List<uint> pgnItems)
+        {
+            //Delete existing items
+            pgnComboBox.Items.Clear();
 
+            //Find the selected source device using a combination of model ID and serial number
+            var n2kDevice = _n2kDevices.Where(device => device.ProductInformation.ModelId == sourceComboBox.SelectedItem.ToString() && device.ProductInformation.ModelSerialCode == serialComboBox.SelectedItem.ToString()).First();        
+            //Add PGN options.
+            foreach(uint pgn in pgnItems)
+                if (n2kDevice.TxPgns.Contains(pgn))
+                    pgnComboBox.Items.Add(pgn);
+            //Set the first pgn as selected item as default.
+            if (pgnComboBox.Items.Count > 0)
+                pgnComboBox.SelectedIndex = 0;
+        }
+        #endregion
+
+        #region Existing Configuration
         private void setExistingSourceConfig(ComboBox cb, N2KDataBinding n2KDataBinding)
         {
-            if(n2KDataBinding != null)
+            if (n2KDataBinding != null)
             {
                 addItemsToComboBox(cb, new object[] { n2KDataBinding.Nmea2000Device.ProductInformation.ModelId });
                 cb.SelectedItem = n2KDataBinding.Nmea2000Device.ProductInformation.ModelId;
-            }    
+            }
         }
 
         private void setExistingSerialConfig(ComboBox cb, N2KDataBinding n2KDataBinding)
@@ -158,43 +274,10 @@ namespace WhatTheHelmRuntime
                 cbRpmInstance.SelectedItem = n2KDataBinding.Instance;
             }
         }
+        #endregion
 
-        private void CanGateway_MessageRecieved(object sender, WhatTheHelmCanLib.Messages.CanMessageArgs e)
-        {
-            if(this.IsHandleCreated)
-            {
-                //Product information
-                if(e.Message.Pgn == 126996)
-                {
-                    var prodInfo = new Pgn0x1F014();
-                    prodInfo = (Pgn0x1F014)prodInfo.DeserializeFields(e.Message.Data);
-                    N2KDevice n2kDevice = new N2KDevice(e.Message.SourceAddress);
-                    n2kDevice.ProductInformation = prodInfo.ProductInformation;
-                    _n2kDevices.Add(n2kDevice);
-                    listBox1.Invoke( new MethodInvoker(()=>listBox1.Items.Add(n2kDevice.ToString())));             
-                }
-                //Pgn List
-                if(e.Message.Pgn == 126464)
-                {
-                    var pgnList = new Pgn0x1EE00();
-                    pgnList = (Pgn0x1EE00)pgnList.DeserializeFields(e.Message.Data);
-                    //Copy existing N2K object
-                    var foundObj = _n2kDevices.Where(obj => obj.Address == e.Message.SourceAddress).First();
-                    var updatedObj = foundObj;
-                    //Returned list is Tx
-                    if (pgnList.PgnListType == PgnListType.Transmit)
-                        updatedObj.TxPgns = pgnList.PgnTransmitList;  
-                    //Returned list is Rx
-                    else if(pgnList.PgnListType == PgnListType.Receive)
-                        updatedObj.RxPgns = pgnList.PgnReceiveList;
-                    //Replace old N2K object with new
-                    //_n2kDevices.Remove(foundObj);
-                    _n2kDevices.Add(updatedObj);
-                }
-            }
-        }
-
-        private void refreshN2KDeviceList()
+        #region Connected Devices
+        private void refreshConnectedDeviceList()
         {
             //Allow 500ms for NMEA2000 devices to respond to requests for product information and pgn lists
             var gw = (Ngt1)Program.CanGateway;
@@ -208,20 +291,7 @@ namespace WhatTheHelmRuntime
             t.Start();
         }
 
-        private void T_Tick(object sender, EventArgs e)
-        {
-            var timer = (Timer)sender;
-            timer.Stop();
-            timer.Tick -= T_Tick;
-            timer.Dispose();
-            addNetworkDeviceSources();
-            addNetworkDeviceSerials();
-            //setComboBoxSelectedItems(); 
-            //resetComboBoxSelections();
-        }
-
-
-        private void addNetworkDeviceSources()
+        private void addConnectedDeviceSources()
         {
             //RPM
             _n2kDevices.Where(obj => obj.TxPgns != null && obj.TxPgns.Contains(127488)).ToList().ForEach(obj =>
@@ -250,79 +320,9 @@ namespace WhatTheHelmRuntime
             });
         }
 
-        private void addNetworkDeviceSerials()
-        {
-            //RPM
-            _n2kDevices.Where(obj => obj.TxPgns!=null && obj.TxPgns.Contains(127488)).ToList().ForEach(obj => 
-            {
-                addItemsToComboBox(cbRpmSerial, new object[] {obj.ProductInformation.ModelSerialCode});
-            });
-
-            //Engine oil pressure, water temperature, alarms
-            _n2kDevices.Where(obj => obj.TxPgns != null && obj.TxPgns.Contains(127489)).ToList().ForEach(obj =>
-            {
-                addItemsToComboBox(cbEngineTempSerial, new object[] { obj.ProductInformation.ModelSerialCode });
-                addItemsToComboBox(cbOilPressSerial, new object[] { obj.ProductInformation.ModelSerialCode });
-                addItemsToComboBox(cbEngineAlarmsSerial, new object[] { obj.ProductInformation.ModelSerialCode });
-                addItemsToComboBox(cbEngineHoursSerial, new object[] { obj.ProductInformation.ModelSerialCode });
-            });
-            //Trans pressure, alarms
-            _n2kDevices.Where(obj => obj.TxPgns != null && obj.TxPgns.Contains(127493)).ToList().ForEach(obj =>
-            {
-                addItemsToComboBox(cbTransPressSerial, new object[] { obj.ProductInformation.ModelSerialCode });
-            });
-            //Battery
-            _n2kDevices.Where(obj => obj.TxPgns != null && obj.TxPgns.Contains(127508) | obj.TxPgns.Contains(127489)).ToList().ForEach(obj =>
-            {
-                addItemsToComboBox(cbAlternatorPotentialSerial, new object[] { obj.ProductInformation.ModelSerialCode });
-            });
-        }
-
-        private void addNetworkDevicePgns()
-        {
-            ////Battery
-            //_n2kDevices.Where(obj => obj.TxPgns != null && obj.TxPgns.Contains(127508) | obj.TxPgns.Contains(127489)).ToList().ForEach(obj =>
-            //{
-            //    addItemsToComboBox(cbBatteryVoltageSerial, new object[] { obj.ProductInformation.ModelSerialCode });
-            //});
-        }
-
-
-
-        private void resetComboBoxSelections()
-        {
-            cbRpmSource.SelectedIndex = -1;
-            cbRpmSerial.SelectedIndex = -1;
-            cbRpmInstance.SelectedIndex = -1;
-        }
-
-        private void setComboBoxSelectedItems()
-        {
-            //Set variable PGNs
-            _existingPropulsionConfig.Voltage = new WhatTheHelmCanLib.Devices.NMEA2000.N2KDataBinding(new N2KDevice(1));
-            _existingPropulsionConfig.Voltage.PGN = 126234;
-            if(_existingPropulsionConfig.Voltage!=null)
-            {
-                if (!cbAlternatorPotentialPgn.Items.Contains(_existingPropulsionConfig.Voltage.PGN))
-                {
-
-                    if (_existingPropulsionConfig.Voltage.PGN > 0)
-                    {
-                        cbAlternatorPotentialPgn.Items.Add(_existingPropulsionConfig.Voltage.PGN);
-                        cbAlternatorPotentialPgn.Invoke(new MethodInvoker(() => { cbAlternatorPotentialPgn.SelectedIndex = cbAlternatorPotentialPgn.Items.IndexOf(_existingPropulsionConfig.Voltage.PGN); }));
-                    }
-                }
-            }
-
-
-
-        }
-
-        #region Connected Devices
-
         private void btnRefreshDeviceList_Click(object sender, EventArgs e)
         {
-            refreshN2KDeviceList();
+            refreshConnectedDeviceList();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -356,7 +356,32 @@ namespace WhatTheHelmRuntime
                 }
             }));
         }
-
+        private void fillInstanceComboboxes()
+        {
+            object[] instance = _instanceList.ToArray();
+            addItemsToComboBox(cbRpmInstance, instance);
+            addItemsToComboBox(cbEngineTempInstance, instance);
+            addItemsToComboBox(cbOilPressInstance, instance);
+            addItemsToComboBox(cbEngineAlarmsInstance, instance);
+            addItemsToComboBox(cbEngineHoursInstance, instance);
+            addItemsToComboBox(cbTransPressInstance, instance);
+            addItemsToComboBox(cbAlternatorPotentialInstance, instance);
+            instance = null;
+        }
         #endregion
+
+        #region Save/Cancel
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+
+        }
+        #endregion
+
+
     }
 }

@@ -34,5 +34,20 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000
         {
             return String.Format("{0}, {1}", ProductInformation.ModelId, ProductInformation.ModelSerialCode);
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            else if (obj.GetType() != typeof(N2KDevice))
+                return false;
+            else
+            {
+                var n2kDevice = (N2KDevice)obj;
+                if (this.ProductInformation != n2kDevice.ProductInformation)
+                    return false;
+            }
+            return true;
+        }
     }
 }

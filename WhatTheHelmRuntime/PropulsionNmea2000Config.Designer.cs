@@ -76,22 +76,18 @@
             this.cbTransAlarmsSource = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.cbTransAlarmsInstance = new System.Windows.Forms.ComboBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label22 = new System.Windows.Forms.Label();
             this.cbAlternatorPotentialSerial = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.cbAlternatorPotentialPgn = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.cbAlternatorPotentialSource = new System.Windows.Forms.ComboBox();
             this.cbAlternatorPotentialInstance = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.btnDeviceListScrollUp = new System.Windows.Forms.Button();
             this.btnDeviceListScrollDown = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnRefreshDeviceList
@@ -102,10 +98,10 @@
             this.btnRefreshDeviceList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefreshDeviceList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefreshDeviceList.ForeColor = System.Drawing.Color.White;
-            this.btnRefreshDeviceList.Location = new System.Drawing.Point(1363, 815);
-            this.btnRefreshDeviceList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRefreshDeviceList.Location = new System.Drawing.Point(832, 563);
+            this.btnRefreshDeviceList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRefreshDeviceList.Name = "btnRefreshDeviceList";
-            this.btnRefreshDeviceList.Size = new System.Drawing.Size(296, 155);
+            this.btnRefreshDeviceList.Size = new System.Drawing.Size(186, 78);
             this.btnRefreshDeviceList.TabIndex = 0;
             this.btnRefreshDeviceList.TabStop = false;
             this.btnRefreshDeviceList.Text = "Refresh\r\nDevice List";
@@ -119,9 +115,8 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1707, 36);
+            this.label1.Size = new System.Drawing.Size(1280, 29);
             this.label1.TabIndex = 1;
             this.label1.Text = "NMEA 2000 Configuration";
             // 
@@ -133,20 +128,18 @@
             this.cbRpmSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbRpmSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbRpmSource.FormattingEnabled = true;
-            this.cbRpmSource.Location = new System.Drawing.Point(359, 81);
-            this.cbRpmSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbRpmSource.Location = new System.Drawing.Point(269, 66);
             this.cbRpmSource.Name = "cbRpmSource";
-            this.cbRpmSource.Size = new System.Drawing.Size(544, 38);
+            this.cbRpmSource.Size = new System.Drawing.Size(409, 33);
             this.cbRpmSource.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(24, 84);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(18, 68);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(327, 28);
+            this.label2.Size = new System.Drawing.Size(245, 23);
             this.label2.TabIndex = 3;
             this.label2.Text = "RPM:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -159,11 +152,10 @@
             this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 30;
-            this.listBox1.Location = new System.Drawing.Point(44, 847);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBox1.ItemHeight = 25;
+            this.listBox1.Location = new System.Drawing.Point(33, 588);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(1059, 120);
+            this.listBox1.Size = new System.Drawing.Size(794, 175);
             this.listBox1.TabIndex = 6;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -171,38 +163,37 @@
             // 
             this.cbRpmInstance.BackColor = System.Drawing.Color.Black;
             this.cbRpmInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRpmInstance.Enabled = false;
             this.cbRpmInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbRpmInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbRpmInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbRpmInstance.FormattingEnabled = true;
-            this.cbRpmInstance.Location = new System.Drawing.Point(1360, 81);
-            this.cbRpmInstance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbRpmInstance.Location = new System.Drawing.Point(1020, 66);
             this.cbRpmInstance.Name = "cbRpmInstance";
-            this.cbRpmInstance.Size = new System.Drawing.Size(140, 38);
+            this.cbRpmInstance.Size = new System.Drawing.Size(106, 33);
             this.cbRpmInstance.TabIndex = 7;
             // 
             // cbEngineTempInstance
             // 
             this.cbEngineTempInstance.BackColor = System.Drawing.Color.Black;
             this.cbEngineTempInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEngineTempInstance.Enabled = false;
             this.cbEngineTempInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbEngineTempInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbEngineTempInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbEngineTempInstance.FormattingEnabled = true;
-            this.cbEngineTempInstance.Location = new System.Drawing.Point(1360, 128);
-            this.cbEngineTempInstance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbEngineTempInstance.Location = new System.Drawing.Point(1020, 104);
             this.cbEngineTempInstance.Name = "cbEngineTempInstance";
-            this.cbEngineTempInstance.Size = new System.Drawing.Size(140, 38);
+            this.cbEngineTempInstance.Size = new System.Drawing.Size(106, 33);
             this.cbEngineTempInstance.TabIndex = 11;
             // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(24, 130);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(18, 106);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(327, 28);
+            this.label5.Size = new System.Drawing.Size(245, 23);
             this.label5.TabIndex = 10;
             this.label5.Text = "Water Temperature:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -215,34 +206,32 @@
             this.cbEngineTempSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbEngineTempSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbEngineTempSource.FormattingEnabled = true;
-            this.cbEngineTempSource.Location = new System.Drawing.Point(359, 128);
-            this.cbEngineTempSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbEngineTempSource.Location = new System.Drawing.Point(269, 104);
             this.cbEngineTempSource.Name = "cbEngineTempSource";
-            this.cbEngineTempSource.Size = new System.Drawing.Size(544, 38);
+            this.cbEngineTempSource.Size = new System.Drawing.Size(409, 33);
             this.cbEngineTempSource.TabIndex = 9;
             // 
             // cbOilPressInstance
             // 
             this.cbOilPressInstance.BackColor = System.Drawing.Color.Black;
             this.cbOilPressInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbOilPressInstance.Enabled = false;
             this.cbOilPressInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbOilPressInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbOilPressInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbOilPressInstance.FormattingEnabled = true;
-            this.cbOilPressInstance.Location = new System.Drawing.Point(1360, 175);
-            this.cbOilPressInstance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbOilPressInstance.Location = new System.Drawing.Point(1020, 142);
             this.cbOilPressInstance.Name = "cbOilPressInstance";
-            this.cbOilPressInstance.Size = new System.Drawing.Size(140, 38);
+            this.cbOilPressInstance.Size = new System.Drawing.Size(106, 33);
             this.cbOilPressInstance.TabIndex = 15;
             // 
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(24, 177);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(18, 144);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(327, 28);
+            this.label7.Size = new System.Drawing.Size(245, 23);
             this.label7.TabIndex = 14;
             this.label7.Text = "Oil Pressure:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -255,34 +244,32 @@
             this.cbOilPressSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbOilPressSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbOilPressSource.FormattingEnabled = true;
-            this.cbOilPressSource.Location = new System.Drawing.Point(359, 175);
-            this.cbOilPressSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbOilPressSource.Location = new System.Drawing.Point(269, 142);
             this.cbOilPressSource.Name = "cbOilPressSource";
-            this.cbOilPressSource.Size = new System.Drawing.Size(544, 38);
+            this.cbOilPressSource.Size = new System.Drawing.Size(409, 33);
             this.cbOilPressSource.TabIndex = 13;
             // 
             // cbEngineAlarmsInstance
             // 
             this.cbEngineAlarmsInstance.BackColor = System.Drawing.Color.Black;
             this.cbEngineAlarmsInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEngineAlarmsInstance.Enabled = false;
             this.cbEngineAlarmsInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbEngineAlarmsInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbEngineAlarmsInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbEngineAlarmsInstance.FormattingEnabled = true;
-            this.cbEngineAlarmsInstance.Location = new System.Drawing.Point(1360, 222);
-            this.cbEngineAlarmsInstance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbEngineAlarmsInstance.Location = new System.Drawing.Point(1020, 180);
             this.cbEngineAlarmsInstance.Name = "cbEngineAlarmsInstance";
-            this.cbEngineAlarmsInstance.Size = new System.Drawing.Size(140, 38);
+            this.cbEngineAlarmsInstance.Size = new System.Drawing.Size(106, 33);
             this.cbEngineAlarmsInstance.TabIndex = 23;
             // 
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(24, 224);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(18, 182);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(327, 28);
+            this.label11.Size = new System.Drawing.Size(245, 23);
             this.label11.TabIndex = 22;
             this.label11.Text = "Alarms:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -295,21 +282,25 @@
             this.cbEngineAlarmsSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbEngineAlarmsSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbEngineAlarmsSource.FormattingEnabled = true;
-            this.cbEngineAlarmsSource.Location = new System.Drawing.Point(359, 222);
-            this.cbEngineAlarmsSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbEngineAlarmsSource.Location = new System.Drawing.Point(269, 180);
             this.cbEngineAlarmsSource.Name = "cbEngineAlarmsSource";
-            this.cbEngineAlarmsSource.Size = new System.Drawing.Size(544, 38);
+            this.cbEngineAlarmsSource.Size = new System.Drawing.Size(409, 33);
             this.cbEngineAlarmsSource.TabIndex = 21;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lblEngineAlarmsPgn);
+            this.groupBox1.Controls.Add(this.cbAlternatorPotentialSerial);
             this.groupBox1.Controls.Add(this.lblEngineHoursPgn);
             this.groupBox1.Controls.Add(this.lblOilPressPgn);
+            this.groupBox1.Controls.Add(this.cbAlternatorPotentialPgn);
             this.groupBox1.Controls.Add(this.lblWaterTempPgn);
             this.groupBox1.Controls.Add(this.lblRpmPgn);
             this.groupBox1.Controls.Add(this.cbEngineHoursSerial);
+            this.groupBox1.Controls.Add(this.label18);
+            this.groupBox1.Controls.Add(this.cbAlternatorPotentialSource);
             this.groupBox1.Controls.Add(this.cbEngineAlarmsSerial);
+            this.groupBox1.Controls.Add(this.cbAlternatorPotentialInstance);
             this.groupBox1.Controls.Add(this.cbOilPressSerial);
             this.groupBox1.Controls.Add(this.cbEngineTempSerial);
             this.groupBox1.Controls.Add(this.label20);
@@ -334,11 +325,9 @@
             this.groupBox1.Controls.Add(this.cbEngineAlarmsSource);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(44, 64);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(33, 52);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(1615, 345);
+            this.groupBox1.Size = new System.Drawing.Size(1211, 304);
             this.groupBox1.TabIndex = 33;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Engine";
@@ -349,10 +338,9 @@
             this.lblEngineAlarmsPgn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblEngineAlarmsPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEngineAlarmsPgn.ForeColor = System.Drawing.Color.Gray;
-            this.lblEngineAlarmsPgn.Location = new System.Drawing.Point(1157, 222);
-            this.lblEngineAlarmsPgn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEngineAlarmsPgn.Location = new System.Drawing.Point(868, 180);
             this.lblEngineAlarmsPgn.Name = "lblEngineAlarmsPgn";
-            this.lblEngineAlarmsPgn.Size = new System.Drawing.Size(176, 41);
+            this.lblEngineAlarmsPgn.Size = new System.Drawing.Size(132, 33);
             this.lblEngineAlarmsPgn.TabIndex = 46;
             this.lblEngineAlarmsPgn.Text = "127489";
             this.lblEngineAlarmsPgn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -363,10 +351,9 @@
             this.lblEngineHoursPgn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblEngineHoursPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEngineHoursPgn.ForeColor = System.Drawing.Color.Gray;
-            this.lblEngineHoursPgn.Location = new System.Drawing.Point(1157, 267);
-            this.lblEngineHoursPgn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEngineHoursPgn.Location = new System.Drawing.Point(868, 217);
             this.lblEngineHoursPgn.Name = "lblEngineHoursPgn";
-            this.lblEngineHoursPgn.Size = new System.Drawing.Size(176, 41);
+            this.lblEngineHoursPgn.Size = new System.Drawing.Size(132, 33);
             this.lblEngineHoursPgn.TabIndex = 45;
             this.lblEngineHoursPgn.Text = "127489";
             this.lblEngineHoursPgn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -377,10 +364,9 @@
             this.lblOilPressPgn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblOilPressPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOilPressPgn.ForeColor = System.Drawing.Color.Gray;
-            this.lblOilPressPgn.Location = new System.Drawing.Point(1157, 175);
-            this.lblOilPressPgn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOilPressPgn.Location = new System.Drawing.Point(868, 142);
             this.lblOilPressPgn.Name = "lblOilPressPgn";
-            this.lblOilPressPgn.Size = new System.Drawing.Size(176, 41);
+            this.lblOilPressPgn.Size = new System.Drawing.Size(132, 33);
             this.lblOilPressPgn.TabIndex = 44;
             this.lblOilPressPgn.Text = "127489";
             this.lblOilPressPgn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -391,10 +377,9 @@
             this.lblWaterTempPgn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblWaterTempPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWaterTempPgn.ForeColor = System.Drawing.Color.Gray;
-            this.lblWaterTempPgn.Location = new System.Drawing.Point(1157, 128);
-            this.lblWaterTempPgn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblWaterTempPgn.Location = new System.Drawing.Point(868, 104);
             this.lblWaterTempPgn.Name = "lblWaterTempPgn";
-            this.lblWaterTempPgn.Size = new System.Drawing.Size(176, 41);
+            this.lblWaterTempPgn.Size = new System.Drawing.Size(132, 33);
             this.lblWaterTempPgn.TabIndex = 43;
             this.lblWaterTempPgn.Text = "127489";
             this.lblWaterTempPgn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -405,10 +390,9 @@
             this.lblRpmPgn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblRpmPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRpmPgn.ForeColor = System.Drawing.Color.Gray;
-            this.lblRpmPgn.Location = new System.Drawing.Point(1157, 80);
-            this.lblRpmPgn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRpmPgn.Location = new System.Drawing.Point(868, 65);
             this.lblRpmPgn.Name = "lblRpmPgn";
-            this.lblRpmPgn.Size = new System.Drawing.Size(176, 41);
+            this.lblRpmPgn.Size = new System.Drawing.Size(132, 33);
             this.lblRpmPgn.TabIndex = 42;
             this.lblRpmPgn.Text = "127488";
             this.lblRpmPgn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -422,10 +406,9 @@
             this.cbEngineHoursSerial.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbEngineHoursSerial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbEngineHoursSerial.FormattingEnabled = true;
-            this.cbEngineHoursSerial.Location = new System.Drawing.Point(911, 267);
-            this.cbEngineHoursSerial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbEngineHoursSerial.Location = new System.Drawing.Point(683, 217);
             this.cbEngineHoursSerial.Name = "cbEngineHoursSerial";
-            this.cbEngineHoursSerial.Size = new System.Drawing.Size(219, 38);
+            this.cbEngineHoursSerial.Size = new System.Drawing.Size(165, 33);
             this.cbEngineHoursSerial.TabIndex = 41;
             // 
             // cbEngineAlarmsSerial
@@ -437,10 +420,9 @@
             this.cbEngineAlarmsSerial.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbEngineAlarmsSerial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbEngineAlarmsSerial.FormattingEnabled = true;
-            this.cbEngineAlarmsSerial.Location = new System.Drawing.Point(911, 222);
-            this.cbEngineAlarmsSerial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbEngineAlarmsSerial.Location = new System.Drawing.Point(683, 180);
             this.cbEngineAlarmsSerial.Name = "cbEngineAlarmsSerial";
-            this.cbEngineAlarmsSerial.Size = new System.Drawing.Size(219, 38);
+            this.cbEngineAlarmsSerial.Size = new System.Drawing.Size(165, 33);
             this.cbEngineAlarmsSerial.TabIndex = 40;
             // 
             // cbOilPressSerial
@@ -452,10 +434,9 @@
             this.cbOilPressSerial.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbOilPressSerial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbOilPressSerial.FormattingEnabled = true;
-            this.cbOilPressSerial.Location = new System.Drawing.Point(911, 175);
-            this.cbOilPressSerial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbOilPressSerial.Location = new System.Drawing.Point(683, 142);
             this.cbOilPressSerial.Name = "cbOilPressSerial";
-            this.cbOilPressSerial.Size = new System.Drawing.Size(219, 38);
+            this.cbOilPressSerial.Size = new System.Drawing.Size(165, 33);
             this.cbOilPressSerial.TabIndex = 39;
             // 
             // cbEngineTempSerial
@@ -467,20 +448,18 @@
             this.cbEngineTempSerial.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbEngineTempSerial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbEngineTempSerial.FormattingEnabled = true;
-            this.cbEngineTempSerial.Location = new System.Drawing.Point(911, 128);
-            this.cbEngineTempSerial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbEngineTempSerial.Location = new System.Drawing.Point(683, 104);
             this.cbEngineTempSerial.Name = "cbEngineTempSerial";
-            this.cbEngineTempSerial.Size = new System.Drawing.Size(219, 38);
+            this.cbEngineTempSerial.Size = new System.Drawing.Size(165, 33);
             this.cbEngineTempSerial.TabIndex = 38;
             // 
             // label20
             // 
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(911, 38);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Location = new System.Drawing.Point(683, 31);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(219, 28);
+            this.label20.Size = new System.Drawing.Size(164, 23);
             this.label20.TabIndex = 37;
             this.label20.Text = "Serial Number";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -494,34 +473,32 @@
             this.cbRpmSerial.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbRpmSerial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbRpmSerial.FormattingEnabled = true;
-            this.cbRpmSerial.Location = new System.Drawing.Point(911, 80);
-            this.cbRpmSerial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbRpmSerial.Location = new System.Drawing.Point(683, 65);
             this.cbRpmSerial.Name = "cbRpmSerial";
-            this.cbRpmSerial.Size = new System.Drawing.Size(219, 38);
+            this.cbRpmSerial.Size = new System.Drawing.Size(165, 33);
             this.cbRpmSerial.TabIndex = 36;
             // 
             // cbEngineHoursInstance
             // 
             this.cbEngineHoursInstance.BackColor = System.Drawing.Color.Black;
             this.cbEngineHoursInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEngineHoursInstance.Enabled = false;
             this.cbEngineHoursInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbEngineHoursInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbEngineHoursInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbEngineHoursInstance.FormattingEnabled = true;
-            this.cbEngineHoursInstance.Location = new System.Drawing.Point(1360, 267);
-            this.cbEngineHoursInstance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbEngineHoursInstance.Location = new System.Drawing.Point(1020, 217);
             this.cbEngineHoursInstance.Name = "cbEngineHoursInstance";
-            this.cbEngineHoursInstance.Size = new System.Drawing.Size(140, 38);
+            this.cbEngineHoursInstance.Size = new System.Drawing.Size(106, 33);
             this.cbEngineHoursInstance.TabIndex = 34;
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(24, 270);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(18, 219);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(327, 28);
+            this.label6.Size = new System.Drawing.Size(245, 23);
             this.label6.TabIndex = 33;
             this.label6.Text = "Hour Meter:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -534,20 +511,18 @@
             this.cbEngineHoursSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbEngineHoursSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbEngineHoursSource.FormattingEnabled = true;
-            this.cbEngineHoursSource.Location = new System.Drawing.Point(359, 267);
-            this.cbEngineHoursSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbEngineHoursSource.Location = new System.Drawing.Point(269, 217);
             this.cbEngineHoursSource.Name = "cbEngineHoursSource";
-            this.cbEngineHoursSource.Size = new System.Drawing.Size(544, 38);
+            this.cbEngineHoursSource.Size = new System.Drawing.Size(409, 33);
             this.cbEngineHoursSource.TabIndex = 32;
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(1157, 38);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(868, 31);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(176, 28);
+            this.label4.Size = new System.Drawing.Size(132, 23);
             this.label4.TabIndex = 31;
             this.label4.Text = "PGN";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -556,10 +531,9 @@
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(1360, 38);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(1020, 31);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(141, 28);
+            this.label3.Size = new System.Drawing.Size(106, 23);
             this.label3.TabIndex = 26;
             this.label3.Text = "Instance";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -568,10 +542,9 @@
             // 
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(359, 38);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(269, 31);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(544, 28);
+            this.label8.Size = new System.Drawing.Size(408, 23);
             this.label8.TabIndex = 25;
             this.label8.Text = "Source";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -594,11 +567,9 @@
             this.groupBox2.Controls.Add(this.cbTransAlarmsInstance);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(44, 427);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Location = new System.Drawing.Point(33, 375);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(1615, 203);
+            this.groupBox2.Size = new System.Drawing.Size(1211, 165);
             this.groupBox2.TabIndex = 36;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Transmission";
@@ -612,10 +583,9 @@
             this.cbTransAlarmsSerial.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTransAlarmsSerial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbTransAlarmsSerial.FormattingEnabled = true;
-            this.cbTransAlarmsSerial.Location = new System.Drawing.Point(912, 128);
-            this.cbTransAlarmsSerial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTransAlarmsSerial.Location = new System.Drawing.Point(684, 104);
             this.cbTransAlarmsSerial.Name = "cbTransAlarmsSerial";
-            this.cbTransAlarmsSerial.Size = new System.Drawing.Size(219, 38);
+            this.cbTransAlarmsSerial.Size = new System.Drawing.Size(165, 33);
             this.cbTransAlarmsSerial.TabIndex = 49;
             // 
             // lblTransAlarmsPgn
@@ -624,10 +594,9 @@
             this.lblTransAlarmsPgn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblTransAlarmsPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTransAlarmsPgn.ForeColor = System.Drawing.Color.Gray;
-            this.lblTransAlarmsPgn.Location = new System.Drawing.Point(1157, 128);
-            this.lblTransAlarmsPgn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTransAlarmsPgn.Location = new System.Drawing.Point(868, 104);
             this.lblTransAlarmsPgn.Name = "lblTransAlarmsPgn";
-            this.lblTransAlarmsPgn.Size = new System.Drawing.Size(176, 41);
+            this.lblTransAlarmsPgn.Size = new System.Drawing.Size(132, 33);
             this.lblTransAlarmsPgn.TabIndex = 48;
             this.lblTransAlarmsPgn.Text = "127493";
             this.lblTransAlarmsPgn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -636,10 +605,9 @@
             // 
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(912, 38);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Location = new System.Drawing.Point(684, 31);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(219, 28);
+            this.label21.Size = new System.Drawing.Size(164, 23);
             this.label21.TabIndex = 48;
             this.label21.Text = "Serial Number";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -653,10 +621,9 @@
             this.cbTransPressSerial.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTransPressSerial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbTransPressSerial.FormattingEnabled = true;
-            this.cbTransPressSerial.Location = new System.Drawing.Point(912, 81);
-            this.cbTransPressSerial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTransPressSerial.Location = new System.Drawing.Point(684, 66);
             this.cbTransPressSerial.Name = "cbTransPressSerial";
-            this.cbTransPressSerial.Size = new System.Drawing.Size(219, 38);
+            this.cbTransPressSerial.Size = new System.Drawing.Size(165, 33);
             this.cbTransPressSerial.TabIndex = 47;
             // 
             // lblTransPressPgn
@@ -665,10 +632,9 @@
             this.lblTransPressPgn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblTransPressPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTransPressPgn.ForeColor = System.Drawing.Color.Gray;
-            this.lblTransPressPgn.Location = new System.Drawing.Point(1157, 81);
-            this.lblTransPressPgn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTransPressPgn.Location = new System.Drawing.Point(868, 66);
             this.lblTransPressPgn.Name = "lblTransPressPgn";
-            this.lblTransPressPgn.Size = new System.Drawing.Size(176, 41);
+            this.lblTransPressPgn.Size = new System.Drawing.Size(132, 33);
             this.lblTransPressPgn.TabIndex = 47;
             this.lblTransPressPgn.Text = "127493";
             this.lblTransPressPgn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -677,10 +643,9 @@
             // 
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(1157, 38);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(868, 31);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(176, 28);
+            this.label10.Size = new System.Drawing.Size(132, 23);
             this.label10.TabIndex = 31;
             this.label10.Text = "PGN";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -689,10 +654,9 @@
             // 
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(1360, 38);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(1020, 31);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(141, 28);
+            this.label12.Size = new System.Drawing.Size(106, 23);
             this.label12.TabIndex = 26;
             this.label12.Text = "Instance";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -701,10 +665,9 @@
             // 
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(359, 38);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Location = new System.Drawing.Point(269, 31);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(600, 28);
+            this.label13.Size = new System.Drawing.Size(450, 23);
             this.label13.TabIndex = 25;
             this.label13.Text = "Source";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -713,10 +676,9 @@
             // 
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(24, 84);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(18, 68);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(327, 28);
+            this.label14.Size = new System.Drawing.Size(245, 23);
             this.label14.TabIndex = 3;
             this.label14.Text = "Pressure:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -729,24 +691,23 @@
             this.cbTransPressSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTransPressSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbTransPressSource.FormattingEnabled = true;
-            this.cbTransPressSource.Location = new System.Drawing.Point(359, 81);
-            this.cbTransPressSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTransPressSource.Location = new System.Drawing.Point(269, 66);
             this.cbTransPressSource.Name = "cbTransPressSource";
-            this.cbTransPressSource.Size = new System.Drawing.Size(544, 38);
+            this.cbTransPressSource.Size = new System.Drawing.Size(409, 33);
             this.cbTransPressSource.TabIndex = 2;
             // 
             // cbTransPressInstance
             // 
             this.cbTransPressInstance.BackColor = System.Drawing.Color.Black;
             this.cbTransPressInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTransPressInstance.Enabled = false;
             this.cbTransPressInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbTransPressInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTransPressInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbTransPressInstance.FormattingEnabled = true;
-            this.cbTransPressInstance.Location = new System.Drawing.Point(1360, 81);
-            this.cbTransPressInstance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTransPressInstance.Location = new System.Drawing.Point(1020, 66);
             this.cbTransPressInstance.Name = "cbTransPressInstance";
-            this.cbTransPressInstance.Size = new System.Drawing.Size(140, 38);
+            this.cbTransPressInstance.Size = new System.Drawing.Size(106, 33);
             this.cbTransPressInstance.TabIndex = 7;
             // 
             // cbTransAlarmsSource
@@ -757,20 +718,18 @@
             this.cbTransAlarmsSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTransAlarmsSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbTransAlarmsSource.FormattingEnabled = true;
-            this.cbTransAlarmsSource.Location = new System.Drawing.Point(359, 128);
-            this.cbTransAlarmsSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTransAlarmsSource.Location = new System.Drawing.Point(269, 104);
             this.cbTransAlarmsSource.Name = "cbTransAlarmsSource";
-            this.cbTransAlarmsSource.Size = new System.Drawing.Size(544, 38);
+            this.cbTransAlarmsSource.Size = new System.Drawing.Size(409, 33);
             this.cbTransAlarmsSource.TabIndex = 9;
             // 
             // label15
             // 
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(24, 130);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Location = new System.Drawing.Point(18, 106);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(327, 28);
+            this.label15.Size = new System.Drawing.Size(245, 23);
             this.label15.TabIndex = 10;
             this.label15.Text = "Alarms:";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -779,49 +738,15 @@
             // 
             this.cbTransAlarmsInstance.BackColor = System.Drawing.Color.Black;
             this.cbTransAlarmsInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTransAlarmsInstance.Enabled = false;
             this.cbTransAlarmsInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbTransAlarmsInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTransAlarmsInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbTransAlarmsInstance.FormattingEnabled = true;
-            this.cbTransAlarmsInstance.Location = new System.Drawing.Point(1360, 128);
-            this.cbTransAlarmsInstance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTransAlarmsInstance.Location = new System.Drawing.Point(1020, 104);
             this.cbTransAlarmsInstance.Name = "cbTransAlarmsInstance";
-            this.cbTransAlarmsInstance.Size = new System.Drawing.Size(140, 38);
+            this.cbTransAlarmsInstance.Size = new System.Drawing.Size(106, 33);
             this.cbTransAlarmsInstance.TabIndex = 11;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label22);
-            this.groupBox3.Controls.Add(this.cbAlternatorPotentialSerial);
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.cbAlternatorPotentialPgn);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.label17);
-            this.groupBox3.Controls.Add(this.label18);
-            this.groupBox3.Controls.Add(this.cbAlternatorPotentialSource);
-            this.groupBox3.Controls.Add(this.cbAlternatorPotentialInstance);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(44, 651);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox3.Size = new System.Drawing.Size(1615, 153);
-            this.groupBox3.TabIndex = 37;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Battery";
-            // 
-            // label22
-            // 
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(913, 38);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(219, 28);
-            this.label22.TabIndex = 51;
-            this.label22.Text = "Serial Number";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cbAlternatorPotentialSerial
             // 
@@ -832,70 +757,32 @@
             this.cbAlternatorPotentialSerial.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbAlternatorPotentialSerial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbAlternatorPotentialSerial.FormattingEnabled = true;
-            this.cbAlternatorPotentialSerial.Location = new System.Drawing.Point(913, 81);
-            this.cbAlternatorPotentialSerial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbAlternatorPotentialSerial.Location = new System.Drawing.Point(684, 256);
             this.cbAlternatorPotentialSerial.Name = "cbAlternatorPotentialSerial";
-            this.cbAlternatorPotentialSerial.Size = new System.Drawing.Size(219, 38);
+            this.cbAlternatorPotentialSerial.Size = new System.Drawing.Size(165, 33);
             this.cbAlternatorPotentialSerial.TabIndex = 50;
-            // 
-            // label9
-            // 
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(1157, 38);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(176, 28);
-            this.label9.TabIndex = 31;
-            this.label9.Text = "PGN";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cbAlternatorPotentialPgn
             // 
             this.cbAlternatorPotentialPgn.BackColor = System.Drawing.Color.Black;
             this.cbAlternatorPotentialPgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAlternatorPotentialPgn.Enabled = false;
             this.cbAlternatorPotentialPgn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbAlternatorPotentialPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbAlternatorPotentialPgn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbAlternatorPotentialPgn.FormattingEnabled = true;
-            this.cbAlternatorPotentialPgn.Location = new System.Drawing.Point(1157, 81);
-            this.cbAlternatorPotentialPgn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbAlternatorPotentialPgn.Location = new System.Drawing.Point(867, 256);
             this.cbAlternatorPotentialPgn.Name = "cbAlternatorPotentialPgn";
-            this.cbAlternatorPotentialPgn.Size = new System.Drawing.Size(175, 38);
+            this.cbAlternatorPotentialPgn.Size = new System.Drawing.Size(132, 33);
             this.cbAlternatorPotentialPgn.TabIndex = 27;
-            // 
-            // label16
-            // 
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(1360, 38);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(141, 28);
-            this.label16.TabIndex = 26;
-            this.label16.Text = "Instance";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label17
-            // 
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(359, 38);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(600, 28);
-            this.label17.TabIndex = 25;
-            this.label17.Text = "Source";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label18
             // 
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(24, 82);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Location = new System.Drawing.Point(17, 257);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(327, 38);
+            this.label18.Size = new System.Drawing.Size(245, 31);
             this.label18.TabIndex = 3;
             this.label18.Text = "Voltage:";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -908,24 +795,23 @@
             this.cbAlternatorPotentialSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbAlternatorPotentialSource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbAlternatorPotentialSource.FormattingEnabled = true;
-            this.cbAlternatorPotentialSource.Location = new System.Drawing.Point(359, 81);
-            this.cbAlternatorPotentialSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbAlternatorPotentialSource.Location = new System.Drawing.Point(268, 256);
             this.cbAlternatorPotentialSource.Name = "cbAlternatorPotentialSource";
-            this.cbAlternatorPotentialSource.Size = new System.Drawing.Size(544, 38);
+            this.cbAlternatorPotentialSource.Size = new System.Drawing.Size(409, 33);
             this.cbAlternatorPotentialSource.TabIndex = 2;
             // 
             // cbAlternatorPotentialInstance
             // 
             this.cbAlternatorPotentialInstance.BackColor = System.Drawing.Color.Black;
             this.cbAlternatorPotentialInstance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAlternatorPotentialInstance.Enabled = false;
             this.cbAlternatorPotentialInstance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbAlternatorPotentialInstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbAlternatorPotentialInstance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.cbAlternatorPotentialInstance.FormattingEnabled = true;
-            this.cbAlternatorPotentialInstance.Location = new System.Drawing.Point(1360, 81);
-            this.cbAlternatorPotentialInstance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbAlternatorPotentialInstance.Location = new System.Drawing.Point(1019, 256);
             this.cbAlternatorPotentialInstance.Name = "cbAlternatorPotentialInstance";
-            this.cbAlternatorPotentialInstance.Size = new System.Drawing.Size(140, 38);
+            this.cbAlternatorPotentialInstance.Size = new System.Drawing.Size(106, 33);
             this.cbAlternatorPotentialInstance.TabIndex = 7;
             // 
             // label19
@@ -933,10 +819,9 @@
             this.label19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(44, 815);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Location = new System.Drawing.Point(34, 563);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(1059, 28);
+            this.label19.Size = new System.Drawing.Size(793, 23);
             this.label19.TabIndex = 38;
             this.label19.Text = "Connected Devices:";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -949,10 +834,10 @@
             this.btnDeviceListScrollUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeviceListScrollUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeviceListScrollUp.ForeColor = System.Drawing.Color.White;
-            this.btnDeviceListScrollUp.Location = new System.Drawing.Point(1109, 815);
-            this.btnDeviceListScrollUp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDeviceListScrollUp.Location = new System.Drawing.Point(832, 645);
+            this.btnDeviceListScrollUp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDeviceListScrollUp.Name = "btnDeviceListScrollUp";
-            this.btnDeviceListScrollUp.Size = new System.Drawing.Size(248, 71);
+            this.btnDeviceListScrollUp.Size = new System.Drawing.Size(186, 58);
             this.btnDeviceListScrollUp.TabIndex = 39;
             this.btnDeviceListScrollUp.TabStop = false;
             this.btnDeviceListScrollUp.Text = "Previous Page";
@@ -967,39 +852,75 @@
             this.btnDeviceListScrollDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeviceListScrollDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeviceListScrollDown.ForeColor = System.Drawing.Color.White;
-            this.btnDeviceListScrollDown.Location = new System.Drawing.Point(1109, 898);
-            this.btnDeviceListScrollDown.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDeviceListScrollDown.Location = new System.Drawing.Point(832, 707);
+            this.btnDeviceListScrollDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDeviceListScrollDown.Name = "btnDeviceListScrollDown";
-            this.btnDeviceListScrollDown.Size = new System.Drawing.Size(248, 71);
+            this.btnDeviceListScrollDown.Size = new System.Drawing.Size(186, 58);
             this.btnDeviceListScrollDown.TabIndex = 40;
             this.btnDeviceListScrollDown.TabStop = false;
             this.btnDeviceListScrollDown.Text = "Next Page";
             this.btnDeviceListScrollDown.UseVisualStyleBackColor = true;
             this.btnDeviceListScrollDown.Click += new System.EventHandler(this.btnDeviceListScrollDown_Click);
             // 
+            // btnCancel
+            // 
+            this.btnCancel.BackgroundImage = global::WhatTheHelmRuntime.Properties.Resources.BlackButton;
+            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(1022, 665);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(230, 98);
+            this.btnCancel.TabIndex = 42;
+            this.btnCancel.TabStop = false;
+            this.btnCancel.Text = "CANCEL";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackgroundImage = global::WhatTheHelmRuntime.Properties.Resources.BlackButton;
+            this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(1022, 563);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(230, 98);
+            this.btnSave.TabIndex = 43;
+            this.btnSave.TabStop = false;
+            this.btnSave.Text = "SAVE";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // PropulsionNmea2000Config
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(1707, 985);
+            this.ClientSize = new System.Drawing.Size(1280, 800);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnDeviceListScrollDown);
             this.Controls.Add(this.btnDeviceListScrollUp);
             this.Controls.Add(this.label19);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRefreshDeviceList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PropulsionNmea2000Config";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "NMEA 2000 Configuration";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1038,11 +959,7 @@
         private System.Windows.Forms.ComboBox cbTransAlarmsSource;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox cbTransAlarmsInstance;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbAlternatorPotentialPgn;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox cbAlternatorPotentialSource;
         private System.Windows.Forms.ComboBox cbAlternatorPotentialInstance;
@@ -1065,7 +982,8 @@
         private System.Windows.Forms.ComboBox cbTransAlarmsSerial;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox cbTransPressSerial;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ComboBox cbAlternatorPotentialSerial;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnSave;
     }
 }
