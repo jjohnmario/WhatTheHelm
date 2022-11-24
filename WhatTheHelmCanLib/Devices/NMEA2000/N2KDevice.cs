@@ -32,7 +32,7 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000
 
         public override string ToString()
         {
-            return String.Format("{0}, {1}", ProductInformation.ModelId, ProductInformation.ModelSerialCode);
+            return String.Format("Model ID: {0}, Serial Number: {1}", ProductInformation.ModelId, ProductInformation.ModelSerialCode);
         }
 
         public override bool Equals(object obj)

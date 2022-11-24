@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -44,7 +45,7 @@ namespace WhatTheHelmRuntime
 
             for (int i = 0; i < 1000; i++)
             {
-                _instanceList.Add(i);
+                _instanceList.Add(i.ToString());
             }
             //Set comboboxes using existing propulsion configuration
 
@@ -103,7 +104,7 @@ namespace WhatTheHelmRuntime
         {
             if (this.IsHandleCreated)
             {
-                //Product information
+                //Product information PGN 126996
                 if (e.Message.Pgn == 126996)
                 {
                     var prodInfo = new Pgn0x1F014();
@@ -113,7 +114,7 @@ namespace WhatTheHelmRuntime
                     _n2kDevices.Add(n2kDevice);
                     listBox1.Invoke(new MethodInvoker(() => listBox1.Items.Add(n2kDevice.ToString())));
                 }
-                //Pgn List
+                //Pgn List PGN 126464
                 if (e.Message.Pgn == 126464)
                 {
                     var pgnList = new Pgn0x1EE00();
@@ -127,8 +128,7 @@ namespace WhatTheHelmRuntime
                     //Returned list is Rx
                     else if (pgnList.PgnListType == PgnListType.Receive)
                         updatedObj.RxPgns = pgnList.PgnReceiveList;
-                    //Replace old N2K object with new
-                    //_n2kDevices.Remove(foundObj);
+                    //Add N2K object to device list
                     _n2kDevices.Add(updatedObj);
                 }
             }
@@ -271,7 +271,10 @@ namespace WhatTheHelmRuntime
             if (n2KDataBinding != null)
             {
                 addItemsToComboBox(cb, _instanceList.ToArray());
-                cbRpmInstance.SelectedItem = n2KDataBinding.Instance;
+                ushort foo1 = n2KDataBinding.Instance;
+                var foo = cb.Items.IndexOf(foo1);
+                //cb.SelectedIndex = cb.Items.IndexOf(n2KDataBinding.Instance);
+                cb.SelectedValue = foo1;
             }
         }
         #endregion
@@ -311,6 +314,7 @@ namespace WhatTheHelmRuntime
             _n2kDevices.Where(obj => obj.TxPgns != null && obj.TxPgns.Contains(127493)).ToList().ForEach(obj =>
             {
                 addItemsToComboBox(cbTransPressSource, new object[] { obj.ProductInformation.ModelId });
+                addItemsToComboBox(cbTransAlarmsSource, new object[] { obj.ProductInformation.ModelId });
             });
             //Battery
             List<object> batteryPgns = new List<object>();
@@ -373,12 +377,75 @@ namespace WhatTheHelmRuntime
         #region Save/Cancel
         private void btnSave_Click(object sender, EventArgs e)
         {
-
+            List<KeyValuePair<Control, Color>> flaggedControls = new List<KeyValuePair<Control, Color>>();
+            var valid = flagMissingFields(out flaggedControls);
+            if (!valid)
+            {
+                MessageBox.Show("Configuration is incomplete!\nSource, serial number, PGN and instance must be set for each data point!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                resetMissingFieldFlags(flaggedControls);
+            }
+            else
+            {
+                if(saveConfig() == true)
+                    DialogResult = DialogResult.OK;
+                else
+                    MessageBox.Show("Failed to save configuration!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            }
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
 
+        }
+
+        private bool flagMissingFields(out List<KeyValuePair<Control,Color>> flaggedControls)
+        {
+            bool fieldIsMissing = false;
+            flaggedControls = new List<KeyValuePair<Control, Color>>();
+            var groupBoxes = this.Controls.OfType<GroupBox>();
+            foreach(GroupBox groupBox in groupBoxes)
+            {
+                var comboBoxes = groupBox.Controls.OfType<ComboBox>();
+                foreach (ComboBox comboBox in comboBoxes)
+                    if (comboBox.SelectedIndex == -1)
+                    {
+                        fieldIsMissing = true;
+                        var defaultColor = comboBox.BackColor;
+                        flaggedControls.Add(new KeyValuePair<Control,Color>(comboBox,defaultColor));
+                        comboBox.BackColor = Color.Yellow;
+                    }
+                var labels = groupBox.Controls.OfType<Label>();
+                foreach (Label label in labels)
+                    if (String.IsNullOrEmpty(label.Text))
+                    {
+                        fieldIsMissing = true;
+                        var defaultColor = label.BackColor;
+                        flaggedControls.Add(new KeyValuePair<Control, Color>(label, defaultColor));
+                        label.BackColor = Color.Yellow;
+                    }
+            }
+            if (fieldIsMissing)
+                return false;
+            return true;
+        }
+
+        private void resetMissingFieldFlags(List<KeyValuePair<Control, Color>> flaggedControls)
+        {
+            foreach (KeyValuePair<Control, Color> control in flaggedControls)
+                control.Key.BackColor = control.Value;
+        }
+
+        private bool saveConfig()
+        {
+            PropulsionNmea2000Configuration newConfig = new PropulsionNmea2000Configuration();
+            //RPM
+            var device = _n2kDevices.Where(dev => dev.ProductInformation.ModelId == cbRpmSource.SelectedItem.ToString() && dev.ProductInformation.ModelSerialCode == cbRpmSerial.SelectedItem.ToString()).First();
+            if (device != null)
+                newConfig.Rpm = new N2KDataBinding(device, Convert.ToUInt32(lblRpmPgn.Text), Convert.ToByte(cbRpmInstance.SelectedItem.ToString()));
+
+
+
+            return true;
         }
         #endregion
 

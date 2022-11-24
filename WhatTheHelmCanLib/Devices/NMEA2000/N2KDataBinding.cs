@@ -31,5 +31,10 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000
                 Nmea2000Device = n2KDevice;
         }
 
+        public N2KDataBinding(N2KDevice nmea2000Device, uint pGN, byte instance) : this(nmea2000Device)
+        {
+            PGN = pGN;
+            Instance = instance;
+        }
     }
 }
