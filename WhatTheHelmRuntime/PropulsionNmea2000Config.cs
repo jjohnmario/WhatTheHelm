@@ -134,14 +134,7 @@ namespace WhatTheHelmRuntime
             }
         }
 
-        private void T_Tick(object sender, EventArgs e)
-        {
-            var timer = (Timer)sender;
-            timer.Stop();
-            timer.Tick -= T_Tick;
-            timer.Dispose();
-            addConnectedDeviceSources();
-        }
+
 
         #region User Interaction
         private void CbSource_SelectedIndexChanged(object sender, EventArgs e)
@@ -271,10 +264,7 @@ namespace WhatTheHelmRuntime
             if (n2KDataBinding != null)
             {
                 addItemsToComboBox(cb, _instanceList.ToArray());
-                ushort foo1 = n2KDataBinding.Instance;
-                var foo = cb.Items.IndexOf(foo1);
-                //cb.SelectedIndex = cb.Items.IndexOf(n2KDataBinding.Instance);
-                cb.SelectedValue = foo1;
+                cb.SelectedIndex = cb.Items.IndexOf(n2KDataBinding.Instance.ToString());
             }
         }
         #endregion
@@ -292,6 +282,16 @@ namespace WhatTheHelmRuntime
             t.Interval = 500;
             t.Tick += T_Tick;
             t.Start();
+        }
+
+        private void T_Tick(object sender, EventArgs e)
+        {
+            var timer = (Timer)sender;
+            timer.Stop();
+            timer.Tick -= T_Tick;
+            timer.Dispose();
+            _n2kDevices = _n2kDevices.Distinct().ToList();
+            addConnectedDeviceSources();
         }
 
         private void addConnectedDeviceSources()
@@ -437,13 +437,33 @@ namespace WhatTheHelmRuntime
 
         private bool saveConfig()
         {
-            PropulsionNmea2000Configuration newConfig = new PropulsionNmea2000Configuration();
+            //Create new propulsion configuration and save individual configurations.
+            PropulsionNmea2000Configuration newPropulsionConfig = new PropulsionNmea2000Configuration();
             //RPM
-            var device = _n2kDevices.Where(dev => dev.ProductInformation.ModelId == cbRpmSource.SelectedItem.ToString() && dev.ProductInformation.ModelSerialCode == cbRpmSerial.SelectedItem.ToString()).First();
+            var device = _n2kDevices.Where(dev => dev.ProductInformation.ModelId == cbRpmSource.SelectedItem.ToString() && dev.ProductInformation.ModelSerialCode == cbRpmSerial.SelectedItem.ToString()).SingleOrDefault();
             if (device != null)
-                newConfig.Rpm = new N2KDataBinding(device, Convert.ToUInt32(lblRpmPgn.Text), Convert.ToByte(cbRpmInstance.SelectedItem.ToString()));
-
-
+                newPropulsionConfig.Rpm = new N2KDataBinding(device, Convert.ToUInt32(lblRpmPgn.Text), Convert.ToByte(cbRpmInstance.SelectedItem.ToString()));
+            else
+                newPropulsionConfig.Rpm = _existingPropulsionConfig.Rpm;
+            //Engine temperature
+            device = _n2kDevices.Where(dev => dev.ProductInformation.ModelId == cbEngineTempSource.SelectedItem.ToString() && dev.ProductInformation.ModelSerialCode == cbEngineTempSerial.SelectedItem.ToString()).SingleOrDefault();
+            if (device != null)
+                newPropulsionConfig.EngineTemperature = new N2KDataBinding(device, Convert.ToUInt32(lblEngineTempPgn.Text), Convert.ToByte(cbEngineTempInstance.SelectedItem.ToString()));
+            else
+                newPropulsionConfig.EngineTemperature = _existingPropulsionConfig.EngineTemperature;
+            //Engine oil pressure
+            device = _n2kDevices.Where(dev => dev.ProductInformation.ModelId == cbOilPressSource.SelectedItem.ToString() && dev.ProductInformation.ModelSerialCode == cbOilPressSerial.SelectedItem.ToString()).SingleOrDefault();
+            if (device != null)
+                newPropulsionConfig.OilPressure = new N2KDataBinding(device, Convert.ToUInt32(lblOilPressPgn.Text), Convert.ToByte(cbOilPressInstance.SelectedItem.ToString()));
+            else
+                newPropulsionConfig.OilPressure = _existingPropulsionConfig.OilPressure;
+            //Engine alarms
+            device = _n2kDevices.Where(dev => dev.ProductInformation.ModelId == cbEngineAlarmsSource.SelectedItem.ToString() && dev.ProductInformation.ModelSerialCode == cbEngineAlarmsSerial.SelectedItem.ToString()).SingleOrDefault();
+            if (device != null)
+                newPropulsionConfig.EngineAlarms = new N2KDataBinding(device, Convert.ToUInt32(lblEngineAlarmsPgn.Text), Convert.ToByte(cbEngineAlarmsInstance.SelectedItem.ToString()));
+            else
+                newPropulsionConfig.EngineAlarms = _existingPropulsionConfig.EngineAlarms;
+            //Engine hours
 
             return true;
         }

@@ -49,7 +49,7 @@
             this.lblEngineHoursPgn = new System.Windows.Forms.Label();
             this.lblOilPressPgn = new System.Windows.Forms.Label();
             this.cbAlternatorPotentialPgn = new System.Windows.Forms.ComboBox();
-            this.lblWaterTempPgn = new System.Windows.Forms.Label();
+            this.lblEngineTempPgn = new System.Windows.Forms.Label();
             this.lblRpmPgn = new System.Windows.Forms.Label();
             this.cbEngineHoursSerial = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -294,7 +294,7 @@
             this.groupBox1.Controls.Add(this.lblEngineHoursPgn);
             this.groupBox1.Controls.Add(this.lblOilPressPgn);
             this.groupBox1.Controls.Add(this.cbAlternatorPotentialPgn);
-            this.groupBox1.Controls.Add(this.lblWaterTempPgn);
+            this.groupBox1.Controls.Add(this.lblEngineTempPgn);
             this.groupBox1.Controls.Add(this.lblRpmPgn);
             this.groupBox1.Controls.Add(this.cbEngineHoursSerial);
             this.groupBox1.Controls.Add(this.label18);
@@ -401,16 +401,16 @@
             // 
             // lblWaterTempPgn
             // 
-            this.lblWaterTempPgn.BackColor = System.Drawing.Color.Black;
-            this.lblWaterTempPgn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblWaterTempPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWaterTempPgn.ForeColor = System.Drawing.Color.Gray;
-            this.lblWaterTempPgn.Location = new System.Drawing.Point(868, 104);
-            this.lblWaterTempPgn.Name = "lblWaterTempPgn";
-            this.lblWaterTempPgn.Size = new System.Drawing.Size(132, 33);
-            this.lblWaterTempPgn.TabIndex = 43;
-            this.lblWaterTempPgn.Text = "127489";
-            this.lblWaterTempPgn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblEngineTempPgn.BackColor = System.Drawing.Color.Black;
+            this.lblEngineTempPgn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblEngineTempPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEngineTempPgn.ForeColor = System.Drawing.Color.Gray;
+            this.lblEngineTempPgn.Location = new System.Drawing.Point(868, 104);
+            this.lblEngineTempPgn.Name = "lblWaterTempPgn";
+            this.lblEngineTempPgn.Size = new System.Drawing.Size(132, 33);
+            this.lblEngineTempPgn.TabIndex = 43;
+            this.lblEngineTempPgn.Text = "127489";
+            this.lblEngineTempPgn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblRpmPgn
             // 
@@ -974,7 +974,7 @@
         private System.Windows.Forms.Label lblRpmPgn;
         private System.Windows.Forms.ComboBox cbRpmSerial;
         private System.Windows.Forms.Label lblOilPressPgn;
-        private System.Windows.Forms.Label lblWaterTempPgn;
+        private System.Windows.Forms.Label lblEngineTempPgn;
         private System.Windows.Forms.Label lblEngineHoursPgn;
         private System.Windows.Forms.Label lblEngineAlarmsPgn;
         private System.Windows.Forms.Label lblTransPressPgn;
