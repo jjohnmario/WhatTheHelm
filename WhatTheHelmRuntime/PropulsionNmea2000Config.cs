@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WhatTheHelmCanLib.Devices.Nmea2000;
 using WhatTheHelmCanLib.Devices.NMEA2000;
@@ -20,7 +16,8 @@ namespace WhatTheHelmRuntime
         private List<object> _instanceList = new List<object>();
         private List<N2KDevice> _n2kDevices = new List<N2KDevice>();
         private PropulsionNmea2000Configuration _existingPropulsionConfig;
-        public PropulsionNmea2000Config(PropulsionNmea2000Configuration propulsionConfig)
+        public PropulsionNmea2000Configuration NewPropulsionConfig { get; private set; }
+        public PropulsionNmea2000Config(PropulsionNmea2000Configuration propulsionConfig, string friendlyName)
         {
             if(propulsionConfig == null)
             {
@@ -37,9 +34,8 @@ namespace WhatTheHelmRuntime
                 _existingPropulsionConfig = propulsionConfig;
             this.HandleCreated += Nmea2000Config_HandleCreated;
             InitializeComponent();
-
+            lblWindowBanner.Text = String.Format("NMEA2000 Configuration - {0}", friendlyName);
         }
-
         private void Nmea2000Config_HandleCreated(object sender, EventArgs e)
         {
 
@@ -99,7 +95,6 @@ namespace WhatTheHelmRuntime
             //Scan for connected NMEA 2000 devices
             refreshConnectedDeviceList();
         }
-
         private void CanGateway_MessageRecieved(object sender, WhatTheHelmCanLib.Messages.CanMessageArgs e)
         {
             if (this.IsHandleCreated)
@@ -133,8 +128,6 @@ namespace WhatTheHelmRuntime
                 }
             }
         }
-
-
 
         #region User Interaction
         private void CbSource_SelectedIndexChanged(object sender, EventArgs e)
@@ -240,7 +233,6 @@ namespace WhatTheHelmRuntime
                 cb.SelectedItem = n2KDataBinding.Nmea2000Device.ProductInformation.ModelId;
             }
         }
-
         private void setExistingSerialConfig(ComboBox cb, N2KDataBinding n2KDataBinding)
         {
             if (n2KDataBinding != null)
@@ -249,7 +241,6 @@ namespace WhatTheHelmRuntime
                 cb.SelectedItem = n2KDataBinding.Nmea2000Device.ProductInformation.ModelSerialCode;
             }
         }
-
         private void setExistingPgnConfig(ComboBox cb, N2KDataBinding n2KDataBinding)
         {
             if (n2KDataBinding != null)
@@ -258,7 +249,6 @@ namespace WhatTheHelmRuntime
                 cb.SelectedItem = n2KDataBinding.PGN;
             }
         }
-
         private void setExistingInstanceConfig(ComboBox cb, N2KDataBinding n2KDataBinding)
         {
             if (n2KDataBinding != null)
@@ -283,7 +273,6 @@ namespace WhatTheHelmRuntime
             t.Tick += T_Tick;
             t.Start();
         }
-
         private void T_Tick(object sender, EventArgs e)
         {
             var timer = (Timer)sender;
@@ -293,7 +282,6 @@ namespace WhatTheHelmRuntime
             _n2kDevices = _n2kDevices.Distinct().ToList();
             addConnectedDeviceSources();
         }
-
         private void addConnectedDeviceSources()
         {
             //RPM
@@ -323,29 +311,20 @@ namespace WhatTheHelmRuntime
                 addItemsToComboBox(cbAlternatorPotentialSource, new object[] { obj.ProductInformation.ModelId });
             });
         }
-
         private void btnRefreshDeviceList_Click(object sender, EventArgs e)
         {
             refreshConnectedDeviceList();
         }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnDeviceListScrollUp_Click(object sender, EventArgs e)
         {
             int visibleItemsInRow = listBox1.ClientSize.Height / listBox1.ItemHeight;
             listBox1.TopIndex = 0;
         }
-
         private void btnDeviceListScrollDown_Click(object sender, EventArgs e)
         {
             int visibleItemsInRow = listBox1.ClientSize.Height / listBox1.ItemHeight;
             listBox1.TopIndex = listBox1.TopIndex + visibleItemsInRow;
         }
-
         #endregion
 
         #region Helpers
@@ -387,7 +366,10 @@ namespace WhatTheHelmRuntime
             else
             {
                 if(saveConfig() == true)
+                {
                     DialogResult = DialogResult.OK;
+                    Close();
+                }
                 else
                     MessageBox.Show("Failed to save configuration!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
@@ -494,10 +476,9 @@ namespace WhatTheHelmRuntime
                 newPropulsionConfig.TransAlarms = new N2KDataBinding(device, Convert.ToUInt32(lblTransAlarmsPgn.Text), Convert.ToByte(cbTransAlarmsInstance.SelectedItem.ToString()));
             else
                 newPropulsionConfig.TransAlarms = _existingPropulsionConfig.TransAlarms;
+            NewPropulsionConfig = newPropulsionConfig;
             return true;
         }
         #endregion
-
-
     }
 }

@@ -73,5 +73,19 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000
             LoadEquivalancy = loadEquivalancy;
 
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            if (obj.GetType() != typeof(N2KProductInformation))
+                return false;
+            N2KProductInformation other = (N2KProductInformation)obj;
+            if (ModelId != other.ModelId)
+                return false;
+            if (ModelSerialCode != other.ModelSerialCode)
+                return false;
+            return true;
+        }
     }
 }

@@ -22,6 +22,11 @@ namespace WhatTheHelmCanLib.Devices.Nmea2000
         /// </summary>
         public N2KProductInformation ProductInformation { get; set; } = new N2KProductInformation();
 
+        public N2KDevice() : base(0)
+        {
+
+        }
+
         public N2KDevice(ushort sourceAddress):base(sourceAddress)
         {
         }

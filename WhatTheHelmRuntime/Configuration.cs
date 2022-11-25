@@ -17,33 +17,33 @@ namespace WhatTheHelmRuntime
         public string Path { get; set; }
         public string FileName { get; set; }
 
-        public void Save (string path, string fileName)
+        public void Save (string path, string fileName, Configuration configToSave)
         {
             Path = path;
             FileName = fileName;
-            string json = json = Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            var fileLocation = Path + "\\" + FileName;
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(configToSave);
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(Path);
-            File.WriteAllText(path + "\\" + FileName, json);
-        }
-
-        public void Save()
-        {
-            Save(Path, FileName);
+            File.WriteAllText(fileLocation, json);
         }
 
         public Configuration Read(string path, string fileName)
         {
             Path = path;
             FileName = fileName;
-            if (!Directory.Exists(Path))
-                Save(Path, FileName);
-            var dir = Path + "\\" + FileName;
-            using (StreamReader reader = new StreamReader(dir))
+            var fileLocation = Path + "\\" + FileName;
+            if (File.Exists(fileLocation))
             {
-                string results = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<Configuration>(results);            
+                using (StreamReader reader = new StreamReader(fileLocation))
+                {
+                    string results = reader.ReadToEnd();
+                    return JsonConvert.DeserializeObject<Configuration>(results);
+                }
             }
+            else
+                Save(path, fileName, this);
+            return this;
         }
 
         public Configuration Read()

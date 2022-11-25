@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnRefreshDeviceList = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblWindowBanner = new System.Windows.Forms.Label();
             this.cbRpmSource = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -108,17 +108,16 @@
             this.btnRefreshDeviceList.UseVisualStyleBackColor = true;
             this.btnRefreshDeviceList.Click += new System.EventHandler(this.btnRefreshDeviceList_Click);
             // 
-            // label1
+            // lblWindowBanner
             // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1280, 29);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "NMEA 2000 Configuration";
+            this.lblWindowBanner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.lblWindowBanner.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblWindowBanner.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWindowBanner.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblWindowBanner.Location = new System.Drawing.Point(0, 0);
+            this.lblWindowBanner.Name = "lblWindowBanner";
+            this.lblWindowBanner.Size = new System.Drawing.Size(1280, 29);
+            this.lblWindowBanner.TabIndex = 1;
             // 
             // cbRpmSource
             // 
@@ -157,7 +156,6 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(794, 175);
             this.listBox1.TabIndex = 6;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // cbRpmInstance
             // 
@@ -399,14 +397,14 @@
             this.cbAlternatorPotentialPgn.Size = new System.Drawing.Size(132, 33);
             this.cbAlternatorPotentialPgn.TabIndex = 27;
             // 
-            // lblWaterTempPgn
+            // lblEngineTempPgn
             // 
             this.lblEngineTempPgn.BackColor = System.Drawing.Color.Black;
             this.lblEngineTempPgn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblEngineTempPgn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEngineTempPgn.ForeColor = System.Drawing.Color.Gray;
             this.lblEngineTempPgn.Location = new System.Drawing.Point(868, 104);
-            this.lblEngineTempPgn.Name = "lblWaterTempPgn";
+            this.lblEngineTempPgn.Name = "lblEngineTempPgn";
             this.lblEngineTempPgn.Size = new System.Drawing.Size(132, 33);
             this.lblEngineTempPgn.TabIndex = 43;
             this.lblEngineTempPgn.Text = "127489";
@@ -912,7 +910,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblWindowBanner);
             this.Controls.Add(this.btnRefreshDeviceList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -928,7 +926,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnRefreshDeviceList;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblWindowBanner;
         private System.Windows.Forms.ComboBox cbRpmSource;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox listBox1;

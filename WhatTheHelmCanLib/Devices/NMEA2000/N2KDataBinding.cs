@@ -23,6 +23,11 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000
         /// </summary>
         public byte Instance { get; set; }
 
+        public N2KDataBinding()
+        {
+
+        }
+
         public N2KDataBinding(N2KDevice n2KDevice)
         {
             if(n2KDevice == null)
