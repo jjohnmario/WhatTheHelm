@@ -7,37 +7,55 @@ namespace WhatTheHelmRuntime
 {
     public partial class Rudder : Form
     {
-        Pgn0x1F112 pgn0X1F112 = new Pgn0x1F112();
-        Pgn0x1F200 pgn0x1F200 = new Pgn0x1F200();
-        int _PortRpm;
-        int _StbdRpm;
+        private Pgn0x1F112 _pgn0X1F112 = new Pgn0x1F112();
+        private Pgn0x1F200 _pgn0x1F200 = new Pgn0x1F200();
+        private int _portRpm;
+        private int _stbdRpm;
         public Rudder()
         {
             InitializeComponent();
+            Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
         }
 
-        private void CanGateWayListener_NewMessage(object sender, WhatTheHelmCanLib.Messages.CanMessage e)
+        private void CanGateway_MessageRecieved(object sender, WhatTheHelmCanLib.Messages.CanMessageArgs e)
         {
-            //Engine Parameters (Rapid)
-            if (e.Pgn == 127488)
-            {
-                pgn0x1F200 = (Pgn0x1F200)pgn0x1F200.DeserializeFields(e.Data).ToImperial();
-
-                //Because of issue with the Seagauge module, I had to measure rudder percent using the last remaining tilt/trim instance which is 
-                //engine #3 (instance = 2). Its a total hack move, but I had no choice.
-                if(pgn0x1F200.EngineInstance == 2)
+            //Port Engine RPM
+            if (Program.Configuration.PortPropulsionN2KConfig.Rpm != null)
+                if (e.Message.SourceAddress == Program.Configuration.PortPropulsionN2KConfig.Rpm.Nmea2000Device.Address)
                 {
-                    linearGauge1.Value = pgn0x1F200.EngineTiltTrim;
+                    //PGN check
+                    if (e.Message.Pgn == Program.Configuration.PortPropulsionN2KConfig.Rpm.PGN)
+                    {
+                        _pgn0x1F200 = (Pgn0x1F200)_pgn0x1F200.DeserializeFields(e.Message.Data).ToImperial();
+
+                        //Instance check
+                        if (_pgn0x1F200.EngineInstance == Program.Configuration.PortPropulsionN2KConfig.Rpm.Instance)
+                        {
+                            _portRpm = _pgn0x1F200.EngineSpeed / 4;
+                        }
+                    }
                 }
-                //Port Engine
-                if (pgn0x1F200.EngineInstance == 0)
-                    _PortRpm = pgn0x1F200.EngineSpeed / 4;
-                //Stbd Engine
-                else if (pgn0x1F200.EngineInstance == 1)
-                    _StbdRpm = pgn0x1F200.EngineSpeed / 4;
-                //Update sync display
-                SetSync(_PortRpm, _StbdRpm);             
-            }
+            //Stbd Engine RPM
+            if (Program.Configuration.StbdPropulsionN2KConfig.Rpm != null)
+                if (e.Message.SourceAddress == Program.Configuration.StbdPropulsionN2KConfig.Rpm.Nmea2000Device.Address)
+                {
+                    //PGN check
+                    if (e.Message.Pgn == Program.Configuration.StbdPropulsionN2KConfig.Rpm.PGN)
+                    {
+                        _pgn0x1F200 = (Pgn0x1F200)_pgn0x1F200.DeserializeFields(e.Message.Data).ToImperial();
+
+                        //Instance check
+                        if (_pgn0x1F200.EngineInstance == Program.Configuration.StbdPropulsionN2KConfig.Rpm.Instance)
+                        {
+                            _stbdRpm = _pgn0x1F200.EngineSpeed / 4;
+                        }
+                    }
+                }
+            //Update sync display
+            SetSync(_portRpm, _stbdRpm);
+
+            //Rudder position (future)
+            //linearGauge1.Value = null;
         }
 
         private void SetSync(int portRpm, int stbdRpm)

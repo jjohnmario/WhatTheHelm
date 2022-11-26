@@ -102,15 +102,15 @@ namespace WhatTheHelmRuntime
                 {
                     //PortGauges portGauges = new PortGauges();
                     //Application.Run(portGauges);
-                    StbdGauges stbdGauges = new StbdGauges();
-                    Application.Run(stbdGauges);
+                    //StbdGauges stbdGauges = new StbdGauges();
+                    //Application.Run(stbdGauges);
                     //PropulsionNmea2000Config nmea2000Config = new PropulsionNmea2000Config(null);
                     //Application.Run(nmea2000Config);
                     //SwitchPanel switchPanel = new SwitchPanel();
                     //Application.Run(switchPanel);
 
-                    //Rudder rudder = new Rudder();
-                    //Application.Run(rudder);
+                    Rudder rudder = new Rudder();
+                    Application.Run(rudder);
 
                 }
             }
