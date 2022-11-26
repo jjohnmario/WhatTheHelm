@@ -15,6 +15,7 @@ using static ActisenseComms.API.Decode;
 using static ActisenseComms.API.NMEA2K;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Collections.Concurrent;
 
 namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
 {
@@ -27,7 +28,7 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
         public DateTime LastRead { get; private set; }
         public event EventHandler<CanMessageArgs> MessageRecieved;
         private SerialPort _serialPort;
-        private Queue<NMEA2K.N2KMsg_s> _mainMessageQueue = new Queue<NMEA2K.N2KMsg_s>();
+        private ConcurrentQueue<NMEA2K.N2KMsg_s> _mainMessageQueue = new ConcurrentQueue<NMEA2K.N2KMsg_s>();
         private bool _scanMainMessageQueue = false;
         private int _actiHandle;
         private ARLErrorCodes_t _error;       /* Error value returned by ActisenseComms API function calls */
@@ -155,10 +156,10 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
         {
             while (_scanMainMessageQueue)
             {
-                //Console.WriteLine(_mainMessageQueue.Count);
                 if (_mainMessageQueue.Count > 0)
                 {
-                    var message = _mainMessageQueue.Dequeue();
+                    N2KMsg_s message;
+                    _mainMessageQueue.TryDequeue(out message);
                     if (MessageRecieved != null)
                     {
                         var parsedMessage = Parse(message);

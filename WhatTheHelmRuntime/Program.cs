@@ -13,11 +13,7 @@ namespace WhatTheHelmRuntime
 {
     static class Program
     {
-        //public static Can232Fd CanGateway { get; set; }
-        public static Ngt1 CanGateway { get; set; }
-        
-        //public static CanGateWayListener CanGateWayListener { get; set; }
-       // public static CanRequestHandler CanRequestHandler { get; set; }
+        public static Ngt1 CanGateway { get; set; }       
         public static Configuration Configuration { get; set; }
         public static bool ConnectedDeviceScanBusy;
         private static List<N2KDevice> _n2kDevices = new List<N2KDevice>();
@@ -104,8 +100,10 @@ namespace WhatTheHelmRuntime
                 }
                 catch
                 {
-                    PortGauges portGauges = new PortGauges();
-                    Application.Run(portGauges);
+                    //PortGauges portGauges = new PortGauges();
+                    //Application.Run(portGauges);
+                    StbdGauges stbdGauges = new StbdGauges();
+                    Application.Run(stbdGauges);
                     //PropulsionNmea2000Config nmea2000Config = new PropulsionNmea2000Config(null);
                     //Application.Run(nmea2000Config);
                     //SwitchPanel switchPanel = new SwitchPanel();

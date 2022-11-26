@@ -106,8 +106,8 @@ namespace WhatTheHelmRuntime
                     if (_pgn0x1F200.EngineInstance == Program.Configuration.PortPropulsionN2KConfig.Rpm.Instance)
                     {
                         _pgn0x1F200LastMsg = DateTime.Now;
-                        if (gaugePortRpm.IsHandleCreated)
-                            gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Value = _pgn0x1F200.EngineSpeed / 4));
+                        if (gaugeRpm.IsHandleCreated)
+                            gaugeRpm.Invoke(new MethodInvoker(() => gaugeRpm.Value = _pgn0x1F200.EngineSpeed / 4));
                     }
                 }
             }
@@ -125,7 +125,7 @@ namespace WhatTheHelmRuntime
                     if(_pgn0x1F201.EngineInstance == Program.Configuration.PortPropulsionN2KConfig.EngineTemperature.Instance)
                     {
                         _pgn0x1F201LastMsg = DateTime.Now;
-                        gaugePortWaterTemp.Invoke(new MethodInvoker(() => { gaugePortWaterTemp.Value = Convert.ToDouble(_pgn0x1F201.EngineTemperature.ToString("0")); }));
+                        gaugeWaterTemp.Invoke(new MethodInvoker(() => { gaugeWaterTemp.Value = Convert.ToDouble(_pgn0x1F201.EngineTemperature.ToString("0")); }));
                     }
 
                 }
@@ -144,7 +144,7 @@ namespace WhatTheHelmRuntime
                     if (_pgn0x1F201.EngineInstance == Program.Configuration.PortPropulsionN2KConfig.OilPressure.Instance)
                     {
                         _pgn0x1F201LastMsg = DateTime.Now;
-                        gaugePortOilPressure.Invoke(new MethodInvoker(() => { gaugePortOilPressure.Value = Convert.ToDouble(_pgn0x1F201.OilPressure.ToString("0")); }));
+                        gaugeOilPressure.Invoke(new MethodInvoker(() => { gaugeOilPressure.Value = Convert.ToDouble(_pgn0x1F201.OilPressure.ToString("0")); }));
                     }
                 }
             }
@@ -166,16 +166,16 @@ namespace WhatTheHelmRuntime
                         var discreteInputs = new BitArray(new int[] { _pgn0x1F201.DiscreteStatus1 });
 
                         //Engine temp high
-                        if (lblPortWaterTempHigh.IsHandleCreated)
-                            lblPortWaterTempHigh.Invoke(new MethodInvoker(() => { if (discreteInputs[1] == true) lblPortWaterTempHigh.BackColor = Color.Red; else lblPortWaterTempHigh.BackColor = Color.FromArgb(56, 0, 0); }));
+                        if (lblWaterTempHigh.IsHandleCreated)
+                            lblWaterTempHigh.Invoke(new MethodInvoker(() => { if (discreteInputs[1] == true) lblWaterTempHigh.BackColor = Color.Red; else lblWaterTempHigh.BackColor = Color.FromArgb(56, 0, 0); }));
 
                         //Oil pressure low
-                        if (lblPortOilPressLow.IsHandleCreated)
-                            lblPortOilPressLow.Invoke(new MethodInvoker(() => { if (discreteInputs[2] == true) lblPortOilPressLow.BackColor = Color.Red; else lblPortOilPressLow.BackColor = Color.FromArgb(56, 0, 0); }));
+                        if (lblOilPressLow.IsHandleCreated)
+                            lblOilPressLow.Invoke(new MethodInvoker(() => { if (discreteInputs[2] == true) lblOilPressLow.BackColor = Color.Red; else lblOilPressLow.BackColor = Color.FromArgb(56, 0, 0); }));
 
                         //Fuel pressure low
-                        if (lblPortFuelPressLow.IsHandleCreated)
-                            lblPortFuelPressLow.Invoke(new MethodInvoker(() => { if (discreteInputs[4] == true) lblPortFuelPressLow.BackColor = Color.Red; else lblPortFuelPressLow.BackColor = Color.FromArgb(56, 0, 0); }));
+                        if (lblFuelPressLow.IsHandleCreated)
+                            lblFuelPressLow.Invoke(new MethodInvoker(() => { if (discreteInputs[4] == true) lblFuelPressLow.BackColor = Color.Red; else lblFuelPressLow.BackColor = Color.FromArgb(56, 0, 0); }));
                     }
                 }
             }
@@ -193,7 +193,7 @@ namespace WhatTheHelmRuntime
                     if(_pgn0x1F201.EngineInstance == Program.Configuration.PortPropulsionN2KConfig.EngineHours.Instance)
                     {
                         _pgn0x1F201LastMsg = DateTime.Now;
-                        lblPortHours.Invoke(new MethodInvoker(() => { lblPortHours.Text = _pgn0x1F201.EngineHours.ToString("0.0") + " HRS"; }));
+                        lblHours.Invoke(new MethodInvoker(() => { lblHours.Text = _pgn0x1F201.EngineHours.ToString("0.0") + " HRS"; }));
                     }
                 }
             }
@@ -211,7 +211,7 @@ namespace WhatTheHelmRuntime
                     if(_pgn0x1F205.EngineInstance == Program.Configuration.PortPropulsionN2KConfig.TransPressure.Instance)
                     {
                         _pgn0x1F205LastMsg = DateTime.Now;
-                        gaugePortDrivePressure.Invoke(new MethodInvoker(() => { gaugePortDrivePressure.Value = Convert.ToDouble((_pgn0x1F205.OilPressure).ToString("0")); }));
+                        gaugeDrivePressure.Invoke(new MethodInvoker(() => { gaugeDrivePressure.Value = Convert.ToDouble((_pgn0x1F205.OilPressure).ToString("0")); }));
                     }
                 }
             }
@@ -230,8 +230,8 @@ namespace WhatTheHelmRuntime
                         _pgn0x1F205LastMsg = DateTime.Now;
                         var discreteInputs = new BitArray(new int[] { _pgn0x1F205.DiscreteStatus1 });
                         //Trans temp high
-                        if (lblPortDriveTempHigh.IsHandleCreated)
-                            lblPortDriveTempHigh.Invoke(new MethodInvoker(() => { if (discreteInputs[1] == true) lblPortDriveTempHigh.BackColor = Color.Red; else lblPortDriveTempHigh.BackColor = Color.FromArgb(56, 0, 0); }));
+                        if (lblDriveTempHigh.IsHandleCreated)
+                            lblDriveTempHigh.Invoke(new MethodInvoker(() => { if (discreteInputs[1] == true) lblDriveTempHigh.BackColor = Color.Red; else lblDriveTempHigh.BackColor = Color.FromArgb(56, 0, 0); }));
                     }
                 }
             }
@@ -252,7 +252,7 @@ namespace WhatTheHelmRuntime
                         if(_pgn0x1F214.BatteryInstance == Program.Configuration.PortPropulsionN2KConfig.AlternatorPotential.Instance)
                         {
                             _pgn0x1F214LastMsg = DateTime.Now;
-                            gaugePortVolts.Invoke(new MethodInvoker(() => { gaugePortVolts.Value = _pgn0x1F214.Voltage; }));
+                            gaugeVolts.Invoke(new MethodInvoker(() => { gaugeVolts.Value = _pgn0x1F214.Voltage; }));
                         }
 
                     }
@@ -261,8 +261,8 @@ namespace WhatTheHelmRuntime
 
                     }
                     //Low battery alarm
-                    if (lblPortVoltageLow.IsHandleCreated)
-                        lblPortVoltageLow.Invoke(new MethodInvoker(() => { if (gaugePortVolts.Value <= gaugePortVolts.ErrorLimit) lblPortVoltageLow.BackColor = Color.Red; else lblPortVoltageLow.BackColor = Color.FromArgb(56, 0, 0); }));
+                    if (lblVoltageLow.IsHandleCreated)
+                        lblVoltageLow.Invoke(new MethodInvoker(() => { if (gaugeVolts.Value <= gaugeVolts.ErrorLimit) lblVoltageLow.BackColor = Color.Red; else lblVoltageLow.BackColor = Color.FromArgb(56, 0, 0); }));
 
                 }
             }
@@ -293,57 +293,57 @@ namespace WhatTheHelmRuntime
             var pgn0x1F200LastMsgEt = dtNow - _pgn0x1F200LastMsg;
             if (pgn0x1F200LastMsgEt.TotalSeconds > 5)
             {
-                gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Hide()));
+                gaugeRpm.Invoke(new MethodInvoker(() => gaugeRpm.Hide()));
             }
             else
             {
-                gaugePortRpm.Invoke(new MethodInvoker(() => gaugePortRpm.Show()));
+                gaugeRpm.Invoke(new MethodInvoker(() => gaugeRpm.Show()));
             }
             
             //Engine parameters dynamic
             var pgn0x1F201LastMsgEt = dtNow - _pgn0x1F201LastMsg;
             if (pgn0x1F201LastMsgEt.TotalSeconds > 5)
             {
-                gaugePortWaterTemp.Invoke(new MethodInvoker(() => { gaugePortWaterTemp.Hide(); }));
-                gaugePortOilPressure.Invoke(new MethodInvoker(() => { gaugePortOilPressure.Hide(); }));
-                lblPortHours.Invoke(new MethodInvoker(() => { lblPortHours.Text = "--"; }));
-                lblPortWaterTempHigh.Invoke(new MethodInvoker(() => lblPortWaterTempHigh.Hide()));
-                lblPortOilPressLow.Invoke(new MethodInvoker(() => lblPortOilPressLow.Hide()));
-                lblPortDriveTempHigh.Invoke(new MethodInvoker(() => lblPortDriveTempHigh.Hide()));
-                lblPortFuelPressLow.Invoke(new MethodInvoker(() => lblPortFuelPressLow.Hide()));
+                gaugeWaterTemp.Invoke(new MethodInvoker(() => { gaugeWaterTemp.Hide(); }));
+                gaugeOilPressure.Invoke(new MethodInvoker(() => { gaugeOilPressure.Hide(); }));
+                lblHours.Invoke(new MethodInvoker(() => { lblHours.Text = "--"; }));
+                lblWaterTempHigh.Invoke(new MethodInvoker(() => lblWaterTempHigh.Hide()));
+                lblOilPressLow.Invoke(new MethodInvoker(() => lblOilPressLow.Hide()));
+                lblDriveTempHigh.Invoke(new MethodInvoker(() => lblDriveTempHigh.Hide()));
+                lblFuelPressLow.Invoke(new MethodInvoker(() => lblFuelPressLow.Hide()));
             }
             else
             {
-                gaugePortWaterTemp.Invoke(new MethodInvoker(() => { gaugePortWaterTemp.Show(); }));
-                gaugePortOilPressure.Invoke(new MethodInvoker(() => { gaugePortOilPressure.Show(); }));
-                lblPortWaterTempHigh.Invoke(new MethodInvoker(() => lblPortWaterTempHigh.Show()));
-                lblPortOilPressLow.Invoke(new MethodInvoker(() => lblPortOilPressLow.Show()));
-                lblPortDriveTempHigh.Invoke(new MethodInvoker(() => lblPortDriveTempHigh.Show()));
-                lblPortFuelPressLow.Invoke(new MethodInvoker(() => lblPortFuelPressLow.Show()));
+                gaugeWaterTemp.Invoke(new MethodInvoker(() => { gaugeWaterTemp.Show(); }));
+                gaugeOilPressure.Invoke(new MethodInvoker(() => { gaugeOilPressure.Show(); }));
+                lblWaterTempHigh.Invoke(new MethodInvoker(() => lblWaterTempHigh.Show()));
+                lblOilPressLow.Invoke(new MethodInvoker(() => lblOilPressLow.Show()));
+                lblDriveTempHigh.Invoke(new MethodInvoker(() => lblDriveTempHigh.Show()));
+                lblFuelPressLow.Invoke(new MethodInvoker(() => lblFuelPressLow.Show()));
             }
 
             //Transmission parameters
             var pgn0x1F205LastMsgEt = dtNow - _pgn0x1F205LastMsg;
             if (pgn0x1F205LastMsgEt.TotalSeconds > 5)
             {
-                gaugePortDrivePressure.Invoke(new MethodInvoker(() => { gaugePortDrivePressure.Hide(); }));
+                gaugeDrivePressure.Invoke(new MethodInvoker(() => { gaugeDrivePressure.Hide(); }));
             }
             else
             {
-                gaugePortDrivePressure.Invoke(new MethodInvoker(() => { gaugePortDrivePressure.Show(); }));
+                gaugeDrivePressure.Invoke(new MethodInvoker(() => { gaugeDrivePressure.Show(); }));
             }
 
             //Battery status
             var pgn0x1F214LastMsgEt = dtNow - _pgn0x1F214LastMsg;
             if(pgn0x1F214LastMsgEt.TotalSeconds > 5)
             {
-                gaugePortVolts.Invoke(new MethodInvoker(() => { gaugePortVolts.Hide(); }));
-                lblPortVoltageLow.Invoke(new MethodInvoker(() => { lblPortVoltageLow.Hide(); }));
+                gaugeVolts.Invoke(new MethodInvoker(() => { gaugeVolts.Hide(); }));
+                lblVoltageLow.Invoke(new MethodInvoker(() => { lblVoltageLow.Hide(); }));
             }
             else
             {
-                gaugePortVolts.Invoke(new MethodInvoker(() => { gaugePortVolts.Show(); }));
-                lblPortVoltageLow.Invoke(new MethodInvoker(() => { lblPortVoltageLow.Show(); }));
+                gaugeVolts.Invoke(new MethodInvoker(() => { gaugeVolts.Show(); }));
+                lblVoltageLow.Invoke(new MethodInvoker(() => { lblVoltageLow.Show(); }));
             }
         }
 
@@ -375,7 +375,7 @@ namespace WhatTheHelmRuntime
 
         private void btnConfigNmea2000_Click(object sender, EventArgs e)
         {
-            PropulsionNmea2000Config config = new PropulsionNmea2000Config(Program.Configuration.PortPropulsionN2KConfig, "Port Engine");
+            PropulsionNmea2000Config config = new PropulsionNmea2000Config(Program.Configuration.PortPropulsionN2KConfig, "Port Propulsion");
             var result = config.ShowDialog();
             if (result == DialogResult.OK)
             {
