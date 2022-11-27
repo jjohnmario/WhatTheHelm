@@ -19,30 +19,26 @@ namespace WhatTheHelmRuntime
         public PropulsionNmea2000Configuration NewPropulsionConfig { get; private set; }
         public PropulsionNmea2000Config(PropulsionNmea2000Configuration propulsionConfig, string friendlyName)
         {
+            //Copy existing configuration or create new config
             if(propulsionConfig == null)
-            {
                 _existingPropulsionConfig = new PropulsionNmea2000Configuration();
-                //TEST CODE - DELETE
-                N2KDevice n2KDevice = new N2KDevice(1);
-                n2KDevice.ProductInformation = new N2KProductInformation(0, 0, "Model123", "v111", "v222", "Ser123", 1, 1);
-                _existingPropulsionConfig.Rpm = new N2KDataBinding(n2KDevice);
-                _existingPropulsionConfig.Rpm.PGN = 11111;
-                _existingPropulsionConfig.Rpm.Instance = 0;
-
-            }
+            
             else
                 _existingPropulsionConfig = propulsionConfig;
             this.HandleCreated += Nmea2000Config_HandleCreated;
             InitializeComponent();
+
+            //Set banner text
             lblWindowBanner.Text = String.Format("NMEA2000 Configuration - {0}", friendlyName);
         }
         private void Nmea2000Config_HandleCreated(object sender, EventArgs e)
         {
-
+            //Create instance list
             for (int i = 0; i < 1000; i++)
             {
                 _instanceList.Add(i.ToString());
             }
+
             //Set comboboxes using existing propulsion configuration
 
             //Sources config
@@ -88,9 +84,6 @@ namespace WhatTheHelmRuntime
             cbTransPressSource.SelectedIndexChanged += CbSource_SelectedIndexChanged;
             cbTransAlarmsSource.SelectedIndexChanged += CbSource_SelectedIndexChanged;
             cbAlternatorPotentialSource.SelectedIndexChanged += CbSource_SelectedIndexChanged;
-
-            //Subscribe to NMEA 2000 messages
-            Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
 
             //Scan for connected NMEA 2000 devices
             refreshConnectedDeviceList();
@@ -178,7 +171,7 @@ namespace WhatTheHelmRuntime
                     updateInstanceComboboxItems(cbTransAlarmsInstance);
                     break;
                 case ("cbAlternatorPotentialSource"):
-                    cbAlternatorPotentialSource.Enabled = true;
+                    cbAlternatorPotentialSerial.Enabled = true;
                     cbAlternatorPotentialPgn.Enabled = true;
                     cbAlternatorPotentialInstance.Enabled = true;
                     updateSerialComboboxItems(callingCombobox, cbAlternatorPotentialSerial);
@@ -262,12 +255,19 @@ namespace WhatTheHelmRuntime
         #region Connected Devices
         private void refreshConnectedDeviceList()
         {
-            //Allow 500ms for NMEA2000 devices to respond to requests for product information and pgn lists
+            //Subscribe to NMEA 2000 messages
+            Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
+
+            //Clear networked devices list
+            _n2kDevices.Clear();
+            listBox1.Items.Clear();
+
+            //Issue request for product information and PGN lists from networked devices
             var gw = (Ngt1)Program.CanGateway;
             gw.IsoRequest(126996);
             gw.IsoRequest(126464);
-            _n2kDevices.Clear();
-            listBox1.Items.Clear();
+
+            //Allow 500ms for NMEA2000 devices to respond to requests for product information and pgn lists
             Timer t = new Timer();
             t.Interval = 500;
             t.Tick += T_Tick;
@@ -275,10 +275,16 @@ namespace WhatTheHelmRuntime
         }
         private void T_Tick(object sender, EventArgs e)
         {
+            //Unsubscribe to NMEA 2000 messages
+            Program.CanGateway.MessageRecieved -= CanGateway_MessageRecieved;
+
+            //Dispose of timer
             var timer = (Timer)sender;
             timer.Stop();
             timer.Tick -= T_Tick;
             timer.Dispose();
+
+            //Update networked devices list
             _n2kDevices = _n2kDevices.Distinct().ToList();
             addConnectedDeviceSources();
         }

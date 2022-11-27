@@ -43,7 +43,6 @@ namespace WhatTheHelmRuntime
                 {
                     //Get list of all screens.
                     Screen[] screens = Screen.AllScreens;
-                    var screens1 = screens.OrderBy(x => x.Bounds.X);
 
                     //Get list of 1280x800 screens.
                     var screens1280x800 = Screen.AllScreens.Where(size => size.Bounds.Height == 800 & size.Bounds.Width == 1280).ToList();
@@ -57,18 +56,18 @@ namespace WhatTheHelmRuntime
                     //Get list of 800x480 screens.
                     var screens800x480 = Screen.AllScreens.Where(size => size.Bounds.Height == 480 & size.Bounds.Width == 800).ToList();
 
-                    //Get next number 640x480 screen and assign it as a "SwitchPanel" screen.
+                    //Get the left-most 640x480 screen and assign it as a "SwitchPanel" screen.
                     Screen switchPanelScreen = screens800x480.OrderBy(x => x.Bounds.X).First();
                     screens800x480.Remove(switchPanelScreen);
 
-                    //Get next number 640x480 screen and assign it as a "GPS" screen.
+                    //Get the next left-most 640x480 screen and assign it as a "Rudder" screen.
                     Screen rudderScreen = screens800x480.OrderBy(x => x.Bounds.X).First();
                     screens800x480.Remove(rudderScreen);
 
-                    //Get lowest number 640x480 screen and assign it as a "TrimControl" screen.
+                    //Get the least left-most 640x480 screen and assign it as a "TrimControl" screen.
                     Screen trimControlScreen = screens800x480.OrderBy(x => x.Bounds.X).First();
 
-                    //Bind all but Gauges types to physical screens
+                    //Bind all but PortGauges forms to physical screens
                     List<KeyValuePair<Screen, Type>> screenAssignmentList = new List<KeyValuePair<Screen, Type>>();
                     screenAssignmentList.Add(new KeyValuePair<Screen, Type>(stbdGaugesScreen, typeof(StbdGauges)));
                     screenAssignmentList.Add(new KeyValuePair<Screen, Type>(switchPanelScreen, typeof(SwitchPanel)));

@@ -62,10 +62,10 @@ namespace WhatTheHelmRuntime
                 }
                 else if (kvp.Value == typeof(Rudder))
                 {
-                    Rudder gps = new Rudder();
-                    gps.Bounds = kvp.Key.Bounds;
-                    gps.StartPosition = FormStartPosition.Manual;
-                    gps.Show();
+                    Rudder rudder = new Rudder();
+                    rudder.Bounds = kvp.Key.Bounds;
+                    rudder.StartPosition = FormStartPosition.Manual;
+                    rudder.Show();
                 }           
             }
             Initialize();
