@@ -15,6 +15,7 @@ namespace WhatTheHelmRuntime
     {
         public static Ngt1 CanGateway { get; set; }       
         public static Configuration Configuration { get; set; }
+        public static Configuration RunningConfiguration { get; set; }
         public static bool ConnectedDeviceScanBusy;
         private static List<N2KDevice> _n2kDevices = new List<N2KDevice>();
 
@@ -28,31 +29,14 @@ namespace WhatTheHelmRuntime
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
-                //Load existing configuration file or create a new one if one doesn't exist.
-                var path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-                Configuration = new Configuration();
-                Configuration = Configuration.Read(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm", "config.json");
+                //Initialize configuration
+                InitializeConfiguration();
 
-                //Open NMEA 2000 gateway. If COM port is busy, wait and retry.
-                SerialPort serialPort = new SerialPort("COM4", 115200, Parity.None, 8, StopBits.One);
-                do
-                {
-                    if (CanGateway != null)
-                        CanGateway.Dispose();
-                    CanGateway = new Ngt1(serialPort, 55, Configuration.TxPgnFilter, Configuration.RxPgnFilter);
-                }
-                while (!CanGateway.Open());
-
-                //Subscribe to NMEA 2000 gateway messages
-                CanGateway.MessageRecieved += CanGateway_MessageRecieved;
-
-                //Issue request for product information from connected devices, and start the response timer
-                ConnectedDeviceScanBusy = true;
-                Timer productInformationResponseTimer = new Timer();
-                productInformationResponseTimer.Interval = 1000;
-                productInformationResponseTimer.Tick += ProductInformationResponseTimer_Tick;
-                CanGateway.IsoRequest(126996);
-                productInformationResponseTimer.Start();
+                //Periodically check for new devices that joined the CAN bus after the application started.
+                Timer checkForNewDevicesTimer = new Timer();
+                checkForNewDevicesTimer.Interval = 60000;
+                checkForNewDevicesTimer.Tick += CheckForNewDevicesTimer_Tick;
+                checkForNewDevicesTimer.Start();
 
                 //Try to run the application across five screens.  Else run off one screen.
                 try
@@ -102,15 +86,15 @@ namespace WhatTheHelmRuntime
                 {
                     //PortGauges portGauges = new PortGauges();
                     //Application.Run(portGauges);
-                    //StbdGauges stbdGauges = new StbdGauges();
-                    //Application.Run(stbdGauges);
+                    StbdGauges stbdGauges = new StbdGauges();
+                    Application.Run(stbdGauges);
                     //PropulsionNmea2000Config nmea2000Config = new PropulsionNmea2000Config(null);
                     //Application.Run(nmea2000Config);
                     //SwitchPanel switchPanel = new SwitchPanel();
                     //Application.Run(switchPanel);
 
-                    Rudder rudder = new Rudder();
-                    Application.Run(rudder);
+                    //Rudder rudder = new Rudder();
+                    //Application.Run(rudder);
 
                 }
             }
@@ -124,39 +108,41 @@ namespace WhatTheHelmRuntime
             }
         }
 
-        private static void ProductInformationResponseTimer_Tick(object sender, EventArgs e)
+        private static void CheckForNewDevicesTimer_Tick(object sender, EventArgs e)
         {
-            var timer = (Timer)sender;
-            timer.Stop();
-            timer.Tick -= ProductInformationResponseTimer_Tick;
-            timer.Dispose();
+            InitializeConfiguration();
+        }
 
-            //Remove duplicate devices
-            _n2kDevices = _n2kDevices.Distinct().ToList();
+        public static void InitializeConfiguration()
+        {
+            //Load existing configuration file or create a new one if one doesn't exist.
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            Configuration = new Configuration();
+            Configuration = Configuration.Read(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm", "config.json");
 
-            //Update stored device addresses in propulsion NMEA2000 configuration with updated device addresses, which may be different as a result of the CAN bus address claim process.
-
-            //Port propulsion NMEA2000 data bindings
-            List<N2KDataBinding> n2kDataBindings = new List<N2KDataBinding>();
-            Configuration.PortPropulsionN2KConfig.GetType().GetProperties().Where(prop => prop.PropertyType == typeof(N2KDataBinding)).ToList().ForEach(binding => n2kDataBindings.Add((N2KDataBinding)binding.GetValue(Configuration.PortPropulsionN2KConfig,null)));
-
-            //Stbd propulsion NMEA2000 data bindings
-            Configuration.StbdPropulsionN2KConfig.GetType().GetProperties().Where(prop => prop.PropertyType == typeof(N2KDataBinding)).ToList().ForEach(binding => n2kDataBindings.Add((N2KDataBinding)binding.GetValue(Configuration.StbdPropulsionN2KConfig, null)));
-
-            //Common systems NMEA2000 data bindings
-            Configuration.CommonSystemsN2KConfig.GetType().GetProperties().Where(prop => prop.PropertyType == typeof(N2KDataBinding)).ToList().ForEach(binding => n2kDataBindings.Add((N2KDataBinding)binding.GetValue(Configuration.CommonSystemsN2KConfig, null)));
-            _n2kDevices.ForEach(n2kDevice =>
+            //Open NMEA 2000 gateway. If COM port is busy, wait and retry.
+            if(CanGateway == null)
             {
-                n2kDataBindings.ForEach(n2kDataBinding =>
+                SerialPort serialPort = new SerialPort("COM4", 115200, Parity.None, 8, StopBits.One);
+                do
                 {
-                    if (n2kDataBinding != null)
-                    {
-                        if (n2kDataBinding.Nmea2000Device.ProductInformation.Equals(n2kDevice.ProductInformation))               
-                            n2kDataBinding.Nmea2000Device.Address = n2kDevice.Address;
-                    }
-                });
-            });
-            ConnectedDeviceScanBusy = false;
+                    if (CanGateway != null)
+                        CanGateway.Dispose();
+                    CanGateway = new Ngt1(serialPort, 55, Configuration.TxPgnFilter, Configuration.RxPgnFilter);
+                }
+                while (!CanGateway.Open());
+            }
+
+            //Subscribe to NMEA 2000 gateway messages
+            CanGateway.MessageRecieved += CanGateway_MessageRecieved;
+
+            //Issue request for product information from connected devices, and start the response timer
+            ConnectedDeviceScanBusy = true;
+            System.Windows.Forms.Timer productInformationResponseTimer = new System.Windows.Forms.Timer();
+            productInformationResponseTimer.Interval = 1000;
+            productInformationResponseTimer.Tick += ProductInformationResponseTimer_Tick;
+            CanGateway.IsoRequest(126996);
+            productInformationResponseTimer.Start();
         }
 
         private static void CanGateway_MessageRecieved(object sender, WhatTheHelmCanLib.Messages.CanMessageArgs e)
@@ -170,6 +156,71 @@ namespace WhatTheHelmRuntime
                 n2kDevice.ProductInformation = prodInfo.ProductInformation;
                 _n2kDevices.Add(n2kDevice);
             }
+        }
+
+        private static void ProductInformationResponseTimer_Tick(object sender, EventArgs e)
+        {
+            //Unsubscribe from CAN gateway messages
+            CanGateway.MessageRecieved -= CanGateway_MessageRecieved;
+
+            //Dispose of timer
+            var timer = (System.Windows.Forms.Timer)sender;
+            timer.Stop();
+            timer.Tick -= ProductInformationResponseTimer_Tick;
+            timer.Dispose();
+
+            //Remove duplicate devices
+            _n2kDevices = _n2kDevices.Distinct().ToList();
+
+            //Create a running configuration from the stored configuration.  The running configuration includes only NMEA2000 data bindings for which there exists connected NMEA2000 devices.  The running configuration also updates the device addresses within the bindings which may have changed as a result of the CAN bus address claim process.
+            RunningConfiguration = new Configuration();
+
+            //Port propulsion running configuration
+            RunningConfiguration.PortPropulsionN2KConfig = CreateRuntimePropulsionConfig(Configuration.PortPropulsionN2KConfig, _n2kDevices);
+            //Stbd propulsion running configuration
+            RunningConfiguration.StbdPropulsionN2KConfig = CreateRuntimePropulsionConfig(Configuration.StbdPropulsionN2KConfig, _n2kDevices);
+            //Common systems running configuration
+            RunningConfiguration.CommonSystemsN2KConfig = CreateRuntimeCommonSystemsConfig(Configuration.CommonSystemsN2KConfig, _n2kDevices);
+        }
+
+        private static PropulsionNmea2000Configuration CreateRuntimePropulsionConfig(PropulsionNmea2000Configuration config, List<N2KDevice> n2kDevices)
+        {
+            PropulsionNmea2000Configuration updatedConfig = new PropulsionNmea2000Configuration();
+            config.GetType().GetProperties().Where(prop => prop.PropertyType == typeof(N2KDataBinding)).ToList().ForEach(binding =>
+            {
+                N2KDataBinding n2kDataBinding = (N2KDataBinding)binding.GetValue(config);
+
+                if (n2kDataBinding != null)
+                {
+                    foreach (var n2kDevice in n2kDevices)
+                    {
+                        if (n2kDevice.ProductInformation.Equals(n2kDataBinding.Nmea2000Device.ProductInformation))
+                        {
+                            n2kDataBinding.Nmea2000Device.Address = n2kDevice.Address;
+                            updatedConfig.GetType().GetProperty(binding.Name).SetValue(updatedConfig, n2kDataBinding);
+                        }
+                    }
+                }
+            });
+            return updatedConfig;
+        }
+
+        private static List<N2KDataBinding> CreateRuntimeCommonSystemsConfig(List<N2KDataBinding> config, List<N2KDevice> n2kDevices)
+        {
+            List<N2KDataBinding> updatedConfig = new List<N2KDataBinding>(config.Count);
+            n2kDevices.ForEach(n2kDevice =>
+            {
+                foreach(var n2kBinding in config)
+                {
+                    if(n2kDevice.ProductInformation.Equals(n2kBinding.Nmea2000Device.ProductInformation))
+                    {
+                        var index = config.IndexOf(n2kBinding);
+                        n2kBinding.Nmea2000Device.Address = n2kDevice.Address;
+                        updatedConfig.Insert(index, n2kBinding);
+                    }
+                }
+            });
+            return updatedConfig;
         }
     }
 }

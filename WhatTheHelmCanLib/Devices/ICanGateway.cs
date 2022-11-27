@@ -11,6 +11,10 @@ namespace WhatTheHelmCanLib.Devices
     public interface ICanGateway : IDisposable
     {
         /// <summary>
+        /// True when the CAN gateway is active on the CAN bus network.
+        /// </summary>
+        bool IsOpen { get; }
+        /// <summary>
         /// Raised when a message is recieved from the CAN bus network.
         /// </summary>
         event EventHandler<CanMessageArgs> MessageRecieved;

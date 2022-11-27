@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using WhatTheHelmCanLib.Devices.Nmea2000;
+using WhatTheHelmCanLib.Devices.NMEA2000;
 
 namespace WhatTheHelmRuntime
 {
     public class Configuration
     {
-        public List<PropulsionNmea2000Config> CommonSystemsN2KConfig { get; set; } = new List<PropulsionNmea2000Config>();
+        public List<N2KDataBinding> CommonSystemsN2KConfig { get; set; } = new List<N2KDataBinding>();
         public PropulsionNmea2000Configuration PortPropulsionN2KConfig { get; set; } = new PropulsionNmea2000Configuration();
         public PropulsionNmea2000Configuration StbdPropulsionN2KConfig { get; set; } = new PropulsionNmea2000Configuration();
         public double WaterDepthOffset { get; set; }

@@ -20,32 +20,32 @@ namespace WhatTheHelmRuntime
         private void CanGateway_MessageRecieved(object sender, WhatTheHelmCanLib.Messages.CanMessageArgs e)
         {
             //Port Engine RPM
-            if (Program.Configuration.PortPropulsionN2KConfig.Rpm != null)
-                if (e.Message.SourceAddress == Program.Configuration.PortPropulsionN2KConfig.Rpm.Nmea2000Device.Address)
+            if (Program.RunningConfiguration.PortPropulsionN2KConfig.Rpm != null)
+                if (e.Message.SourceAddress == Program.RunningConfiguration.PortPropulsionN2KConfig.Rpm.Nmea2000Device.Address)
                 {
                     //PGN check
-                    if (e.Message.Pgn == Program.Configuration.PortPropulsionN2KConfig.Rpm.PGN)
+                    if (e.Message.Pgn == Program.RunningConfiguration.PortPropulsionN2KConfig.Rpm.PGN)
                     {
                         _pgn0x1F200 = (Pgn0x1F200)_pgn0x1F200.DeserializeFields(e.Message.Data).ToImperial();
 
                         //Instance check
-                        if (_pgn0x1F200.EngineInstance == Program.Configuration.PortPropulsionN2KConfig.Rpm.Instance)
+                        if (_pgn0x1F200.EngineInstance == Program.RunningConfiguration.PortPropulsionN2KConfig.Rpm.Instance)
                         {
                             _portRpm = _pgn0x1F200.EngineSpeed / 4;
                         }
                     }
                 }
             //Stbd Engine RPM
-            if (Program.Configuration.StbdPropulsionN2KConfig.Rpm != null)
-                if (e.Message.SourceAddress == Program.Configuration.StbdPropulsionN2KConfig.Rpm.Nmea2000Device.Address)
+            if (Program.RunningConfiguration.StbdPropulsionN2KConfig.Rpm != null)
+                if (e.Message.SourceAddress == Program.RunningConfiguration.StbdPropulsionN2KConfig.Rpm.Nmea2000Device.Address)
                 {
                     //PGN check
-                    if (e.Message.Pgn == Program.Configuration.StbdPropulsionN2KConfig.Rpm.PGN)
+                    if (e.Message.Pgn == Program.RunningConfiguration.StbdPropulsionN2KConfig.Rpm.PGN)
                     {
                         _pgn0x1F200 = (Pgn0x1F200)_pgn0x1F200.DeserializeFields(e.Message.Data).ToImperial();
 
                         //Instance check
-                        if (_pgn0x1F200.EngineInstance == Program.Configuration.StbdPropulsionN2KConfig.Rpm.Instance)
+                        if (_pgn0x1F200.EngineInstance == Program.RunningConfiguration.StbdPropulsionN2KConfig.Rpm.Instance)
                         {
                             _stbdRpm = _pgn0x1F200.EngineSpeed / 4;
                         }

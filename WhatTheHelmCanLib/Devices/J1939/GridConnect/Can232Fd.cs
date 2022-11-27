@@ -19,6 +19,9 @@ namespace WhatTheHelmCanLib.Devices.J1939.GridConnect
     public class Can232Fd : ICanGateway
     {
         public int MessageQueueCount { get => _mainMessageQueue.Count; }
+
+        public bool IsOpen => throw new NotImplementedException();
+
         private SerialPort _serialPort;
         private Queue<string> _mainMessageQueue = new Queue<string>();
         private bool _scanMainMessageQueue = false;

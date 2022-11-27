@@ -26,6 +26,7 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
     {
         public int MessageQueueCount { get => _mainMessageQueue.Count; }
         public DateTime LastRead { get; private set; }
+        public bool IsOpen { get; private set; }
         public event EventHandler<CanMessageArgs> MessageRecieved;
         private SerialPort _serialPort;
         private ConcurrentQueue<NMEA2K.N2KMsg_s> _mainMessageQueue = new ConcurrentQueue<NMEA2K.N2KMsg_s>();
@@ -50,7 +51,10 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
 
         public void Dispose()
         {
+            Close();
             AComms.DestroyAll();
+            _serialPort.Dispose();
+            _serialPort = null;
         }
 
         public bool Open()
@@ -96,6 +100,7 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
                 if (t.IsFaulted)
                     Task.Run(() => scanMainMessageQueue());
             });
+            IsOpen = true;
             return true;
         }
 
@@ -131,6 +136,7 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
         {
             AComms.Close(_actiHandle);
             _scanMainMessageQueue = false;
+            IsOpen = false;
             return true;
         }
 
