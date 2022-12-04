@@ -97,10 +97,13 @@ namespace WhatTheHelmRuntime
                 {
                     var prodInfo = new Pgn0x1F014();
                     prodInfo = (Pgn0x1F014)prodInfo.DeserializeFields(e.Message.Data);
-                    N2KDevice n2kDevice = new N2KDevice(e.Message.SourceAddress);
-                    n2kDevice.ProductInformation = prodInfo.ProductInformation;
-                    _n2kDevices.Add(n2kDevice);
-                    listBox1.Invoke(new MethodInvoker(() => listBox1.Items.Add(n2kDevice.ToString())));
+                    if(prodInfo != null)
+                    {
+                        N2KDevice n2kDevice = new N2KDevice(e.Message.SourceAddress);
+                        n2kDevice.ProductInformation = prodInfo.ProductInformation;
+                        _n2kDevices.Add(n2kDevice);
+                        listBox1.Invoke(new MethodInvoker(() => listBox1.Items.Add(n2kDevice.ToString())));
+                    }
                 }
                 //Pgn List PGN 126464
                 if (e.Message.Pgn == 126464)

@@ -73,8 +73,8 @@ namespace WhatTheHelmCanLib.ParameterGroups.NMEA2000
 
         public override ParameterGroup DeserializeFields(byte[] data)
         {
-            if (data.Length == 0)
-                throw new FormatException("Data frame must be exactly 134 bytes.");
+            if (data.Length != 134)
+                return null;
             else
             {
                 //NMEA 2000 Version
