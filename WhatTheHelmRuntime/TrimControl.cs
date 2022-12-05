@@ -90,32 +90,6 @@ namespace WhatTheHelmRuntime
                         }
                     }
                 }
-
-
-
-
-
-
-
-                //Engine Parameters (Rapid)
-                if (e.Message.Pgn == 127488)
-                {
-                    _pgn0x1FE10LastMsg = DateTime.Now;
-                    _pgn0x1FE10 = (Pgn0x1F200)_pgn0x1FE10.DeserializeFields(e.Message.Data).ToImperial();
-
-                    //Port Engine
-                    if (_pgn0x1FE10.EngineInstance == 0)
-                    {
-                        if (gaugePortTrim.IsHandleCreated)
-                            gaugePortTrim.Invoke(new MethodInvoker(() => gaugePortTrim.Value = _pgn0x1FE10.EngineTiltTrim));
-                    }
-                    //Stbd Engine
-                    else if (_pgn0x1FE10.EngineInstance == 1)
-                    {
-                        if (gaugeStbdTrim.IsHandleCreated)
-                            gaugeStbdTrim.Invoke(new MethodInvoker(() => gaugeStbdTrim.Value = _pgn0x1FE10.EngineTiltTrim));
-                    }
-                }
             }
 
             //Set DashboardButton states

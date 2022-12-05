@@ -179,6 +179,8 @@ namespace WhatTheHelmRuntime
             RunningConfiguration.PortPropulsionN2KConfig = CreateRuntimePropulsionConfig(Configuration.PortPropulsionN2KConfig, _n2kDevices);
             //Stbd propulsion running configuration
             RunningConfiguration.StbdPropulsionN2KConfig = CreateRuntimePropulsionConfig(Configuration.StbdPropulsionN2KConfig, _n2kDevices);
+            //Rudder and trim running configuration
+            RunningConfiguration.RudderTrimN2KConfig = CreateRudderTrimConfig(Configuration.RudderTrimN2KConfig, _n2kDevices);
             //Common systems running configuration
             RunningConfiguration.CommonSystemsN2KConfig = CreateRuntimeCommonSystemsConfig(Configuration.CommonSystemsN2KConfig, _n2kDevices);
         }
@@ -186,6 +188,28 @@ namespace WhatTheHelmRuntime
         private static PropulsionNmea2000Configuration CreateRuntimePropulsionConfig(PropulsionNmea2000Configuration config, List<N2KDevice> n2kDevices)
         {
             PropulsionNmea2000Configuration updatedConfig = new PropulsionNmea2000Configuration();
+            config.GetType().GetProperties().Where(prop => prop.PropertyType == typeof(N2KDataBinding)).ToList().ForEach(binding =>
+            {
+                N2KDataBinding n2kDataBinding = (N2KDataBinding)binding.GetValue(config);
+
+                if (n2kDataBinding != null)
+                {
+                    foreach (var n2kDevice in n2kDevices)
+                    {
+                        if (n2kDevice.ProductInformation.Equals(n2kDataBinding.Nmea2000Device.ProductInformation))
+                        {
+                            n2kDataBinding.Nmea2000Device.Address = n2kDevice.Address;
+                            updatedConfig.GetType().GetProperty(binding.Name).SetValue(updatedConfig, n2kDataBinding);
+                        }
+                    }
+                }
+            });
+            return updatedConfig;
+        }
+
+        private static RudderTrimNmea2000Configuration CreateRudderTrimConfig(RudderTrimNmea2000Configuration config, List<N2KDevice> n2kDevices)
+        {
+            RudderTrimNmea2000Configuration updatedConfig = new RudderTrimNmea2000Configuration();
             config.GetType().GetProperties().Where(prop => prop.PropertyType == typeof(N2KDataBinding)).ToList().ForEach(binding =>
             {
                 N2KDataBinding n2kDataBinding = (N2KDataBinding)binding.GetValue(config);
