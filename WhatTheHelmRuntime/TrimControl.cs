@@ -20,11 +20,13 @@ namespace WhatTheHelmRuntime
 {
     public partial class TrimControl : Form
     {
-        DateTime pgn0x1F200LastMsg = new DateTime();
-        Pgn0x1F200 pgn0x1F200 = new Pgn0x1F200();
-        Pgn0x0EF00 pgn0x0EF00 = new Pgn0x0EF00();
-        Pgn0x0FFA0 pgn0x0FFA0 = new Pgn0x0FFA0();
-        Pgn0x0FFA1 pgn0x0FFA1 = new Pgn0x0FFA1();
+        DateTime _pgn0x1FE10LastMsg = new DateTime();
+        Pgn0x1FE10 _pgn0x1FE10 = new Pgn0x1FE10();
+        Pgn0x1F10D _pgn0x1F10D = new Pgn0x1F10D();
+        Pgn0x0EF00 _pgn0x0EF00 = new Pgn0x0EF00();
+        Pgn0x0FFA0 _pgn0x0FFA0 = new Pgn0x0FFA0();
+        Pgn0x0FFA1 _pgn0x0FFA1 = new Pgn0x0FFA1();
+
         public TrimControl()
         {
             InitializeComponent();
@@ -55,76 +57,75 @@ namespace WhatTheHelmRuntime
             t.Start();
         }
 
-        private void T_Tick(object sender, EventArgs e)
-        {
-            //Get current time
-            var dtNow = DateTime.Now;
-
-            //Engine parameters dynamic
-            var pgn0x1F200LastMsgEt = dtNow - pgn0x1F200LastMsg;
-            if (pgn0x1F200LastMsgEt.TotalSeconds > 5)
-            {
-                gaugePortTrim.Invoke(new MethodInvoker(() => gaugePortTrim.Hide()));
-                gaugeStbdTrim.Invoke(new MethodInvoker(() => gaugeStbdTrim.Hide()));
-            }
-            else
-            {
-                gaugePortTrim.Invoke(new MethodInvoker(() => gaugePortTrim.Show()));
-                gaugeStbdTrim.Invoke(new MethodInvoker(() => gaugeStbdTrim.Show()));
-            }
-        }
-
         private void CanGateWay_MessageRecieved(object sender, CanMessageArgs e)
         {
+            //Set Trim tab status
             if (Program.RunningConfiguration != null)
             {
-                //Trim tabs
+                //Trim tab - Port
                 if (Program.RunningConfiguration.RudderTrimN2KConfig.PortTrim != null)
+                {
                     if (e.Message.SourceAddress == Program.RunningConfiguration.RudderTrimN2KConfig.PortTrim.Nmea2000Device.Address)
+                    {
                         //PGN check
                         if (e.Message.Pgn == Program.RunningConfiguration.RudderTrimN2KConfig.PortTrim.PGN)
                         {
-                            _pgn0x1F200 = (Pgn0x1F200)_pgn0x1F200.DeserializeFields(e.Message.Data).ToImperial();
-
-                            //Instance check
-                            if (_pgn0x1F200.EngineInstance == Program.RunningConfiguration.StbdPropulsionN2KConfig.Rpm.Instance)
-                            {
-                                _rpmLastMsg = DateTime.Now;
-                                if (gaugeRpm.IsHandleCreated)
-                                    gaugeRpm.Invoke(new MethodInvoker(() => gaugeRpm.Value = _pgn0x1F200.EngineSpeed / 4));
-                            }
+                            _pgn0x1FE10 = (Pgn0x1FE10)_pgn0x1FE10.DeserializeFields(e.Message.Data).ToImperial();
+                            if (gaugePortTrim.IsHandleCreated)
+                                gaugePortTrim.Invoke(new MethodInvoker(() => gaugePortTrim.Value = _pgn0x1FE10.PortPosition));
                         }
+                    }
+                }
+                //Trim tab - Stbd
+                if (Program.RunningConfiguration.RudderTrimN2KConfig.StbdTrim != null)
+                {
+                    if (e.Message.SourceAddress == Program.RunningConfiguration.RudderTrimN2KConfig.StbdTrim.Nmea2000Device.Address)
+                    {
+                        //PGN check
+                        if (e.Message.Pgn == Program.RunningConfiguration.RudderTrimN2KConfig.StbdTrim.PGN)
+                        {
+                            _pgn0x1FE10 = (Pgn0x1FE10)_pgn0x1FE10.DeserializeFields(e.Message.Data).ToImperial();
+                            if (gaugeStbdTrim.IsHandleCreated)
+                                gaugeStbdTrim.Invoke(new MethodInvoker(() => gaugeStbdTrim.Value = _pgn0x1FE10.StbdPosition));
+                        }
+                    }
+                }
+
+
+
+
 
 
 
                 //Engine Parameters (Rapid)
                 if (e.Message.Pgn == 127488)
                 {
-                    pgn0x1F200LastMsg = DateTime.Now;
-                    pgn0x1F200 = (Pgn0x1F200)pgn0x1F200.DeserializeFields(e.Message.Data).ToImperial();
+                    _pgn0x1FE10LastMsg = DateTime.Now;
+                    _pgn0x1FE10 = (Pgn0x1F200)_pgn0x1FE10.DeserializeFields(e.Message.Data).ToImperial();
 
                     //Port Engine
-                    if (pgn0x1F200.EngineInstance == 0)
+                    if (_pgn0x1FE10.EngineInstance == 0)
                     {
                         if (gaugePortTrim.IsHandleCreated)
-                            gaugePortTrim.Invoke(new MethodInvoker(() => gaugePortTrim.Value = pgn0x1F200.EngineTiltTrim));
+                            gaugePortTrim.Invoke(new MethodInvoker(() => gaugePortTrim.Value = _pgn0x1FE10.EngineTiltTrim));
                     }
                     //Stbd Engine
-                    else if (pgn0x1F200.EngineInstance == 1)
+                    else if (_pgn0x1FE10.EngineInstance == 1)
                     {
                         if (gaugeStbdTrim.IsHandleCreated)
-                            gaugeStbdTrim.Invoke(new MethodInvoker(() => gaugeStbdTrim.Value = pgn0x1F200.EngineTiltTrim));
+                            gaugeStbdTrim.Invoke(new MethodInvoker(() => gaugeStbdTrim.Value = _pgn0x1FE10.EngineTiltTrim));
                     }
                 }
             }
+
             //Set DashboardButton states
-            else if (e.Message.Pgn == 61184)
+            if (e.Message.Pgn == 61184)
             {
-                pgn0x0EF00 = (Pgn0x0EF00)pgn0x0EF00.DeserializeFields(e.Message.Data);
-                if (pgn0x0EF00.Reply.Reply == ReplyMessage.hex96)
+                _pgn0x0EF00 = (Pgn0x0EF00)_pgn0x0EF00.DeserializeFields(e.Message.Data);
+                if (_pgn0x0EF00.Reply.Reply == ReplyMessage.hex96)
                 {
 
-                    MvecReply0x96 reply = (MvecReply0x96)pgn0x0EF00.Reply;
+                    MvecReply0x96 reply = (MvecReply0x96)_pgn0x0EF00.Reply;
                     foreach (Control c in this.Controls)
                     {
                         if (c.GetType() == typeof(DashboardButton))
@@ -135,29 +136,31 @@ namespace WhatTheHelmRuntime
                     }
                 }
             }
+
             //Set DashboardButton fuse status
             else if (e.Message.Pgn == 65440)
             {
-                pgn0x0FFA0 = (Pgn0x0FFA0)pgn0x0FFA0.DeserializeFields(e.Message.Data);
+                _pgn0x0FFA0 = (Pgn0x0FFA0)_pgn0x0FFA0.DeserializeFields(e.Message.Data);
                 foreach (Control c in this.Controls)
                 {
                     if (c.GetType() == typeof(DashboardButton))
                     {
                         var control = (DashboardButton)c;
-                        control.UpdateFuseStatus((byte)e.Message.SourceAddress, pgn0x0FFA0.GridAddress, pgn0x0FFA0.FuseStatus);
+                        control.UpdateFuseStatus((byte)e.Message.SourceAddress, _pgn0x0FFA0.GridAddress, _pgn0x0FFA0.FuseStatus);
                     }
                 }
             }
+
             //Set DashboardButton relay status
             else if (e.Message.Pgn == 65441)
             {
-                pgn0x0FFA1 = (Pgn0x0FFA1)pgn0x0FFA1.DeserializeFields(e.Message.Data);
+                _pgn0x0FFA1 = (Pgn0x0FFA1)_pgn0x0FFA1.DeserializeFields(e.Message.Data);
                 foreach (Control c in this.Controls)
                 {
                     if (c.GetType() == typeof(DashboardButton))
                     {
                         var control = (DashboardButton)c;
-                        control.UpdateRelayStatus((byte)e.Message.SourceAddress, pgn0x0FFA1.GridAddress, pgn0x0FFA1.RelayStatus);
+                        control.UpdateRelayStatus((byte)e.Message.SourceAddress, _pgn0x0FFA1.GridAddress, _pgn0x0FFA1.RelayStatus);
                     }
                 }
             }
@@ -168,7 +171,26 @@ namespace WhatTheHelmRuntime
             MvecCommand0x80 cmd = new MvecCommand0x80(0, e.MvecRelayNumber, e.RelayCommandState);
             Pgn0x0EF00 pgn = new Pgn0x0EF00(cmd, e.MvecAddress);
             CanMessage msg = new CanMessage(pgn.Pgn, Format.EXTENDED, 6, Program.CanGateway.Address, pgn.DestinationAddress, pgn.SerializeFields());
-            //Program.CanRequestHandler.QueueOutgoingMessage(msg);
+            Program.CanGateway.Write(msg);
+        }
+
+        private void T_Tick(object sender, EventArgs e)
+        {
+            //Get current time
+            var dtNow = DateTime.Now;
+
+            //Trim tab status
+            var pgn0x1FE10LastMsgEt = dtNow - _pgn0x1FE10LastMsg;
+            if (pgn0x1FE10LastMsgEt.TotalSeconds > 5)
+            {
+                gaugePortTrim.Invoke(new MethodInvoker(() => gaugePortTrim.Hide()));
+                gaugeStbdTrim.Invoke(new MethodInvoker(() => gaugeStbdTrim.Hide()));
+            }
+            else
+            {
+                gaugePortTrim.Invoke(new MethodInvoker(() => gaugePortTrim.Show()));
+                gaugeStbdTrim.Invoke(new MethodInvoker(() => gaugeStbdTrim.Show()));
+            }
         }
 
         private void dashboardButton3_NewCommand(object sender, BoatFormsLib.DashboardButtonArgs e)
@@ -191,11 +213,6 @@ namespace WhatTheHelmRuntime
             NewCommand(e);
         }
 
-        private void dashboardButton3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnConfigNmea2000_Click(object sender, EventArgs e)
         {
             RudderTrimNmea2000Config config = new RudderTrimNmea2000Config(Program.Configuration.RudderTrimN2KConfig, "Rudder & Trim");
@@ -206,7 +223,6 @@ namespace WhatTheHelmRuntime
                 Program.Configuration.Save(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm", "config.json", Program.Configuration);
                 Program.InitializeConfiguration();
             }
-
         }
     }
 }
