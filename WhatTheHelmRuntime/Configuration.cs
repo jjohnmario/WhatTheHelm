@@ -11,6 +11,7 @@ namespace WhatTheHelmRuntime
         public List<N2KDataBinding> CommonSystemsN2KConfig { get; set; } = new List<N2KDataBinding>();
         public PropulsionNmea2000Configuration PortPropulsionN2KConfig { get; set; } = new PropulsionNmea2000Configuration();
         public PropulsionNmea2000Configuration StbdPropulsionN2KConfig { get; set; } = new PropulsionNmea2000Configuration();
+        public RudderTrimNmea2000Configuration RudderTrimN2KConfig { get; set; } = new RudderTrimNmea2000Configuration();
         public double WaterDepthOffset { get; set; }
         public double WaterTempOffset { get; set; }
         public List<uint> TxPgnFilter { get; set; } = new List<uint>();

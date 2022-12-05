@@ -85,13 +85,14 @@ namespace WhatTheHelmRuntime
                 {
                     //PortGauges portGauges = new PortGauges();
                     //Application.Run(portGauges);
-                    StbdGauges stbdGauges = new StbdGauges();
-                    Application.Run(stbdGauges);
+                    //StbdGauges stbdGauges = new StbdGauges();
+                    //Application.Run(stbdGauges);
                     //PropulsionNmea2000Config nmea2000Config = new PropulsionNmea2000Config(null);
                     //Application.Run(nmea2000Config);
                     //SwitchPanel switchPanel = new SwitchPanel();
                     //Application.Run(switchPanel);
-
+                    TrimControl trimControl = new TrimControl();
+                    Application.Run(trimControl);
                     //Rudder rudder = new Rudder();
                     //Application.Run(rudder);
 
@@ -138,7 +139,7 @@ namespace WhatTheHelmRuntime
             //Issue request for product information from connected devices, and start the response timer
             ConnectedDeviceScanBusy = true;
             System.Windows.Forms.Timer productInformationResponseTimer = new System.Windows.Forms.Timer();
-            productInformationResponseTimer.Interval = 1000;
+            productInformationResponseTimer.Interval = 3000;
             productInformationResponseTimer.Tick += ProductInformationResponseTimer_Tick;
             CanGateway.IsoRequest(126996);
             productInformationResponseTimer.Start();

@@ -76,23 +76,45 @@ namespace WhatTheHelmRuntime
 
         private void CanGateWay_MessageRecieved(object sender, CanMessageArgs e)
         {
-            //Engine Parameters (Rapid)
-            if (e.Message.Pgn == 127488)
+            if (Program.RunningConfiguration != null)
             {
-                pgn0x1F200LastMsg = DateTime.Now;
-                pgn0x1F200 = (Pgn0x1F200)pgn0x1F200.DeserializeFields(e.Message.Data).ToImperial();
+                //Trim tabs
+                if (Program.RunningConfiguration.RudderTrimN2KConfig.PortTrim != null)
+                    if (e.Message.SourceAddress == Program.RunningConfiguration.RudderTrimN2KConfig.PortTrim.Nmea2000Device.Address)
+                        //PGN check
+                        if (e.Message.Pgn == Program.RunningConfiguration.RudderTrimN2KConfig.PortTrim.PGN)
+                        {
+                            _pgn0x1F200 = (Pgn0x1F200)_pgn0x1F200.DeserializeFields(e.Message.Data).ToImperial();
 
-                //Port Engine
-                if (pgn0x1F200.EngineInstance == 0)
+                            //Instance check
+                            if (_pgn0x1F200.EngineInstance == Program.RunningConfiguration.StbdPropulsionN2KConfig.Rpm.Instance)
+                            {
+                                _rpmLastMsg = DateTime.Now;
+                                if (gaugeRpm.IsHandleCreated)
+                                    gaugeRpm.Invoke(new MethodInvoker(() => gaugeRpm.Value = _pgn0x1F200.EngineSpeed / 4));
+                            }
+                        }
+
+
+
+                //Engine Parameters (Rapid)
+                if (e.Message.Pgn == 127488)
                 {
-                    if (gaugePortTrim.IsHandleCreated)
-                        gaugePortTrim.Invoke(new MethodInvoker(() => gaugePortTrim.Value = pgn0x1F200.EngineTiltTrim));
-                }
-                //Stbd Engine
-                else if (pgn0x1F200.EngineInstance == 1)
-                {
-                    if (gaugeStbdTrim.IsHandleCreated)
-                        gaugeStbdTrim.Invoke(new MethodInvoker(() => gaugeStbdTrim.Value = pgn0x1F200.EngineTiltTrim));
+                    pgn0x1F200LastMsg = DateTime.Now;
+                    pgn0x1F200 = (Pgn0x1F200)pgn0x1F200.DeserializeFields(e.Message.Data).ToImperial();
+
+                    //Port Engine
+                    if (pgn0x1F200.EngineInstance == 0)
+                    {
+                        if (gaugePortTrim.IsHandleCreated)
+                            gaugePortTrim.Invoke(new MethodInvoker(() => gaugePortTrim.Value = pgn0x1F200.EngineTiltTrim));
+                    }
+                    //Stbd Engine
+                    else if (pgn0x1F200.EngineInstance == 1)
+                    {
+                        if (gaugeStbdTrim.IsHandleCreated)
+                            gaugeStbdTrim.Invoke(new MethodInvoker(() => gaugeStbdTrim.Value = pgn0x1F200.EngineTiltTrim));
+                    }
                 }
             }
             //Set DashboardButton states
@@ -171,6 +193,19 @@ namespace WhatTheHelmRuntime
 
         private void dashboardButton3_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnConfigNmea2000_Click(object sender, EventArgs e)
+        {
+            RudderTrimNmea2000Config config = new RudderTrimNmea2000Config(Program.Configuration.RudderTrimN2KConfig, "Rudder & Trim");
+            var result = config.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                Program.Configuration.RudderTrimN2KConfig = config.NewRudderTrimConfig;
+                Program.Configuration.Save(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm", "config.json", Program.Configuration);
+                Program.InitializeConfiguration();
+            }
 
         }
     }

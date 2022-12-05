@@ -93,6 +93,13 @@
     <Compile Include="FusesStatus.Designer.cs">
       <DependentUpon>FusesStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="RudderTrimNmea2000Configuration.cs" />
+    <Compile Include="RudderTrimNmea2000Config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RudderTrimNmea2000Config.Designer.cs">
+      <DependentUpon>RudderTrimNmea2000Config.cs</DependentUpon>
+    </Compile>
     <Compile Include="PropulsionNmea2000Config.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FusesStatus.resx">
       <DependentUpon>FusesStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RudderTrimNmea2000Config.resx">
+      <DependentUpon>RudderTrimNmea2000Config.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PropulsionNmea2000Config.resx">
       <DependentUpon>PropulsionNmea2000Config.cs</DependentUpon>

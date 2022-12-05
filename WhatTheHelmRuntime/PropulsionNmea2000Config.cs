@@ -258,6 +258,9 @@ namespace WhatTheHelmRuntime
         #region Connected Devices
         private void refreshConnectedDeviceList()
         {
+            //Disable button temporarily
+            btnRefreshDeviceList.Enabled = false;
+
             //Subscribe to NMEA 2000 messages
             Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
 
@@ -290,6 +293,9 @@ namespace WhatTheHelmRuntime
             //Update networked devices list
             _n2kDevices = _n2kDevices.Distinct().ToList();
             addConnectedDeviceSources();
+
+            //Enable button
+            btnRefreshDeviceList.Enabled = true;
         }
         private void addConnectedDeviceSources()
         {
