@@ -237,7 +237,7 @@ namespace WhatTheHelmRuntime
             else
             {
                 _syncEnabled = true;
-                btnSync.BackgroundImage = Resources.GreenButton;
+                btnSync.BackgroundImage = Resources.YellowButton;
                 btnSync.ForeColor = Color.Black;
             }
         }
