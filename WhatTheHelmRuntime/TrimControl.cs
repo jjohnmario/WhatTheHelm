@@ -241,10 +241,6 @@ namespace WhatTheHelmRuntime
                 btnSync.ForeColor = Color.Black;
             }
         }
-
-
         #endregion
-
-
     }
 }
