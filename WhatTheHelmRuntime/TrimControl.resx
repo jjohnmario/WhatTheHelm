@@ -117,21 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="controlInnerBevel7.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlInnerBevel1.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
         dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
         YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAgAAAAgCAAAAAgAAAAs=
 </value>
   </data>
-  <data name="rectControlBorder7.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="rectControlBorder1.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
         dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
         YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAgAAAAgCAAAAAgAAAAs=
 </value>
   </data>
-  <data name="controlFont19.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont1.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
         dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
@@ -146,35 +146,35 @@
         aXRIZWlnaHQD+gAL
 </value>
   </data>
-  <data name="controlFont20.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont2.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
         dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
         YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAQAAAAgBAAAACw==
 </value>
   </data>
-  <data name="controlFont21.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont3.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
         dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
         YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAQAAAAgBAAAACw==
 </value>
   </data>
-  <data name="controlInnerBevel8.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlInnerBevel2.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
         dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
         YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAgAAAAgCAAAAAgAAAAs=
 </value>
   </data>
-  <data name="rectControlBorder8.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="rectControlBorder2.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
         dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
         YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAgAAAAgCAAAAAgAAAAs=
 </value>
   </data>
-  <data name="controlFont22.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont4.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
         dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
@@ -189,14 +189,14 @@
         aXRIZWlnaHQD+gAL
 </value>
   </data>
-  <data name="controlFont23.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont5.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
         dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
         YXJ5RGF0YQEAAAAFRW51bXMHCAIAAAAJAwAAAA8DAAAAAQAAAAgBAAAACw==
 </value>
   </data>
-  <data name="controlFont24.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="controlFont6.InternalData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFFNaXRvdi5CYXNpY0xhYiwgVmVyc2lvbj04LjAuMC4xLCBDdWx0
         dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTU0YjhhMWYzOGM5NDIyMWEFAQAAABFWY2wuVmNsQmlu
@@ -204,7 +204,7 @@
 </value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="dashboardButton2.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnPortBowDown.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARoAAAB9CAYAAAB9NazsAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
         6gAAFuoB5Y5DEAAADuhJREFUeF7t3XmMXWUZBvDbznT2aWfr7GtnbWc6nXa6T1va0g1DgoCJCRLAJQjR
@@ -274,7 +274,7 @@
         AABJRU5ErkJggg==
 </value>
   </data>
-  <data name="dashboardButton2.OffStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnPortBowDown.OffStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARoAAAB9CAYAAAB9NazsAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
         6gAAFuoB5Y5DEAAADuhJREFUeF7t3XmMXWUZBvDbznT2aWfr7GtnbWc6nXa6T1va0g1DgoCJCRLAJQjR
@@ -344,7 +344,7 @@
         AABJRU5ErkJggg==
 </value>
   </data>
-  <data name="dashboardButton2.OnStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnPortBowDown.OnStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARoAAAB5CAYAAADmpO76AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
         6gAAFuoB5Y5DEAAAFItJREFUeF7t3Al4VPW5x/H3nDP7TDJZyUoI2ZqFSCgkIHBBFITe29rb5+nTq7fe
@@ -438,7 +438,7 @@
         YwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="dashboardButton3.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnPortBowUp.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARoAAAB9CAYAAAB9NazsAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
         6gAAFuoB5Y5DEAAADuhJREFUeF7t3XmMXWUZBvDbznT2aWfr7GtnbWc6nXa6T1va0g1DgoCJCRLAJQjR
@@ -508,7 +508,7 @@
         AABJRU5ErkJggg==
 </value>
   </data>
-  <data name="dashboardButton3.OffStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnPortBowUp.OffStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARoAAAB9CAYAAAB9NazsAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
         6gAAFuoB5Y5DEAAADuhJREFUeF7t3XmMXWUZBvDbznT2aWfr7GtnbWc6nXa6T1va0g1DgoCJCRLAJQjR
@@ -578,7 +578,7 @@
         AABJRU5ErkJggg==
 </value>
   </data>
-  <data name="dashboardButton3.OnStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnPortBowUp.OnStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARoAAAB5CAYAAADmpO76AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
         6gAAFuoB5Y5DEAAAFItJREFUeF7t3Al4VPW5x/H3nDP7TDJZyUoI2ZqFSCgkIHBBFITe29rb5+nTq7fe
@@ -672,7 +672,7 @@
         YwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="dashboardButton1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnStbdBowDown.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARoAAAB9CAYAAAB9NazsAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
         6gAAFuoB5Y5DEAAADuhJREFUeF7t3XmMXWUZBvDbznT2aWfr7GtnbWc6nXa6T1va0g1DgoCJCRLAJQjR
@@ -742,7 +742,7 @@
         AABJRU5ErkJggg==
 </value>
   </data>
-  <data name="dashboardButton1.OffStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnStbdBowDown.OffStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARoAAAB9CAYAAAB9NazsAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
         6gAAFuoB5Y5DEAAADuhJREFUeF7t3XmMXWUZBvDbznT2aWfr7GtnbWc6nXa6T1va0g1DgoCJCRLAJQjR
@@ -812,7 +812,7 @@
         AABJRU5ErkJggg==
 </value>
   </data>
-  <data name="dashboardButton1.OnStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnStbdBowDown.OnStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARoAAAB5CAYAAADmpO76AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
         6gAAFuoB5Y5DEAAAFItJREFUeF7t3Al4VPW5x/H3nDP7TDJZyUoI2ZqFSCgkIHBBFITe29rb5+nTq7fe
@@ -906,7 +906,7 @@
         YwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="dashboardButton7.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnStbdBowUp.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARoAAAB9CAYAAAB9NazsAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
         6gAAFuoB5Y5DEAAADuhJREFUeF7t3XmMXWUZBvDbznT2aWfr7GtnbWc6nXa6T1va0g1DgoCJCRLAJQjR
@@ -976,7 +976,7 @@
         AABJRU5ErkJggg==
 </value>
   </data>
-  <data name="dashboardButton7.OffStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnStbdBowUp.OffStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARoAAAB9CAYAAAB9NazsAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
         6gAAFuoB5Y5DEAAADuhJREFUeF7t3XmMXWUZBvDbznT2aWfr7GtnbWc6nXa6T1va0g1DgoCJCRLAJQjR
@@ -1046,7 +1046,7 @@
         AABJRU5ErkJggg==
 </value>
   </data>
-  <data name="dashboardButton7.OnStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnStbdBowUp.OnStateBackImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARoAAAB5CAYAAADmpO76AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
         6gAAFuoB5Y5DEAAAFItJREFUeF7t3Al4VPW5x/H3nDP7TDJZyUoI2ZqFSCgkIHBBFITe29rb5+nTq7fe

@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WhatTheHelmRuntime.Properties;
 
 namespace WhatTheHelmRuntime
 {
@@ -26,6 +27,7 @@ namespace WhatTheHelmRuntime
         Pgn0x0EF00 _pgn0x0EF00 = new Pgn0x0EF00();
         Pgn0x0FFA0 _pgn0x0FFA0 = new Pgn0x0FFA0();
         Pgn0x0FFA1 _pgn0x0FFA1 = new Pgn0x0FFA1();
+        bool _syncEnabled = false;
 
         public TrimControl()
         {
@@ -70,9 +72,10 @@ namespace WhatTheHelmRuntime
                         //PGN check
                         if (e.Message.Pgn == Program.RunningConfiguration.RudderTrimN2KConfig.PortTrim.PGN)
                         {
+                            _pgn0x1FE10LastMsg = DateTime.Now;
                             _pgn0x1FE10 = (Pgn0x1FE10)_pgn0x1FE10.DeserializeFields(e.Message.Data).ToImperial();
                             if (gaugePortTrim.IsHandleCreated)
-                                gaugePortTrim.Invoke(new MethodInvoker(() => gaugePortTrim.Value = _pgn0x1FE10.PortPosition));
+                                gaugePortTrim.Invoke(new MethodInvoker(() => gaugePortTrim.Value = 100-_pgn0x1FE10.PortPosition));
                         }
                     }
                 }
@@ -84,9 +87,10 @@ namespace WhatTheHelmRuntime
                         //PGN check
                         if (e.Message.Pgn == Program.RunningConfiguration.RudderTrimN2KConfig.StbdTrim.PGN)
                         {
+                            _pgn0x1FE10LastMsg = DateTime.Now;
                             _pgn0x1FE10 = (Pgn0x1FE10)_pgn0x1FE10.DeserializeFields(e.Message.Data).ToImperial();
                             if (gaugeStbdTrim.IsHandleCreated)
-                                gaugeStbdTrim.Invoke(new MethodInvoker(() => gaugeStbdTrim.Value = _pgn0x1FE10.StbdPosition));
+                                gaugeStbdTrim.Invoke(new MethodInvoker(() => gaugeStbdTrim.Value = _pgn0x1FE10.StbdPosition *-1));
                         }
                     }
                 }
@@ -167,25 +171,7 @@ namespace WhatTheHelmRuntime
             }
         }
 
-        private void dashboardButton3_NewCommand(object sender, BoatFormsLib.DashboardButtonArgs e)
-        {
-            NewCommand(e);
-        }
-
-        private void dashboardButton2_NewCommand(object sender, BoatFormsLib.DashboardButtonArgs e)
-        {
-            NewCommand(e);
-        }
-
-        private void dashboardButton7_NewCommand(object sender, BoatFormsLib.DashboardButtonArgs e)
-        {
-            NewCommand(e);
-        }
-
-        private void dashboardButton1_NewCommand(object sender, BoatFormsLib.DashboardButtonArgs e)
-        {
-            NewCommand(e);
-        }
+        #region Buttons
 
         private void btnConfigNmea2000_Click(object sender, EventArgs e)
         {
@@ -198,5 +184,67 @@ namespace WhatTheHelmRuntime
                 Program.InitializeConfiguration();
             }
         }
+
+        private void btnPortBowUp_NewCommand(object sender, DashboardButtonArgs e)
+        {
+            NewCommand(e);
+            if (_syncEnabled)
+                syncCommand(e, btnStbdBowUp);
+        }
+
+        private void btnPortBowDown_NewCommand(object sender, DashboardButtonArgs e)
+        {
+            NewCommand(e);
+            if (_syncEnabled)
+                syncCommand(e, btnStbdBowDown);
+        }
+
+        private void btnStbBowUp_NewCommand(object sender, DashboardButtonArgs e)
+        {
+            NewCommand(e);
+            if (_syncEnabled)
+                syncCommand(e, btnPortBowUp);
+        }
+
+        private void btnStbBowDown_NewCommand(object sender, DashboardButtonArgs e)
+        {
+            NewCommand(e);
+            if (_syncEnabled)
+                syncCommand(e, btnPortBowDown);
+        }
+
+        private void syncCommand(DashboardButtonArgs masterArgs, DashboardButton slaveBtn)
+        {
+            DashboardButtonArgs slaveButtonArgs = new DashboardButtonArgs();
+            slaveButtonArgs.MvecGrid = slaveBtn.MvecGrid;
+            slaveButtonArgs.MvecRelayNumber = slaveBtn.MvecRelayNumber;
+            slaveButtonArgs.MvecAddress = slaveBtn.MvecAddress;
+            slaveButtonArgs.RelayCommandState = masterArgs.RelayCommandState;
+            if (slaveButtonArgs.RelayCommandState == RelayCommandState.TurnRelayOn)
+                slaveBtn.BackgroundImage = Resources.GreenButton;
+            else if (slaveButtonArgs.RelayCommandState == RelayCommandState.TurnRelayOff)
+                slaveBtn.BackgroundImage = Resources.BlackButton;
+        }
+        private void btnSync_MouseUp(object sender, MouseEventArgs e)
+        {
+            if(_syncEnabled)
+            {
+                _syncEnabled = false;
+                btnSync.BackgroundImage = Resources.BlackButton;
+                btnSync.ForeColor = Color.White;
+            }
+
+            else
+            {
+                _syncEnabled = true;
+                btnSync.BackgroundImage = Resources.GreenButton;
+                btnSync.ForeColor = Color.Black;
+            }
+        }
+
+
+        #endregion
+
+
     }
 }
