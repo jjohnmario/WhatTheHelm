@@ -751,7 +751,7 @@ namespace WhatTheHelmRuntime
             this.gaugeRudderPosition.InputPin = sinkPin2;
             this.gaugeRudderPosition.InternalData = ((Vcl.VclBinaryData)(resources.GetObject("gaugeRudderPosition.InternalData")));
             this.gaugeRudderPosition.Location = new System.Drawing.Point(35, 295);
-            this.gaugeRudderPosition.Max = 100D;
+            this.gaugeRudderPosition.Max = 90D;
             this.gaugeRudderPosition.Min = 0D;
             this.gaugeRudderPosition.Name = "gaugeRudderPosition";
             elementSize34.Value = 0.9F;
@@ -954,7 +954,7 @@ namespace WhatTheHelmRuntime
             this.gaugeRudderPosition.TabIndex = 121;
             this.gaugeRudderPosition.TabStop = false;
             this.gaugeRudderPosition.Text = "linearGauge2";
-            this.gaugeRudderPosition.Value = 100D;
+            this.gaugeRudderPosition.Value = 45D;
             // 
             // label36
             // 

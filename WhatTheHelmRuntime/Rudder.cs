@@ -112,7 +112,7 @@ namespace WhatTheHelmRuntime
                             //Instance check
                             if(_pgn0x1F10D.Instance == Program.RunningConfiguration.RudderTrimN2KConfig.Rudder.Instance)
                             {
-                                linearGauge1.Value = _pgn0x1F10D.Position;
+                                gaugeRudderPosition.Value = _pgn0x1F10D.Position;
                             }
                         }
                     }

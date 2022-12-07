@@ -195,7 +195,7 @@
             this.lblRudderPgn.ForeColor = System.Drawing.Color.Gray;
             this.lblRudderPgn.Location = new System.Drawing.Point(620, 166);
             this.lblRudderPgn.Name = "lblRudderPgn";
-            this.lblRudderPgn.Size = new System.Drawing.Size(74, 33);
+            this.lblRudderPgn.Size = new System.Drawing.Size(74, 28);
             this.lblRudderPgn.TabIndex = 44;
             this.lblRudderPgn.Text = "127245";
             this.lblRudderPgn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -208,7 +208,7 @@
             this.lblStbdTrimPgn.ForeColor = System.Drawing.Color.Gray;
             this.lblStbdTrimPgn.Location = new System.Drawing.Point(620, 128);
             this.lblStbdTrimPgn.Name = "lblStbdTrimPgn";
-            this.lblStbdTrimPgn.Size = new System.Drawing.Size(74, 33);
+            this.lblStbdTrimPgn.Size = new System.Drawing.Size(74, 28);
             this.lblStbdTrimPgn.TabIndex = 43;
             this.lblStbdTrimPgn.Text = "130576";
             this.lblStbdTrimPgn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -221,7 +221,7 @@
             this.lblPortTrimPgn.ForeColor = System.Drawing.Color.Gray;
             this.lblPortTrimPgn.Location = new System.Drawing.Point(620, 89);
             this.lblPortTrimPgn.Name = "lblPortTrimPgn";
-            this.lblPortTrimPgn.Size = new System.Drawing.Size(74, 33);
+            this.lblPortTrimPgn.Size = new System.Drawing.Size(74, 29);
             this.lblPortTrimPgn.TabIndex = 42;
             this.lblPortTrimPgn.Text = "130576";
             this.lblPortTrimPgn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -397,7 +397,7 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // TrimRudderNmea2000Config
+            // RudderTrimNmea2000Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -430,7 +430,7 @@
             this.Controls.Add(this.label5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "TrimRudderNmea2000Config";
+            this.Name = "RudderTrimNmea2000Config";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "NMEA 2000 Configuration";
             this.ResumeLayout(false);
