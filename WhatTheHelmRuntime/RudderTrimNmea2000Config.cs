@@ -13,6 +13,7 @@ namespace WhatTheHelmRuntime
 {
     public partial class RudderTrimNmea2000Config : Form
     {
+        private bool pgnListReqDone = false;
         private List<object> _instanceList = new List<object>();
         private List<N2KDevice> _n2kDevices = new List<N2KDevice>();
         private RudderTrimNmea2000Configuration _existingRudderTrimConfig;
@@ -95,6 +96,7 @@ namespace WhatTheHelmRuntime
                     else if (pgnList.PgnListType == PgnListType.Receive)
                         updatedObj.RxPgns = pgnList.PgnReceiveList;
                     //Add N2K object to device list
+                    _n2kDevices.Remove(foundObj);
                     _n2kDevices.Add(updatedObj);
                 }
             }
@@ -189,29 +191,42 @@ namespace WhatTheHelmRuntime
             gw.IsoRequest(126996);
             gw.IsoRequest(126464);
 
-            //Allow 500ms for NMEA2000 devices to respond to requests for product information and pgn lists
+            //Allow 250ms for NMEA2000 devices to respond to requests for product information and pgn lists
+            pgnListReqDone = false;
             Timer t = new Timer();
-            t.Interval = 500;
+            t.Interval = 250;
             t.Tick += T_Tick;
             t.Start();
         }
         private void T_Tick(object sender, EventArgs e)
         {
-            //Unsubscribe to NMEA 2000 messages
-            Program.CanGateway.MessageRecieved -= CanGateway_MessageRecieved;
+            //Product information recieved, now request PGN lists.
+            if (!pgnListReqDone)
+            {
+                var gw = (Ngt1)Program.CanGateway;
+                foreach (var device in _n2kDevices)
+                    gw.IsoRequest(126464, Convert.ToByte(device.Address));
+                pgnListReqDone = true;
+            }
+            //Pgn lists recieved.
+            else
+            {
+                //Unsubscribe to NMEA 2000 messages
+                Program.CanGateway.MessageRecieved -= CanGateway_MessageRecieved;
 
-            //Dispose of timer
-            var timer = (Timer)sender;
-            timer.Stop();
-            timer.Tick -= T_Tick;
-            timer.Dispose();
+                //Dispose of timer
+                var timer = (Timer)sender;
+                timer.Stop();
+                timer.Tick -= T_Tick;
+                timer.Dispose();
 
-            //Update networked devices list
-            _n2kDevices = _n2kDevices.Distinct().ToList();
-            addConnectedDeviceSources();
+                //Update networked devices list
+                _n2kDevices = _n2kDevices.Distinct().ToList();
+                addConnectedDeviceSources();
 
-            //Enable button
-            btnRefreshDeviceList.Enabled = true;
+                //Enable button
+                btnRefreshDeviceList.Enabled = true;
+            }
         }
         private void addConnectedDeviceSources()
         {

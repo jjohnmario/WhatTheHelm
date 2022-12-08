@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using WhatTheHelmCanLib.Devices.Nmea2000;
 using WhatTheHelmCanLib.Devices.NMEA2000;
@@ -13,6 +14,7 @@ namespace WhatTheHelmRuntime
 {
     public partial class PropulsionNmea2000Config : Form
     {
+        private bool pgnListReqDone = false;
         private List<object> _instanceList = new List<object>();
         private List<N2KDevice> _n2kDevices = new List<N2KDevice>();
         private PropulsionNmea2000Configuration _existingPropulsionConfig;
@@ -120,6 +122,7 @@ namespace WhatTheHelmRuntime
                     else if (pgnList.PgnListType == PgnListType.Receive)
                         updatedObj.RxPgns = pgnList.PgnReceiveList;
                     //Add N2K object to device list
+                    _n2kDevices.Remove(foundObj);
                     _n2kDevices.Add(updatedObj);
                 }
             }
@@ -268,34 +271,46 @@ namespace WhatTheHelmRuntime
             _n2kDevices.Clear();
             listBox1.Items.Clear();
 
-            //Issue request for product information and PGN lists from networked devices
+            //Issue request for product information from networked devices
             var gw = (Ngt1)Program.CanGateway;
             gw.IsoRequest(126996);
-            gw.IsoRequest(126464);
 
-            //Allow 500ms for NMEA2000 devices to respond to requests for product information and pgn lists
+            //Allow 250ms for NMEA2000 devices to respond to requests for product information
+            pgnListReqDone = false;
             Timer t = new Timer();
-            t.Interval = 500;
+            t.Interval = 250;
             t.Tick += T_Tick;
             t.Start();
         }
         private void T_Tick(object sender, EventArgs e)
         {
-            //Unsubscribe to NMEA 2000 messages
-            Program.CanGateway.MessageRecieved -= CanGateway_MessageRecieved;
+            //Product information recieved, now request PGN lists.
+            if(!pgnListReqDone)
+            {
+                var gw = (Ngt1)Program.CanGateway;
+                foreach (var device in _n2kDevices)
+                    gw.IsoRequest(126464, Convert.ToByte(device.Address));
+                pgnListReqDone = true;
+            }
+            //Pgn lists recieved.
+            else
+            {
+                //Unsubscribe to NMEA 2000 messages
+                Program.CanGateway.MessageRecieved -= CanGateway_MessageRecieved;
 
-            //Dispose of timer
-            var timer = (Timer)sender;
-            timer.Stop();
-            timer.Tick -= T_Tick;
-            timer.Dispose();
+                //Dispose of timer
+                var timer = (Timer)sender;
+                timer.Stop();
+                timer.Tick -= T_Tick;
+                timer.Dispose();
 
-            //Update networked devices list
-            _n2kDevices = _n2kDevices.Distinct().ToList();
-            addConnectedDeviceSources();
+                //Update networked devices list
+                _n2kDevices = _n2kDevices.Distinct().ToList();
+                addConnectedDeviceSources();
 
-            //Enable button
-            btnRefreshDeviceList.Enabled = true;
+                //Enable button
+                btnRefreshDeviceList.Enabled = true;
+            }
         }
         private void addConnectedDeviceSources()
         {

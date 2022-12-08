@@ -139,7 +139,7 @@ namespace WhatTheHelmRuntime
             //Issue request for product information from connected devices, and start the response timer
             ConnectedDeviceScanBusy = true;
             System.Windows.Forms.Timer productInformationResponseTimer = new System.Windows.Forms.Timer();
-            productInformationResponseTimer.Interval = 3000;
+            productInformationResponseTimer.Interval = 1500;
             productInformationResponseTimer.Tick += ProductInformationResponseTimer_Tick;
             CanGateway.IsoRequest(126996);
             productInformationResponseTimer.Start();

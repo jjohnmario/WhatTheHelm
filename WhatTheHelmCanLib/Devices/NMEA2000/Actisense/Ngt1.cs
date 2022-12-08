@@ -108,7 +108,7 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
         {
             //Clear existing PGN lists
             error = ACommand.ClearPGNList(_actiHandle, PGNEnableList_t.ENABLE_LIST_RX);
-            //error = ACommand.SetOperatingMode(_actiHandle, 2);
+            //error = ACommand.SetOperatingMode(_actiHandle, 2); Uncomment to disable PGN list and recieve all messages.
 
             //Create new PGN lists
             //Tx
@@ -147,6 +147,24 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
             N2Kmsg.Timestamp = 0;
             N2Kmsg.Src = 255;
             N2Kmsg.Dest = 255;
+            N2Kmsg.Size = 3;
+            byte[] pgn = BitConverter.GetBytes(requestedPgn);
+            N2Kmsg.Data = new byte[NMEA2K.N2K_MAXLEN_FP];
+            Array.Copy(pgn, 0, N2Kmsg.Data, 4, 3); // Note that the actual data frame starts at index 4, not index 0 for NGT-1
+            ARLErrorCodes_t error = NMEA2K.Write(_actiHandle, ref N2Kmsg);
+            if (error != ARLErrorCodes_t.ES_NoError)
+                return false;
+            else
+                return true;
+        }
+
+        public bool IsoRequest(uint requestedPgn, byte destAddr)
+        {
+            NMEA2K.N2KMsg_s N2Kmsg = new NMEA2K.N2KMsg_s();
+            N2Kmsg.PGN = 0x0EA00;
+            N2Kmsg.Timestamp = 0;
+            N2Kmsg.Src = 255;
+            N2Kmsg.Dest = destAddr;
             N2Kmsg.Size = 3;
             byte[] pgn = BitConverter.GetBytes(requestedPgn);
             N2Kmsg.Data = new byte[NMEA2K.N2K_MAXLEN_FP];
