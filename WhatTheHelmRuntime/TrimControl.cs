@@ -27,7 +27,7 @@ namespace WhatTheHelmRuntime
         Pgn0x0EF00 _pgn0x0EF00 = new Pgn0x0EF00();
         Pgn0x0FFA0 _pgn0x0FFA0 = new Pgn0x0FFA0();
         Pgn0x0FFA1 _pgn0x0FFA1 = new Pgn0x0FFA1();
-        bool _syncEnabled = false;
+        bool _syncEnabled;
 
         public TrimControl()
         {
@@ -52,6 +52,11 @@ namespace WhatTheHelmRuntime
             Pgn0x0EF00 pgn3 = new Pgn0x0EF00(new MvecCommand0x96(0), 178);
             CanMessage msg3 = new CanMessage(pgn3.Pgn, Format.EXTENDED, 6, Program.CanGateway.Address, pgn3.DestinationAddress, pgn3.SerializeFields());
             Program.CanGateway.Write(msg3);
+
+            //Set sync by default
+            _syncEnabled = true;
+            btnSync.BackgroundImage = Resources.YellowButton;
+            btnSync.ForeColor = Color.Black;
 
             Timer t = new Timer();
             t.Interval = 5000;

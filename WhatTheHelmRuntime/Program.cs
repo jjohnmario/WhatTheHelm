@@ -91,10 +91,10 @@ namespace WhatTheHelmRuntime
                     //Application.Run(nmea2000Config);
                     //SwitchPanel switchPanel = new SwitchPanel();
                     //Application.Run(switchPanel);
-                    //TrimControl trimControl = new TrimControl();
-                    //Application.Run(trimControl);
-                    Rudder rudder = new Rudder();
-                    Application.Run(rudder);
+                    TrimControl trimControl = new TrimControl();
+                    Application.Run(trimControl);
+                    //Rudder rudder = new Rudder();
+                    //Application.Run(rudder);
 
                 }
             }
