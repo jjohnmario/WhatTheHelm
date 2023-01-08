@@ -91,10 +91,10 @@ namespace WhatTheHelmRuntime
                     //Application.Run(nmea2000Config);
                     //SwitchPanel switchPanel = new SwitchPanel();
                     //Application.Run(switchPanel);
-                    TrimControl trimControl = new TrimControl();
-                    Application.Run(trimControl);
-                    //Rudder rudder = new Rudder();
-                    //Application.Run(rudder);
+                    //TrimControl trimControl = new TrimControl();
+                    //Application.Run(trimControl);
+                    Rudder rudder = new Rudder();
+                    Application.Run(rudder);
 
                 }
             }
@@ -123,7 +123,7 @@ namespace WhatTheHelmRuntime
             //Open NMEA 2000 gateway. If COM port is busy, wait and retry.
             if(CanGateway == null)
             {
-                SerialPort serialPort = new SerialPort("COM5", 115200, Parity.None, 8, StopBits.One);
+                SerialPort serialPort = new SerialPort("COM4", 115200, Parity.None, 8, StopBits.One);
                 do
                 {
                     if (CanGateway != null)

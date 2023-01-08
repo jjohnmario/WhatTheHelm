@@ -750,9 +750,10 @@ namespace WhatTheHelmRuntime
             this.gaugeRudderPosition.Hand = optionalLinearGaugeHand2;
             this.gaugeRudderPosition.InputPin = sinkPin2;
             this.gaugeRudderPosition.InternalData = ((Vcl.VclBinaryData)(resources.GetObject("gaugeRudderPosition.InternalData")));
-            this.gaugeRudderPosition.Location = new System.Drawing.Point(35, 295);
-            this.gaugeRudderPosition.Max = 90D;
-            this.gaugeRudderPosition.Min = 0D;
+            this.gaugeRudderPosition.Location = new System.Drawing.Point(47, 363);
+            this.gaugeRudderPosition.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gaugeRudderPosition.Max = 45D;
+            this.gaugeRudderPosition.Min = -45D;
             this.gaugeRudderPosition.Name = "gaugeRudderPosition";
             elementSize34.Value = 0.9F;
             linearGaugeRail2.Length = elementSize34;
@@ -950,20 +951,21 @@ namespace WhatTheHelmRuntime
             reversibleGaugeScale2.Precision = scalePrecision2;
             reversibleGaugeScale2.Reversed = true;
             this.gaugeRudderPosition.Scale = reversibleGaugeScale2;
-            this.gaugeRudderPosition.Size = new System.Drawing.Size(726, 153);
+            this.gaugeRudderPosition.Size = new System.Drawing.Size(968, 188);
             this.gaugeRudderPosition.TabIndex = 121;
             this.gaugeRudderPosition.TabStop = false;
             this.gaugeRudderPosition.Text = "linearGauge2";
-            this.gaugeRudderPosition.Value = 45D;
+            this.gaugeRudderPosition.Value = 0D;
             // 
             // label36
             // 
             this.label36.BackColor = System.Drawing.Color.Black;
             this.label36.Font = new System.Drawing.Font("Arial", 14F);
             this.label36.ForeColor = System.Drawing.Color.White;
-            this.label36.Location = new System.Drawing.Point(82, 324);
+            this.label36.Location = new System.Drawing.Point(109, 399);
+            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(632, 25);
+            this.label36.Size = new System.Drawing.Size(843, 31);
             this.label36.TabIndex = 129;
             this.label36.Text = "RUDDER POSITION";
             this.label36.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -973,9 +975,10 @@ namespace WhatTheHelmRuntime
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Location = new System.Drawing.Point(146, 27);
+            this.panel2.Location = new System.Drawing.Point(195, 33);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(505, 77);
+            this.panel2.Size = new System.Drawing.Size(673, 95);
             this.panel2.TabIndex = 130;
             // 
             // label1
@@ -983,9 +986,10 @@ namespace WhatTheHelmRuntime
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.label1.Font = new System.Drawing.Font("Arial", 14F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(41, 122);
+            this.label1.Location = new System.Drawing.Point(55, 150);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(715, 25);
+            this.label1.Size = new System.Drawing.Size(953, 31);
             this.label1.TabIndex = 148;
             this.label1.Text = "ENGINE SYNCHRONIZATION";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -995,9 +999,10 @@ namespace WhatTheHelmRuntime
             this.lblPortSlow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(53)))), ((int)(((byte)(4)))));
             this.lblPortSlow.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblPortSlow.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPortSlow.Location = new System.Drawing.Point(41, 187);
+            this.lblPortSlow.Location = new System.Drawing.Point(55, 230);
+            this.lblPortSlow.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPortSlow.Name = "lblPortSlow";
-            this.lblPortSlow.Size = new System.Drawing.Size(201, 63);
+            this.lblPortSlow.Size = new System.Drawing.Size(268, 78);
             this.lblPortSlow.TabIndex = 149;
             this.lblPortSlow.Text = "PORT SLOW";
             this.lblPortSlow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1007,9 +1012,10 @@ namespace WhatTheHelmRuntime
             this.lblSync.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(30)))), ((int)(((byte)(2)))));
             this.lblSync.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblSync.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSync.Location = new System.Drawing.Point(257, 168);
+            this.lblSync.Location = new System.Drawing.Point(343, 207);
+            this.lblSync.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSync.Name = "lblSync";
-            this.lblSync.Size = new System.Drawing.Size(283, 100);
+            this.lblSync.Size = new System.Drawing.Size(377, 123);
             this.lblSync.TabIndex = 150;
             this.lblSync.Text = "SYNC";
             this.lblSync.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1019,19 +1025,20 @@ namespace WhatTheHelmRuntime
             this.lblStbdSlow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(53)))), ((int)(((byte)(4)))));
             this.lblStbdSlow.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblStbdSlow.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStbdSlow.Location = new System.Drawing.Point(557, 187);
+            this.lblStbdSlow.Location = new System.Drawing.Point(743, 230);
+            this.lblStbdSlow.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStbdSlow.Name = "lblStbdSlow";
-            this.lblStbdSlow.Size = new System.Drawing.Size(199, 63);
+            this.lblStbdSlow.Size = new System.Drawing.Size(265, 78);
             this.lblStbdSlow.TabIndex = 151;
             this.lblStbdSlow.Text = "STBD SLOW";
             this.lblStbdSlow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Rudder
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(800, 480);
+            this.ClientSize = new System.Drawing.Size(1067, 591);
             this.ControlBox = false;
             this.Controls.Add(this.lblStbdSlow);
             this.Controls.Add(this.lblSync);
@@ -1041,7 +1048,7 @@ namespace WhatTheHelmRuntime
             this.Controls.Add(this.label36);
             this.Controls.Add(this.gaugeRudderPosition);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Rudder";
             this.Text = "Gps";
             ((System.ComponentModel.ISupportInitialize)(this.linearGauge1)).EndInit();
