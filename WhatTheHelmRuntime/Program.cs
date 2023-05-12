@@ -83,19 +83,8 @@ namespace WhatTheHelmRuntime
                 }
                 catch
                 {
-                    //PortGauges portGauges = new PortGauges();
-                    //Application.Run(portGauges);
-                    //StbdGauges stbdGauges = new StbdGauges();
-                    //Application.Run(stbdGauges);
-                    //PropulsionNmea2000Config nmea2000Config = new PropulsionNmea2000Config(null);
-                    //Application.Run(nmea2000Config);
-                    //SwitchPanel switchPanel = new SwitchPanel();
-                    //Application.Run(switchPanel);
-                    //TrimControl trimControl = new TrimControl();
-                    //Application.Run(trimControl);
-                    Rudder rudder = new Rudder();
-                    Application.Run(rudder);
-
+                    PortGauges portGauges = new PortGauges();
+                    Application.Run(portGauges);
                 }
             }
             catch(Exception e)
@@ -123,7 +112,7 @@ namespace WhatTheHelmRuntime
             //Open NMEA 2000 gateway. If COM port is busy, wait and retry.
             if(CanGateway == null)
             {
-                SerialPort serialPort = new SerialPort("COM4", 115200, Parity.None, 8, StopBits.One);
+                SerialPort serialPort = new SerialPort("COM1", 115200, Parity.None, 8, StopBits.One);
                 do
                 {
                     if (CanGateway != null)
