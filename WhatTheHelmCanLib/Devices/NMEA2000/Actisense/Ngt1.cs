@@ -36,6 +36,7 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
         private ActisenseComms.API.Callback _n2kRxCallback;
         private ActisenseComms.API.Decode.Callback _gatewayConfigCallback;
         private object _parseLock = new object();
+        private bool _queueDumpActive = false;
 
         /// <summary>
         /// Creates an object reference to an Actisense NGT-1 gateway and binds it to the defined CAN network address and serial port.
@@ -186,11 +187,24 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
                     _mainMessageQueue.TryDequeue(out message);
                     if (MessageRecieved != null)
                     {
-                        var parsedMessage = Parse(message);
-                        if(parsedMessage != null)
-                            MessageRecieved.Invoke(this, new CanMessageArgs() { Message = parsedMessage });
+                        try
+                        {
+                            var parsedMessage = Parse(message);
+                            if (parsedMessage != null)
+                                MessageRecieved.Invoke(this, new CanMessageArgs() { Message = parsedMessage });
+                        }
+                        catch
+                        {
+                            while (!_mainMessageQueue.IsEmpty)
+                            {
+                                _queueDumpActive = true;
+                                _mainMessageQueue.TryDequeue(out message);
+                            }
+                            _queueDumpActive = false;
+                        }
                     }
                 }
+                //Thread.Sleep(1);
             }
         }
 
@@ -201,7 +215,8 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
             LastRead = DateTime.Now;
             NMEA2K.N2KMsg_s msg;
             _error = NMEA2K.Read(_actiHandle, out msg);
-            _mainMessageQueue.Enqueue(msg);
+            if(!_queueDumpActive)
+                _mainMessageQueue.Enqueue(msg);
         }
 
         public CanMessage Parse(object message)
