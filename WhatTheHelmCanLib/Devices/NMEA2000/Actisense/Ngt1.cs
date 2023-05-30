@@ -181,6 +181,10 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
         {
             while (_scanMainMessageQueue)
             {
+                //Dump the queue if there is a backlog greater than 100 messages.
+                if (_mainMessageQueue.Count > 100)
+                    dumpMainMessageQueue();
+                //If there is between 1-100 messages in the backlog, parse each.
                 if (_mainMessageQueue.Count > 0)
                 {
                     N2KMsg_s message;
@@ -195,17 +199,22 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
                         }
                         catch
                         {
-                            while (!_mainMessageQueue.IsEmpty)
-                            {
-                                _queueDumpActive = true;
-                                _mainMessageQueue.TryDequeue(out message);
-                            }
-                            _queueDumpActive = false;
+                            dumpMainMessageQueue();
                         }
                     }
                 }
-                //Thread.Sleep(1);
             }
+        }
+
+        private void dumpMainMessageQueue()
+        {
+            N2KMsg_s message;
+            while (!_mainMessageQueue.IsEmpty)
+            {
+                _queueDumpActive = true;
+                _mainMessageQueue.TryDequeue(out message);
+            }
+            _queueDumpActive = false;
         }
 
         private void n2kRxCallbackHandler(IntPtr UserData)
