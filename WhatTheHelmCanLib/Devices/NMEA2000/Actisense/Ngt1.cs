@@ -182,9 +182,9 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
             while (_scanMainMessageQueue)
             {
                 //Dump the queue if there is a backlog greater than 100 messages.
-                if (_mainMessageQueue.Count > 100)
+                if (_mainMessageQueue.Count > 50)
                     dumpMainMessageQueue();
-                //If there is between 1-100 messages in the backlog, parse each.
+                //If there is between 1-50 messages in the backlog, parse each.
                 if (_mainMessageQueue.Count > 0)
                 {
                     N2KMsg_s message;

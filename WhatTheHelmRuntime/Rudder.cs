@@ -132,14 +132,14 @@ namespace WhatTheHelmRuntime
                 lblPortSlow.Invoke(new MethodInvoker(() =>
                 {
                     //Slow
-                    if ((portRpm < stbdRpm) && (Math.Abs(rpmDelta) > 25))
+                    if ((portRpm < stbdRpm) && (Math.Abs(rpmDelta) > 50))
                     {
                         lblPortSlow.BackColor = Color.Yellow;
                         lblStbdSlow.BackColor = Color.FromArgb(60, 53, 4);
                         lblSync.BackColor = Color.FromArgb(3, 30, 2);
                     }
                     //Fast
-                    else if ((portRpm > stbdRpm) && (Math.Abs(rpmDelta) > 20))
+                    else if ((portRpm > stbdRpm) && (Math.Abs(rpmDelta) > 45))
                     {
                         lblStbdSlow.BackColor = Color.Yellow;
                         lblPortSlow.BackColor = Color.FromArgb(60, 53, 4);

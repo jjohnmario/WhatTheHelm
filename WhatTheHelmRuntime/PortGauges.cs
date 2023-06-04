@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Collections;
+using System.Diagnostics;
+using System.IO;
 
 namespace WhatTheHelmRuntime
 {
@@ -401,7 +403,12 @@ namespace WhatTheHelmRuntime
                 Program.Configuration.Save(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm", "config.json",Program.Configuration);
                 Program.InitializeConfiguration();
             }
+        }
 
+        private void btnCalScreens_Click(object sender, EventArgs e)
+        {
+            var path = Path.Combine(@"C:\Program Files\Elo Touch Solutions", "EloConfig.exe");
+            Process.Start(path, @" /align");
         }
     }
 }

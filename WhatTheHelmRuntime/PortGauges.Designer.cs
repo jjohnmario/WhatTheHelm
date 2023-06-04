@@ -30,9 +30,9 @@ namespace WhatTheHelmRuntime
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PortGauges));
-            CodeArtEng.Gauge.Themes.ThemeColors themeColors4 = new CodeArtEng.Gauge.Themes.ThemeColors();
-            CodeArtEng.Gauge.Themes.ThemeColors themeColors5 = new CodeArtEng.Gauge.Themes.ThemeColors();
-            CodeArtEng.Gauge.Themes.ThemeColors themeColors6 = new CodeArtEng.Gauge.Themes.ThemeColors();
+            CodeArtEng.Gauge.Themes.ThemeColors themeColors1 = new CodeArtEng.Gauge.Themes.ThemeColors();
+            CodeArtEng.Gauge.Themes.ThemeColors themeColors2 = new CodeArtEng.Gauge.Themes.ThemeColors();
+            CodeArtEng.Gauge.Themes.ThemeColors themeColors3 = new CodeArtEng.Gauge.Themes.ThemeColors();
             this.lblHours = new System.Windows.Forms.Label();
             this.lblDriveTempHigh = new System.Windows.Forms.Label();
             this.lblVoltageLow = new System.Windows.Forms.Label();
@@ -62,6 +62,7 @@ namespace WhatTheHelmRuntime
             this.label1 = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnConfigNmea2000 = new System.Windows.Forms.Button();
+            this.btnCalScreens = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblHours
@@ -206,11 +207,11 @@ namespace WhatTheHelmRuntime
             this.gaugeRpm.Theme = CodeArtEng.Gauge.GaugeTheme.DarkGrey;
             this.gaugeRpm.Title = "";
             this.gaugeRpm.Unit = "RPM";
-            this.gaugeRpm.UserDefinedColors.Base = themeColors4;
-            themeColors5.PointerColor = System.Drawing.Color.Red;
-            this.gaugeRpm.UserDefinedColors.Error = themeColors5;
-            themeColors6.PointerColor = System.Drawing.Color.Orange;
-            this.gaugeRpm.UserDefinedColors.Warning = themeColors6;
+            this.gaugeRpm.UserDefinedColors.Base = themeColors1;
+            themeColors2.PointerColor = System.Drawing.Color.Red;
+            this.gaugeRpm.UserDefinedColors.Error = themeColors2;
+            themeColors3.PointerColor = System.Drawing.Color.Orange;
+            this.gaugeRpm.UserDefinedColors.Warning = themeColors3;
             this.gaugeRpm.Value = 0D;
             this.gaugeRpm.WarningLimit = 3800D;
             // 
@@ -467,11 +468,30 @@ namespace WhatTheHelmRuntime
             this.btnConfigNmea2000.UseVisualStyleBackColor = true;
             this.btnConfigNmea2000.Click += new System.EventHandler(this.btnConfigNmea2000_Click);
             // 
+            // btnCalScreens
+            // 
+            this.btnCalScreens.BackgroundImage = global::WhatTheHelmRuntime.Properties.Resources.BlackButton;
+            this.btnCalScreens.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCalScreens.FlatAppearance.BorderSize = 0;
+            this.btnCalScreens.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCalScreens.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalScreens.ForeColor = System.Drawing.Color.White;
+            this.btnCalScreens.Location = new System.Drawing.Point(178, 736);
+            this.btnCalScreens.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCalScreens.Name = "btnCalScreens";
+            this.btnCalScreens.Size = new System.Drawing.Size(157, 53);
+            this.btnCalScreens.TabIndex = 152;
+            this.btnCalScreens.TabStop = false;
+            this.btnCalScreens.Text = "CALIBRATE TOUCH SCREENS";
+            this.btnCalScreens.UseVisualStyleBackColor = true;
+            this.btnCalScreens.Click += new System.EventHandler(this.btnCalScreens_Click);
+            // 
             // PortGauges
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1280, 800);
+            this.Controls.Add(this.btnCalScreens);
             this.Controls.Add(this.btnConfigNmea2000);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.lblCanMsgQueue);
@@ -541,5 +561,6 @@ namespace WhatTheHelmRuntime
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnConfigNmea2000;
+        private System.Windows.Forms.Button btnCalScreens;
     }
 }
