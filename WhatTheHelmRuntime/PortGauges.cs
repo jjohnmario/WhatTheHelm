@@ -84,6 +84,14 @@ namespace WhatTheHelmRuntime
             InitializeComponent();
             this.MinimumSize = new Size() { Height = 800, Width = 1280 };
             this.MaximumSize = new Size() { Height = 800, Width = 1280 };
+            gaugeWaterTemp.HighWarningEnabled = true;
+            gaugeWaterTemp.HighWarningThreshold = 190;
+            gaugeDrivePressure.LowWarningEnabled = true;
+            gaugeDrivePressure.LowWarningThreshold = 300;
+            gaugeDrivePressure.HighWarningEnabled = true;
+            gaugeDrivePressure.HighWarningThreshold = 350;
+            gaugeVolts.LowWarningEnabled = true;
+            gaugeVolts.LowWarningThreshold = 12.3;
             Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
             Timer pgnTimeoutTimer = new Timer();
             pgnTimeoutTimer.Interval = 2000;
@@ -271,9 +279,6 @@ namespace WhatTheHelmRuntime
                             {
 
                             }
-                            //Low battery alarm
-                            if (lblVoltageLow.IsHandleCreated)
-                                lblVoltageLow.Invoke(new MethodInvoker(() => { if (gaugeVolts.Value <= gaugeVolts.ErrorLimit) lblVoltageLow.BackColor = Color.Red; else lblVoltageLow.BackColor = Color.FromArgb(56, 0, 0); }));
                         }
                     }
             }
@@ -363,12 +368,10 @@ namespace WhatTheHelmRuntime
             if (alternatorPotentialLastMsgEt.TotalSeconds > 5)
             {
                 gaugeVolts.Visibility = System.Windows.Visibility.Hidden;
-                lblVoltageLow.Invoke(new MethodInvoker(() => { lblVoltageLow.Hide(); }));
             }
             else
             {
                 gaugeVolts.Visibility = System.Windows.Visibility.Visible;
-                lblVoltageLow.Invoke(new MethodInvoker(() => { lblVoltageLow.Show(); }));
             }
         }
 

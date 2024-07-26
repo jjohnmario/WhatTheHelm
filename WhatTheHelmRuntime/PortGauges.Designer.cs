@@ -30,7 +30,6 @@ namespace WhatTheHelmRuntime
         private void InitializeComponent()
         {
             this.lblDriveTempHigh = new System.Windows.Forms.Label();
-            this.lblVoltageLow = new System.Windows.Forms.Label();
             this.lblOilPressLow = new System.Windows.Forms.Label();
             this.lblFuelPressLow = new System.Windows.Forms.Label();
             this.lblWaterTempHigh = new System.Windows.Forms.Label();
@@ -71,18 +70,6 @@ namespace WhatTheHelmRuntime
             this.lblDriveTempHigh.TabIndex = 129;
             this.lblDriveTempHigh.Text = "TEMP";
             this.lblDriveTempHigh.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblVoltageLow
-            // 
-            this.lblVoltageLow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblVoltageLow.Font = new System.Drawing.Font("Arial", 14F);
-            this.lblVoltageLow.ForeColor = System.Drawing.Color.Black;
-            this.lblVoltageLow.Location = new System.Drawing.Point(496, 459);
-            this.lblVoltageLow.Name = "lblVoltageLow";
-            this.lblVoltageLow.Size = new System.Drawing.Size(69, 25);
-            this.lblVoltageLow.TabIndex = 128;
-            this.lblVoltageLow.Text = "LOW";
-            this.lblVoltageLow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblOilPressLow
             // 
@@ -361,7 +348,6 @@ namespace WhatTheHelmRuntime
             this.Controls.Add(this.lblJ1939BustStatus);
             this.Controls.Add(this.label33);
             this.Controls.Add(this.lblDriveTempHigh);
-            this.Controls.Add(this.lblVoltageLow);
             this.Controls.Add(this.lblOilPressLow);
             this.Controls.Add(this.lblFuelPressLow);
             this.Controls.Add(this.lblWaterTempHigh);
@@ -386,7 +372,6 @@ namespace WhatTheHelmRuntime
 
         #endregion
         private System.Windows.Forms.Label lblDriveTempHigh;
-        private System.Windows.Forms.Label lblVoltageLow;
         private System.Windows.Forms.Label lblOilPressLow;
         private System.Windows.Forms.Label lblFuelPressLow;
         private System.Windows.Forms.Label lblWaterTempHigh;
