@@ -33,7 +33,6 @@ namespace WhatTheHelmRuntime
             CodeArtEng.Gauge.Themes.ThemeColors themeColors1 = new CodeArtEng.Gauge.Themes.ThemeColors();
             CodeArtEng.Gauge.Themes.ThemeColors themeColors2 = new CodeArtEng.Gauge.Themes.ThemeColors();
             CodeArtEng.Gauge.Themes.ThemeColors themeColors3 = new CodeArtEng.Gauge.Themes.ThemeColors();
-            this.lblHours = new System.Windows.Forms.Label();
             this.lblDriveTempHigh = new System.Windows.Forms.Label();
             this.lblVoltageLow = new System.Windows.Forms.Label();
             this.lblOilPressLow = new System.Windows.Forms.Label();
@@ -42,9 +41,7 @@ namespace WhatTheHelmRuntime
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.lblWaterTempHigh = new System.Windows.Forms.Label();
-            this.gaugeRpm = new CodeArtEng.Gauge.CircularGauge();
             this.gaugeOilPressure = new CodeArtEng.Gauge.CircularGauge();
             this.gaugeVolts = new CodeArtEng.Gauge.CircularGauge();
             this.gaugeDrivePressure = new CodeArtEng.Gauge.CircularGauge();
@@ -63,20 +60,9 @@ namespace WhatTheHelmRuntime
             this.btnExit = new System.Windows.Forms.Button();
             this.btnConfigNmea2000 = new System.Windows.Forms.Button();
             this.btnCalScreens = new System.Windows.Forms.Button();
+            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+            this.gaugeRpm = new WhatTheHelmFormsLib.Tachometer();
             this.SuspendLayout();
-            // 
-            // lblHours
-            // 
-            this.lblHours.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblHours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-            this.lblHours.Font = new System.Drawing.Font("Arial", 14F);
-            this.lblHours.ForeColor = System.Drawing.Color.White;
-            this.lblHours.Location = new System.Drawing.Point(890, 533);
-            this.lblHours.Name = "lblHours";
-            this.lblHours.Size = new System.Drawing.Size(151, 22);
-            this.lblHours.TabIndex = 130;
-            this.lblHours.Text = "--";
-            this.lblHours.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDriveTempHigh
             // 
@@ -119,7 +105,7 @@ namespace WhatTheHelmRuntime
             this.lblFuelPressLow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblFuelPressLow.Font = new System.Drawing.Font("Arial", 14F);
             this.lblFuelPressLow.ForeColor = System.Drawing.Color.Black;
-            this.lblFuelPressLow.Location = new System.Drawing.Point(878, 498);
+            this.lblFuelPressLow.Location = new System.Drawing.Point(878, 210);
             this.lblFuelPressLow.Name = "lblFuelPressLow";
             this.lblFuelPressLow.Size = new System.Drawing.Size(173, 25);
             this.lblFuelPressLow.TabIndex = 126;
@@ -166,16 +152,6 @@ namespace WhatTheHelmRuntime
             this.panel3.Size = new System.Drawing.Size(120, 20);
             this.panel3.TabIndex = 122;
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-            this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Location = new System.Drawing.Point(841, 288);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(253, 39);
-            this.panel2.TabIndex = 121;
-            // 
             // lblWaterTempHigh
             // 
             this.lblWaterTempHigh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -187,33 +163,6 @@ namespace WhatTheHelmRuntime
             this.lblWaterTempHigh.TabIndex = 120;
             this.lblWaterTempHigh.Text = "HIGH";
             this.lblWaterTempHigh.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // gaugeRpm
-            // 
-            this.gaugeRpm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.gaugeRpm.ErrorLimit = 4000D;
-            this.gaugeRpm.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gaugeRpm.FontUnitLabel = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.gaugeRpm.InfoMode = CodeArtEng.Gauge.GaugeInfoMode.MouseClick;
-            this.gaugeRpm.Location = new System.Drawing.Point(690, 133);
-            this.gaugeRpm.Maximum = 4000D;
-            this.gaugeRpm.Name = "gaugeRpm";
-            this.gaugeRpm.PointerPaintMode = CodeArtEng.Gauge.PointerPaintMode.SimpleGradient;
-            this.gaugeRpm.PointerWidth = 80;
-            this.gaugeRpm.ScaleFactor = 1D;
-            this.gaugeRpm.SegmentGap = 10;
-            this.gaugeRpm.Size = new System.Drawing.Size(555, 551);
-            this.gaugeRpm.TabIndex = 119;
-            this.gaugeRpm.Theme = CodeArtEng.Gauge.GaugeTheme.DarkGrey;
-            this.gaugeRpm.Title = "";
-            this.gaugeRpm.Unit = "RPM";
-            this.gaugeRpm.UserDefinedColors.Base = themeColors1;
-            themeColors2.PointerColor = System.Drawing.Color.Red;
-            this.gaugeRpm.UserDefinedColors.Error = themeColors2;
-            themeColors3.PointerColor = System.Drawing.Color.Orange;
-            this.gaugeRpm.UserDefinedColors.Warning = themeColors3;
-            this.gaugeRpm.Value = 0D;
-            this.gaugeRpm.WarningLimit = 3800D;
             // 
             // gaugeOilPressure
             // 
@@ -235,6 +184,11 @@ namespace WhatTheHelmRuntime
             this.gaugeOilPressure.Theme = CodeArtEng.Gauge.GaugeTheme.DarkGrey;
             this.gaugeOilPressure.Title = "";
             this.gaugeOilPressure.Unit = "OIL PSI";
+            this.gaugeOilPressure.UserDefinedColors.Base = themeColors1;
+            themeColors2.PointerColor = System.Drawing.Color.Red;
+            this.gaugeOilPressure.UserDefinedColors.Error = themeColors2;
+            themeColors3.PointerColor = System.Drawing.Color.Orange;
+            this.gaugeOilPressure.UserDefinedColors.Warning = themeColors3;
             this.gaugeOilPressure.Value = 0D;
             this.gaugeOilPressure.WarningLimit = 15D;
             // 
@@ -486,6 +440,15 @@ namespace WhatTheHelmRuntime
             this.btnCalScreens.UseVisualStyleBackColor = true;
             this.btnCalScreens.Click += new System.EventHandler(this.btnCalScreens_Click);
             // 
+            // elementHost1
+            // 
+            this.elementHost1.Location = new System.Drawing.Point(690, 133);
+            this.elementHost1.Name = "elementHost1";
+            this.elementHost1.Size = new System.Drawing.Size(555, 555);
+            this.elementHost1.TabIndex = 153;
+            this.elementHost1.Text = "elementHost1";
+            this.elementHost1.Child = this.gaugeRpm;
+            // 
             // PortGauges
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -500,7 +463,6 @@ namespace WhatTheHelmRuntime
             this.Controls.Add(this.label32);
             this.Controls.Add(this.lblJ1939BustStatus);
             this.Controls.Add(this.label33);
-            this.Controls.Add(this.lblHours);
             this.Controls.Add(this.lblDriveTempHigh);
             this.Controls.Add(this.lblVoltageLow);
             this.Controls.Add(this.lblOilPressLow);
@@ -509,18 +471,17 @@ namespace WhatTheHelmRuntime
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.lblWaterTempHigh);
-            this.Controls.Add(this.gaugeRpm);
             this.Controls.Add(this.gaugeOilPressure);
             this.Controls.Add(this.gaugeVolts);
             this.Controls.Add(this.gaugeDrivePressure);
             this.Controls.Add(this.gaugeWaterTemp);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.elementHost1);
+            this.Controls.Add(this.label5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PortGauges";
             this.Text = "StbdGauges";
@@ -531,8 +492,6 @@ namespace WhatTheHelmRuntime
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblHours;
         private System.Windows.Forms.Label lblDriveTempHigh;
         private System.Windows.Forms.Label lblVoltageLow;
         private System.Windows.Forms.Label lblOilPressLow;
@@ -541,9 +500,7 @@ namespace WhatTheHelmRuntime
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblWaterTempHigh;
-        private CodeArtEng.Gauge.CircularGauge gaugeRpm;
         private CodeArtEng.Gauge.CircularGauge gaugeOilPressure;
         private CodeArtEng.Gauge.CircularGauge gaugeVolts;
         private CodeArtEng.Gauge.CircularGauge gaugeDrivePressure;
@@ -562,5 +519,7 @@ namespace WhatTheHelmRuntime
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnConfigNmea2000;
         private System.Windows.Forms.Button btnCalScreens;
+        private System.Windows.Forms.Integration.ElementHost elementHost1;
+        private WhatTheHelmFormsLib.Tachometer gaugeRpm;
     }
 }
