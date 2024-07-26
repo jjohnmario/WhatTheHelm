@@ -84,23 +84,23 @@ namespace WhatTheHelmRuntime
             InitializeComponent();
             this.MinimumSize = new Size() { Height = 800, Width = 1280 };
             this.MaximumSize = new Size() { Height = 800, Width = 1280 };
-            gaugeWaterTemp.HighWarningEnabled = true;
-            gaugeWaterTemp.HighWarningThreshold = 190;
-            gaugeDrivePressure.LowWarningEnabled = true;
-            gaugeDrivePressure.LowWarningThreshold = 300;
-            gaugeDrivePressure.HighWarningEnabled = true;
-            gaugeDrivePressure.HighWarningThreshold = 350;
-            gaugeVolts.LowWarningEnabled = true;
-            gaugeVolts.LowWarningThreshold = 12.3;
-            Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
+            //gaugeWaterTemp.HighWarningEnabled = true;
+            //gaugeWaterTemp.HighWarningThreshold = 190;
+            //gaugeDrivePressure.LowWarningEnabled = true;
+            //gaugeDrivePressure.LowWarningThreshold = 300;
+            //gaugeDrivePressure.HighWarningEnabled = true;
+            //gaugeDrivePressure.HighWarningThreshold = 350;
+            //gaugeVolts.LowWarningEnabled = true;
+            //gaugeVolts.LowWarningThreshold = 12.3;
+            //Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
             Timer pgnTimeoutTimer = new Timer();
             pgnTimeoutTimer.Interval = 2000;
             pgnTimeoutTimer.Tick += PgnTimeoutTimer_Tick;
-            pgnTimeoutTimer.Start();
+            //pgnTimeoutTimer.Start();
             Timer networkStatusTimer = new Timer();
             networkStatusTimer.Interval = 100;
             networkStatusTimer.Tick += NetworkStatusTimer_Tick;
-            networkStatusTimer.Start();
+            //networkStatusTimer.Start();
         }
 
         private void CanGateway_MessageRecieved(object sender, CanMessageArgs e)
@@ -271,7 +271,7 @@ namespace WhatTheHelmRuntime
                                 if (_pgn0x1F214.BatteryInstance == Program.RunningConfiguration.PortPropulsionN2KConfig.AlternatorPotential.Instance)
                                 {
                                     _alternatorPotentialLastMsg = DateTime.Now;
-                                    gaugeVolts.SetVolts(Convert.ToInt32(_pgn0x1F214.Voltage));
+                                    gaugeVolts.SetVolts(_pgn0x1F214.Voltage);
                                 }
 
                             }
@@ -342,13 +342,6 @@ namespace WhatTheHelmRuntime
                 lblFuelPressLow.Invoke(new MethodInvoker(() => lblFuelPressLow.Show()));
             }
 
-            //Engine hours
-            //var engineHoursLastMsgEt = dtNow - _engineHoursLastMsg;
-            //if(engineHoursLastMsgEt.TotalSeconds > 5)
-            //    lblHours.Invoke(new MethodInvoker(() => { lblHours.Hide(); }));
-            //else
-            //    lblHours.Invoke(new MethodInvoker(() => { lblHours.Show(); }));
-
             //Transmission pressure
             var transPressLastMsgEt = dtNow - _transPressLastMsg;
             if (transPressLastMsgEt.TotalSeconds > 5)
@@ -365,14 +358,10 @@ namespace WhatTheHelmRuntime
 
             //Alternator potential
             var alternatorPotentialLastMsgEt = dtNow - _alternatorPotentialLastMsg;
-            if (alternatorPotentialLastMsgEt.TotalSeconds > 5)
-            {
-                gaugeVolts.Visibility = System.Windows.Visibility.Hidden;
-            }
-            else
-            {
-                gaugeVolts.Visibility = System.Windows.Visibility.Visible;
-            }
+            if (alternatorPotentialLastMsgEt.TotalSeconds > 5)            
+                gaugeVolts.Visibility = System.Windows.Visibility.Hidden;         
+            else        
+                gaugeVolts.Visibility = System.Windows.Visibility.Visible;        
         }
 
         private void NetworkStatusTimer_Tick(object sender, EventArgs e)

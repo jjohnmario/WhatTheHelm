@@ -62,7 +62,7 @@ namespace WhatTheHelmRuntime
             // lblDriveTempHigh
             // 
             this.lblDriveTempHigh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblDriveTempHigh.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblDriveTempHigh.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDriveTempHigh.ForeColor = System.Drawing.Color.Black;
             this.lblDriveTempHigh.Location = new System.Drawing.Point(152, 459);
             this.lblDriveTempHigh.Name = "lblDriveTempHigh";
@@ -74,7 +74,7 @@ namespace WhatTheHelmRuntime
             // lblOilPressLow
             // 
             this.lblOilPressLow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblOilPressLow.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblOilPressLow.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOilPressLow.ForeColor = System.Drawing.Color.Black;
             this.lblOilPressLow.Location = new System.Drawing.Point(152, 124);
             this.lblOilPressLow.Name = "lblOilPressLow";
@@ -86,7 +86,7 @@ namespace WhatTheHelmRuntime
             // lblFuelPressLow
             // 
             this.lblFuelPressLow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblFuelPressLow.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblFuelPressLow.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFuelPressLow.ForeColor = System.Drawing.Color.Black;
             this.lblFuelPressLow.Location = new System.Drawing.Point(878, 210);
             this.lblFuelPressLow.Name = "lblFuelPressLow";
@@ -98,9 +98,9 @@ namespace WhatTheHelmRuntime
             // lblWaterTempHigh
             // 
             this.lblWaterTempHigh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblWaterTempHigh.Font = new System.Drawing.Font("Arial", 14F);
+            this.lblWaterTempHigh.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWaterTempHigh.ForeColor = System.Drawing.Color.Black;
-            this.lblWaterTempHigh.Location = new System.Drawing.Point(496, 124);
+            this.lblWaterTempHigh.Location = new System.Drawing.Point(498, 124);
             this.lblWaterTempHigh.Name = "lblWaterTempHigh";
             this.lblWaterTempHigh.Size = new System.Drawing.Size(69, 25);
             this.lblWaterTempHigh.TabIndex = 120;
@@ -258,12 +258,12 @@ namespace WhatTheHelmRuntime
             this.btnConfigNmea2000.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConfigNmea2000.FlatAppearance.BorderSize = 0;
             this.btnConfigNmea2000.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfigNmea2000.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfigNmea2000.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfigNmea2000.ForeColor = System.Drawing.Color.White;
             this.btnConfigNmea2000.Location = new System.Drawing.Point(12, 736);
             this.btnConfigNmea2000.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfigNmea2000.Name = "btnConfigNmea2000";
-            this.btnConfigNmea2000.Size = new System.Drawing.Size(157, 53);
+            this.btnConfigNmea2000.Size = new System.Drawing.Size(157, 61);
             this.btnConfigNmea2000.TabIndex = 151;
             this.btnConfigNmea2000.TabStop = false;
             this.btnConfigNmea2000.Text = "NMEA 2000\r\nCONFIGURATION";
@@ -276,12 +276,12 @@ namespace WhatTheHelmRuntime
             this.btnCalScreens.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCalScreens.FlatAppearance.BorderSize = 0;
             this.btnCalScreens.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCalScreens.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalScreens.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalScreens.ForeColor = System.Drawing.Color.White;
             this.btnCalScreens.Location = new System.Drawing.Point(178, 736);
             this.btnCalScreens.Margin = new System.Windows.Forms.Padding(2);
             this.btnCalScreens.Name = "btnCalScreens";
-            this.btnCalScreens.Size = new System.Drawing.Size(157, 53);
+            this.btnCalScreens.Size = new System.Drawing.Size(157, 61);
             this.btnCalScreens.TabIndex = 152;
             this.btnCalScreens.TabStop = false;
             this.btnCalScreens.Text = "CALIBRATE TOUCH SCREENS";

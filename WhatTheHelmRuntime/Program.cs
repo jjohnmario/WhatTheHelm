@@ -30,7 +30,7 @@ namespace WhatTheHelmRuntime
             try
             {
                 //Initialize configuration
-                InitializeConfiguration();
+                //InitializeConfiguration();
 
                 //Periodically check for new devices that joined the CAN bus after the application started.
                 Timer checkForNewDevicesTimer = new Timer();
