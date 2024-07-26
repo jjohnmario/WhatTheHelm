@@ -111,8 +111,9 @@ namespace WhatTheHelmRuntime
                         if (_pgn0x1F200.EngineInstance == Program.RunningConfiguration.PortPropulsionN2KConfig.Rpm.Instance)
                         {
                             _rpmLastMsg = DateTime.Now;
-                            if (gaugeRpm.IsHandleCreated)
-                                gaugeRpm.Invoke(new MethodInvoker(() => gaugeRpm.Value = _pgn0x1F200.EngineSpeed / 4));
+                                gaugeRpm.SetRpm(_pgn0x1F200.EngineSpeed / 4);
+                            //if (gaugeRpm.IsHandleCreated)
+                            //    gaugeRpm.Invoke(new MethodInvoker(() => gaugeRpm.Value = _pgn0x1F200.EngineSpeed / 4));
                         }
                     }
                 }
