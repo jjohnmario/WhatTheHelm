@@ -15,7 +15,7 @@
                         <GradientStop Color="#FFF9F9F8" Offset="0.424"/>
                     </LinearGradientBrush>
                 </Ellipse.Fill>
-            </Ellipse>
+             </Ellipse>
             <Ellipse HorizontalAlignment="Left" Height="354" Margin="38,38,0,38" Stroke="Black" VerticalAlignment="Center" Width="354" Fill="Black"/>
             <Ellipse HorizontalAlignment="Left" Height="214" Stroke="Black" VerticalAlignment="Center" Width="214" Margin="105,108,0,108">
                 <Ellipse.Fill>
