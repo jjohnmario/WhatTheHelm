@@ -30,7 +30,7 @@ namespace WhatTheHelmRuntime
             try
             {
                 //Initialize configuration
-                //InitializeConfiguration();
+                InitializeConfiguration();
 
                 //Periodically check for new devices that joined the CAN bus after the application started.
                 Timer checkForNewDevicesTimer = new Timer();
@@ -110,7 +110,7 @@ namespace WhatTheHelmRuntime
             Configuration = Configuration.Read(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm", "config.json");
 
             //Open NMEA 2000 gateway. If COM port is busy, wait and retry.
-            if(CanGateway == null)
+            if (CanGateway == null)
             {
                 SerialPort serialPort = new SerialPort("COM1", 115200, Parity.None, 8, StopBits.One);
                 do

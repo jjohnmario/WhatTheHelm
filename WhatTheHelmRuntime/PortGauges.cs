@@ -9,6 +9,7 @@ using System.Collections;
 using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
 
 namespace WhatTheHelmRuntime
 {
@@ -37,6 +38,11 @@ namespace WhatTheHelmRuntime
         private Pgn0x1F205 _pgn0x1F205 = new Pgn0x1F205();
         private Pgn0x1F201 _pgn0x1F201 = new Pgn0x1F201();
         private Pgn0x1F214 _pgn0x1F214 = new Pgn0x1F214();
+        private Random _rpm = new Random(3000);
+        private Random _trans = new Random(189);
+        private Random _oilPress = new Random(40);
+        private Random _waterTemp = new Random(170);
+        private Random _volts = new Random(12);
 
         public PortGauges(List<KeyValuePair<Screen, Type>> screenMap)
         {
@@ -84,23 +90,36 @@ namespace WhatTheHelmRuntime
             InitializeComponent();
             this.MinimumSize = new Size() { Height = 800, Width = 1280 };
             this.MaximumSize = new Size() { Height = 800, Width = 1280 };
-            //gaugeWaterTemp.HighWarningEnabled = true;
-            //gaugeWaterTemp.HighWarningThreshold = 190;
-            //gaugeDrivePressure.LowWarningEnabled = true;
-            //gaugeDrivePressure.LowWarningThreshold = 300;
-            //gaugeDrivePressure.HighWarningEnabled = true;
-            //gaugeDrivePressure.HighWarningThreshold = 350;
-            //gaugeVolts.LowWarningEnabled = true;
-            //gaugeVolts.LowWarningThreshold = 12.3;
-            //Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
+            Timer t = new Timer();
+            t.Interval = 50;
+            t.Tick += T_Tick;
+            t.Start();
+            gaugeWaterTemp.HighWarningEnabled = true;
+            gaugeWaterTemp.HighWarningThreshold = 190;
+            gaugeDrivePressure.LowWarningEnabled = true;
+            gaugeDrivePressure.LowWarningThreshold = 300;
+            gaugeDrivePressure.HighWarningEnabled = true;
+            gaugeDrivePressure.HighWarningThreshold = 350;
+            gaugeVolts.LowWarningEnabled = true;
+            gaugeVolts.LowWarningThreshold = 12.0;
+            Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
             Timer pgnTimeoutTimer = new Timer();
             pgnTimeoutTimer.Interval = 2000;
             pgnTimeoutTimer.Tick += PgnTimeoutTimer_Tick;
             //pgnTimeoutTimer.Start();
             Timer networkStatusTimer = new Timer();
-            networkStatusTimer.Interval = 100;
+            networkStatusTimer.Interval = 250;
             networkStatusTimer.Tick += NetworkStatusTimer_Tick;
-            //networkStatusTimer.Start();
+            networkStatusTimer.Start();
+        }
+
+        private void T_Tick(object sender, EventArgs e)
+        {
+            gaugeRpm.SetRpm(_rpm.Next(3000, 3050));
+            gaugeWaterTemp.SetTemp(_waterTemp.Next(191, 192));
+            gaugeDrivePressure.SetPressure(_trans.Next(200, 220));
+            gaugeOilPressure.SetPressure(_oilPress.Next(60, 70));
+            gaugeVolts.SetVolts(12.0 + _volts.NextDouble());
         }
 
         private void CanGateway_MessageRecieved(object sender, CanMessageArgs e)

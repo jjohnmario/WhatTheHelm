@@ -57,6 +57,7 @@ namespace WhatTheHelmRuntime
             this.gaugeDrivePressure = new WhatTheHelmFormsLib.GearPressGauge();
             this.elementHost5 = new System.Windows.Forms.Integration.ElementHost();
             this.gaugeVolts = new WhatTheHelmFormsLib.VoltGauge();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblDriveTempHigh
@@ -333,11 +334,21 @@ namespace WhatTheHelmRuntime
             this.elementHost5.Text = "elementHost5";
             this.elementHost5.Child = this.gaugeVolts;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label6.Location = new System.Drawing.Point(360, 32);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(0, 13);
+            this.label6.TabIndex = 158;
+            // 
             // PortGauges
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1280, 800);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnCalScreens);
             this.Controls.Add(this.btnConfigNmea2000);
             this.Controls.Add(this.btnExit);
@@ -353,14 +364,14 @@ namespace WhatTheHelmRuntime
             this.Controls.Add(this.lblWaterTempHigh);
             this.Controls.Add(this.elementHost1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.elementHost2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.elementHost3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.elementHost4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.elementHost5);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.elementHost2);
+            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PortGauges";
             this.Text = "StbdGauges";
@@ -399,5 +410,6 @@ namespace WhatTheHelmRuntime
         private WhatTheHelmFormsLib.GearPressGauge gaugeDrivePressure;
         private System.Windows.Forms.Integration.ElementHost elementHost5;
         private WhatTheHelmFormsLib.VoltGauge gaugeVolts;
+        private System.Windows.Forms.Label label6;
     }
 }
