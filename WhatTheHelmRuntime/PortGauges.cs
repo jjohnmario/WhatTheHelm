@@ -10,6 +10,8 @@ using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
+using System.Threading;
+using Timer = System.Windows.Forms.Timer;
 
 namespace WhatTheHelmRuntime
 {
@@ -101,7 +103,7 @@ namespace WhatTheHelmRuntime
             gaugeDrivePressure.HighWarningEnabled = true;
             gaugeDrivePressure.HighWarningThreshold = 350;
             gaugeVolts.LowWarningEnabled = true;
-            gaugeVolts.LowWarningThreshold = 12.0;
+            gaugeVolts.LowWarningThreshold = 12.3;
             Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
             Timer pgnTimeoutTimer = new Timer();
             pgnTimeoutTimer.Interval = 2000;
@@ -120,6 +122,7 @@ namespace WhatTheHelmRuntime
             gaugeDrivePressure.SetPressure(_trans.Next(200, 220));
             gaugeOilPressure.SetPressure(_oilPress.Next(60, 70));
             gaugeVolts.SetVolts(12.0 + _volts.NextDouble());
+            //Thread.Sleep(50);
         }
 
         private void CanGateway_MessageRecieved(object sender, CanMessageArgs e)

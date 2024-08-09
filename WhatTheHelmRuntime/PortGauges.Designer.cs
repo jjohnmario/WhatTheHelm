@@ -374,7 +374,7 @@ namespace WhatTheHelmRuntime
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PortGauges";
-            this.Text = "StbdGauges";
+            this.Text = "PortGauges";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
