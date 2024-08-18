@@ -31,7 +31,6 @@ namespace WhatTheHelmRuntime
         private DateTime _engineTempLastMsg = new DateTime();
         private DateTime _oilPressLastMsg = new DateTime();
         private DateTime _engineAlarmsLastMsg = new DateTime();
-        private DateTime _engineHoursLastMsg = new DateTime();
         private DateTime _transPressLastMsg = new DateTime();
         private DateTime _transAlarmsLastMsg = new DateTime();
         private DateTime _alternatorPotentialLastMsg = new DateTime();
