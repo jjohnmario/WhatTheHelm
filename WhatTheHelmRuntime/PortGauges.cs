@@ -295,11 +295,6 @@ namespace WhatTheHelmRuntime
                                     _alternatorPotentialLastMsg = DateTime.Now;
                                     gaugeVolts.SetVolts(_pgn0x1F214.Voltage);
                                 }
-
-                            }
-                            else if (e.Message.Pgn == 00000)
-                            {
-
                             }
                         }
                     }

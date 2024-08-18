@@ -105,8 +105,7 @@ namespace WhatTheHelmRuntime
                             if (_pgn0x1F200.EngineInstance == Program.RunningConfiguration.StbdPropulsionN2KConfig.Rpm.Instance)
                             {
                                 _rpmLastMsg = DateTime.Now;
-                                if (gaugeRpm.IsHandleCreated)
-                                    gaugeRpm.Invoke(new MethodInvoker(() => gaugeRpm.Value = _pgn0x1F200.EngineSpeed / 4));
+                                gaugeRpm.SetRpm(_pgn0x1F200.EngineSpeed / 4);
                             }
                         }
                     }
@@ -124,9 +123,8 @@ namespace WhatTheHelmRuntime
                             if (_pgn0x1F201.EngineInstance == Program.RunningConfiguration.StbdPropulsionN2KConfig.EngineTemperature.Instance)
                             {
                                 _engineTempLastMsg = DateTime.Now;
-                                gaugeWaterTemp.Invoke(new MethodInvoker(() => { gaugeWaterTemp.Value = Convert.ToDouble(_pgn0x1F201.EngineTemperature.ToString("0")); }));
+                                gaugeWaterTemp.SetTemp(Convert.ToInt32(_pgn0x1F201.EngineTemperature));
                             }
-
                         }
                     }
 
@@ -143,7 +141,7 @@ namespace WhatTheHelmRuntime
                             if (_pgn0x1F201.EngineInstance == Program.RunningConfiguration.StbdPropulsionN2KConfig.OilPressure.Instance)
                             {
                                 _oilPressLastMsg = DateTime.Now;
-                                gaugeOilPressure.Invoke(new MethodInvoker(() => { gaugeOilPressure.Value = Convert.ToDouble(_pgn0x1F201.OilPressure.ToString("0")); }));
+                                gaugeOilPressure.SetPressure(Convert.ToInt32(_pgn0x1F201.OilPressure)); 
                             }
                         }
                     }
@@ -192,7 +190,13 @@ namespace WhatTheHelmRuntime
                             if (_pgn0x1F201.EngineInstance == Program.RunningConfiguration.StbdPropulsionN2KConfig.EngineHours.Instance)
                             {
                                 _engineHoursLastMsg = DateTime.Now;
-                                lblHours.Invoke(new MethodInvoker(() => { lblHours.Text = _pgn0x1F201.EngineHours.ToString("0.0") + " HRS"; }));
+                                var arr = string.Format("{0:0000.0}", Math.Truncate(_pgn0x1F201.EngineHours * 10) / 10).ToCharArray();
+                                int thousands = Convert.ToInt32(arr[arr.Length - 6].ToString());
+                                int hundreds = Convert.ToInt32(arr[arr.Length - 5].ToString());
+                                int tens = Convert.ToInt32(arr[arr.Length - 4].ToString());
+                                int ones = Convert.ToInt32(arr[arr.Length - 3].ToString());
+                                int tenths = Convert.ToInt32(arr[arr.Length - 1].ToString());
+                                gaugeRpm.SetEngineHours(thousands, hundreds, tens, ones, tenths);
                             }
                         }
                     }
@@ -210,7 +214,7 @@ namespace WhatTheHelmRuntime
                             if (_pgn0x1F205.EngineInstance == Program.RunningConfiguration.StbdPropulsionN2KConfig.TransPressure.Instance)
                             {
                                 _transPressLastMsg = DateTime.Now;
-                                gaugeDrivePressure.Invoke(new MethodInvoker(() => { gaugeDrivePressure.Value = Convert.ToDouble((_pgn0x1F205.OilPressure).ToString("0")); }));
+                                gaugeDrivePressure.SetPressure(Convert.ToInt32(_pgn0x1F205.OilPressure));
                             }
                         }
                     }
@@ -251,22 +255,13 @@ namespace WhatTheHelmRuntime
                                 if (_pgn0x1F214.BatteryInstance == Program.RunningConfiguration.StbdPropulsionN2KConfig.AlternatorPotential.Instance)
                                 {
                                     _alternatorPotentialLastMsg = DateTime.Now;
-                                    gaugeVolts.Invoke(new MethodInvoker(() => { gaugeVolts.Value = _pgn0x1F214.Voltage; }));
+                                    gaugeVolts.SetVolts(_pgn0x1F214.Voltage);
                                 }
 
                             }
-                            else if (e.Message.Pgn == 00000)
-                            {
-
-                            }
-                            //Low battery alarm
-                            if (lblVoltageLow.IsHandleCreated)
-                                lblVoltageLow.Invoke(new MethodInvoker(() => { if (gaugeVolts.Value <= gaugeVolts.ErrorLimit) lblVoltageLow.BackColor = Color.Red; else lblVoltageLow.BackColor = Color.FromArgb(56, 0, 0); }));
-
                         }
                     }
             }
-
         }
 
         private void PgnTimeoutTimer_Tick(object sender, EventArgs e)
@@ -277,23 +272,23 @@ namespace WhatTheHelmRuntime
             //Engine RPM
             var rpmLastMsgEt = dtNow - _rpmLastMsg;
             if (rpmLastMsgEt.TotalSeconds > 5)
-                gaugeRpm.Invoke(new MethodInvoker(() => gaugeRpm.Hide()));
+                gaugeRpm.Visibility = System.Windows.Visibility.Hidden;
             else
-                gaugeRpm.Invoke(new MethodInvoker(() => gaugeRpm.Show()));
+                gaugeRpm.Visibility = System.Windows.Visibility.Visible;
 
             //Engine temperature
             var engineTempLastMsgEt = dtNow - _engineTempLastMsg;
             if (engineTempLastMsgEt.TotalSeconds > 5)
-                gaugeWaterTemp.Invoke(new MethodInvoker(() => { gaugeWaterTemp.Hide(); }));
+                gaugeWaterTemp.Visibility = System.Windows.Visibility.Hidden;
             else
-                gaugeWaterTemp.Invoke(new MethodInvoker(() => { gaugeWaterTemp.Show(); }));
+                gaugeWaterTemp.Visibility = System.Windows.Visibility.Visible;
 
             //Oil pressure
             var oilPressLastMsgEt = dtNow - _oilPressLastMsg;
             if (oilPressLastMsgEt.TotalSeconds > 5)
-                gaugeOilPressure.Invoke(new MethodInvoker(() => { gaugeOilPressure.Hide(); }));
+                gaugeOilPressure.Visibility = System.Windows.Visibility.Hidden;
             else
-                gaugeOilPressure.Invoke(new MethodInvoker(() => { gaugeOilPressure.Show(); }));
+                gaugeOilPressure.Visibility = System.Windows.Visibility.Visible;
 
             //Engine alarms
             var engineAlarmsLastMsgEt = dtNow - _engineAlarmsLastMsg;
@@ -310,19 +305,12 @@ namespace WhatTheHelmRuntime
                 lblFuelPressLow.Invoke(new MethodInvoker(() => lblFuelPressLow.Show()));
             }
 
-            //Engine hours
-            var engineHoursLastMsgEt = dtNow - _engineHoursLastMsg;
-            if (engineHoursLastMsgEt.TotalSeconds > 5)
-                lblHours.Invoke(new MethodInvoker(() => { lblHours.Hide(); }));
-            else
-                lblHours.Invoke(new MethodInvoker(() => { lblHours.Show(); }));
-
             //Transmission pressure
             var transPressLastMsgEt = dtNow - _transPressLastMsg;
             if (transPressLastMsgEt.TotalSeconds > 5)
-                gaugeDrivePressure.Invoke(new MethodInvoker(() => { gaugeDrivePressure.Hide(); }));
+                gaugeDrivePressure.Visibility = System.Windows.Visibility.Hidden;
             else
-                gaugeDrivePressure.Invoke(new MethodInvoker(() => { gaugeDrivePressure.Show(); }));
+                gaugeDrivePressure.Visibility = System.Windows.Visibility.Visible;
 
             //Transmission alarms
             var transAlarmsLastMsgEt = dtNow - _transAlarmsLastMsg;
@@ -334,15 +322,9 @@ namespace WhatTheHelmRuntime
             //Alternator potential
             var alternatorPotentialLastMsgEt = dtNow - _alternatorPotentialLastMsg;
             if (alternatorPotentialLastMsgEt.TotalSeconds > 5)
-            {
-                gaugeVolts.Invoke(new MethodInvoker(() => { gaugeVolts.Hide(); }));
-                lblVoltageLow.Invoke(new MethodInvoker(() => { lblVoltageLow.Hide(); }));
-            }
+                gaugeVolts.Visibility = System.Windows.Visibility.Hidden;
             else
-            {
-                gaugeVolts.Invoke(new MethodInvoker(() => { gaugeVolts.Show(); }));
-                lblVoltageLow.Invoke(new MethodInvoker(() => { lblVoltageLow.Show(); }));
-            }
+                gaugeVolts.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -366,7 +348,6 @@ namespace WhatTheHelmRuntime
                 Program.Configuration.Save(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\WhatTheHelm", "config.json", Program.Configuration);
                 Program.InitializeConfiguration();
             }
-
         }
     }
 }

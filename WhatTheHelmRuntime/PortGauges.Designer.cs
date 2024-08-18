@@ -89,7 +89,7 @@ namespace WhatTheHelmRuntime
             this.lblFuelPressLow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblFuelPressLow.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFuelPressLow.ForeColor = System.Drawing.Color.Black;
-            this.lblFuelPressLow.Location = new System.Drawing.Point(878, 210);
+            this.lblFuelPressLow.Location = new System.Drawing.Point(876, 210);
             this.lblFuelPressLow.Name = "lblFuelPressLow";
             this.lblFuelPressLow.Size = new System.Drawing.Size(173, 25);
             this.lblFuelPressLow.TabIndex = 126;
