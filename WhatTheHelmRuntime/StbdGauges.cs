@@ -188,7 +188,6 @@ namespace WhatTheHelmRuntime
                             //Instance check
                             if (_pgn0x1F201.EngineInstance == Program.RunningConfiguration.StbdPropulsionN2KConfig.EngineHours.Instance)
                             {
-                                _engineHoursLastMsg = DateTime.Now;
                                 var arr = string.Format("{0:0000.0}", Math.Truncate(_pgn0x1F201.EngineHours * 10) / 10).ToCharArray();
                                 int thousands = Convert.ToInt32(arr[arr.Length - 6].ToString());
                                 int hundreds = Convert.ToInt32(arr[arr.Length - 5].ToString());

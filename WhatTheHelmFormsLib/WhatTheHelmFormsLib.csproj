@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="DashboardButtonArgs.cs" />
     <Compile Include="GearPressGauge.xaml.cs" />
+    <Compile Include="RudderPosGauge.cs" />
     <Compile Include="OilPressGauge.xaml.cs" />
     <Compile Include="ScreenInterrogatory.cs" />
     <Compile Include="Fuse.cs">
@@ -66,9 +67,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tachometer.xaml.cs" />
     <Compile Include="TempGauge.xaml.cs" />
-    <Compile Include="UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="VoltGauge.xaml.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
@@ -88,6 +86,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="RudderPosGauge.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="OilPressGauge.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -99,10 +101,6 @@
     <Page Include="TempGauge.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControl1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VoltGauge.xaml">
       <Generator>MSBuild:Compile</Generator>
