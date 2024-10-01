@@ -15,7 +15,8 @@ namespace WhatTheHelmRuntime
         public TestForm()
         {
             InitializeComponent();
-            rudderPosGauge1.SetPosition(-5);
+            engineSyncGauge1.SetRpmDelta(3100, 3000 );
+            //rudderPosGauge1.SetPosition(-5);
         }
     }
 }

@@ -112,47 +112,12 @@ namespace WhatTheHelmRuntime
                             //Instance check
                             if(_pgn0x1F10D.Instance == Program.RunningConfiguration.RudderTrimN2KConfig.Rudder.Instance)
                             {
-                                gaugeRudderPosition.Value = _pgn0x1F10D.Position;
+                                rudderPosGauge1.SetPosition(_pgn0x1F10D.Instance);
                             }
                         }
                     }
-                //Update RPM sync display
-                SetSync(_portRpm, _stbdRpm);
-            }
-        }
-
-        private void SetSync(int portRpm, int stbdRpm)
-        {
-            //Engine speed synchronization
-            var rpmDelta = portRpm - stbdRpm;
-
-            //Port engine
-            if (lblPortSlow.IsHandleCreated && lblStbdSlow.IsHandleCreated && lblSync.IsHandleCreated)
-            {
-                lblPortSlow.Invoke(new MethodInvoker(() =>
-                {
-                    //Slow
-                    if ((portRpm < stbdRpm) && (Math.Abs(rpmDelta) > 50))
-                    {
-                        lblPortSlow.BackColor = Color.Yellow;
-                        lblStbdSlow.BackColor = Color.FromArgb(60, 53, 4);
-                        lblSync.BackColor = Color.FromArgb(3, 30, 2);
-                    }
-                    //Fast
-                    else if ((portRpm > stbdRpm) && (Math.Abs(rpmDelta) > 45))
-                    {
-                        lblStbdSlow.BackColor = Color.Yellow;
-                        lblPortSlow.BackColor = Color.FromArgb(60, 53, 4);
-                        lblSync.BackColor = Color.FromArgb(3, 30, 2);
-                    }
-                    //Sync
-                    else
-                    {
-                        lblStbdSlow.BackColor = Color.FromArgb(60, 53, 4);
-                        lblPortSlow.BackColor = Color.FromArgb(60, 53, 4);
-                        lblSync.BackColor = Color.Lime;
-                    }
-                }));
+                //Sync
+                engineSyncGauge1.SetRpmDelta(_portRpm, _stbdRpm);
             }
         }
     }
