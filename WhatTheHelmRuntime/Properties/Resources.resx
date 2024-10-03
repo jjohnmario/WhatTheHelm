@@ -118,40 +118,103 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="GreenButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GreenButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Windlass_Out_On" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Windlass_Out_On.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="satellite-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\satellite-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="YellowButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\YellowButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BlackButtonGear" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BlackButtonGear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RedButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RedButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TF023" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TF023.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Blower_Off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Blower_Off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GreenButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GreenButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Blower_On" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Blower_On.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TF014" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TF014.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="BlackButtonGear" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlackButtonGear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WhatTheHelmLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WhatTheHelmLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Search_Light_On" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Search_Light_On.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BlackButtonGear1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BlackButtonGear1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Stbd_Wiper_On" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stbd_Wiper_On.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="YellowButtonGear" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\YellowButtonGear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Search_Light_Off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Search_Light_Off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Nav_Lights_On" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Nav_Lights_On.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BlackButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BlackButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Bilge_Pump_2_Auto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bilge_Pump_2_Auto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Port_Wiper_Off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Port_Wiper_Off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="YellowButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\YellowButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Blower_Off1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Blower_Off1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Stbd_Wiper_Off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stbd_Wiper_Off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Windlass_In_Off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Windlass_In_Off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="YellowButtonGear" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\YellowButtonGear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Windlass_Out_Off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Windlass_Out_Off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TF023" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TF023.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Picture1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Picture1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bilge_Pump_1_Auto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bilge_Pump_1_Auto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BlackButtonGear1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlackButtonGear1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Picture2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Picture2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Nav_Lights_Off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Nav_Lights_Off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Port_Wiper_On" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Port_Wiper_On.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="trawler" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\trawler.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Windlass_In_On" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Windlass_In_On.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WhatTheHelmLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WhatTheHelmLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TF014" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TF014.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Bilge_Pump_1_Manual" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bilge_Pump_1_Manual.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bilge_Pump_2_Manual" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bilge_Pump_2_Manual.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

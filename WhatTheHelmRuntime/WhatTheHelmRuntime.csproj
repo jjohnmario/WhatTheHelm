@@ -241,7 +241,28 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="iconfinder_Travel-Filled-21_3671972.ico" />
+    <None Include="Resources\Windlass_Out_On.png" />
+    <None Include="Resources\Windlass_Out_Off.png" />
+    <None Include="Resources\Windlass_In_On.png" />
+    <None Include="Resources\Windlass_In_Off.png" />
     <None Include="Resources\satellite-48.png" />
+    <None Include="Resources\Picture2.png" />
+    <None Include="Resources\Picture1.png" />
+    <None Include="Resources\Blower_Off.png" />
+    <None Include="Resources\Blower_On.png" />
+    <None Include="Resources\Blower_Off1.png" />
+    <None Include="Resources\Bilge_Pump_1_Auto.png" />
+    <None Include="Resources\Bilge_Pump_1_Manual.png" />
+    <None Include="Resources\Nav_Lights_Off.png" />
+    <None Include="Resources\Nav_Lights_On.png" />
+    <None Include="Resources\Port_Wiper_Off.png" />
+    <None Include="Resources\Port_Wiper_On.png" />
+    <None Include="Resources\Stbd_Wiper_Off.png" />
+    <None Include="Resources\Stbd_Wiper_On.png" />
+    <None Include="Resources\Search_Light_Off.png" />
+    <None Include="Resources\Search_Light_On.png" />
+    <None Include="Resources\Bilge_Pump_2_Auto.png" />
+    <None Include="Resources\Bilge_Pump_2_Manual.png" />
     <Content Include="Resources\TF014.WAV" />
     <Content Include="Resources\TF023.WAV" />
     <None Include="Resources\trawler.jpg" />
