@@ -137,5 +137,10 @@ namespace WhatTheHelmRuntime
             fusesStatus.StartPosition = FormStartPosition.CenterParent;
             fusesStatus.ShowDialog();
         }
+
+        private void SwitchPanel_Shown(object sender, EventArgs e)
+        {
+
+        }
     }
 }

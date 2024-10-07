@@ -364,7 +364,9 @@
             this.btnPortBowUp = new BoatFormsLib.CustomUserControls.DashboardButton();
             this.btnStbdBowDown = new BoatFormsLib.CustomUserControls.DashboardButton();
             this.btnStbdBowUp = new BoatFormsLib.CustomUserControls.DashboardButton();
-            this.btnSync = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnBothBowUp = new System.Windows.Forms.Button();
+            this.btnBothBowDown = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gaugeStbdTrim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gaugePortTrim)).BeginInit();
             this.SuspendLayout();
@@ -467,7 +469,7 @@
             this.gaugeStbdTrim.Hand = optionalLinearGaugeHand3;
             this.gaugeStbdTrim.InputPin = sinkPin3;
             this.gaugeStbdTrim.InternalData = ((Vcl.VclBinaryData)(resources.GetObject("gaugeStbdTrim.InternalData")));
-            this.gaugeStbdTrim.Location = new System.Drawing.Point(408, 47);
+            this.gaugeStbdTrim.Location = new System.Drawing.Point(478, 47);
             this.gaugeStbdTrim.Max = 0D;
             this.gaugeStbdTrim.Min = -100D;
             this.gaugeStbdTrim.Name = "gaugeStbdTrim";
@@ -770,7 +772,7 @@
             this.gaugePortTrim.Hand = optionalLinearGaugeHand4;
             this.gaugePortTrim.InputPin = sinkPin4;
             this.gaugePortTrim.InternalData = ((Vcl.VclBinaryData)(resources.GetObject("gaugePortTrim.InternalData")));
-            this.gaugePortTrim.Location = new System.Drawing.Point(238, 47);
+            this.gaugePortTrim.Location = new System.Drawing.Point(168, 47);
             this.gaugePortTrim.Max = 100D;
             this.gaugePortTrim.Min = 0D;
             this.gaugePortTrim.Name = "gaugePortTrim";
@@ -978,7 +980,7 @@
             // 
             // label36
             // 
-            this.label36.Font = new System.Drawing.Font("Arial", 14F);
+            this.label36.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label36.ForeColor = System.Drawing.Color.White;
             this.label36.Location = new System.Drawing.Point(167, 4);
             this.label36.Name = "label36";
@@ -991,9 +993,9 @@
             // 
             this.label1.Font = new System.Drawing.Font("Arial", 14F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(18, 94);
+            this.label1.Location = new System.Drawing.Point(18, 131);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(199, 25);
+            this.label1.Size = new System.Drawing.Size(143, 25);
             this.label1.TabIndex = 110;
             this.label1.Text = "PORT";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -1002,9 +1004,9 @@
             // 
             this.label2.Font = new System.Drawing.Font("Arial", 14F);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(581, 94);
+            this.label2.Location = new System.Drawing.Point(640, 132);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(199, 25);
+            this.label2.Size = new System.Drawing.Size(150, 25);
             this.label2.TabIndex = 111;
             this.label2.Text = "STBD";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -1013,7 +1015,7 @@
             // 
             this.label5.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(263, 235);
+            this.label5.Location = new System.Drawing.Point(193, 235);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(102, 46);
@@ -1025,7 +1027,7 @@
             // 
             this.label3.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(435, 235);
+            this.label3.Location = new System.Drawing.Point(505, 235);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(102, 46);
@@ -1036,7 +1038,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(261, 78);
+            this.panel1.Location = new System.Drawing.Point(191, 78);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(31, 360);
             this.panel1.TabIndex = 114;
@@ -1044,7 +1046,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
-            this.panel2.Location = new System.Drawing.Point(512, 80);
+            this.panel2.Location = new System.Drawing.Point(582, 80);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(33, 360);
             this.panel2.TabIndex = 115;
@@ -1054,7 +1056,7 @@
             this.label4.BackColor = System.Drawing.Color.Black;
             this.label4.Font = new System.Drawing.Font("Arial", 14F);
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(256, 423);
+            this.label4.Location = new System.Drawing.Point(186, 423);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 25);
             this.label4.TabIndex = 116;
@@ -1066,7 +1068,7 @@
             this.label6.BackColor = System.Drawing.Color.Black;
             this.label6.Font = new System.Drawing.Font("Arial", 14F);
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(272, 246);
+            this.label6.Location = new System.Drawing.Point(202, 246);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 25);
             this.label6.TabIndex = 117;
@@ -1078,7 +1080,7 @@
             this.label7.BackColor = System.Drawing.Color.Black;
             this.label7.Font = new System.Drawing.Font("Arial", 14F);
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(272, 157);
+            this.label7.Location = new System.Drawing.Point(202, 157);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(54, 25);
             this.label7.TabIndex = 118;
@@ -1090,7 +1092,7 @@
             this.label8.BackColor = System.Drawing.Color.Black;
             this.label8.Font = new System.Drawing.Font("Arial", 14F);
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(272, 334);
+            this.label8.Location = new System.Drawing.Point(202, 334);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 25);
             this.label8.TabIndex = 119;
@@ -1102,7 +1104,7 @@
             this.label9.BackColor = System.Drawing.Color.Black;
             this.label9.Font = new System.Drawing.Font("Arial", 14F);
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(272, 69);
+            this.label9.Location = new System.Drawing.Point(202, 69);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(54, 25);
             this.label9.TabIndex = 120;
@@ -1114,7 +1116,7 @@
             this.label10.BackColor = System.Drawing.Color.Black;
             this.label10.Font = new System.Drawing.Font("Arial", 14F);
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(479, 70);
+            this.label10.Location = new System.Drawing.Point(549, 70);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(54, 25);
             this.label10.TabIndex = 125;
@@ -1126,7 +1128,7 @@
             this.label11.BackColor = System.Drawing.Color.Black;
             this.label11.Font = new System.Drawing.Font("Arial", 14F);
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(479, 335);
+            this.label11.Location = new System.Drawing.Point(549, 335);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(54, 25);
             this.label11.TabIndex = 124;
@@ -1138,7 +1140,7 @@
             this.label12.BackColor = System.Drawing.Color.Black;
             this.label12.Font = new System.Drawing.Font("Arial", 14F);
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(479, 158);
+            this.label12.Location = new System.Drawing.Point(549, 158);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(54, 25);
             this.label12.TabIndex = 123;
@@ -1150,7 +1152,7 @@
             this.label13.BackColor = System.Drawing.Color.Black;
             this.label13.Font = new System.Drawing.Font("Arial", 14F);
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(479, 247);
+            this.label13.Location = new System.Drawing.Point(549, 247);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(54, 25);
             this.label13.TabIndex = 122;
@@ -1162,7 +1164,7 @@
             this.label14.BackColor = System.Drawing.Color.Black;
             this.label14.Font = new System.Drawing.Font("Arial", 14F);
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(479, 424);
+            this.label14.Location = new System.Drawing.Point(549, 424);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(70, 25);
             this.label14.TabIndex = 121;
@@ -1177,7 +1179,7 @@
             this.btnConfigNmea2000.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfigNmea2000.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfigNmea2000.ForeColor = System.Drawing.Color.White;
-            this.btnConfigNmea2000.Location = new System.Drawing.Point(11, 390);
+            this.btnConfigNmea2000.Location = new System.Drawing.Point(-8, 4);
             this.btnConfigNmea2000.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfigNmea2000.Name = "btnConfigNmea2000";
             this.btnConfigNmea2000.Size = new System.Drawing.Size(171, 81);
@@ -1189,7 +1191,7 @@
             // 
             // btnPortBowDown
             // 
-            this.btnPortBowDown.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPortBowDown.BackgroundImage")));
+            this.btnPortBowDown.BackgroundImage = global::WhatTheHelmRuntime.Properties.Resources.Bow_Down_Off;
             this.btnPortBowDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPortBowDown.ButtonBehavior = BoatFormsLib.CustomUserControls.ButtonBehavior.Momentary;
             this.btnPortBowDown.FlatAppearance.BorderSize = 0;
@@ -1199,28 +1201,27 @@
             this.btnPortBowDown.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPortBowDown.ForeColor = System.Drawing.Color.White;
             this.btnPortBowDown.Function = "PORT TRIM DOWN";
-            this.btnPortBowDown.Location = new System.Drawing.Point(18, 251);
+            this.btnPortBowDown.Location = new System.Drawing.Point(11, 319);
             this.btnPortBowDown.MvecAddress = ((byte)(177));
             this.btnPortBowDown.MvecFuseNumber = ((byte)(8));
             this.btnPortBowDown.MvecGrid = ((byte)(0));
             this.btnPortBowDown.MvecRelayNumber = ((byte)(5));
             this.btnPortBowDown.Name = "btnPortBowDown";
-            this.btnPortBowDown.OffStateBackImage = ((System.Drawing.Image)(resources.GetObject("btnPortBowDown.OffStateBackImage")));
+            this.btnPortBowDown.OffStateBackImage = global::WhatTheHelmRuntime.Properties.Resources.Bow_Down_Off;
             this.btnPortBowDown.OffStateForeColor = System.Drawing.Color.White;
-            this.btnPortBowDown.OffStateText = "BOW\r\nDOWN";
-            this.btnPortBowDown.OnStateBackImage = ((System.Drawing.Image)(resources.GetObject("btnPortBowDown.OnStateBackImage")));
+            this.btnPortBowDown.OffStateText = "";
+            this.btnPortBowDown.OnStateBackImage = global::WhatTheHelmRuntime.Properties.Resources.Bow_Down_On;
             this.btnPortBowDown.OnStateForeColor = System.Drawing.Color.White;
-            this.btnPortBowDown.OnStateText = "BOW\r\nDOWN";
-            this.btnPortBowDown.Size = new System.Drawing.Size(199, 111);
+            this.btnPortBowDown.OnStateText = "";
+            this.btnPortBowDown.Size = new System.Drawing.Size(150, 150);
             this.btnPortBowDown.State = false;
             this.btnPortBowDown.TabIndex = 107;
-            this.btnPortBowDown.Text = "BOW\r\nDOWN";
             this.btnPortBowDown.UseVisualStyleBackColor = true;
             this.btnPortBowDown.NewCommand += new System.EventHandler<BoatFormsLib.DashboardButtonArgs>(this.btnPortBowDown_NewCommand);
             // 
             // btnPortBowUp
             // 
-            this.btnPortBowUp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPortBowUp.BackgroundImage")));
+            this.btnPortBowUp.BackgroundImage = global::WhatTheHelmRuntime.Properties.Resources.Bow_Up_Off;
             this.btnPortBowUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPortBowUp.ButtonBehavior = BoatFormsLib.CustomUserControls.ButtonBehavior.Momentary;
             this.btnPortBowUp.FlatAppearance.BorderSize = 0;
@@ -1230,28 +1231,27 @@
             this.btnPortBowUp.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPortBowUp.ForeColor = System.Drawing.Color.White;
             this.btnPortBowUp.Function = "PORT TRIM UP";
-            this.btnPortBowUp.Location = new System.Drawing.Point(18, 134);
+            this.btnPortBowUp.Location = new System.Drawing.Point(11, 163);
             this.btnPortBowUp.MvecAddress = ((byte)(177));
             this.btnPortBowUp.MvecFuseNumber = ((byte)(4));
             this.btnPortBowUp.MvecGrid = ((byte)(0));
             this.btnPortBowUp.MvecRelayNumber = ((byte)(2));
             this.btnPortBowUp.Name = "btnPortBowUp";
-            this.btnPortBowUp.OffStateBackImage = ((System.Drawing.Image)(resources.GetObject("btnPortBowUp.OffStateBackImage")));
+            this.btnPortBowUp.OffStateBackImage = global::WhatTheHelmRuntime.Properties.Resources.Bow_Up_Off;
             this.btnPortBowUp.OffStateForeColor = System.Drawing.Color.White;
-            this.btnPortBowUp.OffStateText = "BOW\r\nUP";
-            this.btnPortBowUp.OnStateBackImage = ((System.Drawing.Image)(resources.GetObject("btnPortBowUp.OnStateBackImage")));
+            this.btnPortBowUp.OffStateText = "";
+            this.btnPortBowUp.OnStateBackImage = global::WhatTheHelmRuntime.Properties.Resources.Bow_Up_On;
             this.btnPortBowUp.OnStateForeColor = System.Drawing.Color.White;
-            this.btnPortBowUp.OnStateText = "BOW\r\nUP";
-            this.btnPortBowUp.Size = new System.Drawing.Size(199, 111);
+            this.btnPortBowUp.OnStateText = "";
+            this.btnPortBowUp.Size = new System.Drawing.Size(150, 150);
             this.btnPortBowUp.State = false;
             this.btnPortBowUp.TabIndex = 106;
-            this.btnPortBowUp.Text = "BOW\r\nUP";
             this.btnPortBowUp.UseVisualStyleBackColor = true;
             this.btnPortBowUp.NewCommand += new System.EventHandler<BoatFormsLib.DashboardButtonArgs>(this.btnPortBowUp_NewCommand);
             // 
             // btnStbdBowDown
             // 
-            this.btnStbdBowDown.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnStbdBowDown.BackgroundImage")));
+            this.btnStbdBowDown.BackgroundImage = global::WhatTheHelmRuntime.Properties.Resources.Bow_Down_Off;
             this.btnStbdBowDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnStbdBowDown.ButtonBehavior = BoatFormsLib.CustomUserControls.ButtonBehavior.Momentary;
             this.btnStbdBowDown.FlatAppearance.BorderSize = 0;
@@ -1261,28 +1261,27 @@
             this.btnStbdBowDown.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStbdBowDown.ForeColor = System.Drawing.Color.White;
             this.btnStbdBowDown.Function = "STBD TRIM DOWN";
-            this.btnStbdBowDown.Location = new System.Drawing.Point(581, 251);
+            this.btnStbdBowDown.Location = new System.Drawing.Point(638, 319);
             this.btnStbdBowDown.MvecAddress = ((byte)(177));
             this.btnStbdBowDown.MvecFuseNumber = ((byte)(2));
             this.btnStbdBowDown.MvecGrid = ((byte)(0));
             this.btnStbdBowDown.MvecRelayNumber = ((byte)(4));
             this.btnStbdBowDown.Name = "btnStbdBowDown";
-            this.btnStbdBowDown.OffStateBackImage = ((System.Drawing.Image)(resources.GetObject("btnStbdBowDown.OffStateBackImage")));
+            this.btnStbdBowDown.OffStateBackImage = global::WhatTheHelmRuntime.Properties.Resources.Bow_Down_Off;
             this.btnStbdBowDown.OffStateForeColor = System.Drawing.Color.White;
-            this.btnStbdBowDown.OffStateText = "BOW\r\nDOWN";
-            this.btnStbdBowDown.OnStateBackImage = ((System.Drawing.Image)(resources.GetObject("btnStbdBowDown.OnStateBackImage")));
+            this.btnStbdBowDown.OffStateText = "";
+            this.btnStbdBowDown.OnStateBackImage = global::WhatTheHelmRuntime.Properties.Resources.Bow_Down_On;
             this.btnStbdBowDown.OnStateForeColor = System.Drawing.Color.White;
-            this.btnStbdBowDown.OnStateText = "BOW\r\nDOWN";
-            this.btnStbdBowDown.Size = new System.Drawing.Size(199, 111);
+            this.btnStbdBowDown.OnStateText = "";
+            this.btnStbdBowDown.Size = new System.Drawing.Size(150, 150);
             this.btnStbdBowDown.State = false;
             this.btnStbdBowDown.TabIndex = 105;
-            this.btnStbdBowDown.Text = "BOW\r\nDOWN";
             this.btnStbdBowDown.UseVisualStyleBackColor = true;
             this.btnStbdBowDown.NewCommand += new System.EventHandler<BoatFormsLib.DashboardButtonArgs>(this.btnStbBowDown_NewCommand);
             // 
             // btnStbdBowUp
             // 
-            this.btnStbdBowUp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnStbdBowUp.BackgroundImage")));
+            this.btnStbdBowUp.BackgroundImage = global::WhatTheHelmRuntime.Properties.Resources.Bow_Up_Off;
             this.btnStbdBowUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnStbdBowUp.ButtonBehavior = BoatFormsLib.CustomUserControls.ButtonBehavior.Momentary;
             this.btnStbdBowUp.FlatAppearance.BorderSize = 0;
@@ -1292,47 +1291,71 @@
             this.btnStbdBowUp.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStbdBowUp.ForeColor = System.Drawing.Color.White;
             this.btnStbdBowUp.Function = "STBD TRIM UP";
-            this.btnStbdBowUp.Location = new System.Drawing.Point(581, 134);
+            this.btnStbdBowUp.Location = new System.Drawing.Point(640, 163);
             this.btnStbdBowUp.MvecAddress = ((byte)(177));
             this.btnStbdBowUp.MvecFuseNumber = ((byte)(1));
             this.btnStbdBowUp.MvecGrid = ((byte)(0));
             this.btnStbdBowUp.MvecRelayNumber = ((byte)(1));
             this.btnStbdBowUp.Name = "btnStbdBowUp";
-            this.btnStbdBowUp.OffStateBackImage = ((System.Drawing.Image)(resources.GetObject("btnStbdBowUp.OffStateBackImage")));
+            this.btnStbdBowUp.OffStateBackImage = global::WhatTheHelmRuntime.Properties.Resources.Bow_Up_Off;
             this.btnStbdBowUp.OffStateForeColor = System.Drawing.Color.White;
-            this.btnStbdBowUp.OffStateText = "BOW\r\nUP";
-            this.btnStbdBowUp.OnStateBackImage = ((System.Drawing.Image)(resources.GetObject("btnStbdBowUp.OnStateBackImage")));
+            this.btnStbdBowUp.OffStateText = "";
+            this.btnStbdBowUp.OnStateBackImage = global::WhatTheHelmRuntime.Properties.Resources.Bow_Up_On;
             this.btnStbdBowUp.OnStateForeColor = System.Drawing.Color.White;
-            this.btnStbdBowUp.OnStateText = "BOW\r\nUP";
-            this.btnStbdBowUp.Size = new System.Drawing.Size(199, 111);
+            this.btnStbdBowUp.OnStateText = "";
+            this.btnStbdBowUp.Size = new System.Drawing.Size(150, 150);
             this.btnStbdBowUp.State = false;
             this.btnStbdBowUp.TabIndex = 104;
-            this.btnStbdBowUp.Text = "BOW\r\nUP";
             this.btnStbdBowUp.UseVisualStyleBackColor = true;
             this.btnStbdBowUp.NewCommand += new System.EventHandler<BoatFormsLib.DashboardButtonArgs>(this.btnStbBowUp_NewCommand);
             // 
-            // btnSync
+            // label15
             // 
-            this.btnSync.BackgroundImage = global::WhatTheHelmRuntime.Properties.Resources.BlackButton;
-            this.btnSync.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSync.FlatAppearance.BorderSize = 0;
-            this.btnSync.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSync.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSync.ForeColor = System.Drawing.Color.White;
-            this.btnSync.Location = new System.Drawing.Point(588, 396);
-            this.btnSync.Name = "btnSync";
-            this.btnSync.Size = new System.Drawing.Size(199, 72);
-            this.btnSync.TabIndex = 155;
-            this.btnSync.Text = "SYNC";
-            this.btnSync.UseVisualStyleBackColor = true;
-            this.btnSync.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnSync_MouseUp);
+            this.label15.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.Location = new System.Drawing.Point(331, 44);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(141, 33);
+            this.label15.TabIndex = 157;
+            this.label15.Text = "ALL";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // btnBothBowUp
+            // 
+            this.btnBothBowUp.BackgroundImage = global::WhatTheHelmRuntime.Properties.Resources.Bow_Up_Off;
+            this.btnBothBowUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBothBowUp.FlatAppearance.BorderSize = 0;
+            this.btnBothBowUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBothBowUp.Location = new System.Drawing.Point(325, 80);
+            this.btnBothBowUp.Name = "btnBothBowUp";
+            this.btnBothBowUp.Size = new System.Drawing.Size(150, 150);
+            this.btnBothBowUp.TabIndex = 158;
+            this.btnBothBowUp.UseVisualStyleBackColor = true;
+            this.btnBothBowUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBothBowUp_MouseDown);
+            this.btnBothBowUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBothBowUp_MouseUp);
+            // 
+            // btnBothBowDown
+            // 
+            this.btnBothBowDown.BackgroundImage = global::WhatTheHelmRuntime.Properties.Resources.Bow_Down_Off;
+            this.btnBothBowDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBothBowDown.FlatAppearance.BorderSize = 0;
+            this.btnBothBowDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBothBowDown.Location = new System.Drawing.Point(325, 235);
+            this.btnBothBowDown.Name = "btnBothBowDown";
+            this.btnBothBowDown.Size = new System.Drawing.Size(150, 150);
+            this.btnBothBowDown.TabIndex = 159;
+            this.btnBothBowDown.UseVisualStyleBackColor = true;
+            this.btnBothBowDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBothBowDown_MouseDown);
+            this.btnBothBowDown.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBothBowDown_MouseUp);
             // 
             // TrimControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(800, 480);
-            this.Controls.Add(this.btnSync);
+            this.Controls.Add(this.btnBothBowDown);
+            this.Controls.Add(this.btnBothBowUp);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.btnConfigNmea2000);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label11);
@@ -1392,6 +1415,8 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnConfigNmea2000;
-        private System.Windows.Forms.Button btnSync;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnBothBowUp;
+        private System.Windows.Forms.Button btnBothBowDown;
     }
 }

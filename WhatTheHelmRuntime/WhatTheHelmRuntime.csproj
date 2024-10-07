@@ -263,6 +263,10 @@
     <None Include="Resources\Search_Light_On.png" />
     <None Include="Resources\Bilge_Pump_2_Auto.png" />
     <None Include="Resources\Bilge_Pump_2_Manual.png" />
+    <None Include="Resources\Bow_Up_Off.png" />
+    <None Include="Resources\Bow_Up_On.png" />
+    <None Include="Resources\Bow_Down_Off.png" />
+    <None Include="Resources\Bow_Down_On.png" />
     <Content Include="Resources\TF014.WAV" />
     <Content Include="Resources\TF023.WAV" />
     <None Include="Resources\trawler.jpg" />

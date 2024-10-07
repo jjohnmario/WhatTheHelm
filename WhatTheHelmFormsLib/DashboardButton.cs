@@ -328,6 +328,22 @@ namespace BoatFormsLib.CustomUserControls
                 }
         }
 
+        /// <summary>
+        /// Forces invocation of the MouseUp event handler
+        /// </summary>
+        public void ForceMouseUpEvent()
+        {
+            DashboardButton_MouseUp(null, null);
+        }
+
+        /// <summary>
+        /// Forces invoction of the MouseDown event handler
+        /// </summary>
+        public void ForceMouseDownEvent()
+        {
+            DashboardButton_MouseDown(null, null);
+        }
+
         private void DashboardButton_MouseUp(object sender, MouseEventArgs e)
         {
             this.OnMouseLeave(new EventArgs());
@@ -369,7 +385,6 @@ namespace BoatFormsLib.CustomUserControls
         {
             if(ButtonBehavior == ButtonBehavior.Momentary)
             {
-                //this.BackColor = OnStateBackImage;
                 this.BackgroundImage = OnStateBackImage;
                 this.ForeColor = OnStateForeColor;
                 this.Text = OnStateText;

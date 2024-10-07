@@ -34,6 +34,8 @@ namespace WhatTheHelmRuntime
             InitializeComponent();
             this.MinimumSize = new Size() { Height = 480, Width = 800 };
             this.MaximumSize = new Size() { Height = 480, Width = 800 };
+            btnBothBowDown.NotifyDefault(false);
+            btnBothBowUp.NotifyDefault(false);
 
             //Subscribe to CAN messages
             Program.CanGateway.MessageRecieved += CanGateWay_MessageRecieved;
@@ -52,11 +54,6 @@ namespace WhatTheHelmRuntime
             Pgn0x0EF00 pgn3 = new Pgn0x0EF00(new MvecCommand0x96(0), 178);
             CanMessage msg3 = new CanMessage(pgn3.Pgn, Format.EXTENDED, 6, Program.CanGateway.Address, pgn3.DestinationAddress, pgn3.SerializeFields());
             Program.CanGateway.Write(msg3);
-
-            //Set sync by default
-            _syncEnabled = true;
-            btnSync.BackgroundImage = Resources.YellowButton;
-            btnSync.ForeColor = Color.Black;
 
             Timer t = new Timer();
             t.Interval = 5000;
@@ -193,58 +190,49 @@ namespace WhatTheHelmRuntime
         private void btnPortBowUp_NewCommand(object sender, DashboardButtonArgs e)
         {
             NewCommand(e);
-            if (_syncEnabled)
-                syncCommand(e, btnStbdBowUp);
         }
 
         private void btnPortBowDown_NewCommand(object sender, DashboardButtonArgs e)
         {
             NewCommand(e);
-            if (_syncEnabled)
-                syncCommand(e, btnStbdBowDown);
         }
 
         private void btnStbBowUp_NewCommand(object sender, DashboardButtonArgs e)
         {
             NewCommand(e);
-            if (_syncEnabled)
-                syncCommand(e, btnPortBowUp);
         }
 
         private void btnStbBowDown_NewCommand(object sender, DashboardButtonArgs e)
         {
             NewCommand(e);
-            if (_syncEnabled)
-                syncCommand(e, btnPortBowDown);
         }
 
-        private void syncCommand(DashboardButtonArgs masterArgs, DashboardButton slaveBtn)
+        private void btnBothBowUp_MouseDown(object sender, MouseEventArgs e)
         {
-            DashboardButtonArgs slaveButtonArgs = new DashboardButtonArgs();
-            slaveButtonArgs.MvecGrid = slaveBtn.MvecGrid;
-            slaveButtonArgs.MvecRelayNumber = slaveBtn.MvecRelayNumber;
-            slaveButtonArgs.MvecAddress = slaveBtn.MvecAddress;
-            slaveButtonArgs.RelayCommandState = masterArgs.RelayCommandState;
-            if (slaveButtonArgs.RelayCommandState == RelayCommandState.TurnRelayOn)
-                slaveBtn.BackgroundImage = Resources.GreenButton;
-            else if (slaveButtonArgs.RelayCommandState == RelayCommandState.TurnRelayOff)
-                slaveBtn.BackgroundImage = Resources.BlackButton;
+            btnBothBowUp.BackgroundImage = Resources.Bow_Up_On;
+            btnPortBowUp.ForceMouseDownEvent();
+            btnStbdBowUp.ForceMouseDownEvent();
         }
-        private void btnSync_MouseUp(object sender, MouseEventArgs e)
-        {
-            if(_syncEnabled)
-            {
-                _syncEnabled = false;
-                btnSync.BackgroundImage = Resources.BlackButton;
-                btnSync.ForeColor = Color.White;
-            }
 
-            else
-            {
-                _syncEnabled = true;
-                btnSync.BackgroundImage = Resources.YellowButton;
-                btnSync.ForeColor = Color.Black;
-            }
+        private void btnBothBowUp_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnBothBowUp.BackgroundImage = Resources.Bow_Up_Off;
+            btnPortBowUp.ForceMouseUpEvent();
+            btnStbdBowUp.ForceMouseUpEvent();
+        }
+
+        private void btnBothBowDown_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnBothBowDown.BackgroundImage = Resources.Bow_Down_On;
+            btnPortBowDown.ForceMouseDownEvent();
+            btnStbdBowDown.ForceMouseDownEvent();
+        }
+
+        private void btnBothBowDown_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnBothBowDown.BackgroundImage = Resources.Bow_Down_Off;
+            btnPortBowDown.ForceMouseUpEvent();
+            btnStbdBowDown.ForceMouseUpEvent();
         }
         #endregion
     }

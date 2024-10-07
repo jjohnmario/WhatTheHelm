@@ -163,6 +163,46 @@ namespace WhatTheHelmRuntime.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Bow_Down_Off {
+            get {
+                object obj = ResourceManager.GetObject("Bow_Down_Off", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Bow_Down_On {
+            get {
+                object obj = ResourceManager.GetObject("Bow_Down_On", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Bow_Up_Off {
+            get {
+                object obj = ResourceManager.GetObject("Bow_Up_Off", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Bow_Up_On {
+            get {
+                object obj = ResourceManager.GetObject("Bow_Up_On", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap GreenButton {
             get {
                 object obj = ResourceManager.GetObject("GreenButton", resourceCulture);

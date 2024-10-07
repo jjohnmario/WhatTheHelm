@@ -352,6 +352,7 @@
             this.Name = "SwitchPanel";
             this.Text = "SwitchPanel";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Shown += new System.EventHandler(this.SwitchPanel_Shown);
             this.ResumeLayout(false);
 
         }
