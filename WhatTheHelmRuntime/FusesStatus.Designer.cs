@@ -556,7 +556,7 @@ namespace WhatTheHelmRuntime
             // fuse29
             // 
             this.fuse29.BackColor = System.Drawing.Color.Yellow;
-            this.fuse29.Function = "SPARE RELAY";
+            this.fuse29.Function = "BILGE PUMP #2 MANUAL RELAY";
             this.fuse29.Location = new System.Drawing.Point(7, 237);
             this.fuse29.MvecAddress = ((byte)(177));
             this.fuse29.MvecFuseNumber = ((byte)(6));
@@ -570,7 +570,7 @@ namespace WhatTheHelmRuntime
             // fuse30
             // 
             this.fuse30.BackColor = System.Drawing.Color.Yellow;
-            this.fuse30.Function = "BILGE PUMP MANUAL RELAY";
+            this.fuse30.Function = "BILGE PUMP #1 MANUAL RELAY";
             this.fuse30.Location = new System.Drawing.Point(7, 123);
             this.fuse30.MvecAddress = ((byte)(177));
             this.fuse30.MvecFuseNumber = ((byte)(3));
@@ -651,7 +651,7 @@ namespace WhatTheHelmRuntime
             // fuse34
             // 
             this.fuse34.BackColor = System.Drawing.Color.Yellow;
-            this.fuse34.Function = "BILGE PUMP POWER";
+            this.fuse34.Function = "BILGE PUMP #1 POWER";
             this.fuse34.Location = new System.Drawing.Point(108, 47);
             this.fuse34.MvecAddress = ((byte)(178));
             this.fuse34.MvecFuseNumber = ((byte)(9));
@@ -721,7 +721,7 @@ namespace WhatTheHelmRuntime
             // fuse39
             // 
             this.fuse39.BackColor = System.Drawing.Color.Yellow;
-            this.fuse39.Function = "HELM FAN POWER";
+            this.fuse39.Function = "BILGE PUMP #2 POWER";
             this.fuse39.Location = new System.Drawing.Point(108, 199);
             this.fuse39.MvecAddress = ((byte)(178));
             this.fuse39.MvecFuseNumber = ((byte)(13));
@@ -875,7 +875,7 @@ namespace WhatTheHelmRuntime
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(654, 370);
             this.button1.Margin = new System.Windows.Forms.Padding(0);

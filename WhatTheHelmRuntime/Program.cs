@@ -29,8 +29,6 @@ namespace WhatTheHelmRuntime
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
-                //Delete Me!
-                Application.Run(new TestForm());
                 //Initialize configuration
                 InitializeConfiguration();
 
