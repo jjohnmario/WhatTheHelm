@@ -29,6 +29,7 @@ namespace WhatTheHelmRuntime
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FusesStatus));
             this.panel1 = new System.Windows.Forms.Panel();
             this.fuse9 = new BoatFormsLib.Fuse();
             this.fuse10 = new BoatFormsLib.Fuse();
@@ -897,6 +898,7 @@ namespace WhatTheHelmRuntime
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FusesStatus";
             this.Text = "FusesStatus";
             this.panel1.ResumeLayout(false);

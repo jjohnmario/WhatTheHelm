@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RudderTrimNmea2000Config));
             this.btnRefreshDeviceList = new System.Windows.Forms.Button();
             this.lblWindowBanner = new System.Windows.Forms.Label();
             this.cbPortTrimSource = new System.Windows.Forms.ComboBox();
@@ -429,6 +430,7 @@
             this.Controls.Add(this.cbStbdTrimSource);
             this.Controls.Add(this.label5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "RudderTrimNmea2000Config";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

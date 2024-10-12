@@ -29,6 +29,7 @@ namespace WhatTheHelmRuntime
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StbdGauges));
             this.lblDriveTempHigh = new System.Windows.Forms.Label();
             this.lblOilPressLow = new System.Windows.Forms.Label();
             this.lblFuelPressLow = new System.Windows.Forms.Label();
@@ -257,6 +258,7 @@ namespace WhatTheHelmRuntime
             this.Controls.Add(this.elementHost2);
             this.Controls.Add(this.label3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StbdGauges";
             this.Text = "StbdGauges";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

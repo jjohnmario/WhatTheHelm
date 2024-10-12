@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SwitchPanel));
             this.dashboardButton1 = new BoatFormsLib.CustomUserControls.DashboardButton();
             this.button1 = new System.Windows.Forms.Button();
             this.dashboardButton5 = new BoatFormsLib.CustomUserControls.DashboardButton();
@@ -349,6 +350,7 @@
             this.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SwitchPanel";
             this.Text = "SwitchPanel";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

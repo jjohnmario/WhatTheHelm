@@ -91,37 +91,15 @@ namespace WhatTheHelmRuntime
             InitializeComponent();
             this.MinimumSize = new Size() { Height = 800, Width = 1280 };
             this.MaximumSize = new Size() { Height = 800, Width = 1280 };
-            Timer t = new Timer();
-            t.Interval = 50;
-            t.Tick += T_Tick;
-            t.Start();
-            gaugeWaterTemp.HighWarningEnabled = true;
-            gaugeWaterTemp.HighWarningThreshold = 190;
-            gaugeDrivePressure.LowWarningEnabled = true;
-            gaugeDrivePressure.LowWarningThreshold = 300;
-            gaugeDrivePressure.HighWarningEnabled = true;
-            gaugeDrivePressure.HighWarningThreshold = 350;
-            gaugeVolts.LowWarningEnabled = true;
-            gaugeVolts.LowWarningThreshold = 12.3;
             Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
             Timer pgnTimeoutTimer = new Timer();
             pgnTimeoutTimer.Interval = 2000;
             pgnTimeoutTimer.Tick += PgnTimeoutTimer_Tick;
-            //pgnTimeoutTimer.Start();
+            pgnTimeoutTimer.Start();
             Timer networkStatusTimer = new Timer();
             networkStatusTimer.Interval = 250;
             networkStatusTimer.Tick += NetworkStatusTimer_Tick;
             networkStatusTimer.Start();
-        }
-
-        private void T_Tick(object sender, EventArgs e)
-        {
-            gaugeRpm.SetRpm(_rpm.Next(3000, 3050));
-            gaugeWaterTemp.SetTemp(_waterTemp.Next(191, 192));
-            gaugeDrivePressure.SetPressure(_trans.Next(200, 220));
-            gaugeOilPressure.SetPressure(_oilPress.Next(60, 70));
-            gaugeVolts.SetVolts(12.0 + _volts.NextDouble());
-            //Thread.Sleep(50);
         }
 
         private void CanGateway_MessageRecieved(object sender, CanMessageArgs e)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PropulsionNmea2000Config));
             this.btnRefreshDeviceList = new System.Windows.Forms.Button();
             this.lblWindowBanner = new System.Windows.Forms.Label();
             this.cbRpmSource = new System.Windows.Forms.ComboBox();
@@ -913,6 +914,7 @@
             this.Controls.Add(this.lblWindowBanner);
             this.Controls.Add(this.btnRefreshDeviceList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PropulsionNmea2000Config";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
