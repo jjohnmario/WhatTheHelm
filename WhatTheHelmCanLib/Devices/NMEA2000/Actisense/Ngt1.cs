@@ -203,7 +203,6 @@ namespace WhatTheHelmCanLib.Devices.NMEA2000.Actisense
                         }
                     }
                 }
-                Thread.Sleep(1);
             }
         }
 

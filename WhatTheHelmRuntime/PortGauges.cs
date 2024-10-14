@@ -39,11 +39,6 @@ namespace WhatTheHelmRuntime
         private Pgn0x1F205 _pgn0x1F205 = new Pgn0x1F205();
         private Pgn0x1F201 _pgn0x1F201 = new Pgn0x1F201();
         private Pgn0x1F214 _pgn0x1F214 = new Pgn0x1F214();
-        private Random _rpm = new Random(3000);
-        private Random _trans = new Random(189);
-        private Random _oilPress = new Random(40);
-        private Random _waterTemp = new Random(170);
-        private Random _volts = new Random(12);
 
         public PortGauges(List<KeyValuePair<Screen, Type>> screenMap)
         {
@@ -139,7 +134,6 @@ namespace WhatTheHelmRuntime
                                 _engineTempLastMsg = DateTime.Now;
                                 gaugeWaterTemp.SetTemp(Convert.ToInt32(_pgn0x1F201.EngineTemperature));
                             }
-
                         }
                     }
 
