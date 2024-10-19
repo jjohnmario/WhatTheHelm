@@ -89,7 +89,7 @@
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
-            <Label x:Name="label" Content="RPM IN HUNDREDS" HorizontalAlignment="Left" Margin="129,144,0,0" VerticalAlignment="Top" FontFamily="BankGothic Md BT" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
+            <Label x:Name="label" Content="RPM IN HUNDREDS" Margin="129,144,139,0" VerticalAlignment="Top" FontFamily="BankGothic Md BT" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
             <Rectangle HorizontalAlignment="Left" Height="9" Margin="322,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="8" Fill="White" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>

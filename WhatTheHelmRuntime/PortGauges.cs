@@ -88,7 +88,7 @@ namespace WhatTheHelmRuntime
             this.MaximumSize = new Size() { Height = 800, Width = 1280 };
             Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
             Timer pgnTimeoutTimer = new Timer();
-            pgnTimeoutTimer.Interval = 2000;
+            pgnTimeoutTimer.Interval = 10000;
             pgnTimeoutTimer.Tick += PgnTimeoutTimer_Tick;
             pgnTimeoutTimer.Start();
             Timer networkStatusTimer = new Timer();
