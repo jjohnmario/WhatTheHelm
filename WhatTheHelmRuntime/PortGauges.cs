@@ -88,7 +88,7 @@ namespace WhatTheHelmRuntime
             this.MaximumSize = new Size() { Height = 800, Width = 1280 };
             Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
             Timer pgnTimeoutTimer = new Timer();
-            pgnTimeoutTimer.Interval = 10000;
+            pgnTimeoutTimer.Interval = 2000;
             pgnTimeoutTimer.Tick += PgnTimeoutTimer_Tick;
             pgnTimeoutTimer.Start();
             Timer networkStatusTimer = new Timer();
@@ -99,6 +99,28 @@ namespace WhatTheHelmRuntime
 
         private void CanGateway_MessageRecieved(object sender, CanMessageArgs e)
         {
+            //DELETE ME
+            _rpmLastMsg = DateTime.Now;
+            elementHostRpm.Invoke(new MethodInvoker(() => gaugeRpm.SetRpm(3000 / 4)));
+            var arr = string.Format("{0:0000.0}", Math.Truncate(100.556 * 10) / 10).ToCharArray();
+            int thousands = Convert.ToInt32(arr[arr.Length - 6].ToString());
+            int hundreds = Convert.ToInt32(arr[arr.Length - 5].ToString());
+            int tens = Convert.ToInt32(arr[arr.Length - 4].ToString());
+            int ones = Convert.ToInt32(arr[arr.Length - 3].ToString());
+            int tenths = Convert.ToInt32(arr[arr.Length - 1].ToString());
+            elementHostRpm.Invoke(new MethodInvoker(() => gaugeRpm.SetEngineHours(thousands, hundreds, tens, ones, tenths)));
+           
+            _alternatorPotentialLastMsg = DateTime.Now;
+            elementHostVolts.Invoke(new MethodInvoker(() => gaugeVolts.SetVolts(13.45993)));
+            _engineTempLastMsg = DateTime.Now;
+            elementHostWaterTemp.Invoke(new MethodInvoker(() => gaugeWaterTemp.SetTemp(Convert.ToInt32(172.3884))));
+            _transPressLastMsg = DateTime.Now;
+            elementHostTransPress.Invoke(new MethodInvoker(() => gaugeDrivePressure.SetPressure(Convert.ToInt32(259.88))));
+            _oilPressLastMsg = DateTime.Now;
+            elementHostOilPress.Invoke(new MethodInvoker(() => gaugeOilPressure.SetPressure(Convert.ToInt32(66.6995))));
+            
+            //DELETE ME !!!!!!!!!!!!!!!!!!!!!!!!!
+
             if (Program.RunningConfiguration != null)
             {
                 //Engine RPM
@@ -198,13 +220,13 @@ namespace WhatTheHelmRuntime
                             //Instance check
                             if (_pgn0x1F201.EngineInstance == Program.RunningConfiguration.PortPropulsionN2KConfig.EngineHours.Instance)
                             {
-                                var arr = string.Format("{0:0000.0}", Math.Truncate(_pgn0x1F201.EngineHours * 10) / 10).ToCharArray();
-                                int thousands = Convert.ToInt32(arr[arr.Length - 6].ToString());
-                                int hundreds = Convert.ToInt32(arr[arr.Length - 5].ToString());
-                                int tens = Convert.ToInt32(arr[arr.Length - 4].ToString());
-                                int ones = Convert.ToInt32(arr[arr.Length - 3].ToString());
-                                int tenths = Convert.ToInt32(arr[arr.Length - 1].ToString());
-                                gaugeRpm.SetEngineHours(thousands, hundreds, tens, ones, tenths);
+                                //var arr = string.Format("{0:0000.0}", Math.Truncate(_pgn0x1F201.EngineHours * 10) / 10).ToCharArray();
+                                //int thousands = Convert.ToInt32(arr[arr.Length - 6].ToString());
+                                //int hundreds = Convert.ToInt32(arr[arr.Length - 5].ToString());
+                                //int tens = Convert.ToInt32(arr[arr.Length - 4].ToString());
+                                //int ones = Convert.ToInt32(arr[arr.Length - 3].ToString());
+                                //int tenths = Convert.ToInt32(arr[arr.Length - 1].ToString());
+                                //gaugeRpm.SetEngineHours(thousands, hundreds, tens, ones, tenths);
                             }
                         }
                     }
@@ -281,7 +303,7 @@ namespace WhatTheHelmRuntime
             var lastBusMessageEt = dtNow - Program.CanGateway.LastRead;
             lblJ1939BustStatus.Invoke(new MethodInvoker(() =>
             {
-                if (lastBusMessageEt.TotalSeconds > 5)
+                if (lastBusMessageEt.TotalSeconds > 30)
                 {
                     lblJ1939BustStatus.BackColor = Color.Red;
                     lblJ1939BustStatus.Text = "FAULTED";
@@ -295,21 +317,21 @@ namespace WhatTheHelmRuntime
 
             //Engine RPM
             var rpmLastMsgEt = dtNow - _rpmLastMsg;
-            if (rpmLastMsgEt.TotalSeconds > 5)
+            if (rpmLastMsgEt.TotalSeconds > 30)
                 gaugeRpm.Visibility = System.Windows.Visibility.Hidden;
             else
                 gaugeRpm.Visibility = System.Windows.Visibility.Visible;
 
             //Engine temperature
             var engineTempLastMsgEt = dtNow - _engineTempLastMsg;
-            if (engineTempLastMsgEt.TotalSeconds > 5)
+            if (engineTempLastMsgEt.TotalSeconds > 30)
                 gaugeWaterTemp.Visibility = System.Windows.Visibility.Hidden;
             else
                 gaugeWaterTemp.Visibility = System.Windows.Visibility.Visible;
 
             //Oil pressure
             var oilPressLastMsgEt = dtNow - _oilPressLastMsg;
-            if (oilPressLastMsgEt.TotalSeconds > 5)
+            if (oilPressLastMsgEt.TotalSeconds > 30)
                 gaugeOilPressure.Visibility = System.Windows.Visibility.Hidden;
             else
                 gaugeOilPressure.Visibility = System.Windows.Visibility.Visible;
@@ -331,21 +353,21 @@ namespace WhatTheHelmRuntime
 
             //Transmission pressure
             var transPressLastMsgEt = dtNow - _transPressLastMsg;
-            if (transPressLastMsgEt.TotalSeconds > 5)
+            if (transPressLastMsgEt.TotalSeconds > 30)
                 gaugeDrivePressure.Visibility = System.Windows.Visibility.Hidden;
             else
                 gaugeDrivePressure.Visibility = System.Windows.Visibility.Visible;
 
             //Transmission alarms
             var transAlarmsLastMsgEt = dtNow - _transAlarmsLastMsg;
-            if (transAlarmsLastMsgEt.TotalSeconds > 5)
+            if (transAlarmsLastMsgEt.TotalSeconds > 30)
                 lblDriveTempHigh.Invoke(new MethodInvoker(() => lblDriveTempHigh.Hide()));
             else
                 lblDriveTempHigh.Invoke(new MethodInvoker(() => lblDriveTempHigh.Show()));
 
             //Alternator potential
             var alternatorPotentialLastMsgEt = dtNow - _alternatorPotentialLastMsg;
-            if (alternatorPotentialLastMsgEt.TotalSeconds > 5)            
+            if (alternatorPotentialLastMsgEt.TotalSeconds > 30)            
                 gaugeVolts.Visibility = System.Windows.Visibility.Hidden;         
             else        
                 gaugeVolts.Visibility = System.Windows.Visibility.Visible;        
