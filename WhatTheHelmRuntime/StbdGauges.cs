@@ -82,7 +82,7 @@ namespace WhatTheHelmRuntime
             this.MaximumSize = new Size() { Height = 800, Width = 1280 };
             Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
             Timer pgnTimeoutTimer = new Timer();
-            pgnTimeoutTimer.Interval = 10000;
+            pgnTimeoutTimer.Interval = 2000;
             pgnTimeoutTimer.Tick += PgnTimeoutTimer_Tick;
             pgnTimeoutTimer.Start();
         }
@@ -104,7 +104,7 @@ namespace WhatTheHelmRuntime
                             if (_pgn0x1F200.EngineInstance == Program.RunningConfiguration.StbdPropulsionN2KConfig.Rpm.Instance)
                             {
                                 _rpmLastMsg = DateTime.Now;
-                                gaugeRpm.SetRpm(_pgn0x1F200.EngineSpeed / 4);
+                                elementHostRpm.Invoke(new MethodInvoker(() => gaugeRpm.SetRpm(_pgn0x1F200.EngineSpeed / 4)));
                             }
                         }
                     }
@@ -122,7 +122,7 @@ namespace WhatTheHelmRuntime
                             if (_pgn0x1F201.EngineInstance == Program.RunningConfiguration.StbdPropulsionN2KConfig.EngineTemperature.Instance)
                             {
                                 _engineTempLastMsg = DateTime.Now;
-                                gaugeWaterTemp.SetTemp(Convert.ToInt32(_pgn0x1F201.EngineTemperature));
+                                elementHostWaterTemp.Invoke(new MethodInvoker(() => gaugeWaterTemp.SetTemp(Convert.ToInt32(_pgn0x1F201.EngineTemperature))));
                             }
                         }
                     }
@@ -140,7 +140,7 @@ namespace WhatTheHelmRuntime
                             if (_pgn0x1F201.EngineInstance == Program.RunningConfiguration.StbdPropulsionN2KConfig.OilPressure.Instance)
                             {
                                 _oilPressLastMsg = DateTime.Now;
-                                gaugeOilPressure.SetPressure(Convert.ToInt32(_pgn0x1F201.OilPressure)); 
+                                elementHostOilPress.Invoke(new MethodInvoker(() => gaugeOilPressure.SetPressure(Convert.ToInt32(_pgn0x1F201.OilPressure))));
                             }
                         }
                     }
@@ -194,7 +194,7 @@ namespace WhatTheHelmRuntime
                                 int tens = Convert.ToInt32(arr[arr.Length - 4].ToString());
                                 int ones = Convert.ToInt32(arr[arr.Length - 3].ToString());
                                 int tenths = Convert.ToInt32(arr[arr.Length - 1].ToString());
-                                gaugeRpm.SetEngineHours(thousands, hundreds, tens, ones, tenths);
+                                elementHostRpm.Invoke(new MethodInvoker(() => gaugeRpm.SetEngineHours(thousands, hundreds, tens, ones, tenths)));
                             }
                         }
                     }
@@ -212,7 +212,7 @@ namespace WhatTheHelmRuntime
                             if (_pgn0x1F205.EngineInstance == Program.RunningConfiguration.StbdPropulsionN2KConfig.TransPressure.Instance)
                             {
                                 _transPressLastMsg = DateTime.Now;
-                                gaugeDrivePressure.SetPressure(Convert.ToInt32(_pgn0x1F205.OilPressure));
+                                elementHostTransPress.Invoke(new MethodInvoker(() => gaugeDrivePressure.SetPressure(Convert.ToInt32(_pgn0x1F205.OilPressure))));
                             }
                         }
                     }
@@ -253,13 +253,13 @@ namespace WhatTheHelmRuntime
                                 if (_pgn0x1F214.BatteryInstance == Program.RunningConfiguration.StbdPropulsionN2KConfig.AlternatorPotential.Instance)
                                 {
                                     _alternatorPotentialLastMsg = DateTime.Now;
-                                    gaugeVolts.SetVolts(_pgn0x1F214.Voltage);
+                                    elementHostVolts.Invoke(new MethodInvoker(() => gaugeVolts.SetVolts(_pgn0x1F214.Voltage)));
                                 }
-
                             }
                         }
                     }
             }
+
         }
 
         private void PgnTimeoutTimer_Tick(object sender, EventArgs e)
@@ -269,28 +269,28 @@ namespace WhatTheHelmRuntime
 
             //Engine RPM
             var rpmLastMsgEt = dtNow - _rpmLastMsg;
-            if (rpmLastMsgEt.TotalSeconds > 5)
+            if (rpmLastMsgEt.TotalSeconds > 30)
                 gaugeRpm.Visibility = System.Windows.Visibility.Hidden;
             else
                 gaugeRpm.Visibility = System.Windows.Visibility.Visible;
 
             //Engine temperature
             var engineTempLastMsgEt = dtNow - _engineTempLastMsg;
-            if (engineTempLastMsgEt.TotalSeconds > 5)
+            if (engineTempLastMsgEt.TotalSeconds > 30)
                 gaugeWaterTemp.Visibility = System.Windows.Visibility.Hidden;
             else
                 gaugeWaterTemp.Visibility = System.Windows.Visibility.Visible;
 
             //Oil pressure
             var oilPressLastMsgEt = dtNow - _oilPressLastMsg;
-            if (oilPressLastMsgEt.TotalSeconds > 5)
+            if (oilPressLastMsgEt.TotalSeconds > 30)
                 gaugeOilPressure.Visibility = System.Windows.Visibility.Hidden;
             else
                 gaugeOilPressure.Visibility = System.Windows.Visibility.Visible;
 
             //Engine alarms
             var engineAlarmsLastMsgEt = dtNow - _engineAlarmsLastMsg;
-            if (engineAlarmsLastMsgEt.TotalSeconds > 5)
+            if (engineAlarmsLastMsgEt.TotalSeconds > 30)
             {
                 lblWaterTempHigh.Invoke(new MethodInvoker(() => lblWaterTempHigh.Hide()));
                 lblOilPressLow.Invoke(new MethodInvoker(() => lblOilPressLow.Hide()));
@@ -305,21 +305,21 @@ namespace WhatTheHelmRuntime
 
             //Transmission pressure
             var transPressLastMsgEt = dtNow - _transPressLastMsg;
-            if (transPressLastMsgEt.TotalSeconds > 5)
+            if (transPressLastMsgEt.TotalSeconds > 30)
                 gaugeDrivePressure.Visibility = System.Windows.Visibility.Hidden;
             else
                 gaugeDrivePressure.Visibility = System.Windows.Visibility.Visible;
 
             //Transmission alarms
             var transAlarmsLastMsgEt = dtNow - _transAlarmsLastMsg;
-            if (transAlarmsLastMsgEt.TotalSeconds > 5)
+            if (transAlarmsLastMsgEt.TotalSeconds > 30)
                 lblDriveTempHigh.Invoke(new MethodInvoker(() => lblDriveTempHigh.Hide()));
             else
                 lblDriveTempHigh.Invoke(new MethodInvoker(() => lblDriveTempHigh.Show()));
 
             //Alternator potential
             var alternatorPotentialLastMsgEt = dtNow - _alternatorPotentialLastMsg;
-            if (alternatorPotentialLastMsgEt.TotalSeconds > 5)
+            if (alternatorPotentialLastMsgEt.TotalSeconds > 30)
                 gaugeVolts.Visibility = System.Windows.Visibility.Hidden;
             else
                 gaugeVolts.Visibility = System.Windows.Visibility.Visible;

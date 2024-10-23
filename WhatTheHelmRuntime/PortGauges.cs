@@ -99,28 +99,6 @@ namespace WhatTheHelmRuntime
 
         private void CanGateway_MessageRecieved(object sender, CanMessageArgs e)
         {
-            //DELETE ME
-            _rpmLastMsg = DateTime.Now;
-            elementHostRpm.Invoke(new MethodInvoker(() => gaugeRpm.SetRpm(3000 / 4)));
-            var arr = string.Format("{0:0000.0}", Math.Truncate(100.556 * 10) / 10).ToCharArray();
-            int thousands = Convert.ToInt32(arr[arr.Length - 6].ToString());
-            int hundreds = Convert.ToInt32(arr[arr.Length - 5].ToString());
-            int tens = Convert.ToInt32(arr[arr.Length - 4].ToString());
-            int ones = Convert.ToInt32(arr[arr.Length - 3].ToString());
-            int tenths = Convert.ToInt32(arr[arr.Length - 1].ToString());
-            elementHostRpm.Invoke(new MethodInvoker(() => gaugeRpm.SetEngineHours(thousands, hundreds, tens, ones, tenths)));
-           
-            _alternatorPotentialLastMsg = DateTime.Now;
-            elementHostVolts.Invoke(new MethodInvoker(() => gaugeVolts.SetVolts(13.45993)));
-            _engineTempLastMsg = DateTime.Now;
-            elementHostWaterTemp.Invoke(new MethodInvoker(() => gaugeWaterTemp.SetTemp(Convert.ToInt32(172.3884))));
-            _transPressLastMsg = DateTime.Now;
-            elementHostTransPress.Invoke(new MethodInvoker(() => gaugeDrivePressure.SetPressure(Convert.ToInt32(259.88))));
-            _oilPressLastMsg = DateTime.Now;
-            elementHostOilPress.Invoke(new MethodInvoker(() => gaugeOilPressure.SetPressure(Convert.ToInt32(66.6995))));
-            
-            //DELETE ME !!!!!!!!!!!!!!!!!!!!!!!!!
-
             if (Program.RunningConfiguration != null)
             {
                 //Engine RPM
@@ -136,7 +114,7 @@ namespace WhatTheHelmRuntime
                             if (_pgn0x1F200.EngineInstance == Program.RunningConfiguration.PortPropulsionN2KConfig.Rpm.Instance)
                             {
                                 _rpmLastMsg = DateTime.Now;
-                                gaugeRpm.SetRpm(_pgn0x1F200.EngineSpeed / 4);
+                                elementHostRpm.Invoke(new MethodInvoker(() => gaugeRpm.SetRpm(_pgn0x1F200.EngineSpeed / 4)));
                             }
                         }
                     }
@@ -154,7 +132,7 @@ namespace WhatTheHelmRuntime
                             if (_pgn0x1F201.EngineInstance == Program.RunningConfiguration.PortPropulsionN2KConfig.EngineTemperature.Instance)
                             {
                                 _engineTempLastMsg = DateTime.Now;
-                                gaugeWaterTemp.SetTemp(Convert.ToInt32(_pgn0x1F201.EngineTemperature));
+                                elementHostWaterTemp.Invoke(new MethodInvoker(() => gaugeWaterTemp.SetTemp(Convert.ToInt32(_pgn0x1F201.EngineTemperature))));
                             }
                         }
                     }
@@ -172,7 +150,7 @@ namespace WhatTheHelmRuntime
                             if (_pgn0x1F201.EngineInstance == Program.RunningConfiguration.PortPropulsionN2KConfig.OilPressure.Instance)
                             {
                                 _oilPressLastMsg = DateTime.Now;
-                                gaugeOilPressure.SetPressure(Convert.ToInt32(_pgn0x1F201.OilPressure));
+                                elementHostOilPress.Invoke(new MethodInvoker(() => gaugeOilPressure.SetPressure(Convert.ToInt32(_pgn0x1F201.OilPressure))));
                             }
                         }
                     }
@@ -220,13 +198,13 @@ namespace WhatTheHelmRuntime
                             //Instance check
                             if (_pgn0x1F201.EngineInstance == Program.RunningConfiguration.PortPropulsionN2KConfig.EngineHours.Instance)
                             {
-                                //var arr = string.Format("{0:0000.0}", Math.Truncate(_pgn0x1F201.EngineHours * 10) / 10).ToCharArray();
-                                //int thousands = Convert.ToInt32(arr[arr.Length - 6].ToString());
-                                //int hundreds = Convert.ToInt32(arr[arr.Length - 5].ToString());
-                                //int tens = Convert.ToInt32(arr[arr.Length - 4].ToString());
-                                //int ones = Convert.ToInt32(arr[arr.Length - 3].ToString());
-                                //int tenths = Convert.ToInt32(arr[arr.Length - 1].ToString());
-                                //gaugeRpm.SetEngineHours(thousands, hundreds, tens, ones, tenths);
+                                var arr = string.Format("{0:0000.0}", Math.Truncate(_pgn0x1F201.EngineHours * 10) / 10).ToCharArray();
+                                int thousands = Convert.ToInt32(arr[arr.Length - 6].ToString());
+                                int hundreds = Convert.ToInt32(arr[arr.Length - 5].ToString());
+                                int tens = Convert.ToInt32(arr[arr.Length - 4].ToString());
+                                int ones = Convert.ToInt32(arr[arr.Length - 3].ToString());
+                                int tenths = Convert.ToInt32(arr[arr.Length - 1].ToString());
+                                elementHostRpm.Invoke(new MethodInvoker(() => gaugeRpm.SetEngineHours(thousands, hundreds, tens, ones, tenths)));
                             }
                         }
                     }
@@ -244,7 +222,7 @@ namespace WhatTheHelmRuntime
                             if (_pgn0x1F205.EngineInstance == Program.RunningConfiguration.PortPropulsionN2KConfig.TransPressure.Instance)
                             {
                                 _transPressLastMsg = DateTime.Now;
-                                gaugeDrivePressure.SetPressure(Convert.ToInt32(_pgn0x1F205.OilPressure));
+                                elementHostTransPress.Invoke(new MethodInvoker(() => gaugeDrivePressure.SetPressure(Convert.ToInt32(_pgn0x1F205.OilPressure))));
                             }
                         }
                     }
@@ -285,7 +263,7 @@ namespace WhatTheHelmRuntime
                                 if (_pgn0x1F214.BatteryInstance == Program.RunningConfiguration.PortPropulsionN2KConfig.AlternatorPotential.Instance)
                                 {
                                     _alternatorPotentialLastMsg = DateTime.Now;
-                                    gaugeVolts.SetVolts(_pgn0x1F214.Voltage);
+                                    elementHostVolts.Invoke(new MethodInvoker(() => gaugeVolts.SetVolts(_pgn0x1F214.Voltage)));
                                 }
                             }
                         }

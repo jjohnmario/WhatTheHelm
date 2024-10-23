@@ -41,15 +41,15 @@ namespace WhatTheHelmRuntime
             this.label5 = new System.Windows.Forms.Label();
             this.btnConfigNmea2000 = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            this.elementHost15 = new System.Windows.Forms.Integration.ElementHost();
+            this.elementHostRpm = new System.Windows.Forms.Integration.ElementHost();
             this.gaugeRpm = new WhatTheHelmFormsLib.Tachometer();
-            this.elementHost11 = new System.Windows.Forms.Integration.ElementHost();
+            this.elementHostWaterTemp = new System.Windows.Forms.Integration.ElementHost();
             this.gaugeWaterTemp = new WhatTheHelmFormsLib.TempGauge();
-            this.elementHost3 = new System.Windows.Forms.Integration.ElementHost();
+            this.elementHostVolts = new System.Windows.Forms.Integration.ElementHost();
             this.gaugeVolts = new WhatTheHelmFormsLib.VoltGauge();
-            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+            this.elementHostOilPress = new System.Windows.Forms.Integration.ElementHost();
             this.gaugeOilPressure = new WhatTheHelmFormsLib.OilPressGauge();
-            this.elementHost2 = new System.Windows.Forms.Integration.ElementHost();
+            this.elementHostTransPress = new System.Windows.Forms.Integration.ElementHost();
             this.gaugeDrivePressure = new WhatTheHelmFormsLib.GearPressGauge();
             this.SuspendLayout();
             // 
@@ -191,50 +191,49 @@ namespace WhatTheHelmRuntime
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // elementHost15
+            // elementHostRpm
             // 
-            this.elementHost15.Location = new System.Drawing.Point(38, 133);
-            this.elementHost15.Name = "elementHost15";
-            this.elementHost15.Size = new System.Drawing.Size(555, 555);
-            this.elementHost15.TabIndex = 154;
-            this.elementHost15.Text = "elementHost1";
-            this.elementHost15.Child = this.gaugeRpm;
+            this.elementHostRpm.Location = new System.Drawing.Point(38, 133);
+            this.elementHostRpm.Name = "elementHostRpm";
+            this.elementHostRpm.Size = new System.Drawing.Size(555, 555);
+            this.elementHostRpm.TabIndex = 154;
+            this.elementHostRpm.Child = this.gaugeRpm;
             // 
-            // elementHost11
+            // elementHostWaterTemp
             // 
-            this.elementHost11.Location = new System.Drawing.Point(599, 83);
-            this.elementHost11.Name = "elementHost11";
-            this.elementHost11.Size = new System.Drawing.Size(300, 300);
-            this.elementHost11.TabIndex = 155;
-            this.elementHost11.Text = "elementHost1";
-            this.elementHost11.Child = this.gaugeWaterTemp;
+            this.elementHostWaterTemp.Location = new System.Drawing.Point(599, 83);
+            this.elementHostWaterTemp.Name = "elementHostWaterTemp";
+            this.elementHostWaterTemp.Size = new System.Drawing.Size(300, 300);
+            this.elementHostWaterTemp.TabIndex = 155;
+            this.elementHostWaterTemp.Text = "elementHost1";
+            this.elementHostWaterTemp.Child = this.gaugeWaterTemp;
             // 
-            // elementHost3
+            // elementHostVolts
             // 
-            this.elementHost3.Location = new System.Drawing.Point(599, 417);
-            this.elementHost3.Name = "elementHost3";
-            this.elementHost3.Size = new System.Drawing.Size(300, 300);
-            this.elementHost3.TabIndex = 156;
-            this.elementHost3.Text = "elementHost1";
-            this.elementHost3.Child = this.gaugeVolts;
+            this.elementHostVolts.Location = new System.Drawing.Point(599, 417);
+            this.elementHostVolts.Name = "elementHostVolts";
+            this.elementHostVolts.Size = new System.Drawing.Size(300, 300);
+            this.elementHostVolts.TabIndex = 156;
+            this.elementHostVolts.Text = "elementHost1";
+            this.elementHostVolts.Child = this.gaugeVolts;
             // 
-            // elementHost1
+            // elementHostOilPress
             // 
-            this.elementHost1.Location = new System.Drawing.Point(943, 83);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(300, 300);
-            this.elementHost1.TabIndex = 157;
-            this.elementHost1.Text = "gaugeOilPressure";
-            this.elementHost1.Child = this.gaugeOilPressure;
+            this.elementHostOilPress.Location = new System.Drawing.Point(943, 83);
+            this.elementHostOilPress.Name = "elementHostOilPress";
+            this.elementHostOilPress.Size = new System.Drawing.Size(300, 300);
+            this.elementHostOilPress.TabIndex = 157;
+            this.elementHostOilPress.Text = "gaugeOilPressure";
+            this.elementHostOilPress.Child = this.gaugeOilPressure;
             // 
-            // elementHost2
+            // elementHostTransPress
             // 
-            this.elementHost2.Location = new System.Drawing.Point(943, 417);
-            this.elementHost2.Name = "elementHost2";
-            this.elementHost2.Size = new System.Drawing.Size(300, 300);
-            this.elementHost2.TabIndex = 158;
-            this.elementHost2.Text = "gaugeDrivePressure";
-            this.elementHost2.Child = this.gaugeDrivePressure;
+            this.elementHostTransPress.Location = new System.Drawing.Point(943, 417);
+            this.elementHostTransPress.Name = "elementHostTransPress";
+            this.elementHostTransPress.Size = new System.Drawing.Size(300, 300);
+            this.elementHostTransPress.TabIndex = 158;
+            this.elementHostTransPress.Text = "gaugeDrivePressure";
+            this.elementHostTransPress.Child = this.gaugeDrivePressure;
             // 
             // StbdGauges
             // 
@@ -247,15 +246,15 @@ namespace WhatTheHelmRuntime
             this.Controls.Add(this.lblOilPressLow);
             this.Controls.Add(this.lblFuelPressLow);
             this.Controls.Add(this.lblWaterTempHigh);
-            this.Controls.Add(this.elementHost15);
+            this.Controls.Add(this.elementHostRpm);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.elementHost11);
+            this.Controls.Add(this.elementHostWaterTemp);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.elementHost3);
+            this.Controls.Add(this.elementHostVolts);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.elementHost1);
+            this.Controls.Add(this.elementHostOilPress);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.elementHost2);
+            this.Controls.Add(this.elementHostTransPress);
             this.Controls.Add(this.label3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -279,13 +278,13 @@ namespace WhatTheHelmRuntime
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnConfigNmea2000;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Integration.ElementHost elementHost15;
+        private System.Windows.Forms.Integration.ElementHost elementHostRpm;
         private WhatTheHelmFormsLib.Tachometer gaugeRpm;
-        private System.Windows.Forms.Integration.ElementHost elementHost11;
-        private System.Windows.Forms.Integration.ElementHost elementHost3;
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
+        private System.Windows.Forms.Integration.ElementHost elementHostWaterTemp;
+        private System.Windows.Forms.Integration.ElementHost elementHostVolts;
+        private System.Windows.Forms.Integration.ElementHost elementHostOilPress;
         private WhatTheHelmFormsLib.OilPressGauge gaugeOilPressure;
-        private System.Windows.Forms.Integration.ElementHost elementHost2;
+        private System.Windows.Forms.Integration.ElementHost elementHostTransPress;
         private WhatTheHelmFormsLib.GearPressGauge gaugeDrivePressure;
         private WhatTheHelmFormsLib.TempGauge gaugeWaterTemp;
         private WhatTheHelmFormsLib.VoltGauge gaugeVolts;

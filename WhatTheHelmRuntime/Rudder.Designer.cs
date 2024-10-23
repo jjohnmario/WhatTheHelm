@@ -187,10 +187,10 @@ namespace WhatTheHelmRuntime
             Mitov.BasicLab.ElementSize elementSize23 = new Mitov.BasicLab.ElementSize();
             Mitov.InstrumentLab.ScalePrecision scalePrecision1 = new Mitov.InstrumentLab.ScalePrecision();
             this.linearGauge1 = new Mitov.InstrumentLab.LinearGauge(this.components);
-            this.elementHost2 = new System.Windows.Forms.Integration.ElementHost();
-            this.rudderPosGauge1 = new WhatTheHelmFormsLib.RudderPosGauge();
-            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.engineSyncGauge1 = new WhatTheHelmFormsLib.EngineSyncGauge();
+            this.elementHostRudder = new System.Windows.Forms.Integration.ElementHost();
+            this.rudderPosGauge = new WhatTheHelmFormsLib.RudderPosGauge();
+            this.elementHostSync = new System.Windows.Forms.Integration.ElementHost();
+            this.engineSyncGauge = new WhatTheHelmFormsLib.EngineSyncGauge();
             ((System.ComponentModel.ISupportInitialize)(this.linearGauge1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -493,23 +493,23 @@ namespace WhatTheHelmRuntime
             this.linearGauge1.TabStop = false;
             this.linearGauge1.Value = 0D;
             // 
-            // elementHost2
+            // elementHostRudder
             // 
-            this.elementHost2.Location = new System.Drawing.Point(73, 79);
-            this.elementHost2.Name = "elementHost2";
-            this.elementHost2.Size = new System.Drawing.Size(300, 300);
-            this.elementHost2.TabIndex = 153;
-            this.elementHost2.Text = "elementHost2";
-            this.elementHost2.Child = this.rudderPosGauge1;
+            this.elementHostRudder.Location = new System.Drawing.Point(73, 79);
+            this.elementHostRudder.Name = "elementHostRudder";
+            this.elementHostRudder.Size = new System.Drawing.Size(300, 300);
+            this.elementHostRudder.TabIndex = 153;
+            this.elementHostRudder.Text = "elementHost2";
+            this.elementHostRudder.Child = this.rudderPosGauge;
             // 
-            // elementHost1
+            // elementHostSync
             // 
-            this.elementHost1.Location = new System.Drawing.Point(429, 79);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(300, 300);
-            this.elementHost1.TabIndex = 154;
-            this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = this.engineSyncGauge1;
+            this.elementHostSync.Location = new System.Drawing.Point(429, 79);
+            this.elementHostSync.Name = "elementHostSync";
+            this.elementHostSync.Size = new System.Drawing.Size(300, 300);
+            this.elementHostSync.TabIndex = 154;
+            this.elementHostSync.Text = "elementHost1";
+            this.elementHostSync.Child = this.engineSyncGauge;
             // 
             // Rudder
             // 
@@ -518,8 +518,8 @@ namespace WhatTheHelmRuntime
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(800, 480);
             this.ControlBox = false;
-            this.Controls.Add(this.elementHost1);
-            this.Controls.Add(this.elementHost2);
+            this.Controls.Add(this.elementHostSync);
+            this.Controls.Add(this.elementHostRudder);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -533,9 +533,9 @@ namespace WhatTheHelmRuntime
         #endregion
 
         private Mitov.InstrumentLab.LinearGauge linearGauge1;
-        private System.Windows.Forms.Integration.ElementHost elementHost2;
-        private WhatTheHelmFormsLib.RudderPosGauge rudderPosGauge1;
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
-        private WhatTheHelmFormsLib.EngineSyncGauge engineSyncGauge1;
+        private System.Windows.Forms.Integration.ElementHost elementHostRudder;
+        private WhatTheHelmFormsLib.RudderPosGauge rudderPosGauge;
+        private System.Windows.Forms.Integration.ElementHost elementHostSync;
+        private WhatTheHelmFormsLib.EngineSyncGauge engineSyncGauge;
     }
 }

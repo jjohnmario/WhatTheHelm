@@ -18,7 +18,7 @@ namespace WhatTheHelmRuntime
         {
             InitializeComponent();
             Timer t = new Timer();
-            t.Interval = 5000;
+            t.Interval = 2000;
             t.Tick += T_Tick;
             t.Start();
             Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
@@ -31,33 +31,33 @@ namespace WhatTheHelmRuntime
 
             //Port RPM status
             var portRpmLastMsgEt = dtNow - _portRpmLastMsg;
-            if (portRpmLastMsgEt.TotalSeconds > 5)
+            if (portRpmLastMsgEt.TotalSeconds > 30)
             {
-
+                engineSyncGauge.Visibility = System.Windows.Visibility.Hidden;
             }
             else
             {
- 
+                engineSyncGauge.Visibility = System.Windows.Visibility.Visible;
             }
             //Stbd RPM status
             var stbdRpmLastMsgEt = dtNow - _stbdRpmLastMsg;
-            if (stbdRpmLastMsgEt.TotalSeconds > 5)
+            if (stbdRpmLastMsgEt.TotalSeconds > 30)
             {
-
+                engineSyncGauge.Visibility = System.Windows.Visibility.Hidden;
             }
             else
             {
-
+                engineSyncGauge.Visibility = System.Windows.Visibility.Visible;
             }
             //Rudder status
             var rudderLastMsgEt = dtNow - _rudderLastMsg;
-            if (rudderLastMsgEt.TotalSeconds > 5)
+            if (rudderLastMsgEt.TotalSeconds > 30)
             {
-                
+                rudderPosGauge.Visibility = System.Windows.Visibility.Hidden;
             }
             else
             {
-
+                rudderPosGauge.Visibility = System.Windows.Visibility.Visible;
             }
         }
 
@@ -112,12 +112,12 @@ namespace WhatTheHelmRuntime
                             //Instance check
                             if(_pgn0x1F10D.Instance == Program.RunningConfiguration.RudderTrimN2KConfig.Rudder.Instance)
                             {
-                                rudderPosGauge1.SetPosition(_pgn0x1F10D.Instance);
+                                elementHostRudder.Invoke(new MethodInvoker(()=> rudderPosGauge.SetPosition(_pgn0x1F10D.Instance)));
                             }
                         }
                     }
                 //Sync
-                engineSyncGauge1.SetRpmDelta(_portRpm, _stbdRpm);
+                elementHostSync.Invoke(new MethodInvoker(()=> engineSyncGauge.SetRpmDelta(_portRpm, _stbdRpm)));
             }
         }
     }
