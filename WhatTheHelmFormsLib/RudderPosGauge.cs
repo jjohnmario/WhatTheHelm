@@ -49,7 +49,7 @@ namespace WhatTheHelmFormsLib
 
             RotateTransform rotate = new RotateTransform(needleVal);
             Needle.RenderTransform = rotate;
-            Val.Content = position;
+            Val.Content = string.Concat(position.ToString(), "°");
         }
     }
 }

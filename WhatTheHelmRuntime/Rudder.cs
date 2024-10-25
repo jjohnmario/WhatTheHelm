@@ -17,14 +17,14 @@ namespace WhatTheHelmRuntime
         public Rudder()
         {
             InitializeComponent();
-            Timer t = new Timer();
-            t.Interval = 2000;
-            t.Tick += T_Tick;
-            t.Start();
+            Timer pgnTimeoutTimer = new Timer();
+            pgnTimeoutTimer.Interval = 2000;
+            pgnTimeoutTimer.Tick += PgnTimeoutTimer_Tick;
+            pgnTimeoutTimer.Start();
             Program.CanGateway.MessageRecieved += CanGateway_MessageRecieved;
         }
 
-        private void T_Tick(object sender, EventArgs e)
+        private void PgnTimeoutTimer_Tick(object sender, EventArgs e)
         {
             //Get current time
             var dtNow = DateTime.Now;
@@ -63,7 +63,7 @@ namespace WhatTheHelmRuntime
 
         private void CanGateway_MessageRecieved(object sender, WhatTheHelmCanLib.Messages.CanMessageArgs e)
         {
-            if(Program.RunningConfiguration!=null)
+            if (Program.RunningConfiguration!=null)
             {
                 //Port Engine RPM
                 if (Program.RunningConfiguration.PortPropulsionN2KConfig.Rpm != null)
