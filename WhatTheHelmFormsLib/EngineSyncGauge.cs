@@ -22,9 +22,6 @@ namespace WhatTheHelmFormsLib
     /// </summary>
     public partial class EngineSyncGauge : UserControl
     {
-        private int _position;
-        
-
         public EngineSyncGauge()
         {
             InitializeComponent();
@@ -34,7 +31,6 @@ namespace WhatTheHelmFormsLib
         {
             //Engine speed synchronization
             var rpmDelta = portRpm - stbdRpm;
-            _position = portRpm;
             //+ delta = stbd slow, - delta = port slow
             if (rpmDelta < -1000)
                 rpmDelta = -1000;
