@@ -63,11 +63,11 @@ namespace WhatTheHelmFormsLib
         {
             _temp = temp;
  
-            if (temp < 140)
-                temp = 140;
-            if (temp > 220)
-                temp = 220;
-            int tempAboveMin = temp - 140;
+            if (_temp < 140)
+                _temp = 140;
+            if (_temp > 220)
+                _temp = 220;
+            int tempAboveMin = _temp - 140;
             //140F =  -60
             //220F = +60
             //120 total degrees

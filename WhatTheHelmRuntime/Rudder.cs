@@ -112,7 +112,7 @@ namespace WhatTheHelmRuntime
                             //Instance check
                             if(_pgn0x1F10D.Instance == Program.RunningConfiguration.RudderTrimN2KConfig.Rudder.Instance)
                             {
-                                elementHostRudder.Invoke(new MethodInvoker(()=> rudderPosGauge.SetPosition(_pgn0x1F10D.Instance)));
+                                elementHostRudder.Invoke(new MethodInvoker(()=> rudderPosGauge.SetPosition(Convert.ToInt32(_pgn0x1F10D.Position))));
                             }
                         }
                     }

@@ -63,11 +63,11 @@ namespace WhatTheHelmFormsLib
         {
             _volts = volts;
  
-            if (volts < 0)
-                volts = 0;
-            if (volts > 16)
-                volts = 16;
-            double voltsAboveMin = volts - 8;
+            if (_volts < 0)
+                _volts = 0;
+            if (_volts > 16)
+                _volts = 16;
+            double voltsAboveMin = _volts - 8;
             //8V =  -60
             //16V = +60
             //120 total degrees
